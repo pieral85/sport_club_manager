@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner_demo_player_1" model="res.partner">
+            <field name="name">Player #1</field>
+            <field name="email">player1@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">Paris</field>
+            <field name="zip">1234</field>
+            <field name="country_id" ref="base.fr"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Rue Foo, 123</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_1.jpg"/>
+        </record>
+        <record id="partner_demo_player_1_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_player_1"/>
+            <field name="login">player1@test.be</field>
+            <field name="password">player1</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+
+        <record id="partner_demo_player_2" model="res.partner">
+            <field name="name">Player #2</field>
+            <field name="email">player2@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">NY</field>
+            <field name="zip">4321</field>
+            <field name="country_id" ref="base.us"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Rue Kennedy, 2</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_2.jpg"/>
+        </record>
+        <record id="partner_demo_player_2_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_player_2"/>
+            <field name="login">player2@test.be</field>
+            <field name="password">player2</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+
+        <record id="partner_demo_player_3" model="res.partner">
+            <field name="name">Player #3</field>
+            <field name="email">player3@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">Roma</field>
+            <field name="zip">77</field>
+            <field name="country_id" ref="base.it"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Rue Foo, 123</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_3.png"/>
+        </record>
+        <record id="partner_demo_player_3_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_player_3"/>
+            <field name="login">player3@test.be</field>
+            <field name="password">player3</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+
+        <record id="partner_demo_player_4" model="res.partner">
+            <field name="name">Player #4</field>
+            <field name="email">player4@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">Namur</field>
+            <field name="zip">5000</field>
+            <field name="country_id" ref="base.be"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Rue Petite, 88</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_4.jpg"/>
+        </record>
+        <record id="partner_demo_player_4_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_player_4"/>
+            <field name="login">player4@test.be</field>
+            <field name="password">player4</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+
+
+        <record id="partner_demo_young_player_1" model="res.partner">
+            <field name="name">Young Player #1</field>
+            <field name="email">young1@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">Arlon</field>
+            <field name="zip">6700</field>
+            <field name="country_id" ref="base.be"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Rue Grande, 43</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_1.jpg"/>
+        </record>
+        <record id="partner_demo_young_player_1_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_young_player_1"/>
+            <field name="login">young1@test.be</field>
+            <field name="password">young1</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+
+
+        <record id="partner_demo_young_player_2" model="res.partner">
+            <field name="name">Young Player #2</field>
+            <field name="email">young2@test.com</field>
+<!--             <field name="supplier" eval="False"/>
+            <field name="customer" eval="False"/> -->
+            <field name="city">Brussels</field>
+            <field name="zip">1000</field>
+            <field name="country_id" ref="base.be"/>
+            <!-- <field name="company_name">YourCompany</field> -->
+            <field name="street">Avenue Principale, 1</field>
+            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_2.jpg"/>
+        </record>
+        <record id="partner_demo_young_player_2_user" model="res.users">
+            <field name="partner_id" ref="partner_demo_young_player_2"/>
+            <field name="login">young2@test.be</field>
+            <field name="password">young2</field>
+            <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
+        </record>
+    </data>
+</odoo> 

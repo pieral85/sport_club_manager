@@ -1,0 +1,68 @@
+<!-- security.xml -->
+
+<odoo>
+    <data>
+        <!-- Groups -->
+        <record id="group_user" model="res.groups">
+            <field name="name">Group - User</field>
+            <!--<field name="category_id" ref="base.model_res_users"/>  TODO What is category_id??? -->
+        </record>
+        <record id="group_manager" model="res.groups">
+            <field name="name">Group - Manager</field>
+            <!-- <field name="category_id" ref="base.module_category_academy"/> -->
+            <field name="implied_ids" eval="[(6,0,[ref('group_user')])]" />
+        </record>
+        <record id="group_sport_club_manager_guest" model="res.groups">
+            <field name="name">Group - Guest</field>
+        </record>
+        <record id="group_sport_club_manager_member" model="res.groups">
+            <field name="name">Group - Member</field>
+        </record>
+        <record id="group_sport_club_manager_president" model="res.groups">
+            <field name="name">Group - President</field>
+            <!-- <field name="category_id" ref="base.module_category_academy"/> -->
+            <field name="implied_ids" eval="[(6,0,[ref('group_manager')])]" />
+        </record>
+        <record id="group_sport_club_manager_secretary" model="res.groups">
+            <field name="name">Group - Secretary</field>
+        </record>
+        <record id="group_sport_club_manager_treasurer" model="res.groups">
+            <field name="name">Group - Treasurer</field>
+        </record>
+        <!-- <record id="group_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="base.module_category_academy"/>
+            <field name="implied_ids" eval="[(6,0,[ref('group_manager')])]" />
+        </record> -->
+
+         <record id="only_responsible_can_modify" model="ir.rule">
+            <field name="name">Only Responsible can modify Course</field>
+            <!-- <field name="model_id" ref="model_openacademy_course"/> -->
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="groups" eval="[(4, ref('sport_club_manager.group_manager'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">
+                ['|', '|',
+                 ('secretary', '=', True),
+                 ('treasurer', '=', True),
+                 ('president', '=', True),]
+            </field>
+        </record>
+
+        <!-- <record id="admin_rule" model="ir.rule">
+            <field name="name">Admin Can do everything</field>
+            <field name="model_id" ref="model_openacademy_course"/>
+            <field name="groups" eval="[(4, ref('sport_club_manager.group_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="domain_force">
+                [(1, '=', 1)]
+            </field>
+        </record> -->
+    </data>
+</odoo>

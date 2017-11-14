@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="period_2017" model="period">
+            <field name="name">Année 2017-2018</field>
+            <field name="start_date">2017-09-01</field>
+            <field name="end_date">2018-06-30</field>
+        </record>
+        <record id="period_2016" model="period">
+            <field name="name">Année 2016-2017</field>
+            <field name="start_date">2016-10-01</field>
+            <field name="end_date">2017-06-29</field>
+        </record>
+        <record id="period_2015" model="period">
+            <field name="name">2015-2016</field>
+            <field name="start_date">2015-10-02</field>
+            <field name="end_date">2016-07-01</field>
+        </record>
+        <record id="period_2014" model="period">
+            <field name="name">Année 2014-15</field>
+            <field name="start_date">2014-09-11</field>
+            <field name="end_date">2015-05-31</field>
+        </record>
+        <record id="period_2013" model="period">
+            <field name="name">13/14</field>
+            <field name="start_date">2013-09-03</field>
+            <field name="end_date">2014-06-30</field>
+        </record>
+        <record id="period_2012" model="period">
+            <field name="name">2012-13</field>
+            <field name="start_date">2012-09-01</field>
+            <field name="end_date">2013-06-29</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+                <!-- tree view(s) -->
+        <record id="membership_view_list" model="ir.ui.view">
+            <field name="name">membership list</field>
+            <field name="model">membership</field>
+            <!-- <field name="domain">[('active', '=', False),]</field> -->
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="period_id" domain="['|',('active','=',True),('active','=',False)]"/><!-- TODO Domain is not working! -->
+                    <field name="category_id"/>
+                    <field name="status"/>
+                    <field name="price_paid"/>
+                    <field name="price_due"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view(s) -->
+        <record id="membership_view_form" model="ir.ui.view">
+            <field name="name">membership form</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <!-- <h1> -->
+                            <field name="user_id"/>
+                            <!-- </h1> -->
+                            
+                            <field name="period_id" class="o_task_user_field"/>
+                            <field name="category_id"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="price_paid"/>
+                            <field name="price_due"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- kanban view(s) -->
+        <record id="membership_view_kanban" model="ir.ui.view">
+            <field name="name">membership kanban</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="status">
+                    <field name="color"/>
+                    <!-- <field name="user_id" /> -->
+                    <!-- <field name="category_id"/> -->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit
+                                oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
+                                ? 'oe_kanban_card_fancy' : ''}}">
+                                <div> <!-- class="col-xs-4" -->
+                                    <!-- <span class="oe_kanban_project_avatars"> -->
+                                        <img t-att-src="kanban_image('res.users', 'image_medium', record.user_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
+                                    <!-- </span> -->
+                                </div>
+
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="user_id"/>
+                                            </strong>
+                                            <span>
+                                                <div class="o_dropdown_kanban dropdown col-xs-4" ><!-- groups="openacademy.group_manager" -->
+                                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                        <span class="fa fa-bars fa-lg"/>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                        <t t-if="widget.editable"><li><a type="edit">Edit Membership</a></li></t>
+                                                        <!-- <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t> -->
+                                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                                    </ul>
+                                                </div>
+                                            </span>
+                                            <!-- <span t-if="record.category_id.raw_value" class="o_kanban_record_subtitle">
+                                                <i><field name="category_id"/></i>
+                                            </span> -->
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <span t-if="record.category_id.raw_value" class="o_kanban_record_subtitle">
+                                                <i><field name="category_id"/></i>
+                                            </span>
+                                            <span t-if="record.period_id.raw_value" class="o_kanban_record_subtitle">
+                                                <i><field name="period_id"/></i>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            Price Paid: <b><field name="price_paid" widget="monetary"/></b>
+                                        </li>
+                                        <li>
+                                            Price Due: <b><field name="price_due" widget="monetary"/></b>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- search view(s) -->
+        <record id="membership_search" model="ir.ui.view">
+            <field name="name">membership.active.period.search</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <search string="Periods">
+                    <filter string="Active Period" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', True)]" help="Memberships of active period."/>
+                    <filter string="Archived Periods" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', False)]" help="Memberships of archived periods."/>
+                </search>
+            </field>
+        </record>
+
+        <!-- TODO Create a Tree view -->
+
+        <record id="action_membership" model="ir.actions.act_window">
+            <field name="name">Membership Flow</field>
+            <field name="res_model">membership</field>
+            <field name="view_type">form</field>
+            <!-- <field name="view_mode">kanban</field> -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_active_period_search': 1, 'search_default_inactive_period_search': 0}</field>
+        </record>
+    </data>
+</odoo>

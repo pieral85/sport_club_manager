@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- menu(s)-->
+        <menuitem id="menu_root" name="Sport Club Manager"/>
+        <menuitem id="menu_top_settings" name="Settings" parent="menu_root"/>
+        <menuitem id="menu_top_members" name="Members" parent="menu_root"/>
+
+        <!-- menu action(s) -->
+        <!-- Settings -->
+        <menuitem id="menu_sub_settings_period" name="Periods" parent="menu_top_settings" action="action_settings_period"/>
+        <menuitem id="menu_sub_settings_category" name="Categories" parent="menu_top_settings" action="action_settings_category"/>
+        <!-- Members -->
+        <menuitem id="menu_sub_members" name="Members" parent="menu_top_members" action="action_user"/>
+        <menuitem id="menu_sub_memberships" name="Memberships" parent="menu_top_members" action="action_membership"/>
+    </data>
+</odoo>

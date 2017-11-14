@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view(s) -->
+        <record id="category_view_list" model="ir.ui.view">
+            <field name="name">category list</field>
+            <field name="model">category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view(s) -->
+        <!-- TODO Y afficher la liste des period pour chacune de ces categories -->
+        <!-- <record id="category_view_form" model="ir.ui.view">
+            <field name="name">category form</field>
+            <field name="model">category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <h1>
+                                <label string="..."/>
+                            </h1>
+                            <field name="..."/>
+                        </group>
+                        <notebook>
+                            <page name="..." string="...">
+                                <field name="..._ids">
+                                    <tree editable="bottom">
+                                        <field name="..."/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record> -->
+
+        <!-- kanban view(s) -->
+        <!-- TO BE IMPLEMENTED -->
+
+        <!-- action(s) -->
+        <record id="action_settings_category" model="ir.actions.act_window">
+            <field name="name">Action Settings Category</field>
+            <field name="res_model">category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

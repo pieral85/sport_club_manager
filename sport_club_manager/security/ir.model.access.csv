@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_control_list_test_id,acl_test_id,model_res_users,sport_club_manager.group_sport_club_manager_member,1,0,0,0

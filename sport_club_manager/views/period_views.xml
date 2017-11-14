@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view(s) -->
+        <record id="period_view_list" model="ir.ui.view">
+            <field name="name">period list</field>
+            <field name="model">period</field>
+            <!-- <field name="domain">[('active', '=', False),]</field> -->
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view(s) -->
+        <record id="period_view_form" model="ir.ui.view">
+            <field name="name">period form</field>
+            <field name="model">period</field>
+            <!-- <field name="domain">[('type','in', ['out_invoice', 'out_refund']), ('state', 'not in', ['draft', 'cancel'])]</field> -->
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <h1>
+                                <field name="name" placeholder="Name..."/>
+                            </h1>
+                            
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <notebook>
+                            <page string="Categories">
+                                <field name="period_category_ids">
+                                    <tree editable="bottom">
+                                        <field name="category_id"/>
+                                        <field name="price_due" widget="monetary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Members">
+                                <field name="user_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- kanban view(s) -->
+        <!-- TO BE IMPLEMENTED -->
+
+        <!-- search view(s) -->
+        <record id="period_search" model="ir.ui.view">
+            <field name="name">period.inactive.search</field>
+            <field name="model">period</field>
+            <field name="arch" type="xml">
+                <search string="Periods">
+                    <field name="name" filter_domain="[('start_date', '&lt;=',self), ('end_date', '&gt;=', self)]" string="Period Including Date"/>
+                    <!-- <field name="name" filter_domain="['|', '|', ('name','ilike',self), ('login','ilike',self), ('email','ilike',self)]" string="User"/> -->
+                    <separator/>
+                    <filter string="Active" name ="active_search" icon="terp-gtk-media-pause" domain="[('active','=', True)]" help="Only active period."/>
+                    <filter string="Archived" name ="inactive_search" icon="terp-gtk-media-pause" domain="[('active','=', False)]" help="Only inactive periods."/>
+                    <!-- <separator/>
+                    <filter string="test_annee" name="annee_search" domain="['|', ('name', 'ilike', 'annee'), ('name', 'ilike', 'year')]]"/> -->
+                    <!-- <filter string="name" domain="[]" context="{"group_by" : "field"}" /> --><!-- TODO Need to have a group by? What about other modules? -->
+                </search>
+            </field>
+        </record>
+
+        <!-- action(s) -->
+        <record id="action_settings_period" model="ir.actions.act_window">
+            <field name="name">Action Settings Period</field>
+            <field name="context">{'search_default_active_search': 1, 'search_default_inactive_search': 1}</field>
+            <field name="res_model">period</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

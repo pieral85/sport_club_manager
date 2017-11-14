@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <template id="website_period">
+            <t t-call="website.layout">
+                <t t-set="title">Academy</t>
+                <div class="oe_structure">
+                </div>
+                <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <a href="/sport/add" class="btn btn-primary btn-lg">Add</a>
+                        </div>
+                        <t t-foreach="periods" t-as="period">
+                            <p>
+                                <h2><t t-esc="period.name"/></h2>
+                                From <t t-esc="period.start_date"/>
+                                To <t t-esc="period.end_date"/>
+                            </p>
+                            <p><h3>Categories</h3></p>
+                            <t t-foreach="period.period_category_ids" t-as="period_category">
+                                <p>Name: <t t-esc="period_category.category_id.name"/></p>
+                                <p>Price Due: <t t-esc="period_category.price_due"/></p>
+                                <!-- <t t-esc=""/>
+                                <t t-esc=""/> -->
+<!-- 
+                                <p><a t-attf-href="/academy/{{ slug(session) }}"><t t-esc="session.name"/></a></p>
+                                <p>Last modified: <i t-field="session.write_date" t-field-options='{"format": "long"}' /></p>
+                                <div t-field="session.description" />
+                                 -->
+                            </t>
+                         </t>
+                    </div>
+                </div>
+                <div class="oe_structure">
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
