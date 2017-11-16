@@ -39,6 +39,10 @@
                             <field name="price_due"/>
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -125,7 +129,7 @@
         <!-- TODO Create a Tree view -->
 
         <record id="action_membership" model="ir.actions.act_window">
-            <field name="name">Membership Flow</field>
+            <field name="name">Memberships</field>
             <field name="res_model">membership</field>
             <field name="view_type">form</field>
             <!-- <field name="view_mode">kanban</field> -->

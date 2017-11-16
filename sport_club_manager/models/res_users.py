@@ -16,8 +16,6 @@ from odoo import api, fields, models
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
-    # _inherit = ['res.users', 'mail.thread']
-
 
     # TODO Should move to membership? (and merged into staus field?)
     secretary = fields.Boolean('Is Secretary', default=False)
@@ -44,11 +42,26 @@ class ResUsers(models.Model):
     )
 
     @api.onchange('secretary')
-    def _onchange_status(self):
-        self.groups_id = self.env['res.groups']
-        #default_user or self.env['res.users']).sudo().groups_id
-        # self.env['account.full.reconcile'].create({
-        #     'partial_reconcile_ids': [(6, 0, partial_rec_ids)],
-        #     'reconciled_line_ids': [(6, 0, self.ids)],
-        #     'exchange_move_id': exchange_move.id if exchange_move else False,
-        # })
+    def _on_change_secretary(self):
+        if self.secretary:
+            self.administrator = True
+
+    @api.onchange('treasurer')
+    def _on_change_treasurer(self):
+        if self.treasurer:
+            self.administrator = True
+
+    @api.onchange('president')
+    def _on_change_president(self):
+        if self.president:
+            self.administrator = True
+
+    # @api.onchange('secretary')
+    # def _onchange_status(self):
+    #     self.groups_id = self.env['res.groups']
+    #     #default_user or self.env['res.users']).sudo().groups_id
+    #     # self.env['account.full.reconcile'].create({
+    #     #     'partial_reconcile_ids': [(6, 0, partial_rec_ids)],
+    #     #     'reconciled_line_ids': [(6, 0, self.ids)],
+    #     #     'exchange_move_id': exchange_move.id if exchange_move else False,
+    #     # })

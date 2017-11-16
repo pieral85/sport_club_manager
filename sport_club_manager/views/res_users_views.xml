@@ -2,35 +2,43 @@
 <odoo>
     <data>
         <record id="view_users_simple_form_sport" model="ir.ui.view">
-        	<field name="name">res.users.simplified.form</field>
-        	<field name="model">res.users</field>
-        	<field name="inherit_id" ref="base.view_users_simple_form"/>
-        	<field name="arch" type="xml">
-        		<xpath expr="//sheet" position="after">
-        			<sheet>
-        				<notebook>
-        					<page string="Affiliations">
-        						<field name="membership_ids"><!-- TODO Order by date desc -->
-        							<tree editable="bottom">
-        								<field name="period_category_id"/><!-- TODO This field should be splitted into period field and category field. When selecting one, the other one should be restricted to what is existing. 
+            <field name="name">res.users.simplified.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_simple_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="after">
+                    <sheet>
+                        <notebook>
+                            <page string="Affiliations">
+                                <field name="membership_ids"><!-- TODO Order by date desc -->
+                                    <tree editable="bottom">
+                                        <field name="period_category_id"/><!-- TODO This field should be splitted into period field and category field. When selecting one, the other one should be restricted to what is existing. 
                                         Following could be useful (in field node): on_change="onchange_account_id(product_id, parent.partner_id, parent.type, parent.fiscal_position,account_id)-->
-        								<field name="price_paid" widget="monetary"/>
-        								<field name="price_due" widget="monetary"/>
-        								<field name="price_paid_percentage" widget="progressbar"/>
-        							</tree>
-        						</field>
-        					</page>
-        				</notebook>
-        			</sheet>
+                                        <field name="price_paid" widget="monetary"/>
+                                        <field name="price_due" widget="monetary"/>
+                                        <field name="price_paid_percentage" widget="progressbar"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Club Settings">
+                                <group>
+                                    <field name="secretary"/>
+                                    <field name="treasurer"/>
+                                    <field name="president"/>
+                                    <field name="administrator"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
-        		</xpath>
-        	</field>
+                </xpath>
+            </field>
         </record>
 
-        <record id="action_user" model="ir.actions.act_window">
+        <record id="action_member" model="ir.actions.act_window">
             <field name="name">Action User</field>
             <field name="res_model">res.users</field>
             <field name="view_type">form</field>

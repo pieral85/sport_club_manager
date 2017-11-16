@@ -5,6 +5,7 @@ from odoo import api, fields, models
 
 class Membership(models.Model):
     _name = 'membership'
+    _inherit = 'mail.thread'
     _description = 'Description'
 
     # @api.model
@@ -17,11 +18,13 @@ class Membership(models.Model):
         comodel_name='period_category',
         # inverse_name='membership_ids',
         string='Period Category',
+        required=True,
     )
     user_id = fields.Many2one(
         comodel_name='res.users',
         # inverse_name='membership_ids',
         string='Member',  # TODO Should it be a member (<> user)?
+        required=True,
     )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
@@ -96,6 +99,35 @@ class Membership(models.Model):
 #        # domain=[('is_company', '=', False)],
 #        string='Members',
 #    )
+
+    # @api.multi
+    # def write(self, vals):
+    #     res = super(Membership, self).write(vals)
+    #     self._add_follower(vals)
+    #     return res
+
+    @api.multi
+    @api.depends('period_id', 'user_id')
+    def name_get(self):
+        res = []
+        for record in self:
+            name = '%s (%s)' % (record.period_id.name, record.user_id.name)
+            res.append((record.id, name))
+        return res
+
+    @api.model
+    def create(self, vals):
+        res = super(Membership, self).create(vals)
+        res._add_follower(vals)
+        return res
+
+    def _add_follower(self, vals):
+        # if vals.get('responsible_id'):
+            # responsible = self.env['res.users'].browse(vals.get('responsible_id'))
+            # self.message_subscribe(partner_ids=responsible.partner_id.ids)
+        ids = self.user_id.partner_id.ids
+        ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
+        self.message_subscribe(partner_ids=ids)
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):
