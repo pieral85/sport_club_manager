@@ -54,10 +54,14 @@
             <field name="arch" type="xml">
                 <kanban default_group_by="status">
                     <field name="color"/>
+                    <field name="price_paid_percentage"/>
                     <!-- <field name="user_id" /> -->
                     <!-- <field name="category_id"/> -->
                     <templates>
                         <t t-name="kanban-box">
+                            <!-- <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit
+                                oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
+                                ? 'oe_kanban_card_fancy' : ''}}"> -->
                             <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit
                                 oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
                                 ? 'oe_kanban_card_fancy' : ''}}">
@@ -81,7 +85,7 @@
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                                         <t t-if="widget.editable"><li><a type="edit">Edit Membership</a></li></t>
                                                         <!-- <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t> -->
-                                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                                        <!-- <li><ul class="oe_kanban_colorpicker" data-field="color"/></li> -->
                                                     </ul>
                                                 </div>
                                             </span>
@@ -100,10 +104,17 @@
                                             </span>
                                         </li>
                                         <li>
-                                            Price Paid: <b><field name="price_paid" widget="monetary"/></b>
+                                            <span>Price Paid: </span>
+                                            <span t-attf-class="o_text_bold">
+                                            <!-- <span t-attf-class="#{color || ''}"> -->
+                                                <field name="price_paid" widget="monetary"/>
+                                            </span>
                                         </li>
                                         <li>
-                                            Price Due: <b><field name="price_due" widget="monetary"/></b>
+                                            <span>Price Due: </span>
+                                            <span t-attf-class="o_text_bold">
+                                                <field name="price_due" widget="monetary"/>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>

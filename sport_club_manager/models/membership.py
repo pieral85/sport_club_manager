@@ -71,7 +71,11 @@ class Membership(models.Model):
         string='Paid',
         compute='_compute_payment',
     )
-    color = fields.Integer(string='Color Index')
+    color = fields.Integer(
+        string='Color Index',
+        compute='_compute_color',
+        help='Color to be displayed in the kanban view.',
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         related='user_id.partner_id',
@@ -177,6 +181,14 @@ class Membership(models.Model):
                     record.status = 'old_member'
                 else:
                     record.status = 'not_member'
+
+    def _compute_color(self):
+        # 1?,9!rouge   10?vert
+        for record in self:
+            if record.status == 'member':
+                record.color = 10 if record.price_paid_percentage == 100 else 9
+            else:
+                record.color = 12
 
     # @api.multi
     @api.onchange('period_category_id')
