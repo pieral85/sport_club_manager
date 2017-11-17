@@ -31,6 +31,9 @@
         'views/membership_views.xml',
         'views/menus.xml',
 
+        # actions
+        'actions/membership_actions.xml',
+
         # templates
         'controllers/templates.xml',
 

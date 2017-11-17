@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+<!--         <act_window 
+            id="validate_membership_payment"
+            name="Validate Payment(s)"
+            src_model="membership"
+            res_model="membership"
+            view_mode="form"
+            target="current"
+            key2="client_action_multi"/>
+            
+        <act_window 
+            id="validate_membership_wizard"
+            name="Validate Membership"
+            src_model="membership"
+            res_model="membership_wizard"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"/> -->
+    </data>
+</odoo>

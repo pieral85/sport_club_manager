@@ -57,15 +57,17 @@ class Membership(models.Model):
         # string='Is an Old Member',
         # compute='_compute_old_member',
     # )
-    status = fields.Selection(
+    state = fields.Selection(
         [
          ('not_member', 'Not a Member'),
+         ('old_member', 'Old Member'),
          ('requested', 'Requested'),
          ('member', 'Member'),
-         ('old_member', 'Old Member'),
+         ('rejected', 'Rejected'),
         ],
         required=True,
-        default='not_member'
+        default='not_member',
+        group_expand='_expand_state',
     )
     paid = fields.Boolean(
         string='Paid',
@@ -145,22 +147,22 @@ class Membership(models.Model):
                 record.price_paid_percentage = 100.0 * record.price_paid / record.price_due
                 record.price_remaining = record.price_due - record.price_paid
                 record.paid = False
-            record._compute_status()
+            record._compute_state()
 
-    # #After status has been changed
-    # @api.onchange('status')
-    # def _onchange_status(self):
-    #     if record.status == 'member':
+    # #After state has been changed
+    # @api.onchange('state')
+    # def _onchange_state(self):
+    #     if record.state == 'member':
     #         if record.price_paid < record.price_due:
     #             record.price_paid = record.price_due  # Cette ligne devrait se retrouver dans la kanban view qand on drag and drop le user sur colonne Member
 
 
     # TODO define an api.depends (ne doit etre calcule que quand il y a une nouvelle periode (via le CRON?))
-    def _compute_status(self):
+    def _compute_state(self):
     # def _compute_old_member(self):
         # import ipdb; ipdb.set_trace()
         for record in self:
-            if record.status not in ('member', 'requested'):
+            if record.state not in ('member', 'requested'):
                 previous_period = record.period_category_id.period_id.previous_period
                 temp = self.env['membership'].search(
                     [
@@ -178,14 +180,14 @@ class Membership(models.Model):
                     ]
                 )
                 if toto:
-                    record.status = 'old_member'
+                    record.state = 'old_member'
                 else:
-                    record.status = 'not_member'
+                    record.state = 'not_member'
 
     def _compute_color(self):
         # 1?,9!rouge   10?vert
         for record in self:
-            if record.status == 'member':
+            if record.state == 'member':
                 record.color = 10 if record.price_paid_percentage == 100 else 9
             else:
                 record.color = 12
@@ -244,3 +246,95 @@ class Membership(models.Model):
                     record.category_id = None
                 else:
                     record.period_category_id = period_category_id
+
+    @api.multi
+    def validate_membership_payment(self):
+        for record in self:
+            record.price_paid = record.price_due
+
+    # @api.model
+    @api.multi
+    def validate_membership_affiliation(self):
+        # import ipdb; ipdb.set_trace()
+        for record in self:
+            record.state = 'member'
+        # view_id = self.env.ref('sport_club_manager.membership_view_form_wizard').id
+        # ctx = {}
+        # if len(self) == 1:
+        #     # ctx['default_category_id'] = self.category_id.id
+        #     # ctx['default_period_id'] = self.period_id.id
+        #     ctx['default_price_paid'] = self.price_paid
+        #     ctx['default_price_due'] = self.price_due
+        # return {
+        #     'type': 'ir.actions.act_window',
+        #     'name': 'Affiliate a Member',
+        #     'view_type': 'form',
+        #     'view_mode': 'form',
+        #     'res_model': 'membership_wizard',
+        #     # 'res_id': self.id,
+        #     'target': 'new',
+        #     'views': [[view_id, 'form']],
+        #     'context': ctx,
+        # }
+
+    @api.multi
+    def reject_membership_affiliation(self):
+        for record in self:
+            record.state = 'rejected'
+
+    def _expand_state(self, states, domain, order):
+        return [key for key, val in type(self).state.selection]
+
+# class Wizard(models.TransientModel):
+#     _name = 'membership_wizard'
+#     # _inherit = 'membership'
+
+#     def default_get(self):
+#         import pprint
+#         pprint.pprint(self._context)
+
+#     def _default_membership(self):
+#         return self.env['membership'].browse(self._context.get('active_id'))
+
+#     send_email = fields.Boolean(
+#         string='Email to Member',
+#         default=True,
+#         help='Sends an email to the member to advise him  of its affiliation.',
+#     )
+
+#     membership_id = fields.Many2one(
+#         comodel_name='membership',
+#         string='Membership',
+#         required=True,
+#         default=_default_membership,
+#     )
+
+#     @api.multi
+#     def run_affiliation(self):
+#         import ipdb; ipdb.set_trace()
+#         #self.session_id.attendee_ids |= self.attendee_ids
+#         self.ensure_one()  # 
+#         self.write({'state': 'second',
+#                     'rental_date': self.rental_date,
+#                     'book_ids': self.book_ids,})
+#         return {
+#             'type': 'ir.actions.act_window',
+#             'res_model': 'librarymanagement.make_rental',
+#             'view_mode': 'form',
+#             'view_type': 'form',
+#             'res_id': self.id,
+#             'target': 'new',
+#         }
+
+
+#     def _warningR(self, title, message):
+#         return {'warning': {
+#             'title': title,
+#             'message': message,
+#         }}
+#     @api.onchange('test')
+#     def _verify_valid_seats(self):
+#         if True:  # self.seats < 0:
+#             return self._warningR("Incorrect 'seats' value",  "The number of available seats may not be negative")
+#         else:  # if self.seats < len(self.attendee_ids):
+#             return self._warningR("Too many attendees", "Increase seats or remove excess attendees")

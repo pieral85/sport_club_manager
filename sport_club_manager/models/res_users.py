@@ -23,16 +23,16 @@ class ResUsers(models.Model):
     president = fields.Boolean('Is President', default=False)
     administrator = fields.Boolean('Is Administrator', default=False)
     # TODO When secretary, treasurer or president is set ==> should be automatically administrator
-    status = fields.Selection(
-        [
-         ('not_member', 'Not a Member'),
-         ('requested', 'Requested'),
-         ('member', 'Member'),
-         ('old_member', 'Old Member'),
-        ],
-        #required=True,
-        default='member'
-    )  # TODO Should be related to membership for active period
+    # status = fields.Selection(
+    #     [
+    #      ('not_member', 'Not a Member'),
+    #      ('requested', 'Requested'),
+    #      ('member', 'Member'),
+    #      ('old_member', 'Old Member'),
+    #     ],
+    #     #required=True,
+    #     default='member'
+    # )
 
     membership_ids = fields.One2many(
         comodel_name='membership',

@@ -6,77 +6,77 @@
             <field name="user_id" ref="partner_demo_player_1_user"/>
             <field name="price_paid">100</field>
             <!-- <field name="price_due" ref="period_category_id.price_due"/> -->
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
 
         <record id="membership_2" model="membership">
             <field name="period_category_id" ref="period_category_starter_2017"/>
             <field name="user_id" ref="partner_demo_player_3_user"/>
             <field name="price_paid">50</field>
-            <!-- <field name="status">member</field> -->
+            <!-- <field name="state">member</field> -->
         </record>
         
         <record id="membership_3" model="membership">
             <field name="period_category_id" ref="period_category_competitor_2017"/>
             <field name="user_id" ref="partner_demo_young_player_1_user"/>
             <!-- <field name="price_paid">80</field> -->
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
         
         <record id="membership_4" model="membership">
             <field name="period_category_id" ref="period_category_competitor_2017"/>
             <field name="user_id" ref="partner_demo_player_4_user"/>
             <field name="price_paid">50</field>
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
         
         <record id="membership_5" model="membership">
             <field name="period_category_id" ref="period_category_teenager_2017"/>
             <field name="user_id" ref="partner_demo_young_player_2_user"/>
             <!-- <field name="price_paid">80</field> -->
-            <field name="status">requested</field>
+            <field name="state">requested</field>
         </record>
         
         <record id="membership_6" model="membership">
             <field name="period_category_id" ref="period_category_starter_2016"/>
             <field name="user_id" ref="partner_demo_player_2_user"/>
             <field name="price_paid">80</field>
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
         
         <record id="membership_7" model="membership">
             <field name="period_category_id" ref="period_category_competitor_2016"/>
             <field name="user_id" ref="partner_demo_young_player_1_user"/>
             <field name="price_paid">80</field>
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
         
         <record id="membership_8" model="membership">
             <field name="period_category_id" ref="period_category_child_2016"/>
             <field name="user_id" ref="partner_demo_young_player_2_user"/>
             <field name="price_paid">50</field>
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
         
         <record id="membership_9" model="membership">
             <field name="period_category_id" ref="period_category_competitor_2016"/>
             <field name="user_id" ref="partner_demo_player_4_user"/>
             <!-- <field name="price_paid">95</field> -->
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
 
         <record id="membership_10" model="membership">
             <field name="period_category_id" ref="period_category_starter_2015"/>
             <field name="user_id" ref="partner_demo_player_4_user"/>
             <field name="price_paid">75</field>
-            <!-- <field name="status">member</field> -->
+            <!-- <field name="state">member</field> -->
         </record>
         
         <record id="membership_11" model="membership">
             <field name="period_category_id" ref="period_category_starter_2015"/>
             <field name="user_id" ref="partner_demo_player_1_user"/>
             <field name="price_paid">70</field>
-            <field name="status">member</field>
+            <field name="state">member</field>
         </record>
     </data>
 </odoo>

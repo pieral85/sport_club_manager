@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-                <!-- tree view(s) -->
+        <!-- tree view(s) -->
         <record id="membership_view_list" model="ir.ui.view">
             <field name="name">membership list</field>
             <field name="model">membership</field>
@@ -11,7 +11,7 @@
                     <field name="user_id"/>
                     <field name="period_id" domain="['|',('active','=',True),('active','=',False)]"/><!-- TODO Domain is not working! -->
                     <field name="category_id"/>
-                    <field name="status"/>
+                    <field name="state"/>
                     <field name="price_paid"/>
                     <field name="price_due"/>
                 </tree>
@@ -24,6 +24,13 @@
             <field name="model">membership</field>
             <field name="arch" type="xml">
                 <form>
+                    <field name="price_remaining" invisible="1"/>
+                    <header>
+                        <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('price_remaining', '&lt;=', 0)]}"/>
+                        <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
+                        <button name="reject_membership_affiliation" type="object" string="Reject Affiliation" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="not_member,old_member,requested,member"/>
+                    </header>
                     <sheet>
                         <group>
                             <!-- <h1> -->
@@ -32,7 +39,7 @@
                             
                             <field name="period_id" class="o_task_user_field"/>
                             <field name="category_id"/>
-                            <field name="status"/>
+                            <!-- <field name="state"/> -->
                         </group>
                         <group>
                             <field name="price_paid"/>
@@ -47,12 +54,36 @@
             </field>
         </record>
 
+<!--         <record id="membership_view_form_wizard" model="ir.ui.view">
+            <field name="name">membership form wizard</field>
+            <field name="model">membership_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Member Affiliation">
+                    <group> -->
+                        <!-- <field name="membership_id"/>
+                        <field name="period_id"/>
+                        <field name="category_id"/> -->
+                        <!-- <field name="price_paid"/>
+                        <field name="price_due"/> -->
+<!--                         <field name="send_email"/>
+                    </group>
+                    <footer>
+                        <button name="run_affiliation" type="object"
+                                string="Affiliate" class="oe_highlight" confirm="Are you sure you want to cancel this receipt?"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record> -->
+
+
         <!-- kanban view(s) -->
         <record id="membership_view_kanban" model="ir.ui.view">
             <field name="name">membership kanban</field>
             <field name="model">membership</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="status">
+                <!-- <kanban _group_by_full="state"> -->
+                <kanban default_group_by="state">
                     <field name="color"/>
                     <field name="price_paid_percentage"/>
                     <!-- <field name="user_id" /> -->
