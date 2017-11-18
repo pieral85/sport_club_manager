@@ -23,6 +23,9 @@
             <!-- <field name="domain">[('type','in', ['out_invoice', 'out_refund']), ('state', 'not in', ['draft', 'cancel'])]</field> -->
             <field name="arch" type="xml">
                 <form>
+                    <header>
+                        <button name="duplicate" type="object" string="Duplicate" class="btn-primary"/><!--  attrs="{'invisible': [('active', '=', False)]}"/> -->
+                    </header>
                     <sheet>
                         <group>
                             <h1>

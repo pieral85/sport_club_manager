@@ -15,6 +15,13 @@ class Category(models.Model):
         string='Category',
         required=True,
     )
+    # period_ids = fields.Many2many(
+    #     comodel_name='period',
+    #     relation='period_category',
+    #     column1='category',
+    #     column2='period',
+    #     string='Periods',
+    # )
     period_category_ids = fields.One2many(
         comodel_name='period_category',
         inverse_name='category_id',
@@ -59,3 +66,28 @@ class PeriodCategory(models.Model):
         for record in self:
             result.append((record.id , '%s (%s)' % (record.period_id.name, record.category_id.name)))
         return result
+
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        default.setdefault('period_id', self.period_id.id)
+        default.setdefault('category_id', self.category_id.id)
+        default.setdefault('currency_id', self.currency_id.id)
+        default.setdefault('price_due', self.price_due)
+        import ipdb; ipdb.set_trace()
+        new_period_category = super(PeriodCategory, self).copy(default)
+        print('=== Period Category ===', new_period_category)
+        import pprint; pprint.pprint(default)
+        for membership_id in self.membership_ids:
+            # membership_state = 'old_member' if membership_id.state == 'member' else 'not_member'
+            if membership_id.state == 'member':
+                membership_state = 'old_member'
+            elif membership_id.state == 'rejected':
+                continue
+            else:
+                membership_state = 'not_member'
+            membership_id.copy({
+                'period_category_id': new_period_category.id,
+                'state': membership_state,
+            })
+        return new_period_category

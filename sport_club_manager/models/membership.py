@@ -282,6 +282,19 @@ class Membership(models.Model):
         for record in self:
             record.state = 'rejected'
 
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        default.setdefault('period_category_id', self.period_category_id.id)
+        default.setdefault('user_id', self.user_id.id)
+        default.setdefault('currency_id', self.currency_id.id)
+        default.setdefault('price_paid', 0)
+        default.setdefault('price_due', self.price_due)
+        default.setdefault('state', self.state)
+        print('=== Membership ===')
+        import pprint; pprint.pprint(default)
+        return super(Membership, self).copy(default)
+
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]
 

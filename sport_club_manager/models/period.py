@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from datetime import date
+
 from odoo import models, fields, api
 
 class Period(models.Model):
@@ -33,6 +35,13 @@ class Period(models.Model):
         string='Previous Period',
         compute='_compute_previous_period',
     )
+    # category_ids = fields.Many2many(
+    #     comodel_name='category',
+    #     relation='period_category',
+    #     column1='period',
+    #     column2='category',
+    #     string='Categories',
+    # )
     period_category_ids = fields.One2many(
         comodel_name='period_category',
         inverse_name='period_id',
@@ -63,22 +72,62 @@ class Period(models.Model):
             if record.active != (active_period_id == record.id):
                 record.active = active_period_id == record.id
 
-    @api.multi
-    def write(self, vals):
-        print('\nWRITE\n', self, vals)
-        res = super(Period, self).write(vals)
-        if 'start_date' in vals or 'end_date' in vals:
-            self._update_periods()
-        return res
+    # @api.multi
+    # def write(self, vals):
+    #     print('\nWRITE\n', self, vals)
+    #     res = super(Period, self).write(vals)
+    #     if 'start_date' in vals or 'end_date' in vals:
+    #         self._update_periods()
+    #     return res
 
-    @api.model
-    def create(self, vals):
-        # import ipdb; ipdb.set_trace()
-        print('\nCREATE\n',self, vals)
-        res = super(Period, self).create(vals)
-        if 'start_date' in vals or 'end_date' in vals:
-            res._update_periods()
-        return res
+    # @api.model
+    # def create(self, vals):
+    #     # import ipdb; ipdb.set_trace()
+    #     print('\nCREATE\n',self, vals)
+    #     res = super(Period, self).create(vals)
+    #     if 'start_date' in vals or 'end_date' in vals:
+    #         res._update_periods()
+    #     return res
+
+    def duplicate(self, attrs={}):
+        self.ensure_one()
+        attrs.setdefault('name', '%s (new)' % self.name)
+        attrs.setdefault('start_date', Period._add_years(self.start_date, 1))
+        attrs.setdefault('end_date', Period._add_years(self.end_date, 1))
+        attrs.setdefault('end_date', Period._add_years(self.end_date, 1))
+        new_period = super(Period, self).copy(attrs) #self.copy(attrs)
+        print('=== Period ===', new_period)
+        import pprint; pprint.pprint(attrs)
+        for period_category_id in self.period_category_ids:
+            # import ipdb; ipdb.set_trace()
+            attrs = {
+                'period_id': new_period.id,
+            }
+            period_category_id.duplicate(attrs)
+        return new_period
+    # Working version
+    # def copy(self, default=None):
+    #     import ipdb; ipdb.set_trace()
+    #     new_period = super(Period, self).copy(default)
+    #     for period_category_id in self.period_category_ids:
+    #         # import ipdb; ipdb.set_trace()
+    #         attrs = {
+    #             'period_id': new_period.id,
+    #         }
+    #         period_category_id.copy(attrs)
+    #     return new_period    
+    def copy(self, default=None):
+        default = dict(default or {})
+        import ipdb; ipdb.set_trace()
+        new_period = super(Period, self).copy(default)
+        for period_category_id in self.period_category_ids:
+            # import ipdb; ipdb.set_trace()
+            attrs = {
+                'period_id': new_period.id,
+            }
+            period_category_id.copy(attrs)
+        return new_period
+
 
     # @api.depends('period_category_ids')
     def _compute_get_users(self):
@@ -92,3 +141,18 @@ class Period(models.Model):
                 limit=1,
                 order='start_date desc',
             )
+
+    @staticmethod
+    def _add_years(dte, years):
+        """Return a date that's `years` years after the date (or datetime)
+        object `dte` (of type fields.Date). Return the same calendar date (month and day) in the
+        destination year, if it exists, otherwise use the following day
+        (thus changing February 29 to March 1).
+        
+        Code found on https://stackoverflow.com/questions/15741618/add-one-year-in-current-date-python
+        """
+        d = fields.Date.from_string(dte)
+        try:
+            return d.replace(year = d.year + years)
+        except ValueError:
+            return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))

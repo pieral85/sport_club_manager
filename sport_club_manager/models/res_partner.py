@@ -4,6 +4,7 @@
 from odoo import api, fields, models
 
 
+# TODO Delete this class???
 class ResUsers(models.Model):
     _inherit = 'res.partner'
 
