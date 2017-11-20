@@ -58,6 +58,28 @@ class PeriodCategory(models.Model):
         # domain=[('is_company', '=', False)],
         string='Memberships',
     )
+    count_members = fields.Integer(
+        string='Count Members',
+        compute='_count_members',
+    )
+    remaining_price_due = fields.Monetary(
+        string='Total Remaining Due Price',
+        currency_field='currency_id',
+        compute='_remaining_price_due',
+    )
+
+    @api.depends('membership_ids')
+    def _count_members(self):
+        for record in self:
+            record.count_members = len(record.membership_ids)
+
+    @api.depends('membership_ids')
+    def _remaining_price_due(self):
+        for record in self:
+            remaining_price_due = 0
+            for membership_id in record.membership_ids:
+                remaining_price_due += membership_id.price_remaining
+            record.remaining_price_due = remaining_price_due
 
     @api.multi
     @api.depends('period_id','category_id')
@@ -74,9 +96,9 @@ class PeriodCategory(models.Model):
         default.setdefault('category_id', self.category_id.id)
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_due', self.price_due)
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         new_period_category = super(PeriodCategory, self).copy(default)
-        print('=== Period Category ===', new_period_category)
+        print('=== Period Category ===', new_period_category, new_period_category.period_id.name, new_period_category.category_id.name)
         import pprint; pprint.pprint(default)
         for membership_id in self.membership_ids:
             # membership_state = 'old_member' if membership_id.state == 'member' else 'not_member'
@@ -88,6 +110,7 @@ class PeriodCategory(models.Model):
                 membership_state = 'not_member'
             membership_id.copy({
                 'period_category_id': new_period_category.id,
+                'period_id': default.get('period_id'),
                 'state': membership_state,
             })
         return new_period_category

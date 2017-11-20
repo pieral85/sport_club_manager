@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website', 'auth_signup'],#, 'board', 'website_sale'],
+    'depends': ['base', 'website', 'auth_signup', 'mail'],#, 'board', website_sale'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'views/category_views.xml',
         'views/res_users_views.xml',
         'views/res_partner_views.xml',
+        'views/res_company_views.xml',
         'views/membership_views.xml',
         'views/menus.xml',
 
@@ -50,10 +51,10 @@
     ],
     # only loaded in demonstration mode
     'demo': [
-        'data/period_demo.xml',
-        'data/category_demo.xml',
-        'data/res_users_demo.xml',
-        'data/membership_demo.xml',
+        'data/demo/period_demo.xml',
+        'data/demo/category_demo.xml',
+        'data/demo/res_users_demo.xml',
+        'data/demo/membership_demo.xml',
     ],
     'installable': True,
     'application': True,

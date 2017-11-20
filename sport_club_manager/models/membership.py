@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 
 class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
-    _description = 'Description'
+    _description = 'Description' # TODO
+    # TODO Investigate with @xal
+    # _sql_constraints = [
+    #     ('user_period_uniq', 'UNIQUE(user_id, period_category_id.period_id)', 'This user has already been set for this period!'),
+    # ]
 
     # @api.model
     @api.returns('self')
@@ -78,6 +82,10 @@ class Membership(models.Model):
         compute='_compute_color',
         help='Color to be displayed in the kanban view.',
     )
+    mail_sent = fields.Boolean(
+        string='Mail Sent',
+        default=False,
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         related='user_id.partner_id',
@@ -95,7 +103,7 @@ class Membership(models.Model):
         related='period_category_id.period_id',
         store=False,
         # readonly=True,
-        default=lambda self: self.env['period'].search([('active','=',True),], limit=1)
+        default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
     # subscription_requested = fields.Boolean(
     #     string='Subscription Requested',
@@ -145,7 +153,7 @@ class Membership(models.Model):
                 record.paid = True
             else:
                 record.price_paid_percentage = 100.0 * record.price_paid / record.price_due
-                record.price_remaining = record.price_due - record.price_paid
+                record.price_remaining = record.price_paid - record.price_due
                 record.paid = False
             record._compute_state()
 
@@ -196,14 +204,14 @@ class Membership(models.Model):
     @api.onchange('period_category_id')
     def _calculate_price_due(self):
         print('\n_calculate_price_due', self, self.period_category_id, self.period_category_id.price_due)
-        import ipdb; ipdb.set_trace()
         for record in self:
-            if record.period_category_id:
-                record.price_due = record.period_category_id.price_due
+            # if record.period_category_id:
+            record.price_due = record.period_category_id.price_due if record.period_category_id else 0
 
     @api.onchange('category_id')
     def _onchange_category_id(self):
-        # print('\n_onchange_category_id', self, self.category_id)
+        print('\n_onchange_category_id', self, self.category_id)
+        # import ipdb; ipdb.set_trace()
         for record in self:
             # import ipdb; ipdb.set_trace()
             # record.period_category_id = None
@@ -214,16 +222,26 @@ class Membership(models.Model):
                 # print(record.period_id, period_ids)
                 # if record.period_id.id not in period_ids:
                 #     record.period_id = None
-                period_category_id = self.env['period_category'].search([('period_id.id','=',record.period_id.id),('category_id.id','=',record.category_id.id),])
-                if not period_category_id:
-                    record.period_id = None
-                else:
-                    record.period_category_id = period_category_id
+                period_category_id = self.env['period_category'].search([
+                    ('period_id.id','=',record.period_id.id),
+                    ('category_id.id','=',record.category_id.id),
+                    ],
+                    limit=1,)
+                backup_category_id = record.category_id
+                record.period_id = None
+                record.period_category_id = period_category_id
+                record.category_id = backup_category_id
+                # if not period_category_id:
+                #     record.period_id = None
+                # else:
+                #     print('\nBefore changing category, period_category_id was', record.period_category_id)
+                #     record.period_category_id = period_category_id
+                #     print('\nAfter changing category, period_category_id is', record.period_category_id)
 
     # TODO To be tested when changing a period_id
     @api.onchange('period_id')
     def _onchange_period_id(self):
-        # print('\n_onchange_period_id', self, self.period_id)
+        print('\n_onchange_period_id', self, self.period_id)
         for record in self:
             # period_category_ids = self.env['period_category'].search_read([('period_id.id','=',record.period_id.id),], ['category_id'])
             # import ipdb; ipdb.set_trace()
@@ -241,11 +259,28 @@ class Membership(models.Model):
                 #     record.category_id = None
                 # else:
                 #     record.period_category_id = self.env['period_category'].search([('period_id.id','=',record.period_id.id),('category_id.id','=',record.category_id.id),], limit=1)
-                period_category_id = self.env['period_category'].search([('period_id.id','=',record.period_id.id),('category_id.id','=',record.category_id.id),])
-                if not period_category_id:
-                    record.category_id = None
-                else:
-                    record.period_category_id = period_category_id
+                period_category_id = self.env['period_category'].search([
+                    ('period_id.id','=',record.period_id.id),
+                    ('category_id.id','=',record.category_id.id),
+                    ],
+                    limit=1,)
+                backup_period_id = record.period_id
+                record.category_id = None
+                record.period_category_id = period_category_id
+                record.period_id = backup_period_id
+                # if not period_category_id:
+                #     record.category_id = None
+                # else:
+                #     print('\nBefore changing period, period_category_id was', record.period_category_id)
+                #     record.period_category_id = period_category_id
+                #     print('\nAfter changing period, period_category_id is', record.period_category_id)
+
+    @api.one
+    @api.constrains('user_id', 'period_id')
+    def _check_user_period(self):
+        if self.env['membership'].search_count([('user_id.id', '=', self.user_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
+            import ipdb; ipdb.set_trace()
+            raise exceptions.ValidationError("The user '%s' has already a membership for this period (%s). Please change accordingly." % (self.user_id.name, self.period_id.name))
 
     @api.multi
     def validate_membership_payment(self):
@@ -282,7 +317,20 @@ class Membership(models.Model):
         for record in self:
             record.state = 'rejected'
 
+    @api.multi
+    def send_email(self):
+        for record in self:
+            record.mail_sent = not record.mail_sent
+            # record.mail_sent = True  # TODO uncomment me (and delete previous line)
+            template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
+            ctx = {
+                'company_id': self.env.user.company_id,
+            }
+            self.with_context(ctx).message_post_with_template(template.id)
+            #template.with_context(ctx).send_mail(self.id, force_send=True)
+
     def copy(self, default=None):
+        # import ipdb; ipdb.set_trace()
         self.ensure_one()
         default = dict(default or {})
         default.setdefault('period_category_id', self.period_category_id.id)
@@ -291,9 +339,11 @@ class Membership(models.Model):
         default.setdefault('price_paid', 0)
         default.setdefault('price_due', self.price_due)
         default.setdefault('state', self.state)
-        print('=== Membership ===')
         import pprint; pprint.pprint(default)
-        return super(Membership, self).copy(default)
+        new_membership = super(Membership, self).copy(default)
+        print('=== Membership ===', new_membership, new_membership.period_id.name, new_membership.category_id.name)
+
+        return new_membership
 
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]

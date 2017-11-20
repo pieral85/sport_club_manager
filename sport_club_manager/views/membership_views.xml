@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="user_id"/>
-                    <field name="period_id" domain="['|',('active','=',True),('active','=',False)]"/><!-- TODO Domain is not working! -->
+                    <field name="period_id"/><!--  domain="['|',('active','=',True),('active','=',False)]"/> --><!-- TODO Domain is not working with active! Is it with 'current'? -->
                     <field name="category_id"/>
                     <field name="state"/>
                     <field name="price_paid"/>
@@ -25,9 +25,12 @@
             <field name="arch" type="xml">
                 <form>
                     <field name="price_remaining" invisible="1"/>
+                    <field name="period_category_id" invisible="1"/>
                     <header>
                         <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('price_remaining', '&lt;=', 0)]}"/>
-                        <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
+                        <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-info" attrs="{'invisible': [('state', '=', 'member')]}"/>
+
+                        <button name="send_email" type="object" string="Send Email" attrs="{'invisible': [('state', '!=', 'member')]}"/><!-- fa-bars  states="state"--><!-- TODO Try to implement t-attf-class="btn-primary" with variable mail_sent -->
                         <button name="reject_membership_affiliation" type="object" string="Reject Affiliation" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
                         <field name="state" widget="statusbar" statusbar_visible="not_member,old_member,requested,member"/>
                     </header>
@@ -162,8 +165,10 @@
             <field name="model">membership</field>
             <field name="arch" type="xml">
                 <search string="Periods">
-                    <filter string="Active Period" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', True)]" help="Memberships of active period."/>
-                    <filter string="Archived Periods" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', False)]" help="Memberships of archived periods."/>
+                    <filter string="Current Period" name ="current_period_search" icon="terp-gtk-media-pause" domain="[('period_id.current','=', True)]" help="Memberships of current period."/>
+                    <filter string="Upcoming Period" name ="upcoming_period_search" icon="terp-gtk-media-pause" domain="[('period_id.upcoming','=', True)]" help="Memberships of upcoming period."/>
+                    <filter string="Active Period(s)" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', True)]" help="Memberships of active period(s)."/>
+                    <filter string="Archived Period(s)" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', False)]" help="Memberships of archived period(s)."/>
                 </search>
             </field>
         </record>
@@ -176,7 +181,11 @@
             <field name="view_type">form</field>
             <!-- <field name="view_mode">kanban</field> -->
             <field name="view_mode">kanban,tree,form</field>
-            <field name="context">{'search_default_active_period_search': 1, 'search_default_inactive_period_search': 0}</field>
+            <field name="context">{
+                'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
+                'search_default_current_period_search': 1,
+                'search_default_upcoming_period_search': 0,
+                }</field>
         </record>
     </data>
 </odoo>

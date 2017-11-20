@@ -4,8 +4,9 @@
 # import json
 
 # import requests
+from re import match
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 # from odoo.exceptions import AccessDenied, UserError
 # from odoo.addons.auth_signup.models.res_users import SignupError
 
@@ -55,6 +56,16 @@ class ResUsers(models.Model):
     def _on_change_president(self):
         if self.president:
             self.administrator = True
+
+    @api.onchange('login')
+    def validate_email(self):
+        # import ipdb; ipdb.set_trace()
+        if not self.login:
+            return
+        if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
+            raise exceptions.ValidationError('Invalid email address. Please enter a valid one.')
+        if self.search_count([('login','=',self.login),]):
+            raise exceptions.ValidationError('This email already exists. Please ')
 
     # @api.onchange('secretary')
     # def _onchange_status(self):

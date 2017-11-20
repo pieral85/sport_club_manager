@@ -26,7 +26,8 @@ class Sport(AuthSignupHome): # http.Controller):
 
     @http.route('/sport/period/', auth='public', website=True)
     def period(self, **kw):
-        periods = http.request.env['period'].search(['|', ('active', '=', True), ('active', '=', False)])
+        periods = http.request.env['period'].search([])
+        # periods = http.request.env['period'].search(['|', ('active', '=', True), ('active', '=', False)])
         return http.request.render('sport_club_manager.website_period', {
             'periods': periods,
         })
