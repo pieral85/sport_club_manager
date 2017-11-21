@@ -7,8 +7,9 @@ from odoo import models, fields, api, exceptions
 
 class Period(models.Model):
     _name = 'period'
+    _inherit = ['mail.thread', 'mail.alias.mixin']
     _description = ''  # TODO
-    _order = 'start_date desc, end_date desc'
+    _order = 'current desc, start_date desc, end_date desc'
     # TODO Ajouter une contrainte lors de la création d'unne période: aucune date commune ne peut interférer
 
     _sql_constraints = [
@@ -69,6 +70,27 @@ class Period(models.Model):
     def toggle_active(self):
         for template in self:
             template.active = not template.active
+
+    # TODO Add in the xml view: <field name="alias_name"/>
+    def get_alias_model_name(self, vals):
+        """ Specify the model that will get created when the alias receives a message.
+
+        :param dict vals: values of the newly created record that will holding the alias.
+        :return: the model name for the alias.
+        """
+        return 'membership'
+        
+    def get_alias_values(self):
+        """
+        
+        :return: values to create an alias, or to write on the alias after its creation.
+        """
+        import ipdb; ipdb.set_trace()
+        values = super(Period, self).get_alias_values()
+        values['alias_defaults'] = {'period_id': self.id}
+        # values['alias_defaults'] = {'course_id': self.course_id.id,
+        #                             'session_id': self.id}
+        return values
 
     # TODO This function should also be called when a record is deleted (and also maybe in other cases)
     # TODO when creating/modifying a period, start date should always be < end date

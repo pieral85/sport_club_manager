@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 
 
 # TODO Should create a list of Category in badminton module (Recreant, Competiteur, ...)
@@ -52,6 +52,11 @@ class PeriodCategory(models.Model):
         string='Due Price',
         currency_field='currency_id',
     )
+    default = fields.Boolean(
+        string='Default',
+        default=False,
+        help='When a request is done on a given period without knowing the category, the default category is set.\nPer period, only one default Category can be set.',
+    )
     membership_ids = fields.One2many(
         comodel_name='membership',
         inverse_name='period_category_id',
@@ -59,7 +64,7 @@ class PeriodCategory(models.Model):
         string='Memberships',
     )
     count_members = fields.Integer(
-        string='Count Members',
+        string='Active Members',
         compute='_count_members',
     )
     remaining_price_due = fields.Monetary(
@@ -71,7 +76,7 @@ class PeriodCategory(models.Model):
     @api.depends('membership_ids')
     def _count_members(self):
         for record in self:
-            record.count_members = len(record.membership_ids)
+            record.count_members = len(record.membership_ids.filtered(lambda m: m.state == 'member'))
 
     @api.depends('membership_ids')
     def _remaining_price_due(self):
@@ -80,6 +85,14 @@ class PeriodCategory(models.Model):
             for membership_id in record.membership_ids:
                 remaining_price_due += membership_id.price_remaining
             record.remaining_price_due = remaining_price_due
+
+    @api.one
+    @api.constrains('period_id', 'category_id', 'default')
+    def _check_default_unique(self):
+        if len(self.period_id.period_category_ids.filtered(lambda pc: pc.category_id.id == self.category_id.id)) > 1:
+            raise exceptions.ValidationError("For the period '%s', the category '%s' must be unique. Please change it accordingly." % (self.period_id.name, self.category_id.name))
+        if len(self.period_id.period_category_ids.filtered(lambda pc: pc.default)) > 1:
+            raise exceptions.ValidationError("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly." % (self.period_id.name))
 
     @api.multi
     @api.depends('period_id','category_id')

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, exceptions, tools
 
 class Membership(models.Model):
     _name = 'membership'
@@ -134,6 +134,68 @@ class Membership(models.Model):
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
         return res
+
+    @api.multi
+    def message_update(self, msg_dict, update_vals=None):
+        import ipdb; ipdb.set_trace()
+        return super(Membership, self).message_update(msg_dict, update_vals)
+
+    @api.model
+    def message_new(self, msg, custom_values=None):
+        """ Override to updates the document according to the email. """
+        vals = dict(custom_values) or {}
+        period_id = vals.pop('period_id', None)
+        if not period_id:
+            return
+
+        # Get period_category
+        period_category = self.env['period_category'].search([('period_id.id', '=', period_id), ('default', '=', True),], limit=1,)
+        if not period_category:
+            period_category = self.env['period_category'].search([('period_id.id', '=', period_id),], order='create_date asc, category_id asc', limit=1,)
+        if not vals.setdefault('period_category_id', period_category.id):
+            return
+        vals.setdefault('price_due', period_category.price_due)
+
+        # Get user who sent the email (create it if was not existing)
+        email = (tools.email_split(msg.get('from')) or tools.email_split(msg.get('email_from')) or [None])[0]
+        if not email:
+            return
+        import ipdb; ipdb.set_trace()
+        if msg.get('author_id'):
+            partner = self.env['res.partner'].browse(msg.get('author_id'))
+        else:
+            partner = self.env['res.partner'].search([('email', '=', email),])
+        user_id = self.env['res.users'].search([('login', '=', email),]).id
+
+        if not user_id:
+            if partner:
+                user_id = self.env['res.users'].create({
+                    'name': partner.name,
+                    'login': partner.email,
+                    # 'new_password': 'tuc'
+                    }).id
+            else:
+                user_id = self.env['res.users'].create({
+                    'name': 'Unknown User',
+                    'login': email,
+                    # 'new_password': 'tuc'
+                    }).id
+        if not vals.setdefault('user_id', user_id):
+            return
+
+        # If a membership already exists: no need to create a new one
+        membership = self.env['membership'].search([
+            ('period_id.id', '=', period_id),
+            ('user_id.id', '=', user_id),
+            ],
+        )
+        vals.setdefault('state', 'requested')
+        if membership:
+            vals.setdefault('price_paid', membership.price_paid)
+            return membership.message_update(msg, update_vals=vals)
+        else:
+            vals.setdefault('price_paid', 0)
+            return super(Membership, self).message_new(msg, custom_values=vals)
 
     def _add_follower(self, vals):
         # if vals.get('responsible_id'):
