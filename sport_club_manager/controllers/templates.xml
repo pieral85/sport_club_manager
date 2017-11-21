@@ -1,8 +1,9 @@
 <odoo>
     <data>
+        <!-- Web Page showing info on the active periods -->
         <template id="website_period">
             <t t-call="website.layout">
-                <t t-set="title">Academy</t>
+                <t t-set="title">Periods</t>
                 <div class="oe_structure">
                 </div>
                 <div class="oe_structure">
@@ -16,6 +17,9 @@
                                 From <t t-esc="period.start_date"/>
                                 To <t t-esc="period.end_date"/>
                             </p>
+                            <div class="row">
+                                <a href="/sport/request_affiliation" class="btn btn-primary btn-lg">Request an affiliation for this period</a>
+                            </div>
                             <p><h3>Categories</h3></p>
                             <t t-foreach="period.period_category_ids" t-as="period_category">
                                 <p>Name: <t t-esc="period_category.category_id.name"/></p>
@@ -35,5 +39,20 @@
                 </div>
             </t>
         </template>
+
+        <!-- Web Page showing info on the user -->
+        <template id="website_member_info">
+            <t t-call="website.layout">
+                <t t-set="title">Member Info</t>
+                <div class="oe_structure"/>
+                <div class="oe_structure">
+                    <div class="container">
+                        <p><t t-esc="player.id"/> <t t-esc="player.name"/></p>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
     </data>
 </odoo>
