@@ -43,20 +43,57 @@ class SportClubManager(AuthSignupHome): # http.Controller):
     # def web_auth_reset_password(self, *args, **kw):
     #     return super(SportClubManager, self).web_auth_reset_password(*args, **kw)
 
-    @http.route('%s/request_affiliation' % _URL_ROOT, auth='user', website=True)
-    def request_affiliation(self):
-        return 'TODO...'
+    @http.route('%s/membership/request' % _URL_ROOT, auth='user', website=True)
+    def request_membership(self):
+        import ipdb; ipdb.set_trace()
+        # period_category_ids = http.request.env['period_category'].search([('period_id.active', '=', True),])
+        consumed_period_ids = http.request.env['membership'].search([('user_id', '=', http.request.uid),]).mapped('period_id').ids
+        period_category_ids = http.request.env['period_category'].search([
+            ('period_id.active', '=', True),
+            ('period_id.id', 'not in', consumed_period_ids),
+            ]
+        )
+        # period_ids = http.request.env['period'].search([])
+        # me = http.request.env['res.users'].search([('id', '=', http.request.session.uid)])
+        return http.request.render('sport_club_manager.website_membership_request', {
+            # 'me': me,
+            #'periods': period_ids,
+            'period_categories': period_category_ids,
+            # 'status': 'titi',
+        })
 
 
-    @http.route('%s/<model("res.users"):member>/' % _URL_ROOT, auth='public', website=True)
+    @http.route('%s/members/<model("res.users"):member>/' % _URL_ROOT, auth='public', website=True)
     def member(self, member):
         return http.request.render('sport_club_manager.website_member_info', {
             'player': member
         })
 
-    @http.route()
-    def info_staff(self):
-        pass  # TODO Affichier secrétaire, président et trésorier + nbr de récréants, etc
+    @http.route('%s/info_club/' % _URL_ROOT, auth='public', website=True)
+    def info_club(self):
+        committee = (
+            ('President', http.request.env['res.users'].search([('president', '=', True),])),
+            ('Secretary', http.request.env['res.users'].search([('secretary', '=', True),])),
+            ('Treasurer', http.request.env['res.users'].search([('treasurer', '=', True),])),
+        )
+        return http.request.render('sport_club_manager.website_info_club', {
+            'committee': committee,
+        })
+
+    @http.route('%s/my/membership/historical' % _URL_ROOT, auth='user', website=True)
+    def membership_historical(self):
+        # me = http.request.env['res.users'].search([('id','=',http.request.session.uid)]).id
+        memberships = http.request.env['membership'].search([
+            #'&', '|', ('period_id.active', '=', True), ('period_id.active', '=', False),
+            ('user_id.id', '=', http.request.uid),
+            ]
+        )
+
+        return http.request.render('sport_club_manager.website_info_club', {
+            'memberships': memberships,
+        })
+
+
 
     # @http.route('%s/session_ % _URL_ROOTlist/', auth='public', website=True)
     # def session_list(self, **kw):

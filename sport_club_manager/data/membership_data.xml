@@ -1,18 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- Action Server -->
         <record id="action_calculate_membership_price_due" model="ir.actions.server">
-        	<field name="name">Calculate Memberships Price Due</field>
-        	<field name="type">ir.actions.server</field>
-        	<field name="model_id" ref="model_membership"/>
-        	<field name="state">code</field>
-        	<field name="code"><![CDATA[
+            <field name="name">Calculate Memberships Price Due</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_membership"/>
+            <field name="state">code</field>
+            <field name="code"><![CDATA[
 for record in records:
-	record._calculate_price_due()
+    record._calculate_price_due()
 ]]>
-			</field>
+            </field>
         </record>
 
+        <!-- Enable a flag on the model -->
+        <record id="sport_club_manager.model_membership" model="ir.model">
+            <field name="website_form_access">True</field>
+            <!-- <field name="website_form_default_field_id" ref="hr_recruitment.field_hr_applicant_description" /> -->
+            <!-- <field name="website_form_label">Subscribe a Membership</field> -->
+        </record>
+        <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>sport_club_manager.membership</value>
+            <value eval="['period_category_id']"/><!-- 'tutu',  -->
+        </function>
+        <!-- Add affiliation request in the website menu -->
+        <record id="menu_membership" model="website.menu">
+            <field name="name">Membership</field>
+            <!-- <field name="url">sport/membership/request</field> -->
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">50</field>
+        </record>
+        <record id="menu_membership_request" model="website.menu">
+            <field name="name">Make a request</field>
+            <field name="url">sport/membership/request</field>
+            <field name="parent_id" ref="menu_membership"/>
+            <field name="sequence" type="int">10</field>
+        </record>
+        <record id="menu_membership_historical" model="website.menu">
+            <field name="name">My historical</field>
+            <field name="url">sport/my/membership/historical</field>
+            <field name="parent_id" ref="menu_membership"/>
+            <field name="sequence" type="int">20</field>
+        </record>
 
         <!--Email template -->
         <record id="email_template_membership_affiliation_confirmation" model="mail.template">

@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website', 'auth_signup', 'mail'],#, 'board', website_sale'],
+    'depends': ['base', 'website_form', 'auth_signup', 'mail'],#, 'board', website_sale'],
 
     # always loaded
     'data': [
@@ -43,6 +43,7 @@
         'security/ir.model.access.csv',
 
         # data
+        'data/res_users_data.xml',
         'data/period_data.xml',
         'data/membership_data.xml',
     ],

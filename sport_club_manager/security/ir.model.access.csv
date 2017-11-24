@@ -3,3 +3,4 @@ access_control_list_test_id,acl_test_id,model_res_users,sport_club_manager.group
 access_scm_period,access_scm_period,model_period,,1,0,0,0
 access_scm_period_category,access_scm_period_category,model_period_category,,1,0,0,0
 access_scm_category,access_scm_category,model_category,,1,0,0,0
+access_scm_membership,access_scm_membership,model_membership,,1,0,0,0

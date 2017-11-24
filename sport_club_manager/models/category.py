@@ -55,7 +55,7 @@ class PeriodCategory(models.Model):
     default = fields.Boolean(
         string='Default',
         default=False,
-        help='When a request is done on a given period without knowing the category, the default category is set.\nPer period, only one default Category can be set.',
+        help='When a request is done on a given period without knowing the category, the default category is set. Per period, only one default Category can be set.',
     )
     membership_ids = fields.One2many(
         comodel_name='membership',
@@ -72,6 +72,12 @@ class PeriodCategory(models.Model):
         currency_field='currency_id',
         compute='_remaining_price_due',
     )
+
+    # TODO Delete this method
+    @api.model
+    def create(self, vals):
+        import ipdb; ipdb.set_trace()
+        res = super(PeriodCategory, self).create(vals)
 
     @api.depends('membership_ids')
     def _count_members(self):
@@ -90,6 +96,8 @@ class PeriodCategory(models.Model):
     @api.constrains('period_id', 'category_id', 'default')
     def _check_default_unique(self):
         if len(self.period_id.period_category_ids.filtered(lambda pc: pc.category_id.id == self.category_id.id)) > 1:
+            print(self.env['period_category'].search_count([('period_id.id','=',self.period_id.id),('category_id.id','=',self.category_id.id)]))
+            import ipdb; ipdb.set_trace()
             raise exceptions.ValidationError("For the period '%s', the category '%s' must be unique. Please change it accordingly." % (self.period_id.name, self.category_id.name))
         if len(self.period_id.period_category_ids.filtered(lambda pc: pc.default)) > 1:
             raise exceptions.ValidationError("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly." % (self.period_id.name))

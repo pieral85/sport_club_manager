@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models, exceptions, tools
 
+
 class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
@@ -103,7 +104,7 @@ class Membership(models.Model):
         related='period_category_id.period_id',
         store=False,
         # readonly=True,
-        default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
+        # commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
     # subscription_requested = fields.Boolean(
     #     string='Subscription Requested',
@@ -131,6 +132,14 @@ class Membership(models.Model):
 
     @api.model
     def create(self, vals):
+        import ipdb; ipdb.set_trace()
+        vals.setdefault('user_id', self.env.uid)
+        vals.setdefault('period_category_id', self.env['period_category'].search([
+            ('period_id.current', '=', True),
+            ('default', '=', True),
+            ]
+        ))
+        vals.setdefault('state', 'requested')
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
         return res
