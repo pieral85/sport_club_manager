@@ -7,21 +7,14 @@
 from re import match
 
 from odoo import api, fields, models, exceptions
-# from odoo.exceptions import AccessDenied, UserError
-# from odoo.addons.auth_signup.models.res_users import SignupError
-
-# from odoo.addons import base
-# base.res.res_users.USER_PRIVATE_FIELDS.append('oauth_access_token')
-# TODO Mettre un help= à tous les fields qui le nécessitent
 
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    # TODO Should move to membership? (and merged into staus field?)
+    president = fields.Boolean('Is President', default=False)
     secretary = fields.Boolean('Is Secretary', default=False)
     treasurer = fields.Boolean('Is Treasurer', default=False)
-    president = fields.Boolean('Is President', default=False)
     administrator = fields.Boolean('Is Administrator', default=False)
     # TODO When secretary, treasurer or president is set ==> should be automatically administrator
     # status = fields.Selection(
@@ -64,7 +57,7 @@ class ResUsers(models.Model):
             return
         if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
             raise exceptions.ValidationError('Invalid email address. Please enter a valid one.')
-        if self.search_count([('login','=',self.login),]):
+        if self.search_count([('login', '=', self.login), ]):
             raise exceptions.ValidationError('This email already exists. Please ')
 
     # @api.onchange('secretary')
