@@ -15,18 +15,7 @@ class ResUsers(models.Model):
     president = fields.Boolean('Is President', default=False)
     secretary = fields.Boolean('Is Secretary', default=False)
     treasurer = fields.Boolean('Is Treasurer', default=False)
-    administrator = fields.Boolean('Is Administrator', default=False)
-    # TODO When secretary, treasurer or president is set ==> should be automatically administrator
-    # status = fields.Selection(
-    #     [
-    #      ('not_member', 'Not a Member'),
-    #      ('requested', 'Requested'),
-    #      ('member', 'Member'),
-    #      ('old_member', 'Old Member'),
-    #     ],
-    #     #required=True,
-    #     default='member'
-    # )
+    manager = fields.Boolean('Is Manager', default=False)
 
     membership_ids = fields.One2many(
         comodel_name='membership',
@@ -38,17 +27,17 @@ class ResUsers(models.Model):
     @api.onchange('secretary')
     def _on_change_secretary(self):
         if self.secretary:
-            self.administrator = True
+            self.manager = True
 
     @api.onchange('treasurer')
     def _on_change_treasurer(self):
         if self.treasurer:
-            self.administrator = True
+            self.manager = True
 
     @api.onchange('president')
     def _on_change_president(self):
         if self.president:
-            self.administrator = True
+            self.manager = True
 
     @api.onchange('login')
     def validate_email(self):

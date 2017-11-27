@@ -8,6 +8,7 @@ class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
     _description = 'Description' # TODO
+    _order = "period_id asc, user_id asc"
     # TODO Investigate with @xal
     # _sql_constraints = [
     #     ('user_period_uniq', 'UNIQUE(user_id, period_category_id.period_id)', 'This user has already been set for this period!'),
@@ -77,6 +78,7 @@ class Membership(models.Model):
     paid = fields.Boolean(
         string='Paid',
         compute='_compute_payment',
+        store=True,
     )
     color = fields.Integer(
         string='Color Index',
@@ -132,7 +134,7 @@ class Membership(models.Model):
 
     @api.model
     def create(self, vals):
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         vals.setdefault('user_id', self.env.uid)
         vals.setdefault('period_category_id', self.env['period_category'].search([
             ('period_id.current', '=', True),

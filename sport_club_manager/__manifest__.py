@@ -55,6 +55,7 @@
         'data/demo/period_demo.xml',
         'data/demo/category_demo.xml',
         'data/demo/res_users_demo.xml',
+        'data/demo/period_category_demo.xml',
         'data/demo/membership_demo.xml',
     ],
     'installable': True,

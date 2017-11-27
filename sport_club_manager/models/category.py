@@ -74,10 +74,10 @@ class PeriodCategory(models.Model):
     )
 
     # TODO Delete this method
-    @api.model
-    def create(self, vals):
-        import ipdb; ipdb.set_trace()
-        res = super(PeriodCategory, self).create(vals)
+    # @api.model  # Uncomment me 2017-11-26
+    # def create(self, vals):
+    #     import ipdb; ipdb.set_trace()
+    #     res = super(PeriodCategory, self).create(vals)
 
     @api.depends('membership_ids')
     def _count_members(self):

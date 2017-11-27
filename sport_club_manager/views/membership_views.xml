@@ -26,9 +26,10 @@
                 <form>
                     <field name="price_remaining" invisible="1"/>
                     <field name="period_category_id" invisible="1"/>
+                    <field name="paid" invisible="1"/>
                     <header>
-                        <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('price_remaining', '&lt;=', 0)]}"/>
-                        <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-info" attrs="{'invisible': [('state', '=', 'member')]}"/>
+                        <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
+                        <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
 
                         <button name="send_email" type="object" string="Send Email" attrs="{'invisible': [('state', '!=', 'member')]}"/><!-- fa-bars  states="state"--><!-- TODO Try to implement t-attf-class="btn-primary" with variable mail_sent -->
                         <button name="reject_membership_affiliation" type="object" string="Reject Affiliation" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
@@ -167,6 +168,9 @@
                 <search string="Periods">
                     <filter string="Current Period" name ="current_period_search" icon="terp-gtk-media-pause" domain="[('period_id.current','=', True)]" help="Memberships of current period."/>
                     <filter string="Upcoming Period" name ="upcoming_period_search" icon="terp-gtk-media-pause" domain="[('period_id.upcoming','=', True)]" help="Memberships of upcoming period."/>
+                    <separator/>
+                    <filter string="Payment Due" name ="payment_due_search" icon="terp-gtk-media-pause" domain="[('paid','=', False)]" help="Memberships with a payment due."/>
+                    <separator/>
                     <filter string="Active Period(s)" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', True)]" help="Memberships of active period(s)."/>
                     <filter string="Archived Period(s)" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', False)]" help="Memberships of archived period(s)."/>
                 </search>

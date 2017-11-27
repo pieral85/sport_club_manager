@@ -17,5 +17,7 @@
         <!-- Settings -->
         <menuitem id="menu_sub_settings_period" name="Periods" parent="menu_top_settings" action="action_settings_period"/>
         <menuitem id="menu_sub_settings_category" name="Categories" parent="menu_top_settings" action="action_settings_category"/>
+        <menuitem id="menu_sub_settings_club" name="Club" parent="menu_top_settings" action="base.action_res_company_form"/>
+        <menuitem id="menu_sub_settings_mail_templates" name="Mail Templates" parent="menu_top_settings" action="mail.action_email_template_tree_all"/>
     </data>
 </odoo>

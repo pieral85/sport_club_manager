@@ -21,12 +21,12 @@
         <record id="period_view_form" model="ir.ui.view">
             <field name="name">period form</field>
             <field name="model">period</field>
-            <!-- <field name="domain">[('type','in', ['out_invoice', 'out_refund']), ('state', 'not in', ['draft', 'cancel'])]</field> -->
             <field name="arch" type="xml">
                 <form>
                     <header>
                         <field name="current" invisible="1"/>
                         <button name="copy" type="object" string="Create New Period Based on Current" class="btn-primary" attrs="{'invisible': [('current', '=', False)]}" confirm="You are going to duplicate this period. Related categories and members will also be duplicated. Do you want to continue?"/>
+                        <button name="update_periods" type="object" string="Recalculate Periods Activation"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">

@@ -85,7 +85,6 @@ class Period(models.Model):
         
         :return: values to create an alias, or to write on the alias after its creation.
         """
-        import ipdb; ipdb.set_trace()
         values = super(Period, self).get_alias_values()
         values['alias_defaults'] = {'period_id': self.id}
         # values['alias_defaults'] = {'course_id': self.course_id.id,
@@ -94,10 +93,7 @@ class Period(models.Model):
 
     # TODO This function should also be called when a record is deleted (and also maybe in other cases)
     # TODO when creating/modifying a period, start date should always be < end date
-    def _update_periods(self):
-        import ipdb
-        if len(self) >1:
-            ipdb.set_trace()
+    def update_periods(self):
         current_period_id = self.env['period'].search(
             ['&', '&', 
              '|', ('active', '=', True), ('active', '=', False),
@@ -117,29 +113,27 @@ class Period(models.Model):
         ).id
 
         for record in self.env['period'].search(['|', ('active','=',False), ('active', '=', True),]):
-            # if record.active != (record.active in (current_period_id, upcoming_period_id)):
             record.active = record.id in (current_period_id, upcoming_period_id)
-            # if record.current != (current_period_id == record.id):
             record.current = record.id == current_period_id
             record.upcoming = record.id == upcoming_period_id
 
-    @api.multi
-    def write(self, vals):
-        # import ipdb; ipdb.set_trace()
-        print('\nWRITE\n', self, vals)
-        res = super(Period, self).write(vals)
-        if 'start_date' in vals or 'end_date' in vals:
-            self._update_periods()
-        return res
+    # @api.multi
+    # def write(self, vals):
+    #     # import ipdb; ipdb.set_trace()
+    #     print('\nWRITE\n', self, vals)
+    #     res = super(Period, self).write(vals)
+    #     if 'start_date' in vals or 'end_date' in vals:
+    #         self.update_periods()
+    #     return res
 
-    @api.model
-    def create(self, vals):
-        # import ipdb; ipdb.set_trace()
-        print('\nCREATE\n',self, vals)
-        res = super(Period, self).create(vals)
-        if 'start_date' in vals or 'end_date' in vals:
-            res._update_periods()
-        return res
+    # @api.model
+    # def create(self, vals):
+    #     # import ipdb; ipdb.set_trace()
+    #     print('\nCREATE\n',self, vals)
+    #     res = super(Period, self).create(vals)
+    #     if 'start_date' in vals or 'end_date' in vals:
+    #         res.update_periods()
+    #     return res
 
     # # Code found in sale.py: is it better in proceed with this method?
     # @api.multi
