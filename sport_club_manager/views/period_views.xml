@@ -48,10 +48,10 @@
                                 <field name="period_category_ids">
                                     <tree editable="bottom">
                                         <field name="category_id"/>
-                                        <field name="price_due" widget="monetary"/>
+                                        <field name="price_due" widget="monetary" sum="Total"/>
                                         <field name="count_members"/>
                                         <field name="default"/>
-                                        <field name="remaining_price_due"/>
+                                        <field name="remaining_price_due" sum="Total"/>
                                     </tree>
                                 </field>
                             </page>
@@ -84,9 +84,6 @@
             </field>
         </record>
 
-        <!-- kanban view(s) -->
-        <!-- TO BE IMPLEMENTED -->
-
         <!-- search view(s) -->
         <record id="period_search" model="ir.ui.view">
             <field name="name">period.inactive.search</field>
@@ -103,15 +100,6 @@
                     <!-- <filter string="name" domain="[]" context="{"group_by" : "field"}" /> --><!-- TODO Need to have a group by? What about other modules? -->
                 </search>
             </field>
-        </record>
-
-        <!-- action(s) -->
-        <record id="action_settings_period" model="ir.actions.act_window">
-            <field name="name">Periods</field>
-            <field name="context">{'search_default_active_search': 1, 'search_default_inactive_search': 1}</field>
-            <field name="res_model">period</field>
-            <!-- <field name="view_type">form</field> -->
-            <field name="view_mode">tree,form</field>
         </record>
     </data>
 </odoo>

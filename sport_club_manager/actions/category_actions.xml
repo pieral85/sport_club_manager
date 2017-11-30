@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_settings_category" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

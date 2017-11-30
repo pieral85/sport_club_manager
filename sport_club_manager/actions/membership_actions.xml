@@ -18,5 +18,55 @@
             view_mode="form"
             target="new"
             key2="client_action_multi"/> -->
+        <record id="action_membership" model="ir.actions.act_window">
+            <field name="name">Memberships</field>
+            <field name="res_model">membership</field>
+            <field name="view_type">form</field>
+            <!-- <field name="view_mode">kanban</field> -->
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{
+                'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
+                'search_default_current_period_search': 1,
+                'search_default_upcoming_period_search': 0,
+                }</field>
+            <field name="view_ids" eval="[
+                (5, 0, 0),
+                (0, 0, {
+                    'view_mode': 'kanban',
+                    'view_id': ref('membership_view_kanban'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'tree',
+                    'view_id': ref('membership_view_list'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'graph',
+                    'view_id': ref('membership_view_graph_users'),
+                    }),
+                (0, 0, {
+                    'view_mode': 'pivot',
+                    'view_id': ref('membership_view_pivot'),
+                    }),
+                ]"/>
+        </record>
+
+
+        <record id="action_report_prices_per_period" model="ir.actions.act_window">
+            <field name="name">Prices per Period (members only)</field>
+            <field name="res_model">membership</field>
+            <field name="domain">[('state', '=', 'member'),]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="membership_view_graph_periods"/>
+        </record>
+
+        <record id="action_report_prices_per_user" model="ir.actions.act_window">
+            <field name="name">Prices per User (members only)</field>
+            <field name="res_model">membership</field>
+            <field name="domain">[('state', '=', 'member'),]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="membership_view_graph_users"/>
+        </record>
     </data>
 </odoo>

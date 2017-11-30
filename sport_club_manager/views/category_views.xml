@@ -42,12 +42,5 @@
 
         <!-- kanban view(s) -->
         <!-- TO BE IMPLEMENTED -->
-
-        <!-- action(s) -->
-        <record id="action_settings_category" model="ir.actions.act_window">
-            <field name="name">Action Settings Category</field>
-            <field name="res_model">category</field>
-            <field name="view_mode">tree,form</field>
-        </record>
     </data>
 </odoo>

@@ -49,12 +49,51 @@ class ResUsers(models.Model):
         if self.search_count([('login', '=', self.login), ]):
             raise exceptions.ValidationError('This email already exists. Please ')
 
+    @api.multi
+    def write(self, vals):
+        self._update_groups(vals)
+        return super(ResUsers, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        self._update_groups(vals)
+        return super(ResUsers, self).create(vals)
+
+    def _update_groups(self, vals):
+        new_groups = vals.get('groups_id', [])
+        status_groups = (
+            ('president', 'sport_club_manager.group_sport_club_manager_president'),
+            ('secretary', 'sport_club_manager.group_sport_club_manager_secretary'),
+            ('treasurer', 'sport_club_manager.group_sport_club_manager_treasurer'),
+            ('manager', 'sport_club_manager.group_sport_club_manager_manager'),
+        )
+        committee_group_action = ''
+        for status, group_name in status_groups:
+            group = self.env.ref(group_name)
+            if status in vals:
+                # adds current group in user groups
+                if vals[status] and group not in self.groups_id:
+                    new_groups.append((4, group.id))
+                    committee_group_action = 'preserve'
+                # removes current group from user groups
+                elif not vals[status] and group in self.groups_id:
+                    new_groups.append((3, group.id))
+                    if not committee_group_action:
+                        committee_group_action = 'delete'
+            elif group in self.groups_id:
+                committee_group_action = 'preserve'
+
+        # removes group 'group_sport_club_manager_committee' from user groups
+        if committee_group_action == 'delete':
+            new_groups.append((3, self.env.ref('sport_club_manager.group_sport_club_manager_committee').id))
+        vals['groups_id'] = new_groups
+
     # @api.onchange('secretary')
     # def _onchange_status(self):
-    #     self.groups_id = self.env['res.groups']
-    #     #default_user or self.env['res.users']).sudo().groups_id
-    #     # self.env['account.full.reconcile'].create({
-    #     #     'partial_reconcile_ids': [(6, 0, partial_rec_ids)],
-    #     #     'reconciled_line_ids': [(6, 0, self.ids)],
-    #     #     'exchange_move_id': exchange_move.id if exchange_move else False,
-    #     # })
+        # self.groups_id = self.env['res.groups']
+        # #default_user or self.env['res.users']).sudo().groups_id
+        # # self.env['account.full.reconcile'].create({
+        # #     'partial_reconcile_ids': [(6, 0, partial_rec_ids)],
+        # #     'reconciled_line_ids': [(6, 0, self.ids)],
+        # #     'exchange_move_id': exchange_move.id if exchange_move else False,
+        # # })

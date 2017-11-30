@@ -55,6 +55,7 @@ class Membership(models.Model):
         string='Price Remaining',
         currency_field='currency_id',
         compute='_compute_payment',
+        store=True,
     )
     # member = fields.Boolean(
     #     string='Is a Member',
@@ -65,14 +66,14 @@ class Membership(models.Model):
     # )
     state = fields.Selection(
         [
-         ('not_member', 'Not a Member'),
+         ('unknown', 'Unknown'),
          ('old_member', 'Old Member'),
          ('requested', 'Requested'),
          ('member', 'Member'),
          ('rejected', 'Rejected'),
         ],
         required=True,
-        default='not_member',
+        default='unknown',
         group_expand='_expand_state',
     )
     paid = fields.Boolean(
@@ -104,7 +105,7 @@ class Membership(models.Model):
     period_id = fields.Many2one(
         comodel_name='period',
         related='period_category_id.period_id',
-        store=False,
+        store=True,
         # readonly=True,
         # commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
@@ -263,7 +264,7 @@ class Membership(models.Model):
                 if toto:
                     record.state = 'old_member'
                 else:
-                    record.state = 'not_member'
+                    record.state = 'unknown'
 
     def _compute_color(self):
         # 1?,9!rouge   10?vert
@@ -393,7 +394,7 @@ class Membership(models.Model):
     @api.multi
     def send_email(self):
         for record in self:
-            record.mail_sent = not record.mail_sent
+            record.mail_sent = True
             # record.mail_sent = True  # TODO uncomment me (and delete previous line)
             template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
             ctx = {

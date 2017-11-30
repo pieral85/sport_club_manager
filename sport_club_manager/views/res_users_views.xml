@@ -58,12 +58,5 @@
                 </xpath>
             </field>
         </record>
-
-        <record id="action_member" model="ir.actions.act_window">
-            <field name="name">Action User</field>
-            <field name="res_model">res.users</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form,kanban</field>
-        </record>
     </data>
 </odoo>

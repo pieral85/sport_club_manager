@@ -9,7 +9,7 @@ class Period(models.Model):
     _name = 'period'
     _inherit = ['mail.thread', 'mail.alias.mixin']
     _description = ''  # TODO
-    _order = 'current desc, start_date desc, end_date desc'
+    _order = 'start_date asc'#'current desc, start_date desc, end_date desc'
     # TODO Ajouter une contrainte lors de la création d'unne période: aucune date commune ne peut interférer
 
     _sql_constraints = [

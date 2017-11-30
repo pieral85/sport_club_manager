@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_settings_period" model="ir.actions.act_window">
+            <field name="name">Periods</field>
+            <field name="context">{'search_default_active_search': 1, 'search_default_inactive_search': 1}</field>
+            <field name="res_model">period</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

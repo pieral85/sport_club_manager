@@ -27,13 +27,15 @@
                     <field name="price_remaining" invisible="1"/>
                     <field name="period_category_id" invisible="1"/>
                     <field name="paid" invisible="1"/>
+                    <field name="mail_sent" invisible="1"/>
                     <header>
                         <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
                         <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
 
-                        <button name="send_email" type="object" string="Send Email" attrs="{'invisible': [('state', '!=', 'member')]}"/><!-- fa-bars  states="state"--><!-- TODO Try to implement t-attf-class="btn-primary" with variable mail_sent -->
+                        <button name="send_email" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('mail_sent', '=', True)]}" class="btn-primary" confirm="Do you want to send an email to the user to advise him of his membership?" help="Sends an email to the user to let him know of his membership."/><!-- fa-bars  states="state"--><!-- TODO Try to implement t-attf-class="btn-primary" with variable mail_sent -->
+                        <button name="send_email" type="object" string="ReSend Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('mail_sent', '=', False)]}" class="" confirm="An email for this membership has already been sent. Do you want to send it again?" help="Sends an email to the user to let him know of his membership."/>
                         <button name="reject_membership_affiliation" type="object" string="Reject Affiliation" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
-                        <field name="state" widget="statusbar" statusbar_visible="not_member,old_member,requested,member"/>
+                        <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                     </header>
                     <sheet>
                         <group>
@@ -55,6 +57,52 @@
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
                 </form>
+            </field>
+        </record>
+
+        <!-- graph view(s) -->
+        <!-- Prices per player with period details -->
+        <record id="membership_view_graph_users" model="ir.ui.view">
+            <field name="name">membership graph users</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <graph string="Prices per User" type="bar" stacked="1">
+                    <field name="user_id" type="row"/>
+                    <field name="period_id" type="row"/>
+                    <field name="price_remaining" type="measure"/>
+                    <field name="price_paid" type="measure"/>
+                    <field name="price_due" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <!-- Prices per period with user subdivision -->
+        <record id="membership_view_graph_periods" model="ir.ui.view">
+            <field name="name">membership graph periods</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <graph string="Prices per Period" type="bar" stacked="1">
+                    <field name="period_id" type="row"/>
+                    <field name="user_id" type="row"/>
+                    <field name="price_remaining" type="measure"/>
+                    <field name="price_paid" type="measure"/>
+                    <field name="price_due" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- pivot view(s) -->
+        <record id="membership_view_pivot" model="ir.ui.view">
+            <field name="name">membership pivot</field>
+            <field name="model">membership</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="period_id" type="row"/>
+                    <field name="user_id" type="row"/>
+                    <field name="state" type="col"/>
+                    <field name="price_paid" type="measure"/>
+                    <field name="price_due" type="measure"/>
+                    <field name="price_remaining" type="measure"/> 
+                </pivot>
             </field>
         </record>
 
@@ -178,18 +226,5 @@
         </record>
 
         <!-- TODO Create a Tree view -->
-
-        <record id="action_membership" model="ir.actions.act_window">
-            <field name="name">Memberships</field>
-            <field name="res_model">membership</field>
-            <field name="view_type">form</field>
-            <!-- <field name="view_mode">kanban</field> -->
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="context">{
-                'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
-                'search_default_current_period_search': 1,
-                'search_default_upcoming_period_search': 0,
-                }</field>
-        </record>
     </data>
 </odoo>

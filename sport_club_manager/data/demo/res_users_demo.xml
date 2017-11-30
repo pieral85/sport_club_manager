@@ -15,7 +15,7 @@
         </record>
         <record id="partner_demo_player_1_user" model="res.users">
             <field name="partner_id" ref="partner_demo_player_1"/>
-            <field name="login">player1@test.be</field>
+            <field name="login">player1@test.com</field>
             <field name="password">player1</field>
             <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
         </record>
@@ -34,7 +34,7 @@
         </record>
         <record id="partner_demo_player_2_user" model="res.users">
             <field name="partner_id" ref="partner_demo_player_2"/>
-            <field name="login">player2@test.be</field>
+            <field name="login">player2@test.com</field>
             <field name="password">player2</field>
             <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
         </record>
@@ -53,7 +53,7 @@
         </record>
         <record id="partner_demo_player_3_user" model="res.users">
             <field name="partner_id" ref="partner_demo_player_3"/>
-            <field name="login">player3@test.be</field>
+            <field name="login">player3@test.com</field>
             <field name="password">player3</field>
             <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
         </record>
@@ -72,7 +72,7 @@
         </record>
         <record id="partner_demo_player_4_user" model="res.users">
             <field name="partner_id" ref="partner_demo_player_4"/>
-            <field name="login">player4@test.be</field>
+            <field name="login">player4@test.com</field>
             <field name="password">player4</field>
             <!-- <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/> -->
         </record>

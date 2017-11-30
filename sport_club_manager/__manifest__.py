@@ -30,10 +30,16 @@
         'views/res_partner_views.xml',
         'views/res_company_views.xml',
         'views/membership_views.xml',
-        'views/menus.xml',
 
         # actions
         'actions/membership_actions.xml',
+        'actions/res_users_actions.xml',
+        'actions/category_actions.xml',
+        'actions/res_partner_actions.xml',
+        'actions/period_actions.xml',
+
+        # menus
+        'views/menus.xml',
 
         # templates
         'controllers/templates.xml',
