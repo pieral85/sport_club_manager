@@ -12,8 +12,10 @@
                     <field name="period_id"/><!--  domain="['|',('active','=',True),('active','=',False)]"/> --><!-- TODO Domain is not working with active! Is it with 'current'? -->
                     <field name="category_id"/>
                     <field name="state"/>
-                    <field name="price_paid"/>
-                    <field name="price_due"/>
+                    <field name="price_due" sum="Total"/>
+                    <field name="price_paid" sum="Total"/>
+                    <field name="price_remaining" sum="Total"/>
+                    <field name="price_paid_percentage" widget="progressbar"/>
                 </tree>
             </field>
         </record>
@@ -214,13 +216,19 @@
             <field name="model">membership</field>
             <field name="arch" type="xml">
                 <search string="Periods">
-                    <filter string="Current Period" name ="current_period_search" icon="terp-gtk-media-pause" domain="[('period_id.current','=', True)]" help="Memberships of current period."/>
-                    <filter string="Upcoming Period" name ="upcoming_period_search" icon="terp-gtk-media-pause" domain="[('period_id.upcoming','=', True)]" help="Memberships of upcoming period."/>
+                    <filter string="Current Period" name ="current_period_search" icon="terp-gtk-media-pause" domain="[('period_id.current', '=', True)]" help="Memberships of current period."/>
+                    <filter string="Upcoming Period" name ="upcoming_period_search" icon="terp-gtk-media-pause" domain="[('period_id.upcoming', '=', True)]" help="Memberships of upcoming period."/>
                     <separator/>
-                    <filter string="Payment Due" name ="payment_due_search" icon="terp-gtk-media-pause" domain="[('paid','=', False)]" help="Memberships with a payment due."/>
+                    <filter string="Payment Due" name ="payment_due_search" icon="terp-gtk-media-pause" domain="[('paid', '=', False)]" help="Memberships with a payment due."/>
                     <separator/>
-                    <filter string="Active Period(s)" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', True)]" help="Memberships of active period(s)."/>
-                    <filter string="Archived Period(s)" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active','=', False)]" help="Memberships of archived period(s)."/>
+                    <filter string="Unknown Status" name ="state_unknown_search" icon="terp-gtk-media-pause" domain="[('state', '=', 'unknown')]" help="Memberships with an unknown status."/>
+                    <filter string="Old Members" name ="state_old_member_search" icon="terp-gtk-media-pause" domain="[('state', '=', 'old_member')]" help="Members for the previous season."/>
+                    <filter string="Requested" name ="state_requested_search" icon="terp-gtk-media-pause" domain="[('state', '=', 'requested')]" help="Memberships with a requested status."/>
+                    <filter string="Members" name ="state_member_search" icon="terp-gtk-media-pause" domain="[('state', '=', 'member')]" help="Members only."/>
+                    <filter string="Rejected" name ="state_rejected_search" icon="terp-gtk-media-pause" domain="[('state', '=', 'rejected')]" help="Memberships with a rejected status."/>
+                    <separator/>
+                    <filter string="Active Period(s)" name ="active_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active', '=', True)]" help="Memberships of active period(s)."/>
+                    <filter string="Archived Period(s)" name ="inactive_period_search" icon="terp-gtk-media-pause" domain="[('period_id.active', '=', False)]" help="Memberships of archived period(s)."/>
                 </search>
             </field>
         </record>

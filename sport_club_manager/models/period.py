@@ -5,13 +5,12 @@ from datetime import date
 
 from odoo import models, fields, api, exceptions
 
+
 class Period(models.Model):
     _name = 'period'
     _inherit = ['mail.thread', 'mail.alias.mixin']
-    _description = ''  # TODO
-    _order = 'start_date asc'#'current desc, start_date desc, end_date desc'
-    # TODO Ajouter une contrainte lors de la création d'unne période: aucune date commune ne peut interférer
-
+    _description = 'Period'
+    _order = 'start_date asc'
     _sql_constraints = [
        ('dates_check', 'CHECK(start_date < end_date)',
         'The End Date should be higher than the Start Date. Please change it accordingly.'),
@@ -48,13 +47,13 @@ class Period(models.Model):
         string='Previous Period',
         compute='_compute_previous_period',
     )
-    # category_ids = fields.Many2many(
-    #     comodel_name='category',
-    #     relation='period_category',
-    #     column1='period',
-    #     column2='category',
-    #     string='Categories',
-    # )
+    currency_id = fields.Many2one(
+        comodel_name='res.currency',
+        string='Currency',
+        required=True,
+        default=lambda self: self.env['res.company']._company_default_get(),
+        store=False,
+    )
     period_category_ids = fields.One2many(
         comodel_name='period_category',
         inverse_name='period_id',
@@ -64,6 +63,30 @@ class Period(models.Model):
         comodel_name='res.users',
         string='Members',
         compute='_compute_get_users',
+    )
+    membership_ids = fields.Many2many(
+        comodel_name='membership',
+        string='Memberships',
+        compute='_compute_get_memberships',
+    )
+    count_members = fields.Integer(
+        string='Active Members',
+        compute='_count_members',
+    )
+    total_price_paid = fields.Monetary(
+        string='Total Members Price Paid',
+        currency_field='currency_id',
+        compute='_total_price_paid',
+    )
+    total_price_due = fields.Monetary(
+        string='Total Members Due Price',
+        currency_field='currency_id',
+        compute='_total_price_due',
+    )
+    total_remaining_price_due = fields.Monetary(
+        string='Total Remaining Members Due Price',
+        currency_field='currency_id',
+        compute='_total_remaining_price_due',
     )
 
     @api.multi
@@ -173,6 +196,42 @@ class Period(models.Model):
     def _compute_get_users(self):
         for record in self:
             record.user_ids = self.env['res.users'].search([('membership_ids.period_category_id.period_id.id', '=', record.id),])
+
+    def _compute_get_memberships(self):
+        for record in self:
+            record.membership_ids = self.env['membership'].search([('period_category_id.period_id.id', '=', record.id),])
+
+    @api.depends('membership_ids')
+    def _count_members(self):
+        for record in self:
+            record.count_members = len(record.membership_ids.filtered(lambda m: m.state == 'member'))
+
+    @api.depends('membership_ids')
+    def _total_price_paid(self):
+        for record in self:
+            total_price_paid = 0
+            for membership_id in record.membership_ids:
+                if membership_id.state == 'member':
+                    total_price_paid += membership_id.price_paid
+            record.total_price_paid = total_price_paid
+
+    @api.depends('membership_ids')
+    def _total_price_due(self):
+        for record in self:
+            total_price_due = 0
+            for membership_id in record.membership_ids:
+                if membership_id.state == 'member':
+                    total_price_due += membership_id.price_due
+            record.total_price_due = total_price_due
+
+    @api.depends('membership_ids')
+    def _total_remaining_price_due(self):
+        for record in self:
+            total_remaining_price_due = 0
+            for membership_id in record.membership_ids:
+                if membership_id.state == 'member':
+                    total_remaining_price_due += membership_id.price_remaining
+            record.total_remaining_price_due = total_remaining_price_due
 
     def _compute_previous_period(self):
         for record in self:

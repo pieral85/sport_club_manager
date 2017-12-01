@@ -87,13 +87,3 @@ class ResUsers(models.Model):
         if committee_group_action == 'delete':
             new_groups.append((3, self.env.ref('sport_club_manager.group_sport_club_manager_committee').id))
         vals['groups_id'] = new_groups
-
-    # @api.onchange('secretary')
-    # def _onchange_status(self):
-        # self.groups_id = self.env['res.groups']
-        # #default_user or self.env['res.users']).sudo().groups_id
-        # # self.env['account.full.reconcile'].create({
-        # #     'partial_reconcile_ids': [(6, 0, partial_rec_ids)],
-        # #     'reconciled_line_ids': [(6, 0, self.ids)],
-        # #     'exchange_move_id': exchange_move.id if exchange_move else False,
-        # # })

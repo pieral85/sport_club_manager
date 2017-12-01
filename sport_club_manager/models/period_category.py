@@ -6,7 +6,7 @@ from odoo import api, fields, models, exceptions
 
 class PeriodCategory(models.Model):
     _name = 'period_category'
-    _description = ''  # TODO
+    _description = 'Period Category'
     _order = 'period_id asc'
     # TODO D'une année à l'autre, un (smart?) bouton devrait permettre de dupliquer toutes les PeriodCategory (et tout ce qui est utile)
 
@@ -27,6 +27,7 @@ class PeriodCategory(models.Model):
     price_due = fields.Monetary(
         string='Due Price',
         currency_field='currency_id',
+        help="Expected price to pay for the member.",
     )
     default = fields.Boolean(
         string='Default',
@@ -43,10 +44,20 @@ class PeriodCategory(models.Model):
         string='Active Members',
         compute='_count_members',
     )
-    remaining_price_due = fields.Monetary(
-        string='Total Remaining Due Price',
+    total_price_paid = fields.Monetary(
+        string='Total Members Price Paid',
         currency_field='currency_id',
-        compute='_remaining_price_due',
+        compute='_total_price_paid',
+    )
+    total_price_due = fields.Monetary(
+        string='Total Members Due Price',
+        currency_field='currency_id',
+        compute='_total_price_due',
+    )
+    total_remaining_price_due = fields.Monetary(
+        string='Total Remaining Members Due Price',
+        currency_field='currency_id',
+        compute='_total_remaining_price_due',
     )
 
     # TODO Delete this method
@@ -61,12 +72,31 @@ class PeriodCategory(models.Model):
             record.count_members = len(record.membership_ids.filtered(lambda m: m.state == 'member'))
 
     @api.depends('membership_ids')
-    def _remaining_price_due(self):
+    def _total_price_paid(self):
         for record in self:
-            remaining_price_due = 0
+            total_price_paid = 0
             for membership_id in record.membership_ids:
-                remaining_price_due += membership_id.price_remaining
-            record.remaining_price_due = remaining_price_due
+                if membership_id.state == 'member':
+                    total_price_paid += membership_id.price_paid
+            record.total_price_paid = total_price_paid
+
+    @api.depends('membership_ids')
+    def _total_price_due(self):
+        for record in self:
+            total_price_due = 0
+            for membership_id in record.membership_ids:
+                if membership_id.state == 'member':
+                    total_price_due += membership_id.price_due
+            record.total_price_due = total_price_due
+
+    @api.depends('membership_ids')
+    def _total_remaining_price_due(self):
+        for record in self:
+            total_remaining_price_due = 0
+            for membership_id in record.membership_ids:
+                if membership_id.state == 'member':
+                    total_remaining_price_due += membership_id.price_remaining
+            record.total_remaining_price_due = total_remaining_price_due
 
     @api.one
     @api.constrains('period_id', 'category_id', 'default')

@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-<!--         <act_window 
-            id="validate_membership_payment"
-            name="Validate Payment(s)"
-            src_model="membership"
-            res_model="membership"
-            view_mode="form"
-            target="current"
-            key2="client_action_multi"/>
-            
-        <act_window 
-            id="validate_membership_wizard"
-            name="Validate Membership"
-            src_model="membership"
-            res_model="membership_wizard"
-            view_mode="form"
-            target="new"
-            key2="client_action_multi"/> -->
         <record id="action_membership" model="ir.actions.act_window">
             <field name="name">Memberships</field>
             <field name="res_model">membership</field>
             <field name="view_type">form</field>
-            <!-- <field name="view_mode">kanban</field> -->
             <field name="view_mode">kanban,tree,form,graph</field>
             <field name="context">{
                 'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
                 'search_default_current_period_search': 1,
                 'search_default_upcoming_period_search': 0,
                 }</field>
+            <!-- List of the views linked to this action window -->
             <field name="view_ids" eval="[
                 (5, 0, 0),
                 (0, 0, {
@@ -49,7 +32,6 @@
                     }),
                 ]"/>
         </record>
-
 
         <record id="action_report_prices_per_period" model="ir.actions.act_window">
             <field name="name">Prices per Period (members only)</field>

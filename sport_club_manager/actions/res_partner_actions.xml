@@ -8,6 +8,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,kanban</field>
             <field name="context">{'default_is_company': True}</field>
+            <!-- List of the views linked to this action window -->
             <field name="view_ids" eval="[
                 (5, 0, 0),
                 (0, 0, {

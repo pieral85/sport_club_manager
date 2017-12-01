@@ -8,29 +8,56 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="count_members" sum="Total"/>
+                    <field name="total_price_due" sum="Total"/>
+                    <field name="total_price_paid" sum="Total"/>
+                    <field name="total_remaining_price_due" sum="Total"/>
                 </tree>
             </field>
         </record>
 
         <!-- form view(s) -->
-        <!-- TODO Y afficher la liste des period pour chacune de ces categories -->
-        <!-- <record id="category_view_form" model="ir.ui.view">
+        <record id="category_view_form" model="ir.ui.view">
             <field name="name">category form</field>
             <field name="model">category</field>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
+                     <sheet>
                         <group>
                             <h1>
-                                <label string="..."/>
+                                <field name="name" placeholder="Name..."/>
                             </h1>
-                            <field name="..."/>
                         </group>
                         <notebook>
-                            <page name="..." string="...">
-                                <field name="..._ids">
+                            <page string="Periods">
+                                <field name="period_category_ids">
                                     <tree editable="bottom">
-                                        <field name="..."/>
+                                        <field name="period_id"/>
+                                        <field name="price_due" widget="monetary"/>
+                                        <field name="count_members" sum="Total"/>
+                                        <field name="total_price_due" sum="Total"/>
+                                        <field name="total_price_paid" sum="Total"/>
+                                        <field name="total_remaining_price_due" sum="Total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Members">
+                                <field name="user_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Memberships">
+                                <field name="membership_ids">
+                                    <tree editable="bottom">
+                                        <field name="user_id"/>
+                                        <field name="period_id"/>
+                                        <field name="state"/>
+                                        <field name="paid"/>
+                                        <field name="price_due" sum="Total"/>
+                                        <field name="price_paid" sum="Total"/>
+                                        <field name="price_remaining" sum="Total"/>
                                     </tree>
                                 </field>
                             </page>
@@ -38,9 +65,6 @@
                     </sheet>
                 </form>
             </field>
-        </record> -->
-
-        <!-- kanban view(s) -->
-        <!-- TO BE IMPLEMENTED -->
+        </record>
     </data>
 </odoo>

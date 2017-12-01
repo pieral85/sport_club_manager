@@ -7,7 +7,7 @@ from odoo import api, fields, models, exceptions, tools
 class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
-    _description = 'Description' # TODO
+    _description = 'Membership' # TODO
     _order = "period_id asc, user_id asc"
     # TODO Investigate with @xal
     # _sql_constraints = [

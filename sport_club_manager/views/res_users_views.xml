@@ -23,8 +23,9 @@
                                 <field name="membership_ids">
                                     <tree editable="bottom">
                                         <field name="period_category_id"/>
-                                        <field name="price_paid" widget="monetary"/>
-                                        <field name="price_due" widget="monetary"/>
+                                        <field name="price_due" widget="monetary" sum="Total"/>
+                                        <field name="price_paid" widget="monetary" sum="Total"/>
+                                        <field name="price_remaining" widget="monetary" sum="Total"/>
                                         <field name="price_paid_percentage" widget="progressbar"/>
                                     </tree>
                                 </field>
