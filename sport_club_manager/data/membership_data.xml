@@ -17,18 +17,17 @@ for record in records:
         <!-- Enable a flag on the model -->
         <record id="sport_club_manager.model_membership" model="ir.model">
             <field name="website_form_access">True</field>
-            <!-- <field name="website_form_default_field_id" ref="hr_recruitment.field_hr_applicant_description" /> -->
-            <!-- <field name="website_form_label">Subscribe a Membership</field> -->
         </record>
+
         <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
         <function model="ir.model.fields" name="formbuilder_whitelist">
             <value>sport_club_manager.membership</value>
             <value eval="['period_category_id']"/><!-- 'tutu',  -->
         </function>
+
         <!-- Add affiliation request in the website menu -->
         <record id="menu_membership" model="website.menu">
             <field name="name">Membership</field>
-            <!-- <field name="url">sport/membership/request</field> -->
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">50</field>
         </record>
@@ -53,9 +52,7 @@ for record in records:
 "${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or user.email)|safe}>
 ]]>
             </field>
-            <!--  <field name="email_from">${(object.course_id.responsible_id.email and '%s &lt;%s&gt;' % (object.course_id.responsible_id.name, object.course_id.responsible_id.email) or '')|safe}</field> -->
             <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
-            <!-- <field name="partner_to">${object.user_id.id}</field> -->
             <field name="email_to"><![CDATA[${object.user_id.login or user.email or ''|safe}]]></field>
             <field name="auto_delete" eval="False"/>
             <field name="lang">${object.user_id.partner_id.lang}</field>

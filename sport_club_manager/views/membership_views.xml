@@ -5,11 +5,10 @@
         <record id="membership_view_list" model="ir.ui.view">
             <field name="name">membership list</field>
             <field name="model">membership</field>
-            <!-- <field name="domain">[('active', '=', False),]</field> -->
             <field name="arch" type="xml">
                 <tree>
                     <field name="user_id"/>
-                    <field name="period_id"/><!--  domain="['|',('active','=',True),('active','=',False)]"/> --><!-- TODO Domain is not working with active! Is it with 'current'? -->
+                    <field name="period_id"/>
                     <field name="category_id"/>
                     <field name="state"/>
                     <field name="price_due" sum="Total"/>
@@ -34,20 +33,16 @@
                         <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
                         <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
 
-                        <button name="send_email" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('mail_sent', '=', True)]}" class="btn-primary" confirm="Do you want to send an email to the user to advise him of his membership?" help="Sends an email to the user to let him know of his membership."/><!-- fa-bars  states="state"--><!-- TODO Try to implement t-attf-class="btn-primary" with variable mail_sent -->
+                        <button name="send_email" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('mail_sent', '=', True)]}" class="btn-primary" confirm="Do you want to send an email to the user to advise him of his membership?" help="Sends an email to the user to let him know of his membership."/>
                         <button name="send_email" type="object" string="ReSend Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('mail_sent', '=', False)]}" class="" confirm="An email for this membership has already been sent. Do you want to send it again?" help="Sends an email to the user to let him know of his membership."/>
                         <button name="reject_membership_affiliation" type="object" string="Reject Affiliation" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
                         <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                     </header>
                     <sheet>
                         <group>
-                            <!-- <h1> -->
                             <field name="user_id"/>
-                            <!-- </h1> -->
-                            
                             <field name="period_id" class="o_task_user_field"/>
                             <field name="category_id"/>
-                            <!-- <field name="state"/> -->
                         </group>
                         <group>
                             <field name="price_paid"/>
@@ -108,52 +103,21 @@
             </field>
         </record>
 
-<!--         <record id="membership_view_form_wizard" model="ir.ui.view">
-            <field name="name">membership form wizard</field>
-            <field name="model">membership_wizard</field>
-            <field name="arch" type="xml">
-                <form string="Member Affiliation">
-                    <group> -->
-                        <!-- <field name="membership_id"/>
-                        <field name="period_id"/>
-                        <field name="category_id"/> -->
-                        <!-- <field name="price_paid"/>
-                        <field name="price_due"/> -->
-<!--                         <field name="send_email"/>
-                    </group>
-                    <footer>
-                        <button name="run_affiliation" type="object"
-                                string="Affiliate" class="oe_highlight" confirm="Are you sure you want to cancel this receipt?"/>
-                        <button special="cancel" string="Cancel"/>
-                    </footer>
-                </form>
-            </field>
-        </record> -->
-
-
         <!-- kanban view(s) -->
         <record id="membership_view_kanban" model="ir.ui.view">
             <field name="name">membership kanban</field>
             <field name="model">membership</field>
             <field name="arch" type="xml">
-                <!-- <kanban _group_by_full="state"> -->
                 <kanban default_group_by="state">
                     <field name="color"/>
                     <field name="price_paid_percentage"/>
-                    <!-- <field name="user_id" /> -->
-                    <!-- <field name="category_id"/> -->
                     <templates>
                         <t t-name="kanban-box">
-                            <!-- <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit
-                                oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
-                                ? 'oe_kanban_card_fancy' : ''}}"> -->
                             <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit
                                 oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
                                 ? 'oe_kanban_card_fancy' : ''}}">
-                                <div> <!-- class="col-xs-4" -->
-                                    <!-- <span class="oe_kanban_project_avatars"> -->
-                                        <img t-att-src="kanban_image('res.users', 'image_medium', record.user_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
-                                    <!-- </span> -->
+                                <div>
+                                    <img t-att-src="kanban_image('res.users', 'image_medium', record.user_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
                                 </div>
 
                                 <div class="oe_kanban_details">
@@ -163,20 +127,15 @@
                                                 <field name="user_id"/>
                                             </strong>
                                             <span>
-                                                <div class="o_dropdown_kanban dropdown col-xs-4" ><!-- groups="openacademy.group_manager" -->
+                                                <div class="o_dropdown_kanban dropdown col-xs-4" >
                                                     <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
                                                         <span class="fa fa-bars fa-lg"/>
                                                     </a>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                                         <t t-if="widget.editable"><li><a type="edit">Edit Membership</a></li></t>
-                                                        <!-- <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t> -->
-                                                        <!-- <li><ul class="oe_kanban_colorpicker" data-field="color"/></li> -->
                                                     </ul>
                                                 </div>
                                             </span>
-                                            <!-- <span t-if="record.category_id.raw_value" class="o_kanban_record_subtitle">
-                                                <i><field name="category_id"/></i>
-                                            </span> -->
                                         </div>
                                     </div>
                                     <ul>
@@ -191,7 +150,6 @@
                                         <li>
                                             <span>Price Paid: </span>
                                             <span t-attf-class="o_text_bold">
-                                            <!-- <span t-attf-class="#{color || ''}"> -->
                                                 <field name="price_paid" widget="monetary"/>
                                             </span>
                                         </li>
@@ -232,7 +190,5 @@
                 </search>
             </field>
         </record>
-
-        <!-- TODO Create a Tree view -->
     </data>
 </odoo>

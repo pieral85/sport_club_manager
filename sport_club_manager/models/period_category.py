@@ -8,7 +8,6 @@ class PeriodCategory(models.Model):
     _name = 'period_category'
     _description = 'Period Category'
     _order = 'period_id asc'
-    # TODO D'une année à l'autre, un (smart?) bouton devrait permettre de dupliquer toutes les PeriodCategory (et tout ce qui est utile)
 
     period_id = fields.Many2one(
         comodel_name='period',
@@ -37,7 +36,6 @@ class PeriodCategory(models.Model):
     membership_ids = fields.One2many(
         comodel_name='membership',
         inverse_name='period_category_id',
-        # domain=[('is_company', '=', False)],
         string='Memberships',
     )
     count_members = fields.Integer(
@@ -59,12 +57,6 @@ class PeriodCategory(models.Model):
         currency_field='currency_id',
         compute='_total_remaining_price_due',
     )
-
-    # TODO Delete this method
-    # @api.model  # Uncomment me 2017-11-26
-    # def create(self, vals):
-    #     import ipdb; ipdb.set_trace()
-    #     res = super(PeriodCategory, self).create(vals)
 
     @api.depends('membership_ids')
     def _count_members(self):
@@ -101,9 +93,12 @@ class PeriodCategory(models.Model):
     @api.one
     @api.constrains('period_id', 'category_id', 'default')
     def _check_default_unique(self):
+        """ Checks that each category within a single period must be unique (otherwise, an exception is raised).
+        Also checks that each category has only one period_category with 'default' attribute set to True (otherwise, an exception is raised).
+
+        :return: None
+        """
         if len(self.period_id.period_category_ids.filtered(lambda pc: pc.category_id.id == self.category_id.id)) > 1:
-            print(self.env['period_category'].search_count([('period_id.id','=',self.period_id.id),('category_id.id','=',self.category_id.id)]))
-            import ipdb; ipdb.set_trace()
             raise exceptions.ValidationError("For the period '%s', the category '%s' must be unique. Please change it accordingly." % (self.period_id.name, self.category_id.name))
         if len(self.period_id.period_category_ids.filtered(lambda pc: pc.default)) > 1:
             raise exceptions.ValidationError("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly." % (self.period_id.name))
@@ -117,18 +112,19 @@ class PeriodCategory(models.Model):
         return result
 
     def copy(self, default=None):
+        """ Does a 'smart' duplication of self, including its membership_ids.
+
+        :param dict default: values for the newly created record.
+        :return: New period_category created.
+        """
         self.ensure_one()
         default = dict(default or {})
         default.setdefault('period_id', self.period_id.id)
         default.setdefault('category_id', self.category_id.id)
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_due', self.price_due)
-        # import ipdb; ipdb.set_trace()
         new_period_category = super(PeriodCategory, self).copy(default)
-        print('=== Period Category ===', new_period_category, new_period_category.period_id.name, new_period_category.category_id.name)
-        import pprint; pprint.pprint(default)
         for membership_id in self.membership_ids:
-            # membership_state = 'old_member' if membership_id.state == 'member' else 'unknown'
             if membership_id.state == 'member':
                 membership_state = 'old_member'
             elif membership_id.state == 'rejected':

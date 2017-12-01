@@ -6,5 +6,3 @@ from . import period
 from . import category
 from . import period_category
 from . import membership
-
-# from . import period_category

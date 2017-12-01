@@ -3,10 +3,10 @@
     'name': "sport_club_manager",
 
     'summary': """
-        Manage players for """,  # TODO
+        Manage players for a sport club.""",
 
     'description': """
-        TODO
+        Manage players for a sport club.
     """,
 
     'author': "Odoo",
@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website_form', 'auth_signup', 'mail'],#, 'board', website_sale'],
+    'depends': ['base', 'website_form', 'auth_signup', 'mail'],
 
     # always loaded
     'data': [
@@ -54,7 +54,6 @@
         'data/membership_data.xml',
     ],
     'qweb': [
-        # 'static/src/xml/*.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -66,6 +65,4 @@
     ],
     'installable': True,
     'application': True,
-    # 'auto_install': False,
-    # 'post_init_hook': '_auto_install_l10n',
 }

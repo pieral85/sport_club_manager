@@ -27,14 +27,12 @@ class Period(models.Model):
     )
     end_date = fields.Date(
         string='End Date',
-        default=None,  # TODO Should be start date + 1 year
+        default=None,
         required=True,
     )
     active = fields.Boolean(
         string='Active Period(s)',
         default=True,
-        # compute='_compute_active',
-        # store=True,
     )
     current = fields.Boolean(
         string='Current Period',
@@ -94,7 +92,6 @@ class Period(models.Model):
         for template in self:
             template.active = not template.active
 
-    # TODO Add in the xml view: <field name="alias_name"/>
     def get_alias_model_name(self, vals):
         """ Specify the model that will get created when the alias receives a message.
 
@@ -110,13 +107,13 @@ class Period(models.Model):
         """
         values = super(Period, self).get_alias_values()
         values['alias_defaults'] = {'period_id': self.id}
-        # values['alias_defaults'] = {'course_id': self.course_id.id,
-        #                             'session_id': self.id}
         return values
 
-    # TODO This function should also be called when a record is deleted (and also maybe in other cases)
-    # TODO when creating/modifying a period, start date should always be < end date
     def update_periods(self):
+        """ Updates 'active', 'current' and 'incoming' attributes of self, based on their 'start_date' and 'end_date' attributes.
+
+        :return: None
+        """
         current_period_id = self.env['period'].search(
             ['&', '&', 
              '|', ('active', '=', True), ('active', '=', False),
@@ -140,59 +137,27 @@ class Period(models.Model):
             record.current = record.id == current_period_id
             record.upcoming = record.id == upcoming_period_id
 
-    # @api.multi
-    # def write(self, vals):
-    #     # import ipdb; ipdb.set_trace()
-    #     print('\nWRITE\n', self, vals)
-    #     res = super(Period, self).write(vals)
-    #     if 'start_date' in vals or 'end_date' in vals:
-    #         self.update_periods()
-    #     return res
-
-    # @api.model
-    # def create(self, vals):
-    #     # import ipdb; ipdb.set_trace()
-    #     print('\nCREATE\n',self, vals)
-    #     res = super(Period, self).create(vals)
-    #     if 'start_date' in vals or 'end_date' in vals:
-    #         res.update_periods()
-    #     return res
-
-    # # Code found in sale.py: is it better in proceed with this method?
-    # @api.multi
-    # def copy_data(self, default=None):
-    #     if default is None:
-    #         default = {}
-    #     if 'order_line' not in default:
-    #         default['order_line'] = [(0, 0, line.copy_data()[0]) for line in self.order_line.filtered(lambda l: not l.is_downpayment)]
-    #     return super(SaleOrder, self).copy_data(default)  
     def copy(self, default=None):
+        """ Does a 'smart' duplication of self, including its period_category_ids and membership_ids.
+
+        :param dict default: values for the newly created record.
+        :return: New period created.
+        """
         default = dict(default or {})
         default.setdefault('name', '%s (new)' % self.name)
         default.setdefault('start_date', Period._add_years(self.start_date, 1))
         default.setdefault('end_date', Period._add_years(self.end_date, 1))
         default.setdefault('active', True)
-        # import ipdb; ipdb.set_trace()
         new_period = super(Period, self).copy(default)
-        print('=== Period ===', new_period, new_period.name)
+
         for period_category_id in self.period_category_ids:
-            # import ipdb; ipdb.set_trace()
             default = {
                 'period_id': new_period.id,
             }
             period_category_id.copy(default)
-        # return {
-        #     'type': 'ir.actions.act_window',
-        #     'res_model': 'period',
-        #     'view_mode': 'form',  # Should always be 'form'
-        #     'view_type': 'form',  # Can be'tree', 'tree,form,kanban', 'tree,form', ...
-        #     'res_id': new_period.id,
-        #     #'target': 'new',  # Opens in a pop-up window
-        # }
         return new_period
 
 
-    # @api.depends('period_category_ids')
     def _compute_get_users(self):
         for record in self:
             record.user_ids = self.env['res.users'].search([('membership_ids.period_category_id.period_id.id', '=', record.id),])
@@ -256,22 +221,14 @@ class Period(models.Model):
         except ValueError:
             return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
 
-    # def _warning(self, title, message):
-    #     return {'warning': {
-    #         'title': title,
-    #         'message': message,
-    #         },
-    #     }
-
-    # @api.onchange('start_date', 'end_date')
-    # def _check_dates(self):
-    #     print(self.start_date, type(self.start_date), self.end_date)
-    #     if self.start_date and self.end_date and self.start_date > self.end_date:
-    #         return self._warning('Incorrect date', 'The End Date should be higher than the Start Date. Please change it accordingly.')
-
     @api.one
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
+        """ Checks that no other period has a common date with self (otherwise, an exception is raised).
+        Also checks that the start date is lower than the end date (otherwise, an exception is raised).
+
+        :return: None
+        """
         count_common_periods = self.env['period'].search_count([
             '&', '&',
             '|', ('active', '=', True), ('active', '=', False),
@@ -282,4 +239,3 @@ class Period(models.Model):
             raise exceptions.ValidationError("The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly." % (self.start_date, self.end_date, count_common_periods))
         if not self.start_date or not self.end_date or self.start_date > self.end_date:
             raise exceptions.ValidationError('The End Date should be higher than the Start Date. Please change it accordingly.') 
-

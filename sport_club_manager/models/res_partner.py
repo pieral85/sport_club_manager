@@ -4,13 +4,10 @@
 from odoo import api, fields, models
 
 
-# TODO Delete this class???
 class ResUsers(models.Model):
     _inherit = 'res.partner'
 
-    # location = field_name = fields.Boolean(
-    #     string='Location',
-    # )
     company_type = fields.Selection(string='Company Type',
         selection=[('person', 'Contact'), ('company', 'Location')],
         compute='_compute_company_type', inverse='_write_company_type')
+    

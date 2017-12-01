@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Periods -->
         <record id="period_2017" model="period">
             <field name="name">Année 2017-2018</field>
             <field name="start_date">2017-09-01</field>

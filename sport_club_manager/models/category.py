@@ -4,12 +4,9 @@
 from odoo import api, fields, models, exceptions
 
 
-# TODO Should create a list of Category in badminton module (Recreant, Competiteur, ...)
-
-
 class Category(models.Model):
     _name = 'category'
-    _description = 'Category'  # TODO
+    _description = 'Category'
 
     name = fields.Char(
         string='Category',

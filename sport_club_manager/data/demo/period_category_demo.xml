@@ -9,10 +9,8 @@
             <field name="default">True</field>
         </record>
         <record id="period_category_competitor_2017" model="period_category">
-            <!-- <field name="period_id" eval="ref('period_2017')"/> -->
+            <field name="period_id" ref="period_2017"/>
             <field name="category_id" ref="category_competitor"/>
-            <!-- <field name="category_id" eval="[(4,ref('category_competitor'))]"/> -->
-            <field name="category_id" eval="ref('category_competitor')"/>
             <field name="price_due">100</field>
             <field name="default">False</field>
         </record>

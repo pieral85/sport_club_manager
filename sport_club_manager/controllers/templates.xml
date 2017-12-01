@@ -24,13 +24,6 @@
                     <t t-foreach="period.period_category_ids" t-as="period_category">
                         <p>Name: <t t-esc="period_category.category_id.name"/></p>
                         <p>Price Due: <t t-esc="period_category.price_due"/></p>
-                        <!-- <t t-esc=""/>
-                        <t t-esc=""/> -->
-<!-- 
-                        <p><a t-attf-href="/academy/{{ slug(session) }}"><t t-esc="session.name"/></a></p>
-                        <p>Last modified: <i t-field="session.write_date" t-field-options='{"format": "long"}' /></p>
-                        <div t-field="session.description" />
-                         -->
                     </t>
                  </t>
             </div>
@@ -44,7 +37,6 @@
 <template id="website_member_info">
     <t t-call="website.layout">
         <t t-set="title">Member Info</t>
-        <!-- <div class="oe_structure"/> -->
         <div class="oe_structure">
             <div class="container">
                 <p><t t-esc="player.id"/> <t t-esc="player.login"/> <t t-esc="player.name"/></p>
@@ -58,7 +50,6 @@
 <template id="website_info_club">
     <t t-call="website.layout">
         <t t-set="title">Club Info</t>
-        <!-- <div class="oe_structure"/> -->
         <div class="oe_structure">
             <div class="container">
                 <h2>Comittee Info</h2>                        
@@ -79,6 +70,7 @@
     </t>
 </template>
 
+<!-- Web Page showing a form in order to request a membership -->
 <template id="website_membership_request" name="Request Affiliation">
     <t t-call="website.layout">
         <t t-set="additional_title">Request an Affiliation</t>
@@ -96,41 +88,11 @@
                                     <t t-foreach="period_categories" t-as="period_category">
                                         <option t-att-value="period_category.id">
                                             <t t-esc="period_category.name_get()[0][1]"/>
-                                            <!-- <t t-esc="period_category.name_get()[0][1]"/> -->
                                         </option>
                                     </t>
                                 </select>
                             </div>
-                            <!-- <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="period_id">Select Period and Category</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <select name="period_id" class="o_website_from_input form-control">
-                                    <t t-foreach="periods" t-as="period">
-                                        <option t-att-value="period.id">
-                                            <t t-esc="period.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div> -->
                         </div>
-                        <!-- Name text field, required -->
-                        <!-- <div class="form-group form-field">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="state">State</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input name="state" type="text" required="True" class="o_website_from_input form-control" t-att-placeholder="status"/>
-                            </div>
-                        </div> -->
-                        <!-- <div class="form-group form-field">
-                            <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="tutu">TOTO*</label>
-                            </div>
-                            <div class="col-md-7 col-sm-8">
-                                <input name="tutu" type="text" required="True" class="o_website_form_input form-control"/>
-                            </div>
-                        </div> -->
                         <!-- Submit button -->
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-8">
@@ -146,46 +108,5 @@
         </div>
     </t>
 </template>
-
-<!-- <template id="website_membership_request" name="Request Affiliation">
-    <t t-call="web.login_layout">
-        <form class="oe_login_form" role="form" t-attf-action="/web/login{{ '?debug' if debug else '' }}" method="post" onsubmit="this.action = this.action + location.hash">
-            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-
-            <div class="form-group field-db" t-if="databases and len(databases) &gt; 1">
-                <label for="db" class="control-label">Database</label>
-                <div class="input-group">
-                    <input type="text" name="db" t-att-value="request.db" id="db" class="form-control" required="required" readonly="readonly"/>
-                    <span class="input-group-btn">
-                      <a href="/web/database/selector" class="btn btn-default">Select <i class="fa fa-database"></i></a>
-                    </span>
-                </div>
-            </div>
-
-            <div class="form-group field-login">
-                <label for="login" class="control-label">Email</label>
-                <input type="text" name="login" t-att-value="login" id="login" class="form-control" required="required" autofocus="autofocus" autocapitalize="off"/>
-            </div>
-
-            <div class="form-group field-password">
-                <label for="password" class="control-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
-            </div>
-
-            <p class="alert alert-danger" t-if="error">
-                <t t-esc="error"/>
-            </p>
-            <p class="alert alert-success" t-if="message">
-                <t t-esc="message"/>
-            </p>
-
-            <input type="hidden" name="redirect" t-att-value="redirect"/>
-            <div class="clearfix oe_login_buttons">
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </div>
-        </form>
-    </t>
-</template>
- -->
 </data>
 </odoo>
