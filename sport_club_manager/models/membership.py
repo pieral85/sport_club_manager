@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import uuid
+
 from odoo import api, fields, models, exceptions, tools
 
 
 class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
-    _description = 'Membership' # TODO
+    _description = 'Membership'
     _order = "period_id asc, user_id asc"
 
     @api.returns('self')
     def _default_price_due(self):
         return self.period_category_id.price_due
+
+    def _default_token(self):
+        return uuid.uuid4().hex
 
     period_category_id = fields.Many2one(
         comodel_name='period_category',
@@ -66,6 +71,14 @@ class Membership(models.Model):
         compute='_compute_payment',
         store=True,
     )
+    token = fields.Char(
+        string='Invitation Token',
+        default=_default_token,
+    )
+    invitation_mail_sent = fields.Boolean(
+        string='Invitation Mail Sent',
+        default=False,
+    )
     color = fields.Integer(
         string='Color Index',
         compute='_compute_color',
@@ -75,6 +88,16 @@ class Membership(models.Model):
         string='Mail Sent',
         default=False,
     )
+    user_response = fields.Selection(
+        [
+         ('undefined', 'Undefined'),
+         ('declined', 'Declined'),
+         ('accepted', 'Accepted'),
+        ],
+        string='User Response',
+        readonly=True,
+        default='undefined',
+        help="Membership status of the user's response.")
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         related='user_id.partner_id',
@@ -122,6 +145,38 @@ class Membership(models.Model):
         vals.setdefault('state', 'requested')
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
+        return res
+
+    def send_email_invitation(self):
+        invitation_template = self.env.ref('sport_club_manager.email_template_membership_affiliation_request')
+        ctx = {
+            'company_id': self.env.user.company_id,
+            'dbname': self._cr.dbname,
+        }
+        invitation_template.with_context(ctx).send_mail(self.id)
+        self.invitation_mail_sent = True
+        return True
+
+    @api.multi
+    def do_accept(self):
+        """ Marks membership invitation as Accepted. """
+        res = self.write({
+            'user_response': 'accepted',
+            'state': 'requested',
+        })
+        for membership in self:
+            membership.message_post(body="%s has accepted the invitation. His status has been changed to Requested." % (membership.partner_id.name))
+        return res
+
+    @api.multi
+    def do_decline(self):
+        """ Marks membership invitation as Declined. """
+        res = self.write({
+            'user_response': 'declined',
+            'state': 'rejected',
+        })
+        for membership in self:
+            membership.message_post(body="%s has declined the invitation. His status has been changed to Rejected." % (membership.partner_id.name))
         return res
 
     @api.multi

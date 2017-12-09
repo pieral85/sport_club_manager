@@ -155,8 +155,15 @@ class Period(models.Model):
                 'period_id': new_period.id,
             }
             period_category_id.copy(default)
+        self.update_periods()
         return new_period
 
+    def send_email_invitations(self):
+        # TODO:
+        #  * Ouvrir un wizard qui propose la liste des memberships à qui on veut envoyer ça
+        #  * Ouvre ensuite un template d'email
+        #  * Créer le template d'email qui doit contenir deux boutons: un pour accepter et un pour refuser
+        pass
 
     def _compute_get_users(self):
         for record in self:

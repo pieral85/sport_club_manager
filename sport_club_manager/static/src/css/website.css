@@ -1,0 +1,8 @@
+div.bg_02 {
+  background-image: url("/sport_club_manager/static/img/badminton_wallpaper_02.jpg");
+  background-repeat: no-repeat;
+}
+
+footer.no_bg {
+	background: transparent;
+}

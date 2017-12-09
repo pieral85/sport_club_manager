@@ -13,6 +13,8 @@ class ResUsers(models.Model):
     secretary = fields.Boolean('Is Secretary', default=False)
     treasurer = fields.Boolean('Is Treasurer', default=False)
     manager = fields.Boolean('Is Manager', default=False)
+    # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
+    action_id = fields.Many2one('ir.actions.actions', string='Home Action', compute='_get_action_id', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
 
     membership_ids = fields.One2many(
         comodel_name='membership',
@@ -86,3 +88,16 @@ class ResUsers(models.Model):
         if committee_group_action == 'delete':
             new_groups.append((3, self.env.ref('sport_club_manager.group_sport_club_manager_committee').id))
         vals['groups_id'] = new_groups
+
+    @api.depends('groups_id')
+    def _get_action_id(self):
+        """ Calculates the action that will be opened at log on for current user, based on his groups.
+
+        :return: None
+        """
+        for record in self:
+            if self.env.ref('base.group_system') in record.groups_id or \
+               self.env.ref('sport_club_manager.group_sport_club_manager_committee') in record.groups_id:
+                record.action_id = self.env.ref('sport_club_manager.action_membership').id
+            else:
+                record.action_id = None

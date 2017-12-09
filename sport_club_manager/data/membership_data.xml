@@ -44,7 +44,7 @@ for record in records:
             <field name="sequence" type="int">20</field>
         </record>
 
-        <!--Email template -->
+        <!--Email template for Membership Affiliation Confirmation-->
         <record id="email_template_membership_affiliation_confirmation" model="mail.template">
             <field name="name">Membership Affiliation Confirmation</field>
             <field name="model_id" ref="model_membership"/>
@@ -58,10 +58,10 @@ for record in records:
             <field name="lang">${object.user_id.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
 <p>
-    Dear ${(object.user_id.name or 'sportsperson')|safe},
+    Dear ${(object.user_id.name or 'player')|safe},
 </p>
 <p>
-We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}<i><u>!
+We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>!
 </p>
 <p>
 % if object.price_remaining:
@@ -85,5 +85,98 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
 ]]>
             </field>
         </record>
+
+        <!-- Email template for Membership Request -->
+        <record id="email_template_membership_affiliation_request" model="mail.template">
+            <field name="name">Membership Affiliation Request</field>
+            <field name="email_from"><![CDATA[
+"${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or '')|safe}>
+]]>
+            </field>
+            <field name="subject">Affiliation request for ${object.period_id.name}</field>
+            <field name="model_id" ref="model_membership"/>
+            <!-- <field name="email_to" >${('' if object.partner_id and object.partner_id.email and object.partner_id.email==object.email else object.email|safe)}</field> -->
+            <field name="email_to" ><![CDATA[
+${object.user_id.login or ''|safe}]]>                
+            </field>
+            <!-- <field name="partner_to">${object.partner_id and object.partner_id.email and object.partner_id.email==object.email and object.partner_id.id or False }</field> -->
+            <field name="auto_delete" eval="False"/>
+            <field name="body_html"><![CDATA[
+<div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+    <p>
+        Dear ${(object.user_id.name or 'player')|safe},
+    </p>
+    <p>
+        An affiliation request has been done for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>.
+        <br/>
+        Could you please let us know your answer by clicking on the button of your choice?
+    </p>
+    <p>
+        <a href="/sport/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
+        <a href="/sport/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
+        <a href="/sport/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
+    </p>
+    <p>
+        Best regards,
+    </p>
+    <p>
+        The ${ctx['company_id'].name|safe} comittee members
+    </p>
+    <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+
+</div>
+]]></field>
+        </record>
+
+        <!-- Template rendered in route auth=None, for anonymous user. This allow them to see memberhip details -->
+        <template id="membership_affiliation_page_anonymous" name="Membership Invitation Page for anonymous users">
+            <t t-call="web.layout">
+                <t t-set="head">
+                    <t t-call-assets="web.assets_common" t-js="false"/>
+                    <t t-call-assets="web.assets_frontend" t-js="false"/>
+                </t>
+
+                <div class="container">
+                    <div class="o_logo">
+                        <img class="img img-responsive center-block" src="/web/binary/company_logo"/>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Season <small><t t-esc="membership.period_id.name"/></small></h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="clearfix mb16" t-if="membership.user_response != 'undefined'">
+                                <span class="pull-right label label-info">
+                                    <t t-if="membership.user_response == 'accepted'">Yes, I have accepted!</t>
+                                    <t t-if="membership.user_response == 'declined'">No, I have declined.</t>
+                                </span>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="o_event_table table table-striped">
+                                    <tr>
+                                        <th>Player</th>
+                                        <td><t t-esc="membership.user_id.name"/> (<t t-esc="membership.user_id.login"/>)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Period</th>
+                                        <td>From <t t-esc="membership.period_id.start_date"/> To <t t-esc="membership.period_id.end_date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Category</th>
+                                        <td><t t-esc="membership.category_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Member Status</th>
+                                        <td><t t-esc="membership.state"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
     </data>
 </odoo>

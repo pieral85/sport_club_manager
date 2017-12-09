@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
+        <xpath expr="." position="inside">
+            <link rel='stylesheet' href='/sport_club_manager/static/src/css/website.css'/>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']" position="attributes">
+             <attribute name="t-att-class">(pageName or '') + ' bg_02'</attribute>
+        </xpath>
+        <xpath expr="//footer" position="attributes">
+            <attribute name="class">no_bg</attribute>
+        </xpath>
+    </template>
+</odoo>

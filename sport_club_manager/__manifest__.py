@@ -30,6 +30,7 @@
         'views/res_partner_views.xml',
         'views/res_company_views.xml',
         'views/membership_views.xml',
+        'views/website.xml',
 
         # actions
         'actions/membership_actions.xml',
