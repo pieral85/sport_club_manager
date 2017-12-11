@@ -14,8 +14,12 @@ class ResUsers(models.Model):
     treasurer = fields.Boolean('Is Treasurer', default=False)
     manager = fields.Boolean('Is Manager', default=False)
     # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
-    action_id = fields.Many2one('ir.actions.actions', string='Home Action', compute='_get_action_id', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
-
+    action_id = fields.Many2one(
+        comodel_name='ir.actions.actions',
+        string='Home Action',
+        compute='_get_action_id',
+        help="If specified, this action will be opened at log on for this user, in addition to the standard menu."
+    )
     membership_ids = fields.One2many(
         comodel_name='membership',
         inverse_name='user_id',

@@ -89,12 +89,12 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
         <!-- Email template for Membership Request -->
         <record id="email_template_membership_affiliation_request" model="mail.template">
             <field name="name">Membership Affiliation Request</field>
+            <field name="model_id" ref="model_membership"/>
             <field name="email_from"><![CDATA[
 "${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or '')|safe}>
 ]]>
             </field>
-            <field name="subject">Affiliation request for ${object.period_id.name}</field>
-            <field name="model_id" ref="model_membership"/>
+            <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
             <!-- <field name="email_to" >${('' if object.partner_id and object.partner_id.email and object.partner_id.email==object.email else object.email|safe)}</field> -->
             <field name="email_to" ><![CDATA[
 ${object.user_id.login or ''|safe}]]>                

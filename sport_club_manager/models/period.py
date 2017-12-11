@@ -44,6 +44,7 @@ class Period(models.Model):
         comodel_name='period',
         string='Previous Period',
         compute='_compute_previous_period',
+        store=False,
     )
     currency_id = fields.Many2one(
         comodel_name='res.currency',

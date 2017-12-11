@@ -10,35 +10,6 @@ _URL_ROOT = '/sport'
 
 class SportClubManager(AuthSignupHome):
 
-    # TODO I think this part can be deleted (redirection implemented in medel res.users)
-    # @http.route()
-    # def web_login(self, *args, **kw):
-    #     print('\nweb_login', args, kw, '\n')
-    #     response = super(SportClubManager, self).web_login(*args, **kw)
-
-    #     user_id = http.request.session.uid
-    #     if not user_id:
-    #         return response
-
-    #     group_admin_id = http.request.env.ref('base.group_system').id
-    #     group_manager_id = http.request.env.ref('sport_club_manager.group_sport_club_manager_manager').id
-    #     group_committee_id = http.request.env.ref('sport_club_manager.group_sport_club_manager_committee').id
-    #     group_portal_id = http.request.env.ref('base.group_portal').id
-    #     user_group_ids = http.request.env['res.users'].sudo().search_read([('id', '=', user_id),], ['groups_id'], limit=1)[0]['groups_id']
-    #     if group_admin_id in user_group_ids:
-    #         # http://localhost:8069/web#view_type=kanban&model=membership&menu_id=88&action=120
-    #         import ipdb; ipdb.set_trace()
-    #         #return http.redirect_with_hash(http.request.params.get('redirect'))
-    #     elif group_manager_id in user_group_ids or group_committee_id in user_group_ids:
-    #         import ipdb; ipdb.set_trace()
-    #         #return http.redirect_with_hash(http.request.params.get('redirect'))
-    #         # redirect to backend
-    #     elif group_portal_id in user_group_ids:
-    #         import ipdb; ipdb.set_trace()
-    #         # redirect to website welcome screen
-    #         pass
-    #     return response
-
     @http.route('%s/period/' % _URL_ROOT, auth='public', website=True)
     def period(self, **kw):
         periods = http.request.env['period'].search([])
@@ -90,47 +61,31 @@ class SportClubManager(AuthSignupHome):
         registry = registry_get(db)
         with registry.cursor() as cr:
             env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token), ('user_response', '!=', 'accepted')])
+            membership = env['membership'].search([('token', '=', token), ('state', '!=', 'member'), ('user_response', '!=', 'accepted')])
             if membership:
                 membership.do_accept()
         return self.view(db, token, action, id, view='form')
 
-    @http.route('%s/my/membership/decline' % _URL_ROOT, type='http', auth='public')#, auth="calendar")
+    @http.route('%s/my/membership/decline' % _URL_ROOT, type='http', auth='public')
     def declined(self, db, token, action, id):
         registry = registry_get(db)
         with registry.cursor() as cr:
             env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token), ('user_response', '!=', 'declined')])
+            membership = env['membership'].search([('token', '=', token), ('state', '!=', 'member'), ('user_response', '!=', 'declined')])
             if membership:
                 membership.do_decline()
         return self.view(db, token, action, id, view='form')
 
 
-    @http.route('%s/my/membership/view' % _URL_ROOT, type='http', auth='public')#auth="calendar")
+    @http.route('%s/my/membership/view' % _URL_ROOT, type='http', auth='public')
     def view(self, db, token, action, id, view='calendar'):
         registry = registry_get(db)
         with registry.cursor() as cr:
             # Since we are in auth=none, create an env with SUPERUSER_ID
             env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token),])
+            membership = env['membership'].search([('token', '=', token),], limit=1)
             if not membership:
                 return http.request.not_found()
-            # timezone = membership.partner_id.tz
-            # lang = membership.partner_id.lang or 'en_US'
-            # event = env['calendar.event'].with_context(tz=timezone, lang=lang).browse(int(id))
-
-            # If user is internal and logged, redirect to form view of event
-            # otherwise, display the simplifyed web page with event informations
-            # if http.request.session.uid and http.request.env['res.users'].browse(http.request.session.uid).user_has_groups('base.group_user'):
-            #     return werkzeug.utils.redirect('/web?db=%s#id=%s&view_type=form&model=calendar.event' % (db, id))
-
-            # NOTE : we don't use http.request.render() since:
-            # - we need a template rendering which is not lazy, to render before cursor closing
-            # - we need to display the template in the language of the user (not possible with
-            #   http.request.render())
-            # return http.request.render('sport_club_manager.website_info_club', {
-            #     'memberships': memberships,
-            # })
             response_content = env['ir.ui.view'].render_template(
                 'sport_club_manager.membership_affiliation_page_anonymous', {
                     'membership': membership,

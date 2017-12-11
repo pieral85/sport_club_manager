@@ -16,18 +16,21 @@ class Membership(models.Model):
     def _default_price_due(self):
         return self.period_category_id.price_due
 
+    @api.model
     def _default_token(self):
         return uuid.uuid4().hex
 
     period_category_id = fields.Many2one(
         comodel_name='period_category',
-        string='Period Category',
+        ondelete='cascade',
         required=True,
+        string='Period Category',
     )
     user_id = fields.Many2one(
         comodel_name='res.users',
-        string='User',
+        ondelete='cascade',
         required=True,
+        string='User',
     )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
@@ -114,6 +117,7 @@ class Membership(models.Model):
         comodel_name='period',
         related='period_category_id.period_id',
         store=True,
+        ondelete='cascade',
         # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
 
@@ -237,6 +241,13 @@ class Membership(models.Model):
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
 
+    @api.onchange('token')
+    def _onchange_token(self):
+        import ipdb; ipdb.set_trace()
+        for record in self:
+            if record.env['membreship'].search_count([('token', '=', record.token),]) > 1:
+                record.token = _default_token()
+
     def _add_follower(self, vals):
         ids = self.user_id.partner_id.ids
         ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
@@ -340,6 +351,10 @@ class Membership(models.Model):
         default.setdefault('user_id', self.user_id.id)
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_paid', 0)
+        default.setdefault('mail_sent', False)
+        default.setdefault('invitation_mail_sent', False)
+        default.setdefault('user_response', 'undefined')
+        default.setdefault('token', self._default_token())
         default.setdefault('price_due', self.price_due)
         default.setdefault('state', self.state)
         new_membership = super(Membership, self).copy(default)

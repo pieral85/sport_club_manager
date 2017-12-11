@@ -11,10 +11,14 @@ class PeriodCategory(models.Model):
 
     period_id = fields.Many2one(
         comodel_name='period',
+        ondelete='cascade',
+        required=True,
         string='Period',
     )
     category_id = fields.Many2one(
         comodel_name='category',
+        ondelete='cascade',
+        required=True,
         string='Category',
     )
     currency_id = fields.Many2one(
