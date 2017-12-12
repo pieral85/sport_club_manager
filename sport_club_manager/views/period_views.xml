@@ -28,8 +28,10 @@
                 <form>
                     <header>
                         <field name="current" invisible="1"/>
-                        <button name="copy" type="object" string="Create New Period Based on Current" class="btn-primary" attrs="{'invisible': [('current', '=', False)]}" confirm="You are going to duplicate this period. Related categories and members will also be duplicated. Do you want to continue?"/>
+                        <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-primary"/>
+                        <!-- TODO
                         <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
+                         -->
                         <button name="update_periods" type="object" string="Recalculate Periods Activation"/>
                     </header>
                     <sheet>
@@ -112,6 +114,31 @@
                     <filter string="Active" name ="active_search" icon="terp-gtk-media-pause" domain="[('active','=', True)]" help="Only active period."/>
                     <filter string="Archived" name ="inactive_search" icon="terp-gtk-media-pause" domain="[('active','=', False)]" help="Only inactive periods."/>
                 </search>
+            </field>
+        </record>
+
+        <!-- wizard view(s) -->
+        <record id="period_wizard_form_view" model="ir.ui.view">
+            <field name="name">period.wizard.form</field>
+            <field name="model">period_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Duplicate a period">
+                    <group>
+                        <group>
+                            <field name="period_id" string="Period to Duplicate"/>
+                            <field name="name" string="New Name"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="duplicate" type="object"
+                                string="Duplicate Period" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
             </field>
         </record>
     </data>

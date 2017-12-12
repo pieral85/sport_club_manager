@@ -124,19 +124,42 @@ class Period(models.Model):
             order='start_date asc',
             limit=1,
         ).id
-        upcoming_period_id = self.env['period'].search(
+        upcoming_period_ids = self.env['period'].search(
             ['&',
              '|', ('active', '=', True), ('active', '=', False),
              ('start_date', '>', fields.Date.today()),
             ],
             order='start_date asc',
-            limit=1,
-        ).id
+        ).ids
+        upcoming_period_id = upcoming_period_ids[0] if upcoming_period_ids else []
 
-        for record in self.env['period'].search(['|', ('active','=',False), ('active', '=', True),]):
-            record.active = record.id in (current_period_id, upcoming_period_id)
+        for record in self.env['period'].search(['|', ('active', '=', False), ('active', '=', True),]):
+            record.active = record.id == current_period_id or record.id in upcoming_period_ids
             record.current = record.id == current_period_id
             record.upcoming = record.id == upcoming_period_id
+
+    def prepare_duplication_wizard(self, default=None):
+        ctx = self._context.copy()
+        ctx['default_period_id'] = self.id
+        most_recent_period = self.env['period'].search(['|', ('active', '=', False), ('active', '=', True),], order='start_date desc', limit=1)
+        start_date = Period._add_years(most_recent_period.start_date, 1)
+        end_date = Period._add_years(most_recent_period.end_date, 1)
+        ctx['default_start_date'] = start_date
+        ctx['default_end_date'] = end_date
+        ctx['default_name'] = 'Season %s' % start_date.year
+        if start_date.year != end_date.year:
+            ctx['default_name'] += ' - %s' % end_date.year
+        return {
+            'name': 'Duplicate a period',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'src_model': 'period',
+            'res_model': 'period_wizard',
+            'view_id': self.env.ref('sport_club_manager.period_wizard_form_view').id,
+            'context': ctx,
+            'target': 'new',
+        }
 
     def copy(self, default=None):
         """ Does a 'smart' duplication of self, including its period_category_ids and membership_ids.
