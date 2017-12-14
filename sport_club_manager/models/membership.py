@@ -41,6 +41,7 @@ class Membership(models.Model):
     price_paid = fields.Monetary(
         string='Price Paid',
         currency_field='currency_id',
+        copy=False,
     )
     price_due = fields.Monetary(
         string='Price Due',
@@ -77,10 +78,12 @@ class Membership(models.Model):
     token = fields.Char(
         string='Invitation Token',
         default=_default_token,
+        copy=False,
     )
     invitation_mail_sent = fields.Boolean(
         string='Invitation Mail Sent',
         default=False,
+        copy=False,
     )
     color = fields.Integer(
         string='Color Index',
@@ -90,6 +93,7 @@ class Membership(models.Model):
     mail_sent = fields.Boolean(
         string='Mail Sent',
         default=False,
+        copy=False,
     )
     user_response = fields.Selection(
         [
@@ -100,6 +104,7 @@ class Membership(models.Model):
         string='User Response',
         readonly=True,
         default='undefined',
+        copy=False,
         help="Membership status of the user's response.")
     partner_id = fields.Many2one(
         comodel_name='res.partner',
@@ -350,11 +355,6 @@ class Membership(models.Model):
         default.setdefault('period_category_id', self.period_category_id.id)
         default.setdefault('user_id', self.user_id.id)
         default.setdefault('currency_id', self.currency_id.id)
-        default.setdefault('price_paid', 0)
-        default.setdefault('mail_sent', False)
-        default.setdefault('invitation_mail_sent', False)
-        default.setdefault('user_response', 'undefined')
-        default.setdefault('token', self._default_token())
         default.setdefault('price_due', self.price_due)
         default.setdefault('state', self.state)
         new_membership = super(Membership, self).copy(default)
