@@ -34,7 +34,7 @@
 </template>
 
 <!-- Web Page showing info on the user -->
-<template id="website_member_info">
+<!-- <template id="website_member_info">
     <t t-call="website.layout">
         <t t-set="title">Member Info</t>
         <div class="oe_structure">
@@ -44,29 +44,87 @@
         </div>
         <div class="oe_structure"/>
     </t>
-</template>
+</template> -->
 
 <!-- Web Page showing info on the club -->
-<template id="website_info_club">
+<template id="website_info_club" inherit_id="website.aboutus">
+    <!-- <t t-call="website.layout"> -->
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <t t-set="title">Club Info</t>
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <h2>Comittee Info</h2>                        
+                        <t t-foreach="committee" t-as="status">
+                            <t t-foreach="status[1]" t-as="member">
+                                <t t-if="member_first"><h3><t t-esc="status[0]"/></h3></t>
+                                <div class="container" style="padding: 5px 10px; font-size: 14px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">
+                                    <!-- <a t-attf-href="/sport/members/{{ slug(member) }}"> -->
+                                    <strong><p t-field="member.name"/></strong>
+                                    <p t-field="member.login"/>
+                                    <!-- </a> -->
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="oe_structure"/> -->
+        </xpath>
+    <!-- </t> -->
+</template>
+
+<!-- Web Page showing the historical of the user -->
+<template id="website_my_historical">
     <t t-call="website.layout">
-        <t t-set="title">Club Info</t>
-        <div class="oe_structure">
-            <div class="container">
-                <h2>Comittee Info</h2>                        
-                <t t-foreach="committee" t-as="status">
-                    <t t-foreach="status[1]" t-as="member">
-                        <t t-if="member_first"><h3><t t-esc="status[0]"/></h3></t>
-                        <div class="container">
-                            <a t-attf-href="/sport/members/{{ slug(member) }}">
-                            <p t-field="member.name"/>
-                            <p t-field="member.login"/>
-                            </a>
-                        </div>
+        <!-- <xpath expr="//div[@id='wrap']" position="replace"> -->
+        <t t-set="title">My Historical</t>
+        <div id="wrap">
+            <!-- <table class="table-condensed"> -->
+            <div class="container-fluid form-control-static">
+                <table class="table table-bordered table-striped table-hover text-center">
+                    <tr>
+                        <th class="text-center">Season</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Price Paid</th>
+                        <th class="text-center">Price Due</th>
+                        <th class="text-center">Price Remaining</th>
+                        <th class="text-center">Payment Status</th>
+                    </tr>
+                    <t t-foreach="memberships" t-as="membership">
+                        <tr>
+                            <td style="vertical-align: middle;"><span t-field="membership.period_id.name"/></td>
+                            <td style="vertical-align: middle;"><span t-field="membership.category_id.name"/></td>
+                            <td style="vertical-align: middle;">
+                                <span t-if="membership.state == 'member'" class="btn btn-success" t-field="membership.state"/>
+                                <span t-elif="membership.state == 'requested'" class="btn btn-primary" t-field="membership.state"/>
+                                <span t-elif="membership.state == 'rejected'" class="btn btn-danger" t-field="membership.state"/>
+                                <span t-else="" class="btn btn-warning" t-field="membership.state"/>
+                            </td>
+                            <td style="vertical-align: middle;"><span t-field="membership.price_paid" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                            <td style="vertical-align: middle;"><span t-field="membership.price_due" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                            <td style="vertical-align: middle;"><span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                            <td style="vertical-align: middle;">
+                                <t t-if="membership.state == 'member'">
+                                    <t t-if="membership.paid"><span class="btn btn-success">Payment OK</span></t>
+                                    <t t-else=""><span class="btn btn-danger">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></span></t>
+                                </t>
+                                <t t-elif="membership.state == 'requested'">
+                                    <t t-if="membership.paid">
+                                        <span class="btn btn-success">Payment OK</span>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="btn btn-warning">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                        </span>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
                     </t>
-                </t>
+                </table>
             </div>
         </div>
-        <div class="oe_structure"/>
     </t>
 </template>
 
@@ -74,14 +132,14 @@
 <template id="website_membership_request" name="Request Affiliation">
     <t t-call="website.layout">
         <t t-set="additional_title">Request an Affiliation</t>
-        <div id="wrap" class="container">
+        <div id="wrap" class="container form-control-static">
             <div class="row">
                 <section id="forms">
                     <form method="post" class="s_website_form container-fluid form-horizontal" action="/website_form/" data-model_name="membership" data-success_page="/sport/info_club" enctype="multipart/form-data">
                         <!-- Select Period -->
                         <div class="form-group form-field">
                             <div class="col-md-3 col-sm-4 text-right">
-                                <label class="control-label" for="period_category_id">Select Period and Category</label>
+                                <label class="control-label" for="period_category_id">Select Period and Category (work in progress)</label>
                             </div>
                             <div class="col-md-7 col-sm-8">
                                 <select name="period_category_id" class="o_website_from_input form-control">

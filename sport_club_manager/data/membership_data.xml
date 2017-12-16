@@ -22,14 +22,14 @@ for record in records:
         <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
         <function model="ir.model.fields" name="formbuilder_whitelist">
             <value>sport_club_manager.membership</value>
-            <value eval="['period_category_id']"/><!-- 'tutu',  -->
+            <value eval="['period_category_id']"/>
         </function>
 
-        <!-- Add affiliation request in the website menu -->
+        <!-- Add membership in the website menu -->
         <record id="menu_membership" model="website.menu">
             <field name="name">Membership</field>
             <field name="parent_id" ref="website.main_menu"/>
-            <field name="sequence" type="int">50</field>
+            <field name="sequence" type="int">10</field>
         </record>
         <record id="menu_membership_request" model="website.menu">
             <field name="name">Make a request</field>
@@ -42,6 +42,14 @@ for record in records:
             <field name="url">sport/my/membership/historical</field>
             <field name="parent_id" ref="menu_membership"/>
             <field name="sequence" type="int">20</field>
+        </record>
+
+        <!-- Add club information in the website menu -->
+        <record id="menu_club_info" model="website.menu">
+            <field name="name">About us</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="url">aboutus</field>
+            <field name="sequence" type="int">30</field>
         </record>
 
         <!--Email template for Membership Affiliation Confirmation-->

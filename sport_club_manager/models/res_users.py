@@ -52,12 +52,12 @@ class ResUsers(models.Model):
 
     @api.multi
     def write(self, vals):
-        self._update_groups(vals)
+        # self._update_groups(vals)
         return super(ResUsers, self).write(vals)
 
     @api.model
     def create(self, vals):
-        self._update_groups(vals)
+        # self._update_groups(vals)
         return super(ResUsers, self).create(vals)
 
     def _update_groups(self, vals):

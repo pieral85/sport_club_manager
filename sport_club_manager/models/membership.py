@@ -248,7 +248,7 @@ class Membership(models.Model):
 
     @api.onchange('token')
     def _onchange_token(self):
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         for record in self:
             if record.env['membreship'].search_count([('token', '=', record.token),]) > 1:
                 record.token = _default_token()
