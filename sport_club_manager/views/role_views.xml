@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- tree view(s) -->
+        <record id="role_view_list" model="ir.ui.view">
+            <field name="name">role list</field>
+            <field name="model">role</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_id"/>
+                    <field name="role"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="current"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view(s) -->
+        <record id="role_view_form" model="ir.ui.view">
+            <field name="name">role form</field>
+            <field name="model">role</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="price_remaining" invisible="1"/>
+                    <field name="period_category_id" invisible="1"/>
+                    <field name="paid" invisible="1"/>
+                    <field name="mail_sent" invisible="1"/>
+                    <field name="invitation_mail_sent" invisible="1"/>
+                    <sheet>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="role"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="current"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

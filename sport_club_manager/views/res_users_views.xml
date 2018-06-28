@@ -42,12 +42,22 @@
                                     <field name="country_id"/>
                                 </group>
                             </page>
-                            <page string="Club Settings">
+                            <page string="Roles">
                                 <group>
                                     <field name="secretary"/>
                                     <field name="treasurer"/>
                                     <field name="president"/>
                                     <field name="manager"/>
+                                </group>
+                                <group>
+                                    <field name="role_ids" string="Historical">
+                                        <tree editable="bottom">
+                                            <field name="role"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                            <field name="current"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
                         </notebook>

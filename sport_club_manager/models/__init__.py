@@ -2,6 +2,7 @@
 
 from . import res_partner
 from . import res_users
+from . import role
 from . import period
 from . import category
 from . import period_category

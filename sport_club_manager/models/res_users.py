@@ -9,10 +9,6 @@ from odoo import api, fields, models, exceptions
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    president = fields.Boolean('Is President', default=False)
-    secretary = fields.Boolean('Is Secretary', default=False)
-    treasurer = fields.Boolean('Is Treasurer', default=False)
-    manager = fields.Boolean('Is Manager', default=False)
     # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
     action_id = fields.Many2one(
         comodel_name='ir.actions.actions',
@@ -25,6 +21,23 @@ class ResUsers(models.Model):
         inverse_name='user_id',
         string='Memberships',
     )
+    role_ids = fields.One2many(
+        comodel_name='role',
+        inverse_name='user_id',
+        string='Roles',
+    )
+    president = fields.Boolean('Is President', compute=_compute_role, store=True, readonly=True)
+    secretary = fields.Boolean('Is Secretary', compute=_compute_role, store=True, readonly=True)
+    treasurer = fields.Boolean('Is Treasurer', compute=_compute_role, store=True, readonly=True)
+    manager = fields.Boolean('Is Manager', default=False)
+
+    @api.depends('role_ids', 'role_ids.current', 'role_ids.role')
+    def _compute_role(self):
+        import ipdb; ipdb.set_trace()  # TODO Check that it is called each time a change is done on 'role_ids'
+        for user in self:
+            user.president = user.role_ids.filtered(lambda r: r.current and r.role == 'president')
+            user.secretary = user.role_ids.filtered(lambda r: r.current and r.role == 'secretary')
+            user.treasurer = user.role_ids.filtered(lambda r: r.current and r.role == 'treasurer')
 
     @api.onchange('secretary')
     def _on_change_secretary(self):

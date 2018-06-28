@@ -127,7 +127,7 @@
                 </t>
                 <t t-else="">
                     <div class="panel panel-info mt16">
-                        <div class="panel-heading">
+                        <div class="panel-heading clearfix">
                             <span class="pull-left">You don't have any membership recorded.</span>
                         </div>
                     </div>
