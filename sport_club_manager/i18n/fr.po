@@ -1,0 +1,1421 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sport_club_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 23:03+0000\n"
+"PO-Revision-Date: 2018-07-03 01:13+0200\n"
+"Last-Translator: Pierre <pieral85@hotmail.com>\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_LU\n"
+
+#. module: sport_club_manager
+#: model:mail.template,body_html:sport_club_manager.email_template_membership_affiliation_request
+msgid ""
+"\n"
+"<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;"
+"background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <p>\n"
+"        Dear ${(object.user_id.name or 'player')|safe},\n"
+"    </p>\n"
+"    <p>\n"
+"        An affiliation request has been done for the season <u><i>${object."
+"period_category_id.period_id.name|safe}</i></u>.\n"
+"        <br/>\n"
+"        Could you please let us know your answer by clicking on the button "
+"of your choice?\n"
+"    </p>\n"
+"    <p>\n"
+"        <a href=\"/sport/my/membership/accept?db=${'dbname' in ctx and "
+"ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">Accept</a>\n"
+"        <a href=\"/sport/my/membership/decline?db=${'dbname' in ctx and "
+"ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">Decline</a>\n"
+"        <a href=\"/sport/my/membership/view?db=${'dbname' in ctx and "
+"ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">View</a>\n"
+"    </p>\n"
+"    <p>\n"
+"        Best regards,\n"
+"    </p>\n"
+"    <p>\n"
+"        The ${ctx['company_id'].name|safe} comittee members\n"
+"    </p>\n"
+"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; "
+"width: 80px;\" alt=\"${user.company_id.name}\">\n"
+"\n"
+"</div>\n"
+msgstr ""
+"\n"
+"<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;"
+"background: #FFFFFF repeat top /100%;color:#777777\">\n"
+"    <p>\n"
+"        Cher/chère ${(object.user_id.name or 'player')|safe},\n"
+"    </p>\n"
+"    <p>\n"
+"        Une demande d'affiliation a été faite pour la saison <u><i>${object."
+"period_category_id.period_id.name|safe}</i></u>.\n"
+"        <br/>\n"
+"        Pourriez-vous s'il vous plaît nous communiquer votre réponse en "
+"cliquant sur le bouton de votre choix?\n"
+"    </p>\n"
+"    <p>\n"
+"        <a href=\"/sport/my/membership/accept?db=${'dbname' in ctx and "
+"ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">Accepter</a>\n"
+"        <a href=\"/sport/my/membership/decline?db=${'dbname' in ctx and "
+"ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">Décliner</a>\n"
+"        <a href=\"/sport/my/membership/view?db=${'dbname' in ctx and "
+"ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
+"ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
+"size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
+"decoration: none; display: inline-block; margin-bottom: 0px; font-weight: "
+"400; text-align: center; vertical-align: middle; cursor: pointer; white-"
+"space: nowrap; background-image: none; background-color: #875A7B; border: "
+"1px solid #875A7B; border-radius:3px\">Voir</a>\n"
+"    </p>\n"
+"    <p>\n"
+"        Bien à vous,\n"
+"    </p>\n"
+"    <p>\n"
+"        Les membres du comité de ${ctx['company_id'].name|safe}\n"
+"    </p>\n"
+"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; "
+"width: 80px;\" alt=\"${user.company_id.name}\">\n"
+"\n"
+"</div>\n"
+
+#. module: sport_club_manager
+#: model:mail.template,body_html:sport_club_manager.email_template_membership_affiliation_confirmation
+msgid ""
+"\n"
+"<p>\n"
+"    Dear ${(object.user_id.name or 'player')|safe},\n"
+"</p>\n"
+"<p>\n"
+"We are pleased to let you know that you have been successfully affiliated "
+"for the season <u><i>${object.period_category_id.period_id.name|safe}</i></"
+"u>!\n"
+"</p>\n"
+"<p>\n"
+"% if object.price_remaining:\n"
+"Please note that you will have to pay ${object.price_remaining} on the "
+"account ${object.account_no}.\n"
+"%else:\n"
+"Please note that for this season, no price is due anymore.\n"
+"% endif\n"
+"</p>\n"
+"<p>\n"
+"If you have any question, do not hesitate to reply to this email.\n"
+"</p>\n"
+"<p>\n"
+"We hope you will enjoy this new season with us!\n"
+"</p>\n"
+"<p>\n"
+"Best regards,\n"
+"</p>\n"
+"<p>\n"
+"${user.name}, for the ${ctx['company_id'].name|safe} comittee members\n"
+"</p>\n"
+"\n"
+"            "
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "<span class=\"btn btn-success\">Payment OK</span>"
+msgstr "<span class=\"btn btn-success\">Paiement OK</span>"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid ""
+"<span class=\"pull-left\">You don't have any membership recorded.</span>"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_membership_request
+msgid ""
+"<span class=\"pull-left\">You have already subscribed to all available "
+"seasons.</span>"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_kanban
+msgid "<span>Price Due: </span>"
+msgstr "<span>Montant dû: </span>"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_kanban
+msgid "<span>Price Paid: </span>"
+msgstr "<span>Montant payé: </span>"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_defaults
+msgid ""
+"A Python dictionary that will be evaluated to provide default values when "
+"creating new records for this alias."
+msgstr ""
+
+#. module: sport_club_manager
+#: model:website.menu,name:sport_club_manager.menu_club_info
+msgid "About us"
+msgstr "A propos de nous"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Accept Emails From"
+msgstr "Accepter les emails de"
+
+#. module: sport_club_manager
+#: selection:membership,user_response:0
+msgid "Accepted"
+msgstr "Accepté"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+msgid "Active"
+msgstr "Actif"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_count_members
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_count_members
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_count_members
+msgid "Active Members"
+msgstr "Membres actifs"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_active
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Active Period(s)"
+msgstr "Saison(s) active(s)"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Add"
+msgstr "Ajouter"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Address"
+msgstr "Adresse"
+
+#. module: sport_club_manager
+#: model:mail.template,subject:sport_club_manager.email_template_membership_affiliation_request
+msgid "Affiliation request for ${(object.period_id.name or 'new season')|safe}"
+msgstr "Demande d'afiliation pour ${(object.period_id.name or 'new season')|safe}"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Affiliations"
+msgstr "Affiliations"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_contact
+msgid "Alias Contact Security"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_name
+msgid "Alias Name"
+msgstr "Nom d'alias"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_domain
+msgid "Alias domain"
+msgstr "Domaine d'alias"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_model_id
+msgid "Aliased Model"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid ""
+"An email for this membership has already been sent. Do you want to send it "
+"again?"
+msgstr "Un email pour cette affiliation a déjà été envoyé. Voulez-vous l'envoyer à nouveau?"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Archived Period(s)"
+msgstr "Saison(s) archivée(s)"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to start president role as of today? You can still modify it by "
+"changing the related record in the historical below."
+msgstr "Etes-vous sûr de démarrer le rôle de président à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to start secretary role as of today? You can still modify it by "
+"changing the related record in the historical below."
+msgstr "Etes-vous sûr de démarrer le rôle de secrétaire à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to start treasurer role as of today? You can still modify it by "
+"changing the related record in the historical below."
+msgstr "Etes-vous sûr de démarrer le rôle de trésorier à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to stop current president role? You can still reactivate it by "
+"removing the related end date in the historical below."
+msgstr "Etes-vous sûr d'arrêter le rôle de président? Vous pourrez toujours le réactiver en supprimant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to stop current secretary role? You can still reactivate it by "
+"removing the related end date in the historical below."
+msgstr "Etes-vous sûr d'arrêter le rôle de secrétaire? Vous pourrez toujours le réactiver en supprimant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid ""
+"Are you sure to stop current treasurer role? You can still reactivate it by "
+"removing the related end date in the historical below."
+msgstr "Etes-vous sûr d'arrêter le rôle de trésorier? Vous pourrez toujours le réactiver en supprimant l'enregistrement relatif dans l'historique ci-dessous."
+
+#. module: sport_club_manager
+#: model:ir.actions.server,name:sport_club_manager.action_calculate_membership_price_due
+msgid "Calculate Memberships Price Due"
+msgstr "Calculer les montants dus des affiliations"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_wizard_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_settings_category
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_settings_category
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Categories"
+msgstr "Catégories"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_category
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_category_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_category_id
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Category"
+msgstr "Catégorie"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_settings_club
+msgid "Club"
+msgstr "Club"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_info_club
+msgid "Club Info"
+msgstr "Info du club"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_color
+msgid "Color Index"
+msgstr "Index des couleurs"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_membership_color
+msgid "Color to be displayed in the kanban view."
+msgstr "Couleur à afficher dans la vue kanban."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_info_club
+msgid "Comittee Info"
+msgstr "Info sur le comité"
+
+#. module: sport_club_manager
+#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_committee
+msgid "Committee members for the module Sport Club Manager."
+msgstr "Membres du comité pour le module Gestionnaire de Club Sportif."
+
+#. module: sport_club_manager
+#: model:mail.template,subject:sport_club_manager.email_template_membership_affiliation_confirmation
+msgid ""
+"Confirmation of your affiliation for period ${object.period_category_id."
+"period_id.name}"
+msgstr "Confirmation de votre affiliation pour la saison ${object.period_category_id."
+"period_id.name}"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_contact
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_contacts
+msgid "Contacts"
+msgstr "Contacts"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Create New Period Based on Current"
+msgstr "Créer une nouvelle saison basée sur l'actuelle"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_create_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_create_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_create_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_create_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_create_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_create_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_create_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_create_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_create_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_create_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_currency_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_currency_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_currency_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_current
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Current Period"
+msgstr "Saison actuelle"
+
+#. module: sport_club_manager
+#: selection:membership,user_response:0
+msgid "Declined"
+msgstr "Refusé"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_default
+msgid "Default"
+msgstr "Défaut"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_defaults
+msgid "Default Values"
+msgstr "Valeurs par défaut"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_display_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_display_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_display_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_display_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_display_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid ""
+"Do you want to send again an email to the user to invite him for his "
+"membership validation?"
+msgstr "Voulez-vous envoyer à nouveau un email à l'utilisateur pour l'inviter à sa validation d'inscription?"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid ""
+"Do you want to send an email to the user to advise him of his membership?"
+msgstr "Voulez-vous envoyer un email à l'utilisateur pour l'avertir de son inscription?"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid ""
+"Do you want to send an email to the user to invite him for his membership "
+"validation?"
+msgstr "Voulez-vous envoyer un email à l'utilisateur pour l'inviter à sa validation d'inscription?"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_price_due
+msgid "Due Price"
+msgstr "Montant dû"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_wizard_form_view
+msgid "Duplicate Period"
+msgstr "Dupliquer la saison"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_wizard_form_view
+msgid "Period Duplication"
+msgstr "Duplication de saison"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_kanban
+msgid "Edit Membership"
+msgstr "Editer une affiliation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Email Alias"
+msgstr "Alias d'email"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Emails"
+msgstr "Emails"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_end_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_end_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_end_date
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/res_users.py:66
+#, python-format
+msgid "Error while trying to %s role '%s': maybe no current role has been found!"
+msgstr "Erreur en essayant de %s le role '%s': peut-être qu'aucun rôle actuel n'a été trouvé!"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_category_price_due
+msgid "Expected price to pay for the member."
+msgstr "Montant à payer attendu pour le membre."
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/period_category.py:106
+#, python-format
+msgid ""
+"For the period '%s', the category '%s' must be unique. Please change it "
+"accordingly."
+msgstr ""
+"Pour la saison '%s', la catégorie '%s' doit être unique. Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/period_category.py:108
+#, python-format
+msgid ""
+"For the period '%s', you cannot have multiple period categories with the "
+"attribute 'default' set to true. Please change it accordingly."
+msgstr ""
+"Pour la saison '%s', vous ne pouvez pas avoir plusieurs catégories par saison avec l'attribut 'défaut' à 'vrai'. Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "From"
+msgstr "De"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_sport_club_manager_committee
+msgid "Group - Committee"
+msgstr "Groupe - Comité"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_sport_club_manager_manager
+msgid "Group - Manager"
+msgstr "Groupe - Gestionnaire"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_sport_club_manager_president
+msgid "Group - President"
+msgstr "Groupe - Président"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_sport_club_manager_secretary
+msgid "Group - Secretary"
+msgstr "Groupe - Secrétaire"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_sport_club_manager_treasurer
+msgid "Group - Treasurer"
+msgstr "Groupe - Trésorier"
+
+#. module: sport_club_manager
+#: model:res.groups,name:sport_club_manager.group_user
+msgid "Group - User"
+msgstr "Groupe - Utilisateur"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Historical"
+msgstr "Historique"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_parent_thread_id
+msgid ""
+"ID of the parent record holding the alias (example: project holding the task "
+"creation alias)"
+msgstr "Identifiant de l'enregistrement parent détenant l'alias (par exemple: le projet détenant la tâche création d'alias)"
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/res_users.py:85
+#, python-format
+msgid "Invalid email address. Please enter a valid one."
+msgstr "Adresse email invalide. Veuillez en sélectionner une valide."
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_invitation_mail_sent
+msgid "Invitation Mail Sent"
+msgstr "Invitation par email envoyée"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_token
+msgid "Invitation Token"
+msgstr "Token d'identification"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_current
+msgid "Is Current"
+msgstr "Est actuel"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_manager
+msgid "Is Manager"
+msgstr "Est manager"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_president
+msgid "Is President"
+msgstr "Est président"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_secretary
+msgid "Is Secretary"
+msgstr "Est secrétaire"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_treasurer
+msgid "Is Treasurer"
+msgstr "Est trésorier"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category___last_update
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership___last_update
+#: model:ir.model.fields,field_description:sport_club_manager.field_period___last_update
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category___last_update
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard___last_update
+#: model:ir.model.fields,field_description:sport_club_manager.field_role___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification sur"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_write_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_write_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_write_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_write_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_write_uid
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_write_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_write_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_write_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_write_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_write_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_location
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_locations
+msgid "Locations"
+msgstr "Localisations"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_mail_sent
+msgid "Mail Sent"
+msgstr "Mail envoyé"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_settings_mail_templates
+msgid "Mail Templates"
+msgstr "Templates de mail"
+
+#. module: sport_club_manager
+#: model:website.menu,name:sport_club_manager.menu_membership_request
+msgid "Make a request"
+msgstr "Faire une demande"
+
+#. module: sport_club_manager
+#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_manager
+msgid "Manager of the module Sport Club Manager."
+msgstr "Gestionnaire du module Gestionnaire de Club Sportif"
+
+#. module: sport_club_manager
+#: selection:membership,state:0
+msgid "Member"
+msgstr "Membre"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+msgid "Member Status"
+msgstr "Statut du membre"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_user_ids
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_user_ids
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_members
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Members"
+msgstr "Membres"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Members for the previous season."
+msgstr "Membres pour la saison précédentes."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Members only."
+msgstr "Seulement les membres."
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_membership
+#: model:website.menu,name:sport_club_manager.menu_membership
+msgid "Membership"
+msgstr "Affiliation"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_membership_user_response
+msgid "Membership status for user's response."
+msgstr "Statut de l'affiliation pour la réponse du membre."
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_membership
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_membership_ids
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_membership_ids
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_membership_ids
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_membership_ids
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_memberships
+#: model:ir.ui.menu,name:sport_club_manager.menu_top_memberships
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Memberships"
+msgstr "Affiliations"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships of active period(s)."
+msgstr "Affiliations de la (des) saison(s) active(s)."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships of archived period(s)."
+msgstr "Affiliations de la (des) saison(s) archivée(s)."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships of current period."
+msgstr "Affiliations de la (des) saison(s) actuelle(s)."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships of upcoming period."
+msgstr "Affiliations de la saison à venir."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships with a payment due."
+msgstr "Affiliations avec un paiement dû."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships with a rejected status."
+msgstr "Affiliations avec un statut rejeté."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships with a requested status."
+msgstr "Affiliations avec un statut soumis."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Memberships with an unknown status."
+msgstr "Affiliations avec un statut inconnu."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "My Historical"
+msgstr "Mon historique"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.my_settings_link
+msgid "My Settings"
+msgstr "Mes paramètres"
+
+#. module: sport_club_manager
+#: model:website.menu,name:sport_club_manager.menu_membership_historical
+msgid "My historical"
+msgstr "Mon historique"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Name..."
+msgstr "Nom..."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Name:"
+msgstr "Nom:"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_wizard_form_view
+msgid "New Name"
+msgstr "Nouveau nom"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+msgid "No, I have declined."
+msgstr "Non, j'ai décliné."
+
+#. module: sport_club_manager
+#: selection:membership,state:0
+msgid "Old Member"
+msgstr "Ancien membre"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Old Members"
+msgstr "Anciens membres"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+msgid "Only active period."
+msgstr "Seulement la saison active."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+msgid "Only inactive periods."
+msgstr "Seulement les saisons inactives."
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_force_thread_id
+msgid ""
+"Optional ID of a thread (record) to which all incoming messages will be "
+"attached, even if they did not reply to it. If set, this will disable the "
+"creation of new records completely."
+msgstr ""
+"ID optionnel d'un fil (enregistrement) auquel tout message entrant sera "
+"rattaché, même si il ne s'agissait pas d'une réponse à ce fil. Si renseigné,"
+" la création de nouveaux enregistrements sera complètement désactivée."
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_top_settings
+msgid "Other Settings"
+msgstr "Autres paramètres"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_user_id
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_paid
+msgid "Paid"
+msgstr "Payé"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_parent_model_id
+msgid "Parent Model"
+msgstr "Modèle parent"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_parent_thread_id
+msgid "Parent Record Thread ID"
+msgstr "Identifiant de la discussion de l'enregistrement parent"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_parent_model_id
+msgid ""
+"Parent model holding the alias. The model holding the alias reference is not "
+"necessarily the model given by alias_model_id (example: project "
+"(parent_model) and task (model))"
+msgstr ""
+"Modèle parent de l'alias. Le modèle possédant la référence de l'alias n'est "
+"pas nécessairement le modèle donné par alias_model_id (Ex. : project "
+"(parent_model) et task (modèle))"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_membership_partner_id
+msgid "Partner-related data of the user"
+msgstr "Données du partenaire lié à l'utilisateur"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Payment Due"
+msgstr "Montant dû"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Payment Receipt"
+msgstr "Paiement reçu"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Payment Status"
+msgstr "Statut du paiement"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Payment due:"
+msgstr "Montant dû:"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_price_paid_percentage
+msgid "Percentage Paid"
+msgstr "Pourcentage payé"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_period
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_period_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_period_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_name
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_period_id
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+msgid "Period"
+msgstr "Saison"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_period_category_ids
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_period_category_ids
+msgid "Period Categories"
+msgstr "Catégories par Saison"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_period_category
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_period_category_id
+msgid "Period Category"
+msgstr "Catégorie par saison"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+msgid "Period Including Date"
+msgstr "Saison incluant la date"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_wizard_form_view
+msgid "Period to Duplicate"
+msgstr "Saison à dupliquer"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_settings_period
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_settings_period
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+#: model:ir.ui.view,arch_db:sport_club_manager.period_search
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Periods"
+msgstr "Saisons"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+msgid "Player"
+msgstr "Joueur"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_contact
+msgid ""
+"Policy to post a message on the document using the mailgateway.\n"
+"- everyone: everyone can post\n"
+"- partners: only authenticated partners\n"
+"- followers: only followers of the related document or members of following "
+"channels\n"
+msgstr ""
+"Politique de publication d'un message sur le document via la passerelle de courriel.\n"
+"- tout le monde : tout le monde peut publier\n"
+"- partenaires : seulement les partenaires authentifiés\n"
+"- abonnés : seulement les abonnés au canaux de suivi\n"
+
+#. module: sport_club_manager
+#: selection:role,name:0
+msgid "President"
+msgstr "Président"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_previous_period
+msgid "Previous Period"
+msgstr "Saison précédente"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_price_due
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Price Due"
+msgstr "Montant dû"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Price Due:"
+msgstr "Montant dû:"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_price_paid
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Price Paid"
+msgstr "Montant payé"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_price_remaining
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Price Remaining"
+msgstr "Montant restant"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_reports_prices_period
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_graph_periods
+msgid "Prices per Period"
+msgstr "Montants par saison"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_report_prices_per_period
+msgid "Prices per Period (members only)"
+msgstr "Montants par saison (seulement pour les membres)"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_sub_reports_prices_user
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_graph_users
+msgid "Prices per User"
+msgstr "Montants par utilisateur"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_report_prices_per_user
+msgid "Prices per User (members only)"
+msgstr "Montants par utilisateur (seulement pour les membres)"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "ReSend Confirmation Email"
+msgstr "Renvoyer l'email de confirmation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "ReSend Invitation Email"
+msgstr "Renvoyer l'email d'invitation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+msgid "Recalculate Active Periods"
+msgstr "Recalculer les saisons actives"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_alias_force_thread_id
+msgid "Record Thread ID"
+ msgstr "ID de l'enregistrement du fil"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Reject Affiliation"
+msgstr "Rejeter l'affiliation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+#: selection:membership,state:0
+msgid "Rejected"
+msgstr "Rejeté"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_partner_id
+msgid "Related Partner"
+msgstr "Partenaire lié"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_top_reports
+msgid "Reports"
+msgstr "Rapports"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_membership_request
+msgid "Request an Affiliation"
+msgstr "Demander une affiliation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "Request an affiliation for this period"
+msgstr "Demander une affiliation pour cette saison"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_membership_request
+msgid "Request this membership"
+msgstr "Demander cette affiliation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+#: selection:membership,state:0
+msgid "Requested"
+msgstr "Demandé"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_top_resources
+msgid "Resources"
+msgstr "Ressources"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_name
+msgid "Role"
+msgstr "Rôle"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_res_users_role_ids
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Roles"
+msgstr "Rôles"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Season"
+msgstr "Saison"
+
+#. module: sport_club_manager
+#: selection:role,name:0
+msgid "Secretary"
+msgstr "Secrétaire"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_membership_request
+msgid "Select Period and Category (work in progress)"
+msgstr "Sélectionner la saison et la catégorie (en cours de développement)"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Send Confirmation Email"
+msgstr "Envoyer l'email de confirmation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Send Invitation Email"
+msgstr "Envoyer l'email d'invitation"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Sends an email to the user to let him know of his membership."
+msgstr "Envoie un email à l'utilisateur pour l'avertir de son affiliation"
+
+#. module: sport_club_manager
+#: model:ir.ui.menu,name:sport_club_manager.menu_root
+msgid "Sport Club Manager"
+msgstr "Gestionnaire de Club Sportif"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_start_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_wizard_start_date
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_start_date
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Start President Role"
+msgstr "Démarrer le rôle de président"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Start Secretary Role"
+msgstr "Démarrer le rôle de secrétaire"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Start Treasurer Role"
+msgstr "Démarrer le rôle de trésorier"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_state
+msgid "State"
+msgstr "Etat"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.website_my_historical
+msgid "Status"
+msgstr "Etat"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Stop President Role"
+msgstr "Arrêter le rôle de président"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Stop Secretary Role"
+msgstr "Arrêter le rôle de secrétaire"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Stop Treasurer Role"
+msgstr "Arrêter le rôle de trésorier"
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/period.py:272
+#: code:addons/sport_club_manager/models/role.py:83 sql_constraint:period:0
+#: sql_constraint:role:0
+#, python-format
+msgid ""
+"The end date should be higher than the start date. Please change it "
+"accordingly."
+msgstr "La date de fin devrait être supérieur à la date de début. Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_model_id
+msgid ""
+"The model (Odoo Document Kind) to which this alias corresponds. Any incoming "
+"email that does not reply to an existing record will cause the creation of a "
+"new record of this model (e.g. a Project Task)"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_name
+msgid ""
+"The name of the email alias, e.g. 'jobs' if you want to catch emails for "
+"<jobs@example.odoo.com>"
+msgstr ""
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_alias_user_id
+msgid ""
+"The owner of records created upon receiving emails on this alias. If this "
+"field is not set the system will attempt to find the right owner based on "
+"the sender (From) address, or will use the Administrator account if no "
+"system user is found for that address."
+msgstr ""
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/period.py:270
+#, python-format
+msgid ""
+"The period from %s to %s has at least one day in common with %d other "
+"period(s) already defined. Please change it accordingly."
+msgstr "La saison s'étalant de %s à %s possède au moins un jour en "
+"commun avec %d autre(s) saison(s) déjà définie(s). Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/role.py:81
+#, python-format
+msgid ""
+"The role '%s' you are trying to assign to user '%s' has already been defined "
+"within this period. Please change it accordingly."
+msgstr "Le rôle '%s' que vous assayez d'assigner à l'utilisateur '%s' a déjà "
+"été défini pour cette période. Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/membership.py:325
+#, python-format
+msgid ""
+"The user '%s' has already a membership for this period (%s). Please change "
+"accordingly."
+msgstr "L'utilisateur '%s' a déjà une affiliation pour cette saison (%s)."
+"Veuillez modifier en conséquence."
+
+#. module: sport_club_manager
+#: code:addons/sport_club_manager/models/res_users.py:87
+#, python-format
+msgid "This email already exists. Please enter another one."
+msgstr "Cet email existe déjà. Veuillez en saisir un autre."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+#: model:ir.ui.view,arch_db:sport_club_manager.website_period
+msgid "To"
+msgstr "A"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.category_view_list
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_list
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_form
+#: model:ir.ui.view,arch_db:sport_club_manager.period_view_list
+#: model:ir.ui.view,arch_db:sport_club_manager.view_users_simple_form_sport
+msgid "Total"
+msgstr "Total"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_total_price_due
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_total_price_due
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_total_price_due
+msgid "Total Members Due Price"
+msgstr "Montant total dû pour les membres"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_total_price_paid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_total_price_paid
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_total_price_paid
+msgid "Total Members Price Paid"
+msgstr "Montant total payé pour les membres"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_category_total_remaining_price_due
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_category_total_remaining_price_due
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_total_remaining_price_due
+msgid "Total Remaining Members Due Price"
+msgstr "Montant total restant dû pour les membres"
+
+#. module: sport_club_manager
+#: selection:role,name:0
+msgid "Treasurer"
+msgstr "Trésorier"
+
+#. module: sport_club_manager
+#: selection:membership,user_response:0
+msgid "Undefined"
+msgstr "Non défini"
+
+#. module: sport_club_manager
+#: selection:membership,state:0
+msgid "Unknown"
+msgstr "Inconnu"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Unknown Status"
+msgstr "Statut inconnu"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_period_upcoming
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_search
+msgid "Upcoming Period"
+msgstr "Saison à venir"
+
+#. module: sport_club_manager
+#: model:ir.actions.server,name:sport_club_manager.cron_period_update_ir_actions_server
+#: model:ir.cron,cron_name:sport_club_manager.cron_period_update
+#: model:ir.cron,name:sport_club_manager.cron_period_update
+msgid "Update Active Periods"
+msgstr "Mettre à jour les saisons actives"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_user_id
+#: model:ir.model.fields,field_description:sport_club_manager.field_role_user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,field_description:sport_club_manager.field_membership_user_response
+msgid "User Response"
+msgstr "Réponse de l'utilisateur"
+
+#. module: sport_club_manager
+#: model:ir.actions.act_window,name:sport_club_manager.action_member
+#: model:ir.model,name:sport_club_manager.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: sport_club_manager
+#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_president
+msgid ""
+"Users with attribute 'president' set to True for the module Sport Club "
+"Manager."
+msgstr "Les utilisateurs avec l'attribut 'président' activé pour le module "
+"Gestionnaire de Club Sportif"
+
+#. module: sport_club_manager
+#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_secretary
+msgid ""
+"Users with attribute 'secretary' set to True for the module Sport Club "
+"Manager."
+msgstr "Les utilisateurs avec l'attribut 'secrétaire' activé pour le module "
+"Gestionnaire de Club Sportif"
+
+#. module: sport_club_manager
+#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_treasurer
+msgid ""
+"Users with attribute 'treasurer' set to True for the module Sport Club "
+"Manager."
+msgstr "Les utilisateurs avec l'attribut 'trésorier' activé pour le module "
+"Gestionnaire de Club Sportif"
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_view_form
+msgid "Validate Affiliation"
+msgstr "Valider l'affiliation"
+
+#. module: sport_club_manager
+#: model:ir.model.fields,help:sport_club_manager.field_period_category_default
+msgid ""
+"When a request is done on a given period without knowing the category, the "
+"default category is set. Per period, only one default Category can be set."
+msgstr "Quand une demande est faite pour une saison donnée sans connaître la "
+"catégorie, la catégorie par défaut est prise. Par saison, seule une catégorie "
+"par défaut peut être définie."
+
+#. module: sport_club_manager
+#: model:ir.ui.view,arch_db:sport_club_manager.membership_affiliation_page_anonymous
+msgid "Yes, I have accepted!"
+msgstr "Oui, j'ai accepté!"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_period_wizard
+msgid "period_wizard"
+msgstr "Gestionnaire de saison"
+
+#. module: sport_club_manager
+#: model:ir.model,name:sport_club_manager.model_role
+msgid "role"
+msgstr "rôle"
