@@ -66,6 +66,7 @@
         'data/demo/period_category_demo.xml',
         'data/demo/membership_demo.xml',
     ],
+    'images': ['static/description/icon.png'],
     'installable': True,
     'application': True,
 }

@@ -32,7 +32,7 @@
                         <!-- TODO
                         <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
                          -->
-                        <button name="update_periods" type="object" string="Recalculate Periods Activation"/>
+                        <button name="update_periods" type="object" string="Recalculate Active Periods"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -122,7 +122,7 @@
             <field name="name">period.wizard.form</field>
             <field name="model">period_wizard</field>
             <field name="arch" type="xml">
-                <form string="Duplicate a period">
+                <form string="Period Duplication">
                     <group>
                         <group>
                             <field name="period_id" string="Period to Duplicate"/>
