@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="role_demo_1" model="role">
+            <field name="user_id" ref="partner_demo_player_1_user"/>
+            <field name="name">president</field>
+            <field name="start_date">2015-09-01</field>
+            <field name="end_date">2018-03-31</field>
+        </record>
+        <record id="role_demo_2" model="role">
+            <field name="user_id" ref="partner_demo_player_1_user"/>
+            <field name="name">secretary</field>
+            <field name="start_date">2015-04-01</field>
+            <field name="end_date"></field>
+        </record>
+        <record id="role_demo_3" model="role">
+            <field name="user_id" ref="partner_demo_player_2_user"/>
+            <field name="name">treasurer</field>
+            <field name="start_date">2015-08-15</field>
+            <field name="end_date">2016-06-30</field>
+        </record>
+        <record id="role_demo_4" model="role">
+            <field name="user_id" ref="partner_demo_player_3_user"/>
+            <field name="name">treasurer</field>
+            <field name="start_date">2017-01-06</field>
+            <field name="end_date"></field>
+        </record>
+    </data>
+</odoo>

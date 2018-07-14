@@ -3,7 +3,7 @@
 
 import uuid
 
-from odoo import api, fields, models, exceptions, tools
+from odoo import api, fields, models, exceptions, tools, _
 
 
 class Membership(models.Model):
@@ -105,7 +105,7 @@ class Membership(models.Model):
         readonly=True,
         default='undefined',
         copy=False,
-        help="Membership status of the user's response.")
+        help="Membership status for user's response.")
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         related='user_id.partner_id',
@@ -322,7 +322,7 @@ class Membership(models.Model):
         :return: None
         """
         if self.env['membership'].search_count([('user_id.id', '=', self.user_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
-            raise exceptions.ValidationError("The user '%s' has already a membership for this period (%s). Please change accordingly." % (self.user_id.name, self.period_id.name))
+            raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (self.user_id.name, self.period_id.name))
 
     @api.multi
     def validate_membership_payment(self):

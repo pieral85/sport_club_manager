@@ -42,12 +42,59 @@
                                     <field name="country_id"/>
                                 </group>
                             </page>
-                            <page string="Club Settings">
-                                <group>
-                                    <field name="secretary"/>
-                                    <field name="treasurer"/>
+                            <page string="Roles">
+                                <!-- <group col="12"> -->
+                                <!-- 
+                                <div>
                                     <field name="president"/>
-                                    <field name="manager"/>
+                                    <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary oe_left" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
+                                    <button name="modify_role" type="object" string="Start President Role" class="btn-primary oe_left" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+                                    <newline/>
+                                </div>
+ -->
+<group col="3">
+    <group col="12" colspan="1">
+    <!-- <div class="oe_inline" name="edit_alias" style="display: inline;" > -->
+        <field name="president" colspan="2"/>
+        <button name="modify_role" type="object" string="Start President Role" class="btn-primary" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+        <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="5"/>
+    <!-- </div> -->
+    </group>
+    <newline/>
+<!-- </group> -->
+<!-- 
+<group>
+    <label for="president" string="President!"/>
+    <div class="oe_inline" name="edit_alias" style="display: inline;" >
+        <field name="president"/>            
+        <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary " attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
+        <button name="modify_role" type="object" string="Start President Role" class="btn-primary " attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+    </div>
+</group>
+ -->
+                                <!-- <group> --><group col="12" colspan="1">
+                                    <field name="secretary"/>
+                                    <button name="modify_role" type="object" string="Start Secretary Role" class="btn-primary" attrs="{'invisible': [('secretary', '=', True)]}" confirm="Are you sure to start secretary role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'secretary', 'action': 'start'}" colspan="5"/>
+                                    <button name="modify_role" type="object" string="Stop Secretary Role" class="btn-secondary" attrs="{'invisible': [('secretary', '=', False)]}" confirm="Are you sure to stop current secretary role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'secretary', 'action': 'stop'}" colspan="5"/>
+                                    <!-- <newline/> -->
+                                </group><newline/><!-- </group> -->
+                                <!-- <group> --><group col="12" colspan="1">
+                                    <field name="treasurer" class="oe_inline"/>
+                                    <button name="modify_role" type="object" string="Start Treasurer Role" class="btn-primary" attrs="{'invisible': [('treasurer', '=', True)]}" confirm="Are you sure to start treasurer role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'treasurer', 'action': 'start'}" colspan="5"/>
+                                    <button name="modify_role" type="object" string="Stop Treasurer Role" class="btn-secondary" attrs="{'invisible': [('treasurer', '=', False)]}" confirm="Are you sure to stop current treasurer role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'treasurer', 'action': 'stop'}" colspan="5"/>
+                                </group>
+                                    <newline/>
+                                    <group><field name="manager"/></group>
+                                </group>
+                                <group string="Historical">
+                                    <field name="role_ids" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="start_date"/>
+                                            <field name="end_date"/>
+                                            <field name="current"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
                         </notebook>

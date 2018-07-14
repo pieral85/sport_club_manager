@@ -3,7 +3,7 @@
 
 from datetime import date
 
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 
 
 class Period(models.Model):
@@ -13,7 +13,7 @@ class Period(models.Model):
     _order = 'start_date asc'
     _sql_constraints = [
        ('dates_check', 'CHECK(start_date < end_date)',
-        'The End Date should be higher than the Start Date. Please change it accordingly.'),
+        'The end date should be higher than the start date. Please change it accordingly.'),
     ]
 
     name = fields.Char(
@@ -267,6 +267,6 @@ class Period(models.Model):
             ('end_date', '>=', self.start_date),
             ]) - 1
         if count_common_periods:
-            raise exceptions.ValidationError("The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly." % (self.start_date, self.end_date, count_common_periods))
+            raise exceptions.ValidationError(_('The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly.') % (self.start_date, self.end_date, count_common_periods))
         if not self.start_date or not self.end_date or self.start_date > self.end_date:
-            raise exceptions.ValidationError('The End Date should be higher than the Start Date. Please change it accordingly.') 
+            raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.')) 

@@ -3,16 +3,14 @@
 
 from re import match
 
-from odoo import api, fields, models, exceptions
+# from dateutil.relativedelta import relativedelta
+
+from odoo import api, fields, models, exceptions, _
 
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    president = fields.Boolean('Is President', default=False)
-    secretary = fields.Boolean('Is Secretary', default=False)
-    treasurer = fields.Boolean('Is Treasurer', default=False)
-    manager = fields.Boolean('Is Manager', default=False)
     # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
     action_id = fields.Many2one(
         comodel_name='ir.actions.actions',
@@ -25,6 +23,23 @@ class ResUsers(models.Model):
         inverse_name='user_id',
         string='Memberships',
     )
+    role_ids = fields.One2many(
+        comodel_name='role',
+        inverse_name='user_id',
+        string='Roles',
+    )
+    president = fields.Boolean('Is President', compute='_compute_role', store=True, readonly=True)
+    secretary = fields.Boolean('Is Secretary', compute='_compute_role', store=True, readonly=True)
+    treasurer = fields.Boolean('Is Treasurer', compute='_compute_role', store=True, readonly=True)
+    manager = fields.Boolean('Is Manager', default=False)
+
+    @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
+    def _compute_role(self):
+        print('\n_compute_role', self)
+        for user in self:
+            user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
+            user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
+            user.treasurer = user.role_ids.filtered(lambda r: r.current and r.name == 'treasurer')
 
     @api.onchange('secretary')
     def _on_change_secretary(self):
@@ -41,14 +56,35 @@ class ResUsers(models.Model):
         if self.president:
             self.manager = True
 
+    @api.multi
+    def modify_role(self):
+        self.ensure_one()
+        role_name = self._context.get('role_name', '')
+        current_role = self.role_ids.filtered(lambda r: r.current and r.name == role_name)
+        action = self._context.get('action', '')
+        if (action == 'stop' and not current_role) or (action == 'start' and current_role):
+            raise exceptions.Warning(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
+
+        if action == 'start':
+            self.role_ids.create({
+                'name': role_name,
+                'user_id': self.id,
+                })
+        elif action == 'stop':
+            if current_role.start_date >= fields.Date.today():
+                current_role.unlink()
+            else:
+                current_role.end_date = fields.Date.today()
+        # return {'type': 'ir.actions.act_window_close'}
+
     @api.onchange('login')
     def validate_email(self):
         if not self.login:
             return
         if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
-            raise exceptions.ValidationError('Invalid email address. Please enter a valid one.')
+            raise exceptions.ValidationError(_('Invalid email address. Please enter a valid one.'))
         if self.search_count([('login', '=', self.login), ]):
-            raise exceptions.ValidationError('This email already exists. Please ')
+            raise exceptions.ValidationError(_('This email already exists. Please enter another one.'))
 
     @api.multi
     def write(self, vals):

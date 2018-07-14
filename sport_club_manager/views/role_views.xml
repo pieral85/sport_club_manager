@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- tree view(s) -->
+        <record id="role_view_list" model="ir.ui.view">
+            <field name="name">role list</field>
+            <field name="model">role</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="current"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- form view(s) -->
+        <record id="role_view_form" model="ir.ui.view">
+            <field name="name">role form</field>
+            <field name="model">role</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group col="6">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="current"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
