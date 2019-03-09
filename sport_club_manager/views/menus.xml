@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <!-- menu(s): Levels 1 and 2 -->
-        <menuitem id="menu_root" name="Sport Club Manager" groups="group_sport_club_manager_committee,base.group_system"/>
+        <menuitem id="menu_root" name="Sport Club Manager" groups="group_scm_committee_user,base.group_system"/>
         <menuitem id="menu_top_memberships" name="Memberships" parent="menu_root" sequence="10"/>
         <menuitem id="menu_top_resources" name="Resources" parent="menu_root" sequence="20"/>
         <menuitem id="menu_top_settings" name="Other Settings" parent="menu_root" sequence="30"/>

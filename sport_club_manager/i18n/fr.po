@@ -376,7 +376,7 @@ msgid "Comittee Info"
 msgstr "Info sur le comité"
 
 #. module: sport_club_manager
-#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_committee
+#: model:res.groups,comment:sport_club_manager.group_scm_committee_user
 msgid "Committee members for the module Sport Club Manager."
 msgstr "Membres du comité pour le module Gestionnaire de Club Sportif."
 
@@ -556,27 +556,27 @@ msgid "From"
 msgstr "De"
 
 #. module: sport_club_manager
-#: model:res.groups,name:sport_club_manager.group_sport_club_manager_committee
+#: model:res.groups,name:sport_club_manager.group_scm_committee_user
 msgid "Group - Committee"
 msgstr "Groupe - Comité"
 
 #. module: sport_club_manager
-#: model:res.groups,name:sport_club_manager.group_sport_club_manager_manager
+#: model:res.groups,name:sport_club_manager.group_scm_committee_manager
 msgid "Group - Manager"
 msgstr "Groupe - Gestionnaire"
 
 #. module: sport_club_manager
-#: model:res.groups,name:sport_club_manager.group_sport_club_manager_president
+#: model:res.groups,name:sport_club_manager.group_scm_president
 msgid "Group - President"
 msgstr "Groupe - Président"
 
 #. module: sport_club_manager
-#: model:res.groups,name:sport_club_manager.group_sport_club_manager_secretary
+#: model:res.groups,name:sport_club_manager.group_scm_secretary
 msgid "Group - Secretary"
 msgstr "Groupe - Secrétaire"
 
 #. module: sport_club_manager
-#: model:res.groups,name:sport_club_manager.group_sport_club_manager_treasurer
+#: model:res.groups,name:sport_club_manager.group_scm_treasurer
 msgid "Group - Treasurer"
 msgstr "Groupe - Trésorier"
 
@@ -700,7 +700,7 @@ msgid "Make a request"
 msgstr "Faire une demande"
 
 #. module: sport_club_manager
-#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_manager
+#: model:res.groups,comment:sport_club_manager.group_scm_committee_manager
 msgid "Manager of the module Sport Club Manager."
 msgstr "Gestionnaire du module Gestionnaire de Club Sportif"
 
@@ -1368,7 +1368,7 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 #. module: sport_club_manager
-#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_president
+#: model:res.groups,comment:sport_club_manager.group_scm_president
 msgid ""
 "Users with attribute 'president' set to True for the module Sport Club "
 "Manager."
@@ -1376,7 +1376,7 @@ msgstr "Les utilisateurs avec l'attribut 'président' activé pour le module "
 "Gestionnaire de Club Sportif"
 
 #. module: sport_club_manager
-#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_secretary
+#: model:res.groups,comment:sport_club_manager.group_scm_secretary
 msgid ""
 "Users with attribute 'secretary' set to True for the module Sport Club "
 "Manager."
@@ -1384,7 +1384,7 @@ msgstr "Les utilisateurs avec l'attribut 'secrétaire' activé pour le module "
 "Gestionnaire de Club Sportif"
 
 #. module: sport_club_manager
-#: model:res.groups,comment:sport_club_manager.group_sport_club_manager_treasurer
+#: model:res.groups,comment:sport_club_manager.group_scm_treasurer
 msgid ""
 "Users with attribute 'treasurer' set to True for the module Sport Club "
 "Manager."

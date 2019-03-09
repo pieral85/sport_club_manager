@@ -109,10 +109,10 @@ class ResUsers(models.Model):
         """
         new_groups = vals.get('groups_id', [])
         status_groups = (
-            ('president', 'sport_club_manager.group_sport_club_manager_president'),
-            ('secretary', 'sport_club_manager.group_sport_club_manager_secretary'),
-            ('treasurer', 'sport_club_manager.group_sport_club_manager_treasurer'),
-            ('manager', 'sport_club_manager.group_sport_club_manager_manager'),
+            ('president', 'sport_club_manager.group_scm_president'),
+            ('secretary', 'sport_club_manager.group_scm_secretary'),
+            ('treasurer', 'sport_club_manager.group_scm_treasurer'),
+            ('manager', 'sport_club_manager.group_scm_committee_manager'),
         )
         # TODO If some other groups are in vals, we should ensure they will still be added as well
         committee_group_action = ''
@@ -131,9 +131,9 @@ class ResUsers(models.Model):
             elif group in self.groups_id:
                 committee_group_action = 'preserve'
 
-        # removes group 'group_sport_club_manager_committee' from user groups
+        # removes group 'group_scm_committee_user' from user groups
         if committee_group_action == 'delete':
-            new_groups.append((3, self.env.ref('sport_club_manager.group_sport_club_manager_committee').id))
+            new_groups.append((3, self.env.ref('sport_club_manager.group_scm_committee_user').id))
         if new_groups:
             vals['groups_id'] = new_groups
 
@@ -146,7 +146,7 @@ class ResUsers(models.Model):
         # TODO This method is called multiple times when a group is changed on the user (should be 1x)
         for record in self:
             if self.env.ref('base.group_system') in record.groups_id or \
-               self.env.ref('sport_club_manager.group_sport_club_manager_committee') in record.groups_id:
+               self.env.ref('sport_club_manager.group_scm_committee_user') in record.groups_id:
                 record.action_id = self.env.ref('sport_club_manager.action_membership').id
             else:
                 record.action_id = None
