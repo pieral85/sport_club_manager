@@ -36,8 +36,6 @@ class ResUsers(models.Model):
 
     @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
     def _compute_role(self):
-        print('\n_compute_role', self)
-        import ipdb; ipdb.set_trace()
         for user in self:
             user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
             user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
@@ -46,7 +44,6 @@ class ResUsers(models.Model):
     @api.onchange('secretary')
     def _on_change_secretary(self):
         # TODO This method is not triggered anymore
-        import ipdb; ipdb.set_trace()
         if self.secretary:
             self.manager = True
 
