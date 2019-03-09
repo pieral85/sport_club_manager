@@ -28,6 +28,11 @@
 
     # always loaded
     'data': [
+        # security
+        'security/security.xml',
+        'security/ir_rule.xml',
+        'security/ir.model.access.csv',
+
         # views
         'views/period_views.xml',
         'views/category_views.xml',
@@ -51,11 +56,6 @@
 
         # templates
         'controllers/templates.xml',
-
-        # security
-        'security/security.xml',
-        'security/ir_rule.xml',
-        'security/ir.model.access.csv',
 
         # data
         'data/res_users_data.xml',
