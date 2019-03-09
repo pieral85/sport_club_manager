@@ -93,12 +93,25 @@ class Period(models.Model):
         for template in self:
             template.active = not template.active
 
+    # TODO This is a test function ==> delete me if not needed
+    # @api.model_cr
+    # def _register_hook(self):
+    #     import ipdb; ipdb.set_trace()
+    #     if not self.env['ir.config_parameter'].sudo().get_param('use.gmail.as.mail.server'):
+    #         self.env['ir.config_parameter'].sudo().set_param('use.gmail.as.mail.server', ...):
+    #     if not self.env['ir.config_parameter'].sudo().get_param('mail.local.part'):
+    #         self.env['ir.config_parameter'].sudo().set_param('mail.local.part', ...):
+    #     return super(Period, self)._register_hook()
+
     def get_alias_model_name(self, vals):
         """ Specify the model that will get created when the alias receives a message.
 
         :param dict vals: values of the newly created record that will holding the alias.
         :return: the model name for the alias.
         """
+        import ipdb; ipdb.set_trace()
+
+
         return 'membership'
         
     def get_alias_values(self):
@@ -106,6 +119,22 @@ class Period(models.Model):
         
         :return: values to create an alias, or to write on the alias after its creation.
         """
+        import ipdb; ipdb.set_trace()
+
+
+
+# "alias_name" should be <fetchmail.server>.<<user>>(=sportclubmanager2017)+trim(self.name) (+retirer les accents, etc)  # help: https://github.com/odoo/odoo/blob/11.0/addons/crm/models/res_config_settings.py#L39-L46
+# alias_domain = fields.Char('Alias domain', compute='_get_alias_domain',
+#     default=lambda self: self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain"))
+#     # default=lambda self: self.env["ir.config_parameter"].sudo().get_param("mail.local.part"))
+# # TODO max. 64 characters
+# alias_domain = 'example.com'
+#         alias_catchall = 'pokemon'
+#         self.env['ir.config_parameter'].set_param('mail.catchall.domain', alias_domain)
+#         self.env['ir.config_parameter'].set_param('mail.catchall.alias', alias_catchall)
+
+
+
         values = super(Period, self).get_alias_values()
         values['alias_defaults'] = {'period_id': self.id}
         return values
@@ -243,7 +272,7 @@ class Period(models.Model):
         object `dte` (of type fields.Date). Return the same calendar date (month and day) in the
         destination year, if it exists, otherwise use the following day
         (thus changing February 29 to March 1).
-        
+
         Code found on https://stackoverflow.com/questions/15741618/add-one-year-in-current-date-python
         """
         d = fields.Date.from_string(dte)
@@ -251,6 +280,19 @@ class Period(models.Model):
             return d.replace(year = d.year + years)
         except ValueError:
             return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
+
+    @api.multi
+    def write(self, vals):
+        ConfigParam = self.env['ir.config_parameter']
+        local_part = ConfigParam.sudo().get_param('mail_local_part') or ''
+        # TOASK Which one is better? local_part or local_part_TEST?
+        # local_part_TEST = self.env['res.config.settings'].sudo().get_values()['mail_local_part']
+
+        if 'name' in vals and not 'alias_name' in vals:
+            # TODO The name should be unique (add double constraint: sql level and odoo level)
+            # TODO Get compatible chars for email from vals['name']
+            vals['alias_name'] = local_part + '+' + vals['name']
+        return super(Period, self).write(vals)
 
     @api.one
     @api.constrains('start_date', 'end_date')
@@ -269,4 +311,17 @@ class Period(models.Model):
         if count_common_periods:
             raise exceptions.ValidationError(_('The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly.') % (self.start_date, self.end_date, count_common_periods))
         if not self.start_date or not self.end_date or self.start_date > self.end_date:
-            raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.')) 
+            raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        # TODO It would be great if this search method would be invoked from the membership views
+        for i, domain in enumerate(args):
+            if domain[0] == 'name' and domain[2].isdigit():
+                args.insert(i, '|')
+                year = domain[2]
+                min_date = '{}-01-01'.format(year)
+                max_date = '{}-12-31'.format(year)
+                args += ['&', ['start_date', '<=', max_date], ['end_date', '>=', min_date]]
+                break
+        return super(Period, self).search(args, offset, limit, order, count=count)

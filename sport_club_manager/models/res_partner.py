@@ -10,4 +10,3 @@ class ResUsers(models.Model):
     company_type = fields.Selection(string='Company Type',
         selection=[('person', 'Contact'), ('company', 'Location')],
         compute='_compute_company_type', inverse='_write_company_type')
-    

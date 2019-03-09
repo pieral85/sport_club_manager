@@ -43,7 +43,7 @@
                         <group>
                             <h1>
                                 <field name="name" placeholder="Name..."/>
-                            </h1>                            
+                            </h1>
                             <field name="start_date"/>
                             <field name="end_date"/>
                             <field name="current" readonly="1"/>
@@ -109,10 +109,11 @@
             <field name="model">period</field>
             <field name="arch" type="xml">
                 <search string="Periods">
-                    <field name="name" filter_domain="[('start_date', '&lt;=',self), ('end_date', '&gt;=', self)]" string="Period Including Date"/>
+                    <field name="name" string="Period Name" filter_domain="[('name','ilike',self)]"/>
+                    <field name="start_date" string="Period Including Date" filter_domain="[('start_date','&lt;=',self), ('end_date','&gt;=',self)]"/>
                     <separator/>
-                    <filter string="Active" name ="active_search" icon="terp-gtk-media-pause" domain="[('active','=', True)]" help="Only active period."/>
-                    <filter string="Archived" name ="inactive_search" icon="terp-gtk-media-pause" domain="[('active','=', False)]" help="Only inactive periods."/>
+                    <filter name="active_search" string="Active" icon="terp-gtk-media-pause" domain="[('active','=', True)]" help="Only active period."/>
+                    <filter name ="inactive_search" string="Archived" icon="terp-gtk-media-pause" domain="[('active','=',False)]" help="Only inactive periods."/>
                 </search>
             </field>
         </record>

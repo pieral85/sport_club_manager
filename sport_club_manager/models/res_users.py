@@ -16,6 +16,7 @@ class ResUsers(models.Model):
         comodel_name='ir.actions.actions',
         string='Home Action',
         compute='_get_action_id',
+        store=True,
         help="If specified, this action will be opened at log on for this user, in addition to the standard menu."
     )
     membership_ids = fields.One2many(
@@ -36,6 +37,7 @@ class ResUsers(models.Model):
     @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
     def _compute_role(self):
         print('\n_compute_role', self)
+        import ipdb; ipdb.set_trace()
         for user in self:
             user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
             user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
@@ -43,6 +45,8 @@ class ResUsers(models.Model):
 
     @api.onchange('secretary')
     def _on_change_secretary(self):
+        # TODO This method is not triggered anymore
+        import ipdb; ipdb.set_trace()
         if self.secretary:
             self.manager = True
 
@@ -81,6 +85,7 @@ class ResUsers(models.Model):
     def validate_email(self):
         if not self.login:
             return
+        # TODO Do we really need to check email at onchange of login (can't a user login with sth != email?)
         if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
             raise exceptions.ValidationError(_('Invalid email address. Please enter a valid one.'))
         if self.search_count([('login', '=', self.login), ]):
@@ -93,6 +98,7 @@ class ResUsers(models.Model):
 
     @api.model
     def create(self, vals):
+        import ipdb; ipdb.set_trace()
         self._update_groups(vals)
         return super(ResUsers, self).create(vals)
 
@@ -108,6 +114,7 @@ class ResUsers(models.Model):
             ('treasurer', 'sport_club_manager.group_sport_club_manager_treasurer'),
             ('manager', 'sport_club_manager.group_sport_club_manager_manager'),
         )
+        # TODO If some other groups are in vals, we should ensure they will still be added as well
         committee_group_action = ''
         for status, group_name in status_groups:
             group = self.env.ref(group_name)
@@ -127,7 +134,8 @@ class ResUsers(models.Model):
         # removes group 'group_sport_club_manager_committee' from user groups
         if committee_group_action == 'delete':
             new_groups.append((3, self.env.ref('sport_club_manager.group_sport_club_manager_committee').id))
-        vals['groups_id'] = new_groups
+        if new_groups:
+            vals['groups_id'] = new_groups
 
     @api.depends('groups_id')
     def _get_action_id(self):
@@ -135,9 +143,15 @@ class ResUsers(models.Model):
 
         :return: None
         """
+        # TODO This method is called multiple times when a group is changed on the user (should be 1x)
         for record in self:
             if self.env.ref('base.group_system') in record.groups_id or \
                self.env.ref('sport_club_manager.group_sport_club_manager_committee') in record.groups_id:
                 record.action_id = self.env.ref('sport_club_manager.action_membership').id
             else:
                 record.action_id = None
+
+    @api.model
+    def _update_record(self, values):
+        model, res_id, values = values['model'], values['browse_id'], values['write_values']
+        self.env[model].browse(res_id).write(values)

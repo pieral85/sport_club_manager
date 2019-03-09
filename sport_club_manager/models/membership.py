@@ -32,6 +32,11 @@ class Membership(models.Model):
         required=True,
         string='User',
     )
+    user_state = fields.Selection(
+        string='User Status',
+        related='user_id.state',
+        readonly=True,
+    )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         string='Currency',
@@ -246,6 +251,11 @@ class Membership(models.Model):
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
 
+    @api.multi
+    def action_reset_password(self):
+        """ create signup token for each user, and send their signup url by email """
+        return self.mapped('user_id').action_reset_password()
+
     @api.onchange('token')
     def _onchange_token(self):
         # import ipdb; ipdb.set_trace()
@@ -269,7 +279,7 @@ class Membership(models.Model):
                 record.price_paid_percentage = 100.0 * record.price_paid / record.price_due
                 record.price_remaining = record.price_paid - record.price_due
                 record.paid = False
- 
+
     def _compute_color(self):
         """ Computes color value based on the price paid (used in the Kanban view.)
 

@@ -54,7 +54,7 @@
             <div id="wrap">
                 <div class="oe_structure">
                     <div class="container">
-                        <h2>Comittee Info</h2>                        
+                        <h2>Comittee Info</h2>
                         <t t-foreach="committee" t-as="status">
                             <t t-foreach="status[1]" t-as="member">
                                 <t t-if="member_first"><h3><t t-esc="status[0]"/></h3></t>
