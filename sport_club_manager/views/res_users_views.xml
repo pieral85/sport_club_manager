@@ -85,9 +85,9 @@
                                     <button name="modify_role" type="object" string="Stop Treasurer Role" class="btn-secondary" attrs="{'invisible': [('treasurer', '=', False)]}" confirm="Are you sure to stop current treasurer role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'treasurer', 'action': 'stop'}" colspan="5"/>
                                 </group>
                                     <newline/>
-                                    <group><field name="manager"/></group>
+                                    <group><field name="committee_manager"/></group>
                                 </group>
-                                <group string="Historical">
+                                <group string="Roles Historical">
                                     <field name="role_ids" nolabel="1">
                                         <tree editable="bottom">
                                             <field name="name"/>

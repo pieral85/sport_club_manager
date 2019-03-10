@@ -32,18 +32,18 @@ class ResUsers(models.Model):
     president = fields.Boolean('Is President', compute='_compute_role', store=True, readonly=True)
     secretary = fields.Boolean('Is Secretary', compute='_compute_role', store=True, readonly=True)
     treasurer = fields.Boolean('Is Treasurer', compute='_compute_role', store=True, readonly=True)
-    manager = fields.Boolean('Is Manager', compute='_compute_manager', inverse='_inverse_manager')
+    committee_manager = fields.Boolean('Is Committee Manager', compute='_compute_committee_manager', inverse='_inverse_committee_manager')
 
     @api.multi
-    def _compute_manager(self):
+    def _compute_committee_manager(self):
         for user in self:
-            user.manager = user.has_group('sport_club_manager.group_scm_committee_manager')
+            user.committee_manager = user.has_group('sport_club_manager.group_scm_committee_manager')
 
     @api.multi
-    def _inverse_manager(self):
-        ''' Edit user groups when field 'manager' is edited. '''
+    def _inverse_committee_manager(self):
+        ''' Edit user groups when field 'committee_manager' is edited. '''
         for user in self:
-            user.write({'groups_id': [(4 if user.manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
+            user.write({'groups_id': [(4 if user.committee_manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
 
     @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
     def _compute_role(self):
