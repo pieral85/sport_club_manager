@@ -32,25 +32,13 @@ class ResUsers(models.Model):
     president = fields.Boolean('Is President', compute='_compute_role', store=True, readonly=True)
     secretary = fields.Boolean('Is Secretary', compute='_compute_role', store=True, readonly=True)
     treasurer = fields.Boolean('Is Treasurer', compute='_compute_role', store=True, readonly=True)
-    committee_manager = fields.Boolean('Is Committee Manager', compute='_compute_committee_manager', inverse='_inverse_committee_manager')
-
-    @api.multi
-    def _compute_committee_manager(self):
-        for user in self:
-            user.committee_manager = user.has_group('sport_club_manager.group_scm_committee_manager')
-
-    @api.multi
-    def _inverse_committee_manager(self):
-        ''' Edit user groups when field 'committee_manager' is edited. '''
-        for user in self:
-            user.write({'groups_id': [(4 if user.committee_manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
-
-    @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
-    def _compute_role(self):
-        for user in self:
-            user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
-            user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
-            user.treasurer = user.role_ids.filtered(lambda r: r.current and r.name == 'treasurer')
+    committee_user = fields.Boolean('Is Committee User',
+        compute='_compute_committee_user', inverse='_inverse_committee_user',
+        help='If checked, the user will have a read access to the application Sport Club Manager.')
+    committee_manager = fields.Boolean('Is Committee Manager',
+        compute='_compute_committee_manager', inverse='_inverse_committee_manager',
+        help='If checked, the user will have a write access to the application Sport Club Manager.\n\
+        This will allow the user to manage the application.')
 
     @api.multi
     def modify_role(self):
@@ -120,6 +108,36 @@ class ResUsers(models.Model):
         elif 'delete' in committee_manager_group_todo:
             new_groups.append((3, self.env.ref('sport_club_manager.group_scm_committee_manager').id))
         return {'groups_id': new_groups} if new_groups else {}
+
+
+    @api.multi
+    def _compute_committee_user(self):
+        for user in self:
+            user.committee_user = user.has_group('sport_club_manager.group_scm_committee_user')
+
+    @api.multi
+    def _inverse_committee_user(self):
+        ''' Edit user groups when field 'committee_user' is edited. '''
+        for user in self:
+            user.write({'groups_id': [(4 if user.committee_user else 3, self.env.ref('sport_club_manager.group_scm_committee_user').id)]})
+
+    @api.multi
+    def _compute_committee_manager(self):
+        for user in self:
+            user.committee_manager = user.has_group('sport_club_manager.group_scm_committee_manager')
+
+    @api.multi
+    def _inverse_committee_manager(self):
+        ''' Edit user groups when field 'committee_manager' is edited. '''
+        for user in self:
+            user.write({'groups_id': [(4 if user.committee_manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
+
+    @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
+    def _compute_role(self):
+        for user in self:
+            user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
+            user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
+            user.treasurer = user.role_ids.filtered(lambda r: r.current and r.name == 'treasurer')
 
     @api.depends('groups_id')
     def _get_action_id(self):
