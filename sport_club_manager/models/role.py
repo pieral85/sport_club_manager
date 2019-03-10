@@ -49,7 +49,6 @@ class Role(models.Model):
 
     @api.depends('start_date', 'end_date')
     def _compute_current(self):
-        print('\n_compute_current', self)
         today = fields.Date.today()
         for role in self:
             role.current = role.start_date <= today and (not role.end_date or role.end_date > today)

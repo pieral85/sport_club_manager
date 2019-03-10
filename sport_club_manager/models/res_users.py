@@ -32,7 +32,18 @@ class ResUsers(models.Model):
     president = fields.Boolean('Is President', compute='_compute_role', store=True, readonly=True)
     secretary = fields.Boolean('Is Secretary', compute='_compute_role', store=True, readonly=True)
     treasurer = fields.Boolean('Is Treasurer', compute='_compute_role', store=True, readonly=True)
-    manager = fields.Boolean('Is Manager', default=False)
+    manager = fields.Boolean('Is Manager', compute='_compute_manager', inverse='_inverse_manager')
+
+    @api.multi
+    def _compute_manager(self):
+        for user in self:
+            user.manager = user.has_group('sport_club_manager.group_scm_committee_manager')
+
+    @api.multi
+    def _inverse_manager(self):
+        ''' Edit user groups when field 'manager' is edited. '''
+        for user in self:
+            user.write({'groups_id': [(4 if user.manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
 
     @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
     def _compute_role(self):
@@ -41,28 +52,13 @@ class ResUsers(models.Model):
             user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
             user.treasurer = user.role_ids.filtered(lambda r: r.current and r.name == 'treasurer')
 
-    @api.onchange('secretary')
-    def _on_change_secretary(self):
-        # TODO This method is not triggered anymore
-        if self.secretary:
-            self.manager = True
-
-    @api.onchange('treasurer')
-    def _on_change_treasurer(self):
-        if self.treasurer:
-            self.manager = True
-
-    @api.onchange('president')
-    def _on_change_president(self):
-        if self.president:
-            self.manager = True
-
     @api.multi
     def modify_role(self):
         self.ensure_one()
-        role_name = self._context.get('role_name', '')
+        if not self._context.get('role_name') or not self._context.get('action'):
+            return
+        role_name, action = self._context['role_name'], self._context['action']
         current_role = self.role_ids.filtered(lambda r: r.current and r.name == role_name)
-        action = self._context.get('action', '')
         if (action == 'stop' and not current_role) or (action == 'start' and current_role):
             raise exceptions.Warning(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
 
@@ -70,13 +66,13 @@ class ResUsers(models.Model):
             self.role_ids.create({
                 'name': role_name,
                 'user_id': self.id,
-                })
+            })
         elif action == 'stop':
             if current_role.start_date >= fields.Date.today():
                 current_role.unlink()
             else:
                 current_role.end_date = fields.Date.today()
-        # return {'type': 'ir.actions.act_window_close'}
+        self.write(self._get_group_vals({role_name: action == 'start'}))
 
     @api.onchange('login')
     def validate_email(self):
@@ -88,51 +84,42 @@ class ResUsers(models.Model):
         if self.search_count([('login', '=', self.login), ]):
             raise exceptions.ValidationError(_('This email already exists. Please enter another one.'))
 
-    @api.multi
-    def write(self, vals):
-        self._update_groups(vals)
-        return super(ResUsers, self).write(vals)
+    def _get_group_vals(self, vals):
+        """ Updates user's groups if one of the following attributes has been changed: 'president', 'secretary' or 'treasurer'.
+        i.e. vals = {'president': True, 'treasurer': False} means the user becomes president but is not treasurer anymore.
 
-    @api.model
-    def create(self, vals):
-        import ipdb; ipdb.set_trace()
-        self._update_groups(vals)
-        return super(ResUsers, self).create(vals)
-
-    def _update_groups(self, vals):
-        """ Updates user's groups if one of the following attributes has been changed: 'president', 'secretary', 'treasurer' or 'manager'.
-
-        :return: None
+        :return: Dictionary with 'groups_id' as a key and the groups and their command numbers as values (typically ready to be used in the 'write' method argument).
         """
-        new_groups = vals.get('groups_id', [])
+        new_groups = []
         status_groups = (
             ('president', 'sport_club_manager.group_scm_president'),
             ('secretary', 'sport_club_manager.group_scm_secretary'),
             ('treasurer', 'sport_club_manager.group_scm_treasurer'),
-            ('manager', 'sport_club_manager.group_scm_committee_manager'),
         )
-        # TODO If some other groups are in vals, we should ensure they will still be added as well
-        committee_group_action = ''
+        committee_manager_group_todo = set()
         for status, group_name in status_groups:
             group = self.env.ref(group_name)
             if status in vals:
-                # adds current group in user groups
-                if vals[status] and group not in self.groups_id:
-                    new_groups.append((4, group.id))
-                    committee_group_action = 'preserve'
-                # removes current group from user groups
+                if vals[status]:
+                    # adds current group in user groups
+                    committee_manager_group_todo.add('add')
+                    if group not in self.groups_id:
+                        new_groups.append((4, group.id))
                 elif not vals[status] and group in self.groups_id:
+                    # removes current group from user groups
                     new_groups.append((3, group.id))
-                    if not committee_group_action:
-                        committee_group_action = 'delete'
+                    committee_manager_group_todo.add('delete')
             elif group in self.groups_id:
-                committee_group_action = 'preserve'
+                # because the user is in another group, we should not remove committee manager group
+                committee_manager_group_todo.add('nothing')
 
-        # removes group 'group_scm_committee_user' from user groups
-        if committee_group_action == 'delete':
-            new_groups.append((3, self.env.ref('sport_club_manager.group_scm_committee_user').id))
-        if new_groups:
-            vals['groups_id'] = new_groups
+        if 'add' in committee_manager_group_todo:
+            new_groups.append((4, self.env.ref('sport_club_manager.group_scm_committee_manager').id))
+        elif 'nothing' in committee_manager_group_todo:
+            pass
+        elif 'delete' in committee_manager_group_todo:
+            new_groups.append((3, self.env.ref('sport_club_manager.group_scm_committee_manager').id))
+        return {'groups_id': new_groups} if new_groups else {}
 
     @api.depends('groups_id')
     def _get_action_id(self):

@@ -42,7 +42,8 @@
                                     <field name="country_id"/>
                                 </group>
                             </page>
-                            <page string="Roles">
+                            <page string="Roles &amp; Groups">
+                                <field name="groups_id" string="Groups" widget="many2many_tags" readonly="1" groups="base.group_no_one"/>
                                 <!-- <group col="12"> -->
                                 <!-- 
                                 <div>
