@@ -4,15 +4,19 @@
         <!-- Categories -->
         <record id="category_competitor" model="category">
             <field name="name">Competitor</field>
+            <field name="description">Category for adults who want to train and participate to official competitions.</field>
         </record>
         <record id="category_starter" model="category">
             <field name="name">Starter</field>
+            <field name="description">Category for adults who only want to train (official competition participation is not allowed).</field>
         </record>
         <record id="category_child" model="category">
             <field name="name">Child</field>
+            <field name="description">Category for children below 12 years old.</field>
         </record>
         <record id="category_teenager" model="category">
             <field name="name">Teenager</field>
+            <field name="description">Category for players between 12 and 18 years old.</field>
         </record>
     </data>
 </odoo>
