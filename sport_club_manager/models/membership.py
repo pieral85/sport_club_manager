@@ -163,7 +163,7 @@ class Membership(models.Model):
         ))
         vals.setdefault('state', 'requested')
         res = super(Membership, self).create(vals)
-        res._add_follower(vals)
+        # res._add_follower(vals)
         return res
 
     def send_email_invitation(self):
@@ -270,10 +270,11 @@ class Membership(models.Model):
             if record.env['membreship'].search_count([('token', '=', record.token),]) > 1:
                 record.token = _default_token()
 
-    def _add_follower(self, vals):
-        ids = self.user_id.partner_id.ids
-        ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
-        self.message_subscribe(partner_ids=ids)
+    # Let's wait what we decide to do...
+    # def _add_follower(self, vals):
+    #     ids = self.contact_person_id.ids if self.contact_person_id else self.user_id.partner_id.ids
+    #     ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
+    #     self.message_subscribe(partner_ids=ids)
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):
