@@ -32,6 +32,8 @@ class Membership(models.Model):
         required=True,
         string='User',
     )
+    contact_person_id = fields.Many2one('res.partner', string='Contact Person',
+        help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     user_state = fields.Selection(
         string='User Status',
         related='user_id.state',
@@ -95,8 +97,8 @@ class Membership(models.Model):
         compute='_compute_color',
         help='Color to be displayed in the kanban view.',
     )
-    mail_sent = fields.Boolean(
-        string='Mail Sent',
+    confirmation_mail_sent = fields.Boolean(
+        string='Confirmation Mail Sent',
         default=False,
         copy=False,
     )
@@ -162,13 +164,15 @@ class Membership(models.Model):
         return res
 
     def send_email_invitation(self):
-        invitation_template = self.env.ref('sport_club_manager.email_template_membership_affiliation_request')
+        invitation_template = self.env.ref('sport_club_manager.email_template_membership_affiliation_invitation')
         ctx = {
             'company_id': self.env.user.company_id,
             'dbname': self._cr.dbname,
         }
-        invitation_template.with_context(ctx).send_mail(self.id)
-        self.invitation_mail_sent = True
+        for membership in self:
+            if membership.state not in ('requested', 'member', 'rejected'):
+                invitation_template.with_context(ctx).send_mail(membership.id)
+                membership.invitation_mail_sent = True
         return True
 
     @api.multi
@@ -350,14 +354,16 @@ class Membership(models.Model):
             record.state = 'rejected'
 
     @api.multi
-    def send_email(self):
-        for record in self:
-            record.mail_sent = True
-            template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
-            ctx = {
-                'company_id': self.env.user.company_id,
-            }
-            self.with_context(ctx).message_post_with_template(template.id)
+    def send_email_confirmation(self):
+        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
+        ctx = {
+            'company_id': self.env.user.company_id,
+        }
+        for membership in self:
+            if membership.state == 'member':
+                membership.with_context(ctx).message_post_with_template(template.id)  # TODO This method can be caled from a "multiple records" (self instead of membership)
+                membership.confirmation_mail_sent = True
+        # TODO Add a return???
 
     def copy(self, default=None):
         self.ensure_one()

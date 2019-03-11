@@ -60,8 +60,9 @@ for record in records:
 "${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or user.email)|safe}>
 ]]>
             </field>
+
             <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
-            <field name="email_to"><![CDATA[${object.user_id.login or user.email or ''|safe}]]></field>
+            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.user_id.partner_id and object.user_id.partner_id.email and object.user_id.partner_id.id}</field>
             <field name="auto_delete" eval="False"/>
             <field name="lang">${object.user_id.partner_id.lang}</field>
             <field name="body_html"><![CDATA[
@@ -94,20 +95,16 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
             </field>
         </record>
 
-        <!-- Email template for Membership Request -->
-        <record id="email_template_membership_affiliation_request" model="mail.template">
-            <field name="name">Membership Affiliation Request</field>
+        <!-- Email template for Membership Invitation -->
+        <record id="email_template_membership_affiliation_invitation" model="mail.template">
+            <field name="name">Membership Affiliation Invitation</field>
             <field name="model_id" ref="model_membership"/>
             <field name="email_from"><![CDATA[
 "${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or '')|safe}>
 ]]>
             </field>
             <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
-            <!-- <field name="email_to" >${('' if object.partner_id and object.partner_id.email and object.partner_id.email==object.email else object.email|safe)}</field> -->
-            <field name="email_to" ><![CDATA[
-${object.user_id.login or ''|safe}]]>                
-            </field>
-            <!-- <field name="partner_to">${object.partner_id and object.partner_id.email and object.partner_id.email==object.email and object.partner_id.id or False }</field> -->
+            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.user_id.partner_id and object.user_id.partner_id.email and object.user_id.partner_id.id}</field>
             <field name="auto_delete" eval="False"/>
             <field name="body_html"><![CDATA[
 <div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
