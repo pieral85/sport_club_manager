@@ -50,5 +50,26 @@
             <field name="view_mode">graph</field>
             <field name="view_id" ref="membership_view_graph_users"/>
         </record>
+
+        <record id="action_send_email_invitation" model="ir.actions.server">
+            <field name="name">(Re)Send Membership Invitation Email</field>
+            <field name="model_id" ref="sport_club_manager.model_membership"/>
+            <field name="binding_model_id" ref="sport_club_manager.model_membership"/>
+            <field name="state">code</field>
+            <field name="code">
+records.send_email_invitation()
+            </field>
+        </record>
+
+        <record id="action_send_email_confirmation" model="ir.actions.server">
+            <field name="name">(Re)Send Membership Confirmation Email</field>
+            <field name="model_id" ref="model_membership"/>
+            <field name="binding_model_id" ref="model_membership"/>
+            <field name="state">code</field>
+            <field name="code">
+records.send_email_confirmation()
+            </field>
+        </record>
+
     </data>
 </odoo>
