@@ -1,5 +1,6 @@
 <odoo>
 <data>
+
 <!-- Web Page showing info on the active periods -->
 <template id="website_period">
     <t t-call="website.layout">
@@ -168,7 +169,7 @@
                                         Request this membership
                                     </a>
                                     <span id="o_website_form_result"></span>
-                                </div>                            
+                                </div>
                             </div>
                         </form>
                     </section>
@@ -184,5 +185,6 @@
         </div>
     </t>
 </template>
+
 </data>
 </odoo>
