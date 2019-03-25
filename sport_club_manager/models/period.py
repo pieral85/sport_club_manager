@@ -106,32 +106,13 @@ class Period(models.Model):
         :param dict vals: values of the newly created record that will holding the alias.
         :return: the model name for the alias.
         """
-        import ipdb; ipdb.set_trace()
-
-
         return 'membership'
-        
+
     def get_alias_values(self):
         """
-        
+
         :return: values to create an alias, or to write on the alias after its creation.
         """
-        import ipdb; ipdb.set_trace()
-
-
-
-# "alias_name" should be <fetchmail.server>.<<user>>(=sportclubmanager2017)+trim(self.name) (+retirer les accents, etc)  # help: https://github.com/odoo/odoo/blob/11.0/addons/crm/models/res_config_settings.py#L39-L46
-# alias_domain = fields.Char('Alias domain', compute='_get_alias_domain',
-#     default=lambda self: self.env["ir.config_parameter"].sudo().get_param("mail.catchall.domain"))
-#     # default=lambda self: self.env["ir.config_parameter"].sudo().get_param("mail.local.part"))
-# # TODO max. 64 characters
-# alias_domain = 'example.com'
-#         alias_catchall = 'pokemon'
-#         self.env['ir.config_parameter'].set_param('mail.catchall.domain', alias_domain)
-#         self.env['ir.config_parameter'].set_param('mail.catchall.alias', alias_catchall)
-
-
-
         values = super(Period, self).get_alias_values()
         values['alias_defaults'] = {'period_id': self.id}
         return values
