@@ -160,7 +160,7 @@ class Membership(models.Model):
         ).id)  # TODO Tester quand il n'existe pas de periode courante
         vals.setdefault('state', 'unknown')
         res = super(Membership, self).create(vals)
-        # res._add_follower(vals)
+        res._add_follower(vals)
         return res
 
     @api.multi
@@ -285,11 +285,11 @@ class Membership(models.Model):
             if record.env['membreship'].search_count([('token', '=', record.token),]) > 1:
                 record.token = _default_token()
 
-    # Let's wait what we decide to do...
-    # def _add_follower(self, vals):
-    #     ids = self.contact_person_id.ids if self.contact_person_id else self.member_id.ids
-    #     ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
-    #     self.message_subscribe(partner_ids=ids)
+    def _add_follower(self, vals):
+        ids = self.contact_person_id.ids or self.member_id.ids
+        # Let's wait what we decide to do...
+        # ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
+        self.message_subscribe(partner_ids=ids)
 
     @api.depends('member_id')
     def _compute_member_user_id(self):
