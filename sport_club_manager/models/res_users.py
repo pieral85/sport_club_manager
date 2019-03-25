@@ -10,6 +10,11 @@ from odoo import api, fields, models, exceptions, _
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
+    # TODO Test constraint
+    # TODO Add @api.constrains('...')???
+    _sql_constraints = [
+        ('partner_uniq', 'unique (partner_id)', 'The partner should be unique!'),
+    ]
 
     # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
     action_id = fields.Many2one(
@@ -18,11 +23,6 @@ class ResUsers(models.Model):
         compute='_get_action_id',
         store=True,
         help="If specified, this action will be opened at log on for this user, in addition to the standard menu."
-    )
-    membership_ids = fields.One2many(
-        comodel_name='membership',
-        inverse_name='user_id',
-        string='Memberships',
     )
     role_ids = fields.One2many(
         comodel_name='role',
@@ -67,9 +67,9 @@ class ResUsers(models.Model):
         if not self.login:
             return
         # TODO Do we really need to check email at onchange of login (can't a user login with sth != email?)
-        if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
-            raise exceptions.ValidationError(_('Invalid email address. Please enter a valid one.'))
-        if self.search_count([('login', '=', self.login), ]):
+        # if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
+        #     raise exceptions.ValidationError(_('Invalid email address. Please enter a valid one.'))
+        if self.search_count([('login', '=', self.login), ]):  # TODO Mettre ça une fois qu'on sauve?
             raise exceptions.ValidationError(_('This email already exists. Please enter another one.'))
 
     def _get_group_vals(self, vals):

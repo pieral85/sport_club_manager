@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>         
+    <data>
         <record id="view_partner_short_form_sport" model="ir.ui.view">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>

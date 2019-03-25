@@ -45,7 +45,7 @@
                                 </field>
                             </page>
                             <page string="Members">
-                                <field name="user_ids">
+                                <field name="member_ids">
                                     <tree editable="bottom">
                                         <field name="name"/>
                                     </tree>
@@ -54,7 +54,7 @@
                             <page string="Memberships">
                                 <field name="membership_ids">
                                     <tree editable="bottom">
-                                        <field name="user_id"/>
+                                        <field name="member_id"/>
                                         <field name="period_id"/>
                                         <field name="state"/>
                                         <field name="paid"/>

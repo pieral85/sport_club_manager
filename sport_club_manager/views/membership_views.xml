@@ -7,7 +7,7 @@
             <field name="model">membership</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="user_id"/>
+                    <field name="member_id"/>
                     <field name="period_id"/>
                     <field name="category_id"/>
                     <field name="state"/>
@@ -44,7 +44,7 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="user_id"/>
+                            <field name="member_id"/>
                             <field name="contact_person_id"/>
                             <field name="period_id" class="o_task_user_field"/>
                             <field name="category_id"/>
@@ -64,12 +64,12 @@
 
         <!-- graph view(s) -->
         <!-- Prices per player with period details -->
-        <record id="membership_view_graph_users" model="ir.ui.view">
+        <record id="membership_view_graph_members" model="ir.ui.view">
             <field name="name">membership graph users</field>
             <field name="model">membership</field>
             <field name="arch" type="xml">
-                <graph string="Prices per User" type="bar" stacked="1">
-                    <field name="user_id" type="row"/>
+                <graph string="Prices per Member" type="bar" stacked="1">
+                    <field name="member_id" type="row"/>
                     <field name="period_id" type="row"/>
                     <field name="price_remaining" type="measure"/>
                     <field name="price_paid" type="measure"/>
@@ -84,7 +84,7 @@
             <field name="arch" type="xml">
                 <graph string="Prices per Period" type="bar" stacked="1">
                     <field name="period_id" type="row"/>
-                    <field name="user_id" type="row"/>
+                    <field name="member_id" type="row"/>
                     <field name="price_remaining" type="measure"/>
                     <field name="price_paid" type="measure"/>
                     <field name="price_due" type="measure"/>
@@ -99,11 +99,11 @@
             <field name="arch" type="xml">
                 <pivot>
                     <field name="period_id" type="row"/>
-                    <field name="user_id" type="row"/>
+                    <field name="member_id" type="row"/>
                     <field name="state" type="col"/>
                     <field name="price_paid" type="measure"/>
                     <field name="price_due" type="measure"/>
-                    <field name="price_remaining" type="measure"/> 
+                    <field name="price_remaining" type="measure"/>
                 </pivot>
             </field>
         </record>
@@ -122,14 +122,14 @@
                                 oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
                                 ? 'oe_kanban_card_fancy' : ''}}">
                                 <div>
-                                    <img t-att-src="kanban_image('res.users', 'image_medium', record.user_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
+                                    <img t-att-src="kanban_image('res.users', 'image_medium', record.member_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
                                 </div>
 
                                 <div class="oe_kanban_details">
                                     <div class="o_kanban_record_top">
                                         <div class="o_kanban_record_headings">
                                             <strong class="o_kanban_record_title">
-                                                <field name="user_id"/>
+                                                <field name="member_id"/>
                                             </strong>
                                             <span>
                                                 <div class="o_dropdown_kanban dropdown col-xs-4" >
@@ -180,7 +180,7 @@
             <field name="arch" type="xml">
                 <search string="Periods">
                     <field name="period_id" string="Period" filter_domain="[('period_id','ilike',self)]"/>
-                    <field name="user_id" string="Member"/>
+                    <field name="member_id" string="Member"/>
                     <filter string="Current Period" name ="current_period_search" icon="terp-gtk-media-pause" domain="[('period_id.current', '=', True)]" help="Memberships of current period."/>
                     <filter string="Upcoming Period" name ="upcoming_period_search" icon="terp-gtk-media-pause" domain="[('period_id.upcoming', '=', True)]" help="Memberships of upcoming period."/>
                     <separator/>

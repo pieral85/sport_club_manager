@@ -161,7 +161,7 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
                                 <table class="o_event_table table table-striped">
                                     <tr>
                                         <th>Player</th>
-                                        <td><t t-esc="membership.user_id.name"/> (<t t-esc="membership.user_id.login"/>)</td>
+                                        <td><t t-esc="membership.member_id.name"/> (<t t-esc="membership.member_user_id.login"/>)</td>
                                     </tr>
                                     <tr>
                                         <th>Period</th>

@@ -10,7 +10,7 @@ class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
     _description = 'Membership'
-    _order = "period_id asc, user_id asc"
+    _order = "period_id asc, member_id asc"
 
     @api.returns('self')
     def _default_price_due(self):
@@ -26,17 +26,15 @@ class Membership(models.Model):
         required=True,
         string='Period Category',
     )
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        ondelete='cascade',
-        required=True,
-        string='User',
-    )
+    member_id = fields.Many2one('res.partner', string='Member',
+        ondelete='restrict', required=True, domain=[('is_company', '=', False)])
+    member_user_id = fields.Many2many('res.users', compute='_compute_member_user_id',
+        domain=[('is_company', '=', False)])
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     user_state = fields.Selection(
         string='User Status',
-        related='user_id.state',
+        related='member_user_id.state',
         readonly=True,
     )
     currency_id = fields.Many2one(
@@ -116,12 +114,12 @@ class Membership(models.Model):
         default='undefined',
         copy=False,
         help="Membership status for user's response.")
-    partner_id = fields.Many2one(
-        comodel_name='res.partner',
-        related='user_id.partner_id',
-        store=False,
-        readonly=True,
-    )
+    # partner_id = fields.Many2one(
+    #     comodel_name='res.partner',
+    #     related='user_id.partner_id',
+    #     store=False,
+    #     readonly=True,
+    # )
     category_id = fields.Many2one(
         comodel_name='category',
         related='period_category_id.category_id',
@@ -137,7 +135,7 @@ class Membership(models.Model):
     )
 
     @api.multi
-    @api.depends('period_id', 'user_id')
+    @api.depends('period_id', 'member_id')
     def name_get(self):
         """ name_get() -> [(id, name), ...]
 
@@ -186,7 +184,7 @@ class Membership(models.Model):
             'state': 'requested',
         })
         for membership in self:
-            membership.message_post(body="%s has accepted the invitation. His status has been changed to Requested." % (membership.partner_id.name))
+            membership.message_post(body="%s has accepted the invitation. His status has been changed to Requested." % (membership.member_id.name))
         return res
 
     @api.multi
@@ -197,7 +195,7 @@ class Membership(models.Model):
             'state': 'rejected',
         })
         for membership in self:
-            membership.message_post(body="%s has declined the invitation. His status has been changed to Rejected." % (membership.partner_id.name))
+            membership.message_post(body="%s has declined the invitation. His status has been changed to Rejected." % (membership.member_id.name))
         return res
 
     @api.multi
@@ -272,9 +270,16 @@ class Membership(models.Model):
 
     # Let's wait what we decide to do...
     # def _add_follower(self, vals):
-    #     ids = self.contact_person_id.ids if self.contact_person_id else self.user_id.partner_id.ids
+    #     ids = self.contact_person_id.ids if self.contact_person_id else self.member_id.ids
     #     ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
     #     self.message_subscribe(partner_ids=ids)
+
+    @api.depends('member_id')
+    def _compute_member_user_id(self):
+        ResUsers = self.env['res.users']
+        for record in self:
+            record.member_user_id = ResUsers.search([('partner_id', '=', record.member_id.id)],
+                limit=1)
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):
@@ -333,14 +338,14 @@ class Membership(models.Model):
                 record.period_id = backup_period_id
 
     @api.one
-    @api.constrains('user_id', 'period_id')
+    @api.constrains('member_id', 'period_id')
     def _check_user_period(self):
-        """ Checks that the user has only one membership per period (otherwise, an exception is raised).
+        """ Checks that the member has only one membership per period (otherwise, an exception is raised).
 
         :return: None
         """
-        if self.env['membership'].search_count([('user_id.id', '=', self.user_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
-            raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (self.user_id.name, self.period_id.name))
+        if self.env['membership'].search_count([('member_id.id', '=', self.member_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
+            raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (self.member_id.name, self.period_id.name))
 
     @api.multi
     def validate_membership_payment(self):
@@ -373,7 +378,7 @@ class Membership(models.Model):
         self.ensure_one()
         default = dict(default or {})
         default.setdefault('period_category_id', self.period_category_id.id)
-        default.setdefault('user_id', self.user_id.id)
+        default.setdefault('member_id', self.member_id.id)
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_due', self.price_due)
         default.setdefault('state', self.state)

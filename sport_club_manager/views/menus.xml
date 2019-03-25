@@ -24,6 +24,6 @@
         <!-- menu action(s): Level 4 -->
         <!-- Reports -->
         <menuitem id="menu_sub_reports_prices_period" name="Prices per Period" parent="menu_top_reports" action="action_report_prices_per_period"/>
-        <menuitem id="menu_sub_reports_prices_user" name="Prices per User" parent="menu_top_reports" action="action_report_prices_per_user"/>
+        <menuitem id="menu_sub_reports_prices_user" name="Prices per User" parent="menu_top_reports" action="action_report_prices_per_member"/>
     </data>
 </odoo>

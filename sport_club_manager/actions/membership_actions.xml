@@ -24,7 +24,7 @@
                     }),
                 (0, 0, {
                     'view_mode': 'graph',
-                    'view_id': ref('membership_view_graph_users'),
+                    'view_id': ref('membership_view_graph_members'),
                     }),
                 (0, 0, {
                     'view_mode': 'pivot',

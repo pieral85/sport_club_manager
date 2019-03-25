@@ -25,11 +25,8 @@ class Category(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(),
         store=False,
     )
-    user_ids = fields.Many2many(
-        comodel_name='res.users',
-        string='Members',
-        compute='_compute_get_users',
-    )
+    member_ids = fields.Many2many('res.partner', string='Members',
+        compute='_compute_get_members')
     membership_ids = fields.Many2many(
         comodel_name='membership',
         string='Memberships',
@@ -55,9 +52,9 @@ class Category(models.Model):
         compute='_total_remaining_price_due',
     )
 
-    def _compute_get_users(self):
+    def _compute_get_members(self):
         for record in self:
-            record.user_ids = self.env['res.users'].search([('membership_ids.period_category_id.category_id.id', '=', record.id),])
+            record.member_ids = self.env['res.partner'].search([('membership_ids.period_category_id.category_id.id', '=', record.id),])
 
     def _compute_get_memberships(self):
         for record in self:

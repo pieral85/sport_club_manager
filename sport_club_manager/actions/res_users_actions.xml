@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="action_member" model="ir.actions.act_window">
-            <field name="name">Users</field>
-            <field name="res_model">res.users</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form,kanban</field>
-        </record>
+    	<!-- TODO Should we add a res.users view? If no, delete this file. -->
     </data>
 </odoo>
