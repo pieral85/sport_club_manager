@@ -57,17 +57,18 @@ for record in records:
             <field name="name">Membership Affiliation Confirmation</field>
             <field name="model_id" ref="model_membership"/>
             <field name="email_from"><![CDATA[
-"${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or user.email)|safe}>
+"${user.company_id.name|safe}" <${(user.company_id.email or user.email)|safe}>
 ]]>
             </field>
 
             <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
-            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.user_id.partner_id and object.user_id.partner_id.email and object.user_id.partner_id.id}</field>
+            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
             <field name="auto_delete" eval="False"/>
-            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="is_membership_confirmation_mail" eval="True"/>
+            <field name="lang">${object.member_id.lang}</field>
             <field name="body_html"><![CDATA[
 <p>
-    Dear ${(object.user_id.name or 'player')|safe},
+    Dear ${(object.member_id.name or 'player')|safe},
 </p>
 <p>
 We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>!
@@ -89,7 +90,7 @@ We hope you will enjoy this new season with us!
 Best regards,
 </p>
 <p>
-${user.name}, for the ${ctx['company_id'].name|safe} comittee members
+${user.name}, for the ${user.company_id.name|safe} comittee members
 </p>
 ]]>
             </field>
@@ -100,16 +101,17 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
             <field name="name">Membership Affiliation Invitation</field>
             <field name="model_id" ref="model_membership"/>
             <field name="email_from"><![CDATA[
-"${ctx['company_id'].name|safe}" <${(ctx['company_id'].email or '')|safe}>
+"${user.company_id.name|safe}" <${(user.company_id.email or '')|safe}>
 ]]>
             </field>
             <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
-            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.user_id.partner_id and object.user_id.partner_id.email and object.user_id.partner_id.id}</field>
+            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
             <field name="auto_delete" eval="False"/>
+            <field name="is_membership_invitation_mail" eval="True"/>
             <field name="body_html"><![CDATA[
 <div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
     <p>
-        Dear ${(object.user_id.name or 'player')|safe},
+        Dear ${(object.member_id.name or 'player')|safe},
     </p>
     <p>
         An affiliation request has been done for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>.
@@ -125,7 +127,7 @@ ${user.name}, for the ${ctx['company_id'].name|safe} comittee members
         Best regards,
     </p>
     <p>
-        The ${ctx['company_id'].name|safe} comittee members
+        The ${user.company_id.name|safe} comittee members
     </p>
     <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
 

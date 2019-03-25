@@ -147,34 +147,52 @@ class Membership(models.Model):
         """
         res = []
         for record in self:
-            name = '%s (%s)' % (record.period_id.name, record.user_id.name)
+            name = '%s (%s)' % (record.period_id.name, record.member_id.name)
             res.append((record.id, name))
         return res
 
     @api.model
     def create(self, vals):
-        vals.setdefault('user_id', self.env.uid)
         vals.setdefault('period_category_id', self.env['period_category'].search([
             ('period_id.current', '=', True),
             ('default', '=', True),
             ]
-        ))
-        vals.setdefault('state', 'requested')
+        ).id)  # TODO Tester quand il n'existe pas de periode courante
+        vals.setdefault('state', 'unknown')
         res = super(Membership, self).create(vals)
         # res._add_follower(vals)
         return res
 
+    @api.multi
     def send_email_invitation(self):
-        invitation_template = self.env.ref('sport_club_manager.email_template_membership_affiliation_invitation')
-        ctx = {
-            'company_id': self.env.user.company_id,
-            'dbname': self._cr.dbname,
-        }
-        for membership in self:
-            if membership.state not in ('requested', 'member', 'rejected'):
-                invitation_template.with_context(ctx).send_mail(membership.id)
-                membership.invitation_mail_sent = True
-        return True
+        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_invitation')
+        memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
+        if memberships:
+            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+            ctx = dict(
+                dbname=self._cr.dbname,
+                only_invitation_emails=True,
+                default_model='membership',
+                active_ids=memberships.ids,
+                default_use_template=bool(template),
+                default_template_id=template and template.id or False,
+                default_composition_mode='mass_mail',
+                force_email=True,
+            )
+            return {
+                'name': _('Compose Email - Membership Invitation'),
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'mail.compose.message',
+                'views': [(compose_form.id, 'form')],
+                'target': 'new',
+                'context': ctx,
+            }
+
+    @api.multi
+    def action_reset_password(self):
+        import ipdb; ipdb.set_trace()
+        return self.mapped('member_user_id').action_reset_password()
 
     @api.multi
     def do_accept(self):
@@ -218,48 +236,47 @@ class Membership(models.Model):
             return
         vals.setdefault('price_due', period_category.price_due)
 
-        # Get user who sent the email (create it if was not existing)
+        # Get partner who sent the email (create it if was not existing)
         email = (tools.email_split(msg.get('from')) or tools.email_split(msg.get('email_from')) or [None])[0]
-        if not email:
+        name = msg.get('from').split('<')[0].strip() or msg.get('email_from').split('<')[0].strip() or None
+        if not name and email:
+            name = email.split("@")[0]
+        if not email or not name:
             return
-        if msg.get('author_id'):
-            partner = self.env['res.partner'].browse(msg.get('author_id'))
-        else:
-            partner = self.env['res.partner'].search([('email', '=', email),])
-        user_id = self.env['res.users'].search([('login', '=', email),]).id
 
-        if not user_id:
-            if partner:
-                user_id = self.env['res.users'].create({
-                    'name': partner.name,
-                    'login': partner.email,
-                    }).id
-            else:
-                user_id = self.env['res.users'].create({
-                    'name': 'Unknown User',
-                    'login': email,
-                    }).id
-        if not vals.setdefault('user_id', user_id):
+        if msg.get('author_id'):
+            sender = self.env['res.partner'].browse(msg.get('author_id'))
+        else:
+            sender = self.env['res.partner'].search([('email', '=', email),])
+
+        # TODO call <res.users>._signup_create_user(self, values) to create a  user (same rights than portal user)
+        if not sender:
+            sender = self.env['res.partner'].create({
+                'name': name,
+                'email': email,
+            })
+
+        if not vals.setdefault('member_id', sender.id):
             return
 
         # If a membership already exists: no need to create a new one
         membership = self.env['membership'].search([
             ('period_id.id', '=', period_id),
-            ('user_id.id', '=', user_id),
-            ],
-        )
-        vals.setdefault('state', 'requested')
+            ('member_id.id', '=', sender.id),
+        ], limit=1)
+        if not membership:
+            membership = self.env['membership'].search([
+                ('period_id.id', '=', period_id),
+                ('contact_person_id.id', '=', sender.id),
+            ], limit=1)
+
+        vals.setdefault('state', 'unknown')
         if membership:
-            vals.setdefault('price_paid', membership.price_paid)
-            return membership.message_update(msg, update_vals=vals)
+            # vals.setdefault('price_paid', membership.price_paid)
+            return membership
         else:
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
-
-    @api.multi
-    def action_reset_password(self):
-        """ create signup token for each user, and send their signup url by email """
-        return self.mapped('user_id').action_reset_password()
 
     @api.onchange('token')
     def _onchange_token(self):
@@ -365,14 +382,27 @@ class Membership(models.Model):
     @api.multi
     def send_email_confirmation(self):
         template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
-        ctx = {
-            'company_id': self.env.user.company_id,
-        }
-        for membership in self:
-            if membership.state == 'member':
-                membership.with_context(ctx).message_post_with_template(template.id)  # TODO This method can be caled from a "multiple records" (self instead of membership)
-                membership.confirmation_mail_sent = True
-        # TODO Add a return???
+        memberships = self.filtered(lambda m: m.state == 'member')
+        if memberships:
+            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+            ctx = dict(
+                only_confirmation_emails=True,
+                default_model='membership',
+                active_ids=memberships.ids,
+                default_use_template=bool(template),
+                default_template_id=template and template.id or False,
+                default_composition_mode='mass_mail',
+                force_email=True,
+            )
+            return {
+                'name': _('Compose Email - Membership Affiliation Confirmation'),
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'mail.compose.message',
+                'views': [(compose_form.id, 'form')],
+                'target': 'new',
+                'context': ctx,
+            }
 
     def copy(self, default=None):
         self.ensure_one()

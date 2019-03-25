@@ -42,6 +42,7 @@
         'views/res_company_views.xml',
         'views/membership_views.xml',
         'views/website.xml',
+        'views/mail_views.xml',
         'views/res_config_settings_views.xml',
 
         # actions
