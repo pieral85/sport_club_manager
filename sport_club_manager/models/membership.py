@@ -69,7 +69,7 @@ class Membership(models.Model):
         [
          ('unknown', 'Unknown'),
          ('old_member', 'Old Member'),
-         ('requested', 'Requested'),
+         ('requested', 'To Be Validated'),
          ('member', 'Member'),
          ('rejected', 'Rejected'),
         ],
@@ -222,7 +222,7 @@ class Membership(models.Model):
 
     @api.model
     def message_new(self, msg, custom_values=None):
-        """ Override to updates the document according to the email. """
+        """ Override to update the document according to the email. """
         vals = dict(custom_values) or {}
         period_id = vals.pop('period_id', None)
         if not period_id:
