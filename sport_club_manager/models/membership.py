@@ -46,13 +46,13 @@ class Membership(models.Model):
     price_paid = fields.Monetary(
         string='Price Paid',
         currency_field='currency_id',
-        track_visibility='always',
+        track_visibility='onchange',
         copy=False,
     )
     price_due = fields.Monetary(
         string='Price Due',
         default=_default_price_due,
-        track_visibility='always',
+        track_visibility='onchange',
         store=True,
     )
     price_paid_percentage = fields.Float(
