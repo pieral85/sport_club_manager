@@ -13,7 +13,7 @@ class ResUsers(models.Model):
     # TODO Test constraint
     # TODO Add @api.constrains('...')???
     _sql_constraints = [
-        ('partner_uniq', 'unique (partner_id)', 'The partner should be unique!'),
+        ('partner_uniq', 'unique(partner_id)', 'The partner should be unique!'),
     ]
 
     # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")

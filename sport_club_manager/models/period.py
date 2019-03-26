@@ -124,7 +124,7 @@ class Period(models.Model):
         :return: None
         """
         current_period_id = self.env['period'].search(
-            ['&', '&', 
+            ['&', '&',
              '|', ('active', '=', True), ('active', '=', False),
              ('start_date', '<=', fields.Date.today()),
              ('end_date', '>=', fields.Date.today()),
@@ -196,6 +196,19 @@ class Period(models.Model):
         #  * Ouvre ensuite un template d'email
         #  * Créer le template d'email qui doit contenir deux boutons: un pour accepter et un pour refuser
         pass
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        # TODO It would be great if this search method would be invoked from the membership views
+        for i, domain in enumerate(args):
+            if domain[0] == 'name' and domain[2].isdigit():
+                args.insert(i, '|')
+                year = domain[2]
+                min_date = '{}-01-01'.format(year)
+                max_date = '{}-12-31'.format(year)
+                args += ['&', ['start_date', '<=', max_date], ['end_date', '>=', min_date]]
+                break
+        return super(Period, self).search(args, offset, limit, order, count=count)
 
     @api.multi
     def write(self, vals):
@@ -304,16 +317,3 @@ class Period(models.Model):
         """
         if self.search_count([('name', '=', self.name)]) > 1:
             raise exceptions.ValidationError(_("The name of the period must be unique! Please change it accordingly."))
-
-    @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
-        # TODO It would be great if this search method would be invoked from the membership views
-        for i, domain in enumerate(args):
-            if domain[0] == 'name' and domain[2].isdigit():
-                args.insert(i, '|')
-                year = domain[2]
-                min_date = '{}-01-01'.format(year)
-                max_date = '{}-12-31'.format(year)
-                args += ['&', ['start_date', '<=', max_date], ['end_date', '>=', min_date]]
-                break
-        return super(Period, self).search(args, offset, limit, order, count=count)
