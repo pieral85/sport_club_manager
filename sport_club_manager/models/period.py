@@ -14,6 +14,7 @@ class Period(models.Model):
     _sql_constraints = [
        ('dates_check', 'CHECK(start_date < end_date)',
         'The end date should be higher than the start date. Please change it accordingly.'),
+       ('name_uniq', 'unique(name)', 'The name of the period must be unique!'),
     ]
 
     name = fields.Char(
@@ -272,7 +273,6 @@ class Period(models.Model):
     def _get_alias_name(self, vals):
         if 'name' in vals and not 'alias_name' in vals:
             local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
-            # TODO The name should be unique (add double constraint: sql level and odoo level)
             return {'alias_name': '{}+{}'.format(local_part, vals['name'])}
         return {}
 
@@ -294,6 +294,16 @@ class Period(models.Model):
             raise exceptions.ValidationError(_('The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly.') % (self.start_date, self.end_date, count_common_periods))
         if not self.start_date or not self.end_date or self.start_date > self.end_date:
             raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+
+    @api.one
+    @api.constrains('name')
+    def _check_name_unique(self):
+        """ Checks that the name of the period is unique.
+
+        :return: None
+        """
+        if self.search_count([('name', '=', self.name)]) > 1:
+            raise exceptions.ValidationError(_("The name of the period must be unique! Please change it accordingly."))
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
