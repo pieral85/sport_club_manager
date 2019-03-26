@@ -196,6 +196,16 @@ class Period(models.Model):
         #  * Créer le template d'email qui doit contenir deux boutons: un pour accepter et un pour refuser
         pass
 
+    @api.multi
+    def write(self, vals):
+        vals.update(self._get_alias_name(vals))
+        return super(Period, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        vals.update(self._get_alias_name(vals))
+        return super(Period, self).create(vals)
+
     def _compute_get_members(self):
         for record in self:
             record.member_ids = self.env['res.partner'].search([('membership_ids.period_category_id.period_id.id', '=', record.id),])
@@ -259,18 +269,12 @@ class Period(models.Model):
         except ValueError:
             return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
 
-    @api.multi
-    def write(self, vals):
-        ConfigParam = self.env['ir.config_parameter']
-        local_part = ConfigParam.sudo().get_param('mail_local_part') or ''
-        # TOASK Which one is better? local_part or local_part_TEST?
-        # local_part_TEST = self.env['res.config.settings'].sudo().get_values()['mail_local_part']
-
+    def _get_alias_name(self, vals):
         if 'name' in vals and not 'alias_name' in vals:
+            local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
             # TODO The name should be unique (add double constraint: sql level and odoo level)
-            # TODO Get compatible chars for email from vals['name']
-            vals['alias_name'] = local_part + '+' + vals['name']
-        return super(Period, self).write(vals)
+            return {'alias_name': '{}+{}'.format(local_part, vals['name'])}
+        return {}
 
     @api.one
     @api.constrains('start_date', 'end_date')
