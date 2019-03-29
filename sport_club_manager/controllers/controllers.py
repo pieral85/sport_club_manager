@@ -69,38 +69,35 @@ class SportClubManager(AuthSignupHome):
             'memberships': memberships,
         })
 
-    @http.route('%s/my/membership/accept' % _URL_ROOT, type='http', auth='public')
-    def accept(self, db, token, action, id, **kwargs):
+    @http.route('%s/my/membership/<string:action>' % _URL_ROOT, type='http', auth='public', website=True)
+    def membership_invitation_response(self, action, db, token):
         registry = registry_get(db)
+        messages = {}
         with registry.cursor() as cr:
             env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token), ('state', '!=', 'member'), ('user_response', '!=', 'accepted')])
-            if membership:
-                membership.do_accept()
-        return self.view(db, token, action, id, view='form')
+            membership = env['membership'].search([('token', '=', token)])
+            if not token or not membership or len(membership) > 1:
+                return http.request.render('website.404')
 
-    @http.route('%s/my/membership/decline' % _URL_ROOT, type='http', auth='public')
-    def declined(self, db, token, action, id):
-        registry = registry_get(db)
-        with registry.cursor() as cr:
-            env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token), ('state', '!=', 'member'), ('user_response', '!=', 'declined')])
-            if membership:
-                membership.do_decline()
-        return self.view(db, token, action, id, view='form')
+            if not membership.token_is_valid and action != 'view':
+                messages['warning'] = 'You cannot perform this action because the token has expired.'
 
+            if membership.state == 'member':
+                messages['info'] = 'Congratulations, your membership has already been approved by the committee.'
+            elif membership.token_is_valid:
+                if action == 'accept':
+                    membership.do_accept()
+                    messages['success'] = 'You have accepted the invitation. Your membership must now be approved by the committee.'
+                elif action == 'decline':
+                    membership.do_decline()
+                    messages['success'] = 'You have declined the invitation.'
+                elif action == 'view' and membership.state == 'requested':
+                    messages['info'] = 'Your membership request is going to be examined by the committee. \
+                        Please ensure to pay the amount due first.'
 
-    @http.route('%s/my/membership/view' % _URL_ROOT, type='http', auth='public')
-    def view(self, db, token, action, id, view='calendar'):
-        registry = registry_get(db)
-        with registry.cursor() as cr:
-            # Since we are in auth=none, create an env with SUPERUSER_ID
-            env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token),], limit=1)
-            if not membership:
-                return http.request.not_found()
             response_content = env['ir.ui.view'].render_template(
                 'sport_club_manager.membership_affiliation_page_anonymous', {
                     'membership': membership,
+                    'messages': messages,
                 })
-            return http.request.make_response(response_content, headers=[('Content-Type', 'text/html')])
+        return http.request.make_response(response_content, headers=[('Content-Type', 'text/html')])

@@ -23,8 +23,14 @@ class MailComposer(models.TransientModel):
     @api.multi
     def send_mail(self, auto_commit=False):
         self.ensure_one()
+        model = self.env.context.get('default_model')
+
+        if model == 'membership':
+            self.env[model].browse(self.env.context['active_ids']).reset_token()
+
         res = super(MailComposer, self).send_mail(auto_commit)
-        if self.env.context.get('default_model') == 'membership' and self.env.context.get('active_ids'):
+
+        if model == 'membership' and self.env.context.get('active_ids'):
             vals = {}
             if self.template_id.is_membership_invitation_mail:
                 vals['invitation_mail_sent'] = True

@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import uuid
+from datetime import timedelta, datetime
 
 from odoo import api, fields, models, exceptions, tools, _
 
@@ -17,7 +18,7 @@ class Membership(models.Model):
         return self.period_category_id.price_due
 
     @api.model
-    def _default_token(self):
+    def _get_token(self):
         return uuid.uuid4().hex
 
     period_category_id = fields.Many2one(
@@ -65,6 +66,11 @@ class Membership(models.Model):
         compute='_compute_payment',
         store=True,
     )
+    paid = fields.Boolean(
+        string='Paid',
+        compute='_compute_payment',
+        store=True,
+    )
     state = fields.Selection(
         [
          ('unknown', 'Unknown'),
@@ -78,16 +84,9 @@ class Membership(models.Model):
         track_visibility='always',
         group_expand='_expand_state',
     )
-    paid = fields.Boolean(
-        string='Paid',
-        compute='_compute_payment',
-        store=True,
-    )
-    token = fields.Char(
-        string='Invitation Token',
-        default=_default_token,
-        copy=False,
-    )
+    token = fields.Char('Invitation Token', readonly=True, copy=False)
+    token_validity = fields.Datetime('Token Validity', readonly=True)  # , groups='base.group_user')
+    token_is_valid = fields.Boolean('Token Is Valid', compute='_compute_token_is_valid', readonly=True)
     invitation_mail_sent = fields.Boolean(
         string='Invitation Mail Sent',
         default=False,
@@ -162,6 +161,15 @@ class Membership(models.Model):
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
         return res
+
+    @api.multi
+    def reset_token(self):
+        for membership in self:
+            membership.write({
+                'token': self._get_token(),
+                'token_validity': datetime.now(),
+                'user_response': 'undefined',
+            })
 
     @api.multi
     def send_email_invitation(self):
@@ -280,10 +288,15 @@ class Membership(models.Model):
 
     @api.onchange('token')
     def _onchange_token(self):
-        # import ipdb; ipdb.set_trace()
         for record in self:
-            if record.env['membreship'].search_count([('token', '=', record.token),]) > 1:
-                record.token = _default_token()
+            if record.env['membership'].search_count([('token', '=', record.token),]) > 1:
+                record.token = _get_token()
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('state') == 'member':
+            vals['token_validity'] = None
+        super(Membership, self).write(vals)
 
     def _add_follower(self, vals):
         ids = self.contact_person_id.ids or self.member_id.ids
@@ -320,6 +333,12 @@ class Membership(models.Model):
                 record.color = 10 if record.price_paid_percentage == 100 else 9
             else:
                 record.color = 12
+
+    @api.depends('token_validity')
+    def _compute_token_is_valid(self):
+        for record in self:
+            # TODO 30 should be in scm parameters
+            record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
 
     @api.onchange('period_category_id')
     def _calculate_price_due(self):

@@ -47,14 +47,21 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="member_id"/>
-                            <field name="contact_person_id"/>
-                            <field name="period_id" class="o_task_user_field"/>
-                            <field name="category_id"/>
+                            <group>
+                                <field name="member_id"/>
+                                <field name="contact_person_id"/>
+                                <field name="period_id" class="o_task_user_field"/>
+                                <field name="category_id"/>
+                            </group>
+                            <group>
+                                <field name="price_paid"/>
+                                <field name="price_due"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="price_paid"/>
-                            <field name="price_due"/>
+                        <group groups="base.group_no_one">
+                            <field name="token"/>
+                            <field name="token_validity"/>
+                            <field name="token_is_valid"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">

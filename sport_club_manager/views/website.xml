@@ -11,4 +11,8 @@
             <attribute name="class">no_bg</attribute>
         </xpath>
     </template>
+
+    <template id="membership_assets" name="Membership Assets">
+        <link rel='stylesheet' href='/sport_club_manager/static/src/less/membership.less'/>
+    </template>
 </odoo>

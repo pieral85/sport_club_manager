@@ -119,9 +119,9 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
         Could you please let us know your answer by clicking on the button of your choice?
     </p>
     <p>
-        <a href="/sport/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
-        <a href="/sport/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
-        <a href="/sport/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
+        <a href="/sport/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
+        <a href="/sport/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
+        <a href="/sport/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
     </p>
     <p>
         Best regards,
@@ -141,33 +141,44 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
                 <t t-set="head">
                     <t t-call-assets="web.assets_common" t-js="false"/>
                     <t t-call-assets="web.assets_frontend" t-js="false"/>
+                    <t t-call-assets="sport_club_manager.membership_assets"/>
                 </t>
 
                 <div class="container">
                     <div class="o_logo">
                         <img class="img img-responsive center-block" src="/web/binary/company_logo"/>
                     </div>
-
+                    <t t-foreach="('success', 'warning', 'info')" t-as="alert_level">
+                        <div t-if="messages.get(alert_level)" t-att-class="'alert alert-%s' % alert_level">
+                            <t t-esc="messages[alert_level]"/>
+                        </div>
+                    </t>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h2>Season <small><t t-esc="membership.period_id.name"/></small></h2>
                         </div>
                         <div class="panel-body">
                             <div class="clearfix mb16" t-if="membership.user_response != 'undefined'">
-                                <span class="pull-right label label-info">
-                                    <t t-if="membership.user_response == 'accepted'">Yes, I have accepted!</t>
-                                    <t t-if="membership.user_response == 'declined'">No, I have declined.</t>
+                                <span class="pull-right">
+                                    <span>Your invitation response: </span>
+                                    <span t-if="membership.user_response == 'accepted'" class="label label-success">Accepted</span>
+                                    <span t-if="membership.user_response == 'declined'" class="label label-danger">Declined</span>
                                 </span>
                             </div>
                             <div class="table-responsive">
-                                <table class="o_event_table table table-striped">
+                                <table id="membership_invitation" class="o_event_table table table-striped">
                                     <tr>
                                         <th>Player</th>
-                                        <td><t t-esc="membership.member_id.name"/> (<t t-esc="membership.member_user_id.login"/>)</td>
+                                        <td>
+                                            <t t-esc="membership.member_id.name"/>
+                                            <t t-if="membership.member_user_id">
+                                                (<t t-esc="membership.member_user_id.login"/>)
+                                            </t>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Period</th>
-                                        <td>From <t t-esc="membership.period_id.start_date"/> To <t t-esc="membership.period_id.end_date"/></td>
+                                        <td>From <span t-field="membership.period_id.start_date"/> To <span t-field="membership.period_id.end_date"/></td>
                                     </tr>
                                     <tr>
                                         <th>Category</th>
@@ -175,7 +186,23 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
                                     </tr>
                                     <tr>
                                         <th>Member Status</th>
-                                        <td><t t-esc="membership.state"/></td>
+                                        <td><span t-field="membership.state"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Amount Due</th>
+                                        <td>
+                                            <span t-field="membership.price_due"  t-options='{"widget": "monetary"}'/>
+                                            <t t-if="membership.state in ('requested', 'member')">
+                                                <span t-if="membership.paid" class="block label label-success">Everything is paid!</span>
+                                                <span t-else="" class="block label label-danger">
+                                                    <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                                    <span>still to pay</span><br/>
+                                                    <span t-if="membership.member_id.company_id.account_no"> (account: 
+                                                        <t t-esc="membership.member_id.company_id.account_no"/>)
+                                                    </span>
+                                                </span>
+                                            </t>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
