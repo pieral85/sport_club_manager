@@ -320,7 +320,7 @@ class Membership(models.Model):
                 record.paid = True
             else:
                 record.price_paid_percentage = 100.0 * record.price_paid / record.price_due
-                record.price_remaining = record.price_paid - record.price_due
+                record.price_remaining = record.price_due - record.price_paid
                 record.paid = False
 
     def _compute_color(self):
