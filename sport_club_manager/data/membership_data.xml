@@ -75,9 +75,13 @@ We are pleased to let you know that you have been successfully affiliated for th
 </p>
 <p>
 % if object.price_remaining:
-Please note that you will have to pay ${object.price_remaining} on the account ${object.account_no}.
+    Please note that you will have to pay ${format_amount(object.price_remaining, object.currency_id)} 
+    % if user.company_id.account_no:
+        on the account ${user.company_id.account_no}
+    % endif
+    .
 %else:
-Please note that for this season, no price is due anymore.
+    Please note that for this season, no price is due anymore.
 % endif
 </p>
 <p>
