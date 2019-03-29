@@ -383,6 +383,16 @@ class Membership(models.Model):
         if self.env['membership'].search_count([('member_id.id', '=', self.member_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
             raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (self.member_id.name, self.period_id.name))
 
+    @api.one
+    @api.constrains('price_paid', 'price_due')
+    def _check_price(self):
+        """ Checks that the prices (paid and due) are positive.
+
+        :return: None
+        """
+        if self.price_paid < 0 or self.price_due < 0:
+            raise exceptions.ValidationError(_("Prices should be positive."))
+
     @api.multi
     def validate_membership_payment(self):
         for record in self:
