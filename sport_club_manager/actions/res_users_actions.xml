@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
-    	<!-- TODO Should we add a res.users view? If no, delete this file. -->
-    </data>
+<data>
+
+    <record id="action_user" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {
+                'view_mode': 'tree',
+                }),
+            (0, 0, {
+                'view_mode': 'form',
+                'view_id': ref('view_users_simple_form_sport'),
+                }),
+            ]"/>
+    </record>
+
+</data>
 </odoo>
