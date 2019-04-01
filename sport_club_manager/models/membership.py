@@ -290,8 +290,8 @@ class Membership(models.Model):
     @api.onchange('token')
     def _onchange_token(self):
         for record in self:
-            if record.env['membership'].search_count([('token', '=', record.token),]) > 1:
-                record.token = _get_token()
+            if record.token and record.env['membership'].search_count([('token', '=', record.token),]) > 1:
+                record.token = self._get_token()
 
     @api.multi
     def write(self, vals):
