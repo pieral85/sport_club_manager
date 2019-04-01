@@ -132,7 +132,7 @@
                                 oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
                                 ? 'oe_kanban_card_fancy' : ''}}">
                                 <div>
-                                    <img t-att-src="kanban_image('res.users', 'image_medium', record.member_id.raw_value)" style="width:60px" class="oe_kanban_avatar pull-right"/>
+                                    <img t-att-src="kanban_image('res.partner', 'image_medium', record.member_id.raw_value)" style="width:120px" class="oe_kanban_avatar pull-right" t-att-alt="record.member_id.value"/>
                                 </div>
 
                                 <div class="oe_kanban_details">
@@ -143,7 +143,7 @@
                                             </strong>
                                             <span>
                                                 <div class="o_dropdown_kanban dropdown col-xs-4" >
-                                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" role="button" title="Dropdown menu">
                                                         <span class="fa fa-bars fa-lg"/>
                                                     </a>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">

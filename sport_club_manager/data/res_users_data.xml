@@ -3,8 +3,8 @@
     <data>
         <!-- Link for user settings -->
         <template id="my_settings_link" name="Link to frontend portal settings" inherit_id="portal.frontend_layout">
-            <xpath expr="//li[@id='o_logout']" position="before">
-                <li><a href="/my/account" role="menuitem">My Settings</a></li>
+            <xpath expr="//a[@id='o_logout']" position="before">
+                <a href="/my/account" role="menuitem" class="dropdown-item">My Settings</a>
             </xpath>
         </template>
     </data>

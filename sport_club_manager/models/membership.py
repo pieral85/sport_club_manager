@@ -123,13 +123,14 @@ class Membership(models.Model):
         comodel_name='category',
         related='period_category_id.category_id',
         store=False,
-        # readonly=True,
+        readonly=False,
     )
     period_id = fields.Many2one(
         comodel_name='period',
         related='period_category_id.period_id',
         store=True,
         ondelete='cascade',
+        readonly=False,
         # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
 
