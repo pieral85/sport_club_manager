@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="role_demo_1" model="role">
-            <field name="user_id" ref="partner_demo_player_1_user"/>
-            <field name="name">president</field>
-            <field name="start_date">2015-09-01</field>
-            <field name="end_date">2018-03-31</field>
-        </record>
-        <record id="role_demo_2" model="role">
-            <field name="user_id" ref="partner_demo_player_1_user"/>
-            <field name="name">secretary</field>
-            <field name="start_date">2015-04-01</field>
-            <field name="end_date"></field>
-        </record>
-        <record id="role_demo_3" model="role">
-            <field name="user_id" ref="partner_demo_player_2_user"/>
-            <field name="name">treasurer</field>
-            <field name="start_date">2015-08-15</field>
-            <field name="end_date">2016-06-30</field>
-        </record>
-        <record id="role_demo_4" model="role">
-            <field name="user_id" ref="partner_demo_player_3_user"/>
-            <field name="name">treasurer</field>
-            <field name="start_date">2017-01-06</field>
-            <field name="end_date"></field>
-        </record>
-    </data>
+<data>
+
+    <record id="role_demo_1" model="role">
+        <field name="user_id" ref="partner_demo_player_1_user"/>
+        <field name="name">president</field>
+        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-3)).strftime('%Y-08-03')"/>
+        <field name="end_date" eval="(DateTime.now() + relativedelta(months=-1)).strftime('%Y-%m-%d')"/>
+    </record>
+
+    <record id="role_demo_2" model="role">
+        <field name="user_id" ref="partner_demo_player_1_user"/>
+        <field name="name">secretary</field>
+        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-4, months=1)).strftime('%Y-%m-03')"/>
+    </record>
+    <record id="partner_demo_player_1_user" model="res.users">
+        <field name="groups_id" eval="[(4, ref('group_scm_secretary'))]"/>
+    </record>
+
+    <record id="role_demo_3" model="role">
+        <field name="user_id" ref="partner_demo_player_2_user"/>
+        <field name="name">treasurer</field>
+        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-2, months=-2)).strftime('%Y-%m-12')"/>
+        <field name="end_date" eval="(DateTime.now() + relativedelta(years=-1)).strftime('%Y-06-30')"/>
+    </record>
+
+    <record id="role_demo_4" model="role">
+        <field name="user_id" ref="partner_demo_player_3_user"/>
+        <field name="name">treasurer</field>
+        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-1)).strftime('%Y-07-01')"/>
+    </record>
+    <record id="partner_demo_player_3_user" model="res.users">
+        <field name="groups_id" eval="[(4, ref('group_scm_treasurer'))]"/>
+    </record>
+
+</data>
 </odoo>

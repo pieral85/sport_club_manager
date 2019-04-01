@@ -2,68 +2,68 @@
 <odoo>
     <data>
         <!-- Period Categories -->
-        <record id="period_category_starter_2017" model="period_category">
-            <field name="period_id" ref="period_2017"/>
+        <record id="period_1_category_starter" model="period_category">
+            <field name="period_id" ref="period_1"/>
             <field name="category_id" ref="category_starter"/>
             <field name="price_due">80</field>
             <field name="default">True</field>
         </record>
-        <record id="period_category_competitor_2017" model="period_category">
-            <field name="period_id" ref="period_2017"/>
+        <record id="period_1_category_competitor" model="period_category">
+            <field name="period_id" ref="period_1"/>
             <field name="category_id" ref="category_competitor"/>
             <field name="price_due">100</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_child_2017" model="period_category">
-            <field name="period_id" ref="period_2017"/>
+        <record id="period_1_category_child" model="period_category">
+            <field name="period_id" ref="period_1"/>
             <field name="category_id" ref="category_child"/>
             <field name="price_due">60</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_teenager_2017" model="period_category">
-            <field name="period_id" ref="period_2017"/>
+        <record id="period_1_category_teenager" model="period_category">
+            <field name="period_id" ref="period_1"/>
             <field name="category_id" ref="category_teenager"/>
             <field name="price_due">75</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_starter_2016" model="period_category">
-            <field name="period_id" ref="period_2016"/>
+        <record id="period_2_category_starter" model="period_category">
+            <field name="period_id" ref="period_2"/>
             <field name="category_id" ref="category_starter"/>
             <field name="price_due">80</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_competitor_2016" model="period_category">
-            <field name="period_id" ref="period_2016"/>
+        <record id="period_2_category_competitor" model="period_category">
+            <field name="period_id" ref="period_2"/>
             <field name="category_id" ref="category_competitor"/>
             <field name="price_due">95</field>
             <field name="default">True</field>
         </record>
-        <record id="period_category_child_2016" model="period_category">
-            <field name="period_id" ref="period_2016"/>
+        <record id="period_2_category_child" model="period_category">
+            <field name="period_id" ref="period_2"/>
             <field name="category_id" ref="category_child"/>
             <field name="price_due">50</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_starter_2015" model="period_category">
-            <field name="period_id" ref="period_2015"/>
+        <record id="period_3_category_starter" model="period_category">
+            <field name="period_id" ref="period_3"/>
             <field name="category_id" ref="category_starter"/>
             <field name="price_due">75</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_competitor_2015" model="period_category">
-            <field name="period_id" ref="period_2015"/>
+        <record id="period_3_category_competitor" model="period_category">
+            <field name="period_id" ref="period_3"/>
             <field name="category_id" ref="category_competitor"/>
             <field name="price_due">90</field>
             <field name="default">True</field>
         </record>
-        <record id="period_category_starter_2014" model="period_category">
-            <field name="period_id" ref="period_2014"/>
+        <record id="period_4_category_starter" model="period_category">
+            <field name="period_id" ref="period_4"/>
             <field name="category_id" ref="category_starter"/>
             <field name="price_due">70</field>
             <field name="default">False</field>
         </record>
-        <record id="period_category_starter_2013" model="period_category">
-            <field name="period_id" ref="period_2013"/>
+        <record id="period_5_category_starter" model="period_category">
+            <field name="period_id" ref="period_5"/>
             <field name="category_id" ref="category_starter"/>
             <field name="price_due">70</field>
             <field name="default">False</field>
