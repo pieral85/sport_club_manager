@@ -118,6 +118,11 @@ class Period(models.Model):
         values['alias_defaults'] = {'period_id': self.id}
         return values
 
+    @api.model
+    def module_update_function(self):
+        """ Call required functions at module upgrade/install. """
+        self.update_periods()
+
     def update_periods(self):
         """ Updates 'active', 'current' and 'incoming' attributes of self, based on their 'start_date' and 'end_date' attributes.
 

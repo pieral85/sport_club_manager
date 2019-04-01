@@ -11,5 +11,7 @@
             <field name="numbercall">-1</field>
             <field name="doall" eval="False"/>
         </record>
+
+        <function name="module_update_function" model="period"/>
     </data>
 </odoo>
