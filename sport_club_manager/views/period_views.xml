@@ -112,8 +112,8 @@
                     <field name="name" string="Period Name" filter_domain="[('name','ilike',self)]"/>
                     <field name="start_date" string="Period Including Date" filter_domain="[('start_date','&lt;=',self), ('end_date','&gt;=',self)]"/>
                     <separator/>
-                    <filter name="active_search" string="Active" icon="terp-gtk-media-pause" domain="[('active','=', True)]" help="Only active period."/>
-                    <filter name ="inactive_search" string="Archived" icon="terp-gtk-media-pause" domain="[('active','=',False)]" help="Only inactive periods."/>
+                    <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active period."/>
+                    <filter name="inactive_search" string="Archived" domain="[('active','=',False)]" help="Only inactive periods."/>
                 </search>
             </field>
         </record>
