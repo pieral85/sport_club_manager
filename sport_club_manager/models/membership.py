@@ -164,6 +164,27 @@ class Membership(models.Model):
         return res
 
     @api.multi
+    def write(self, vals):
+        if vals.get('state') == 'member':
+            vals['token_validity'] = None
+            if not self.member_id.parent_id:
+                # when becoming a member, the related partner should belong to the company
+                self.member_id.parent_id = self.env.user.company_id.partner_id
+
+        return super(Membership, self).write(vals)
+
+    def copy(self, default=None):
+        self.ensure_one()
+        default = dict(default or {})
+        default.setdefault('period_category_id', self.period_category_id.id)
+        default.setdefault('member_id', self.member_id.id)
+        default.setdefault('currency_id', self.currency_id.id)
+        default.setdefault('price_due', self.price_due)
+        default.setdefault('state', self.state)
+        new_membership = super(Membership, self).copy(default)
+        return new_membership
+
+    @api.multi
     def reset_token(self):
         for membership in self:
             membership.write({
@@ -199,8 +220,47 @@ class Membership(models.Model):
             }
 
     @api.multi
+    def send_email_confirmation(self):
+        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
+        memberships = self.filtered(lambda m: m.state == 'member')
+        if memberships:
+            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+            ctx = dict(
+                only_confirmation_emails=True,
+                default_model='membership',
+                active_ids=memberships.ids,
+                default_use_template=bool(template),
+                default_template_id=template and template.id or False,
+                default_composition_mode='mass_mail',
+                force_email=True,
+            )
+            return {
+                'name': _('Compose Email - Membership Affiliation Confirmation'),
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'mail.compose.message',
+                'views': [(compose_form.id, 'form')],
+                'target': 'new',
+                'context': ctx,
+            }
+
+    @api.multi
+    def validate_membership_payment(self):
+        for record in self:
+            record.price_paid = record.price_due
+
+    @api.multi
+    def validate_membership_affiliation(self):
+        for record in self:
+            record.state = 'member'
+
+    @api.multi
+    def reject_membership_affiliation(self):
+        for record in self:
+            record.state = 'rejected'
+
+    @api.multi
     def action_reset_password(self):
-        import ipdb; ipdb.set_trace()
         return self.mapped('member_user_id').action_reset_password()
 
     @api.multi
@@ -292,12 +352,6 @@ class Membership(models.Model):
         for record in self:
             if record.token and record.env['membership'].search_count([('token', '=', record.token),]) > 1:
                 record.token = self._get_token()
-
-    @api.multi
-    def write(self, vals):
-        if vals.get('state') == 'member':
-            vals['token_validity'] = None
-        super(Membership, self).write(vals)
 
     def _add_follower(self, vals):
         ids = self.contact_person_id.ids or self.member_id.ids
@@ -393,57 +447,6 @@ class Membership(models.Model):
         """
         if self.price_paid < 0 or self.price_due < 0:
             raise exceptions.ValidationError(_("Prices should be positive."))
-
-    @api.multi
-    def validate_membership_payment(self):
-        for record in self:
-            record.price_paid = record.price_due
-
-    @api.multi
-    def validate_membership_affiliation(self):
-        for record in self:
-            record.state = 'member'
-
-    @api.multi
-    def reject_membership_affiliation(self):
-        for record in self:
-            record.state = 'rejected'
-
-    @api.multi
-    def send_email_confirmation(self):
-        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
-        memberships = self.filtered(lambda m: m.state == 'member')
-        if memberships:
-            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-            ctx = dict(
-                only_confirmation_emails=True,
-                default_model='membership',
-                active_ids=memberships.ids,
-                default_use_template=bool(template),
-                default_template_id=template and template.id or False,
-                default_composition_mode='mass_mail',
-                force_email=True,
-            )
-            return {
-                'name': _('Compose Email - Membership Affiliation Confirmation'),
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'mail.compose.message',
-                'views': [(compose_form.id, 'form')],
-                'target': 'new',
-                'context': ctx,
-            }
-
-    def copy(self, default=None):
-        self.ensure_one()
-        default = dict(default or {})
-        default.setdefault('period_category_id', self.period_category_id.id)
-        default.setdefault('member_id', self.member_id.id)
-        default.setdefault('currency_id', self.currency_id.id)
-        default.setdefault('price_due', self.price_due)
-        default.setdefault('state', self.state)
-        new_membership = super(Membership, self).copy(default)
-        return new_membership
 
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]
