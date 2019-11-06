@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import uuid
-from datetime import timedelta, datetime
+from datetime import datetime, timedelta
 
 from odoo import api, fields, models, exceptions, tools, _
 

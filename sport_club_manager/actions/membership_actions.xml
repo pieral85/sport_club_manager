@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="action_membership" model="ir.actions.act_window">
@@ -10,7 +10,8 @@
                 'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
                 'search_default_current_period_search': 1,
                 'search_default_upcoming_period_search': 0,
-                }</field>
+            }
+            </field>
             <!-- List of the views linked to this action window -->
             <field name="view_ids" eval="[
                 (5, 0, 0),

@@ -8,6 +8,7 @@ from odoo import models, fields, api, exceptions
 
 class PeriodWizard(models.TransientModel):
     _name = 'period_wizard'
+    _description = 'Period Wizard'
 
     period_id = fields.Many2one(
         comodel_name='period',

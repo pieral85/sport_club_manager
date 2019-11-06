@@ -1,11 +1,12 @@
-<!-- TODO Add a field name 'category_id' = 'Sport Club Manager' for all groups of this module -->
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!-- TODO Add a field name 'category_id' = 'Sport Club Manager' for all groups of this module -->
     <data>
 
         <!-- Categories -->
         <record id="module_category_committee" model="ir.module.category">
             <field name="name">Committee</field>
-            <field name="description">Helps you manage lead of your marketing campaigns step by step.</field>
+            <field name="description">Helps you manage sport club groups.</field>
             <field name="sequence">10</field>
         </record>
 

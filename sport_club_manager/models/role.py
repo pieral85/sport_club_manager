@@ -10,6 +10,7 @@ from odoo import api, fields, models, exceptions, _
 # Modify and create demo datas with some roles
 class Role(models.Model):
     _name = 'role'
+    _description = 'Role'
     _order = 'end_date desc'
     _sql_constraints = [
        ('dates_check', 'CHECK(start_date < end_date)',

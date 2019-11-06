@@ -5,7 +5,7 @@ from odoo import api, fields, models, exceptions, _
 
 
 class PeriodCategory(models.Model):
-    _name = 'period_category'
+    _name = 'period_category'  # TODO Change _ by . (apply this change in other models)
     _description = 'Period Category'
     _order = 'period_id asc'
 
@@ -108,7 +108,7 @@ class PeriodCategory(models.Model):
             raise exceptions.ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (self.period_id.name))
 
     @api.multi
-    @api.depends('period_id','category_id')
+    @api.depends('period_id', 'category_id')
     def name_get(self):
         result = []
         for record in self:
