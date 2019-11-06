@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-
-    <!-- Periods -->
     <!-- TODO Add translation for names -->
-    <record id="period_1" model="period">
-        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=1)).strftime('%Y'), (DateTime.now() + relativedelta(years=2)).strftime('%Y'))"/>
-        <field name="start_date" eval="(DateTime.now() + relativedelta(years=1)).strftime('%Y-09-01')"/>
-        <field name="end_date" eval="(DateTime.now() + relativedelta(years=2)).strftime('%Y-06-30')"/>
+    <record id="period_current" model="period">
+        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(months=-6)).strftime('%Y'), (DateTime.now() + relativedelta(months=6, days=-1)).strftime('%Y'))"/>
+        <field name="start_date" eval="DateTime.now() + relativedelta(months=-6)"/>
+        <field name="end_date" eval="DateTime.now() + relativedelta(months=6, days=-1)"/>
     </record>
-    <record id="period_2" model="period">
-        <field name="name" eval="'Season %s-%s' % (DateTime.now().strftime('%Y'), (DateTime.now() + relativedelta(years=1)).strftime('%Y'))"/>
-        <field name="start_date" eval="DateTime.now().strftime('%Y-09-01')"/>
-        <field name="end_date" eval="(DateTime.now() + relativedelta(years=1)).strftime('%Y-06-30')"/>
+    <record id="period_upcoming" model="period">
+        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(months=6)).strftime('%Y'), (DateTime.now() + relativedelta(years=1, months=6, days=-1)).strftime('%Y'))"/>
+        <field name="start_date" eval="DateTime.now() + relativedelta(months=6)"/>
+        <field name="end_date" eval="DateTime.now() + relativedelta(years=1, months=6, days=-1)"/>
     </record>
-    <record id="period_3" model="period">
-        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-1)).strftime('%Y'), DateTime.now().strftime('%Y'))"/>
-        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-1)).strftime('%Y-09-01')"/>
-        <field name="end_date" eval="DateTime.now().strftime('%Y-06-30')"/>
+    <record id="period_past_1" model="period">
+        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-1, months=-6)).strftime('%Y'), (DateTime.now() + relativedelta(months=-6, days=-1)).strftime('%Y'))"/>
+        <field name="start_date" eval="DateTime.now() + relativedelta(years=-1, months=-6)"/>
+        <field name="end_date" eval="DateTime.now() + relativedelta(months=-6, days=-1)"/>
     </record>
-    <record id="period_4" model="period">
-        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-2)).strftime('%Y'), (DateTime.now() + relativedelta(years=-1)).strftime('%Y'))"/>
-        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-2)).strftime('%Y-09-01')"/>
-        <field name="end_date" eval="(DateTime.now() + relativedelta(years=-1)).strftime('%Y-06-30')"/>
+    <record id="period_past_2" model="period">
+        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-2, months=-6)).strftime('%Y'), (DateTime.now() + relativedelta(years=-1, months=-6, days=-1)).strftime('%Y'))"/>
+        <field name="start_date" eval="DateTime.now() + relativedelta(years=-2, months=-6)"/>
+        <field name="end_date" eval="DateTime.now() + relativedelta(years=-1, months=-6, days=-1)"/>
     </record>
-    <record id="period_5" model="period">
-        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-3)).strftime('%Y'), (DateTime.now() + relativedelta(years=-2)).strftime('%Y'))"/>
-        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-3)).strftime('%Y-09-01')"/>
-        <field name="end_date" eval="(DateTime.now() + relativedelta(years=-2)).strftime('%Y-06-30')"/>
+    <record id="period_past_3" model="period">
+        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-3, months=-6)).strftime('%Y'), (DateTime.now() + relativedelta(years=-2, months=-6, days=-1)).strftime('%Y'))"/>
+        <field name="start_date" eval="DateTime.now() + relativedelta(years=-3, months=-6)"/>
+        <field name="end_date" eval="DateTime.now() + relativedelta(years=-2, months=-6, days=-1)"/>
     </record>
-    <record id="period_6" model="period">
-        <field name="name" eval="'Season %s-%s' % ((DateTime.now() + relativedelta(years=-4)).strftime('%Y'), (DateTime.now() + relativedelta(years=-3)).strftime('%Y'))"/>
-        <field name="start_date" eval="(DateTime.now() + relativedelta(years=-4)).strftime('%Y-09-01')"/>
-        <field name="end_date" eval="(DateTime.now() + relativedelta(years=-3)).strftime('%Y-06-30')"/>
-    </record>
-
 </data>
 </odoo>
