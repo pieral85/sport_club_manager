@@ -13,10 +13,12 @@
         <record id="action_contact" model="ir.actions.act_window">
             <field name="name">Contacts</field>
             <field name="res_model">res.partner</field>
-            <field name="domain">[('is_company', '=', False),]</field>
+            <!-- TODO Do I really want to exclude clubs? If yes, create a dedicated view for clubs!
+            <field name="domain">[('is_company', '=', False),]</field> -->
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,kanban</field>
-            <field name="context">{'default_is_company': False}</field>
+            <!-- TODO Do I really want to exclude clubs? If yes, create a dedicated view for clubs!
+                <field name="context">{'default_is_company': False}</field> -->
             <field name="view_ids" eval="[
                 (5, 0, 0),
                 (0, 0, {
