@@ -8,6 +8,5 @@ class ResUsers(models.Model):
     _inherit = 'res.partner'
 
     company_type = fields.Selection(string='Company Type',
-        selection=[('person', 'Contact'), ('company', 'Location')])
-        # compute='_compute_company_type', inverse='_write_company_type')  # TODO Not necessary (already in super)?
+        selection=[('person', 'Individual'), ('company', 'Club')])
     membership_ids = fields.One2many('membership', 'member_id', string='Memberships')
