@@ -33,7 +33,7 @@ msgid ""
 "of your choice?\n"
 "    </p>\n"
 "    <p>\n"
-"        <a href=\"/sport/my/membership/accept?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/accept?db=${'dbname' in ctx and "
 "ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -41,7 +41,7 @@ msgid ""
 "400; text-align: center; vertical-align: middle; cursor: pointer; white-"
 "space: nowrap; background-image: none; background-color: #875A7B; border: "
 "1px solid #875A7B; border-radius:3px\">Accept</a>\n"
-"        <a href=\"/sport/my/membership/decline?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/decline?db=${'dbname' in ctx and "
 "ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -49,7 +49,7 @@ msgid ""
 "400; text-align: center; vertical-align: middle; cursor: pointer; white-"
 "space: nowrap; background-image: none; background-color: #875A7B; border: "
 "1px solid #875A7B; border-radius:3px\">Decline</a>\n"
-"        <a href=\"/sport/my/membership/view?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/view?db=${'dbname' in ctx and "
 "ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -83,7 +83,7 @@ msgstr ""
 "cliquant sur le bouton de votre choix?\n"
 "    </p>\n"
 "    <p>\n"
-"        <a href=\"/sport/my/membership/accept?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/accept?db=${'dbname' in ctx and "
 "ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -91,7 +91,7 @@ msgstr ""
 "400; text-align: center; vertical-align: middle; cursor: pointer; white-"
 "space: nowrap; background-image: none; background-color: #875A7B; border: "
 "1px solid #875A7B; border-radius:3px\">Accepter</a>\n"
-"        <a href=\"/sport/my/membership/decline?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/decline?db=${'dbname' in ctx and "
 "ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -99,7 +99,7 @@ msgstr ""
 "400; text-align: center; vertical-align: middle; cursor: pointer; white-"
 "space: nowrap; background-image: none; background-color: #875A7B; border: "
 "1px solid #875A7B; border-radius:3px\">Décliner</a>\n"
-"        <a href=\"/sport/my/membership/view?db=${'dbname' in ctx and "
+"        <a href=\"/club/my/membership/view?db=${'dbname' in ctx and "
 "ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and "
 "ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-"
 "size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-"
@@ -229,7 +229,7 @@ msgid "Add"
 msgstr "Ajouter"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Address"
 msgstr "Adresse"
 
@@ -239,7 +239,7 @@ msgid "Affiliation request for ${(object.period_id.name or 'new season')|safe}"
 msgstr "Demande d'afiliation pour ${(object.period_id.name or 'new season')|safe}"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Affiliations"
 msgstr "Affiliations"
 
@@ -281,42 +281,42 @@ msgid "Archived Period(s)"
 msgstr "Saison(s) archivée(s)"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to start president role as of today? You can still modify it by "
 "changing the related record in the historical below."
 msgstr "Etes-vous sûr de démarrer le rôle de président à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to start secretary role as of today? You can still modify it by "
 "changing the related record in the historical below."
 msgstr "Etes-vous sûr de démarrer le rôle de secrétaire à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to start treasurer role as of today? You can still modify it by "
 "changing the related record in the historical below."
 msgstr "Etes-vous sûr de démarrer le rôle de trésorier à partir d'aujourd'hui? Vous pourrez toujours le modifier en changeant l'enregistrement relatif dans l'historique ci-dessous."
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to stop current president role? You can still reactivate it by "
 "removing the related end date in the historical below."
 msgstr "Etes-vous sûr d'arrêter le rôle de président? Vous pourrez toujours le réactiver en supprimant l'enregistrement relatif dans l'historique ci-dessous."
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to stop current secretary role? You can still reactivate it by "
 "removing the related end date in the historical below."
 msgstr "Etes-vous sûr d'arrêter le rôle de secrétaire? Vous pourrez toujours le réactiver en supprimant l'enregistrement relatif dans l'historique ci-dessous."
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid ""
 "Are you sure to stop current treasurer role? You can still reactivate it by "
 "removing the related end date in the historical below."
@@ -377,8 +377,8 @@ msgstr "Info sur le comité"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_committee_user
-msgid "Committee members for the module Sport Club Manager."
-msgstr "Membres du comité pour le module Gestionnaire de Club Sportif."
+msgid "Committee members for the module Club Membership Manager."
+msgstr "Membres du comité pour le module Gestionnaire des Affiliations de Club."
 
 #. module: club
 #: model:mail.template,subject:club.email_template_membership_affiliation_confirmation
@@ -586,7 +586,7 @@ msgid "Group - User"
 msgstr "Groupe - Utilisateur"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Historical"
 msgstr "Historique"
 
@@ -701,8 +701,8 @@ msgstr "Faire une demande"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_committee_manager
-msgid "Manager of the module Sport Club Manager."
-msgstr "Gestionnaire du module Gestionnaire de Club Sportif"
+msgid "Manager of the module Club Membership Manager."
+msgstr "Gestionnaire du module Gestionnaire des Affiliations de Club"
 
 #. module: club
 #: selection:membership,state:0
@@ -1126,7 +1126,7 @@ msgstr "Rôle"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_res_users_role_ids
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Roles"
 msgstr "Rôles"
 
@@ -1163,8 +1163,8 @@ msgstr "Envoie un email à l'utilisateur pour l'avertir de son affiliation"
 
 #. module: club
 #: model:ir.ui.menu,name:club.menu_root
-msgid "Sport Club Manager"
-msgstr "Gestionnaire de Club Sportif"
+msgid "Club Membership Manager"
+msgstr "Gestionnaire des Affiliations de Club"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_period_start_date
@@ -1174,17 +1174,17 @@ msgid "Start Date"
 msgstr "Date de début"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start President Role"
 msgstr "Démarrer le rôle de président"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Secretary Role"
 msgstr "Démarrer le rôle de secrétaire"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Treasurer Role"
 msgstr "Démarrer le rôle de trésorier"
 
@@ -1199,17 +1199,17 @@ msgid "Status"
 msgstr "Etat"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop President Role"
 msgstr "Arrêter le rôle de président"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop Secretary Role"
 msgstr "Arrêter le rôle de secrétaire"
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop Treasurer Role"
 msgstr "Arrêter le rôle de trésorier"
 
@@ -1292,7 +1292,7 @@ msgstr "A"
 #: model:ir.ui.view,arch_db:club.membership_view_list
 #: model:ir.ui.view,arch_db:club.period_view_form
 #: model:ir.ui.view,arch_db:club.period_view_list
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_sport
+#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Total"
 msgstr "Total"
 
@@ -1370,26 +1370,23 @@ msgstr "Utilisateurs"
 #. module: club
 #: model:res.groups,comment:club.group_club_president
 msgid ""
-"Users with attribute 'president' set to True for the module Sport Club "
-"Manager."
+"Users with attribute 'president' set to True for the module Club Membership Manager."
 msgstr "Les utilisateurs avec l'attribut 'président' activé pour le module "
-"Gestionnaire de Club Sportif"
+"Gestionnaire des Affiliations de Club"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_secretary
 msgid ""
-"Users with attribute 'secretary' set to True for the module Sport Club "
-"Manager."
+"Users with attribute 'secretary' set to True for the module Club Membership Manager."
 msgstr "Les utilisateurs avec l'attribut 'secrétaire' activé pour le module "
-"Gestionnaire de Club Sportif"
+"Gestionnaire des Affiliations de Club"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_treasurer
 msgid ""
-"Users with attribute 'treasurer' set to True for the module Sport Club "
-"Manager."
+"Users with attribute 'treasurer' set to True for the module Club Membership Manager."
 msgstr "Les utilisateurs avec l'attribut 'trésorier' activé pour le module "
-"Gestionnaire de Club Sportif"
+"Gestionnaire des Affiliations de Club"
 
 #. module: club
 #: model:ir.ui.view,arch_db:club.membership_view_form

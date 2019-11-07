@@ -34,10 +34,10 @@ class ResUsers(models.Model):
     treasurer = fields.Boolean('Is Treasurer', compute='_compute_role', store=True, readonly=True)
     committee_user = fields.Boolean('Is Committee User',
         compute='_compute_committee_user', inverse='_inverse_committee_user',
-        help='If checked, the user will have a read access to the application Sport Club Manager.')
+        help='If checked, the user will have a read access to the application Club Membership Manager.')
     committee_manager = fields.Boolean('Is Committee Manager',
         compute='_compute_committee_manager', inverse='_inverse_committee_manager',
-        help='If checked, the user will have a write access to the application Sport Club Manager.\n\
+        help='If checked, the user will have a write access to the application Club Membership Manager.\n\
         This will allow the user to manage the application.')
 
     @api.multi

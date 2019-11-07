@@ -2,7 +2,7 @@
 <odoo>
 <data>
     <!-- form view(s) -->
-    <record id="view_email_template_form_sport" model="ir.ui.view">
+    <record id="view_email_template_form_club" model="ir.ui.view">
         <field name="name">email.template.form.inherit.club</field>
         <field name="model">mail.template</field>
         <field name="inherit_id" ref="mail.email_template_form"/>

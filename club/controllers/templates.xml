@@ -1,5 +1,6 @@
 <odoo>
 <data>
+    <!-- TODO '/club/' url should be dynamic (as it is in the controller) -->
     <!-- Web Page showing info on the active periods -->
     <template id="website_period">
         <t t-call="website.layout">
@@ -9,7 +10,7 @@
             <div class="oe_structure">
                 <div class="container">
                     <div class="row">
-                        <a href="/sport/add" class="btn btn-primary btn-lg">Add</a>
+                        <a href="/club/add" class="btn btn-primary btn-lg">Add</a>
                     </div>
                     <t t-foreach="periods" t-as="period">
                         <p>
@@ -18,7 +19,7 @@
                             To <t t-esc="period.end_date"/>
                         </p>
                         <div class="row">
-                            <a href="/sport/membership/request" class="btn btn-primary btn-lg">Request an affiliation for this period</a>
+                            <a href="/club/membership/request" class="btn btn-primary btn-lg">Request an affiliation for this period</a>
                         </div>
                         <p><h3>Categories</h3></p>
                         <t t-foreach="period.period_category_ids" t-as="period_category">
@@ -59,7 +60,7 @@
                                 <t t-foreach="status[1]" t-as="member">
                                     <t t-if="member_first"><h3><t t-esc="status[0]"/></h3></t>
                                     <div class="container" style="padding: 5px 10px; font-size: 14px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">
-                                        <!-- <a t-attf-href="/sport/members/{{ slug(member) }}"> -->
+                                        <!-- <a t-attf-href="/club/members/{{ slug(member) }}"> -->
                                         <strong><p t-field="member.name"/></strong>
                                         <p t-field="member.login"/>
                                         <!-- </a> -->
@@ -145,7 +146,7 @@
                 <div class="row">
                     <t t-if="period_categories">
                         <section id="forms">
-                            <form method="post" class="s_website_form container-fluid form-horizontal" action="/website_form/" data-model_name="membership" data-success_page="/sport/info_club" enctype="multipart/form-data">
+                            <form method="post" class="s_website_form container-fluid form-horizontal" action="/website_form/" data-model_name="membership" data-success_page="/club/info_club" enctype="multipart/form-data">
                                 <!-- Select Period -->
                                 <div class="form-group form-field">
                                     <div class="col-md-3 col-sm-4 text-right">

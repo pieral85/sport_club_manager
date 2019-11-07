@@ -33,13 +33,13 @@ for record in records:
     </record>
     <record id="menu_membership_request" model="website.menu">
         <field name="name">Make a request</field>
-        <field name="url">sport/membership/request</field>
+        <field name="url">club/membership/request</field>
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">10</field>
     </record>
     <record id="menu_membership_historical" model="website.menu">
         <field name="name">My historical</field>
-        <field name="url">sport/my/membership/historical</field>
+        <field name="url">club/my/membership/historical</field>
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">20</field>
     </record>
@@ -123,9 +123,9 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
         Could you please let us know your answer by clicking on the button of your choice?
     </p>
     <p>
-        <a href="/sport/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
-        <a href="/sport/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
-        <a href="/sport/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
+        <a href="/club/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
+        <a href="/club/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
+        <a href="/club/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
     </p>
     <p>
         Best regards,

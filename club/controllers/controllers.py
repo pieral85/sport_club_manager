@@ -6,9 +6,9 @@ from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo import SUPERUSER_ID
 from odoo import registry as registry_get
 
-_URL_ROOT = '/sport'
+_URL_ROOT = '/club'
 
-class SportClubManager(AuthSignupHome):
+class Club(AuthSignupHome):
 
     @http.route('%s/period/' % _URL_ROOT, auth='public', website=True)
     def period(self, **kw):

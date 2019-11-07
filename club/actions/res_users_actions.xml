@@ -13,7 +13,7 @@
                 }),
             (0, 0, {
                 'view_mode': 'form',
-                'view_id': ref('view_users_simple_form_sport'),
+                'view_id': ref('view_users_simple_form_club'),
                 }),
             ]"/>
     </record>

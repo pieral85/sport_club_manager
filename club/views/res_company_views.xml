@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <record id="view_company_form_sport" model="ir.ui.view">
+    <record id="view_company_form_club" model="ir.ui.view">
         <field name="name">res.company.form</field>
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form"/>

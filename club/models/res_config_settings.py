@@ -9,7 +9,7 @@ class ResConfigSettings(models.TransientModel):
 
     mail_local_part = fields.Char('Mail Local Part',
         help="""If you are using an email address as mail server, enter the local part of the email.
-        i.e. If you use 'my_sport_club@gmail.com' as mail server, 'my_sport_club' should be the mail local part.
+        i.e. If you use 'my_club@gmail.com' as mail server, 'my_club' should be the mail local part.
         """)
 
     def set_values(self):
