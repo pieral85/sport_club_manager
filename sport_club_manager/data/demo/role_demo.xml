@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-
     <record id="role_demo_1" model="role">
         <field name="user_id" ref="partner_demo_player_1_user"/>
         <field name="name">president</field>
@@ -33,6 +32,5 @@
     <record id="partner_demo_player_3_user" model="res.users">
         <field name="groups_id" eval="[(4, ref('group_scm_treasurer'))]"/>
     </record>
-
 </data>
 </odoo>

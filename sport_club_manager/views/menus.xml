@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- menu(s): Levels 0 and 1 -->
-        <menuitem id="menu_root" name="Sport Club Manager" groups="group_scm_committee_user,base.group_system"/>
-        <menuitem id="menu_top_memberships" name="Memberships" parent="menu_root" sequence="10"/>
-        <menuitem id="menu_top_resources" name="Resources" parent="menu_root" sequence="20"/>
-        <menuitem id="menu_top_settings" name="Configuration" parent="menu_root" sequence="30"/>
+<data>
+    <!-- menu(s): Levels 0 and 1 -->
+    <menuitem id="menu_root" name="Sport Club Manager" groups="group_scm_committee_user,base.group_system"/>
+    <menuitem id="menu_top_memberships" name="Memberships" parent="menu_root" sequence="10"/>
+    <menuitem id="menu_top_resources" name="Resources" parent="menu_root" sequence="20"/>
+    <menuitem id="menu_top_settings" name="Configuration" parent="menu_root" sequence="30"/>
 
-        <!-- menu action(s): Level 2 -->
-        <!-- Memberships -->
-        <menuitem id="menu_sub_memberships" name="Memberships" parent="menu_top_memberships" action="action_membership"/>
-        <menuitem id="menu_top_reports" name="Reports" parent="menu_top_memberships"/>
-        <!-- Resources -->
-        <menuitem id="menu_sub_members" name="Members" parent="menu_top_resources" action="action_member" sequence="10"/>
-        <menuitem id="menu_sub_contacts" name="Contacts" parent="menu_top_resources" action="action_contact" sequence="20"/>
-        <menuitem id="menu_sub_users" name="Users" parent="menu_top_resources" action="action_user" sequence="30"/>
-        <menuitem id="menu_sub_locations" name="Locations" parent="menu_top_resources" action="action_location" sequence="40"/>
-        <!-- Settings -->
-        <menuitem id="menu_sub_settings_period" name="Periods" parent="menu_top_settings" action="action_settings_period"/>
-        <menuitem id="menu_sub_settings_category" name="Categories" parent="menu_top_settings" action="action_settings_category"/>
-        <menuitem id="menu_sub_settings_club" name="Club" parent="menu_top_settings" action="base.action_res_company_form"/>
-        <menuitem id="menu_sub_settings_mail_templates" name="Mail Templates" parent="menu_top_settings" action="mail.action_email_template_tree_all"/>
+    <!-- menu action(s): Level 2 -->
+    <!-- Memberships -->
+    <menuitem id="menu_sub_memberships" name="Memberships" parent="menu_top_memberships" action="action_membership"/>
+    <menuitem id="menu_top_reports" name="Reports" parent="menu_top_memberships"/>
+    <!-- Resources -->
+    <menuitem id="menu_sub_members" name="Members" parent="menu_top_resources" action="action_member" sequence="10"/>
+    <menuitem id="menu_sub_contacts" name="Contacts" parent="menu_top_resources" action="action_contact" sequence="20"/>
+    <menuitem id="menu_sub_users" name="Users" parent="menu_top_resources" action="action_user" sequence="30"/>
+    <menuitem id="menu_sub_locations" name="Locations" parent="menu_top_resources" action="action_location" sequence="40"/>
+    <!-- Settings -->
+    <menuitem id="menu_sub_settings_period" name="Periods" parent="menu_top_settings" action="action_settings_period"/>
+    <menuitem id="menu_sub_settings_category" name="Categories" parent="menu_top_settings" action="action_settings_category"/>
+    <menuitem id="menu_sub_settings_club" name="Club" parent="menu_top_settings" action="base.action_res_company_form"/>
+    <menuitem id="menu_sub_settings_mail_templates" name="Mail Templates" parent="menu_top_settings" action="mail.action_email_template_tree_all"/>
 
-        <!-- menu action(s): Level 3 -->
-        <!-- Reports -->
-        <menuitem id="menu_sub_reports_prices_period" name="Prices per Period" parent="menu_top_reports" action="action_report_prices_per_period"/>
-        <menuitem id="menu_sub_reports_prices_user" name="Prices per User" parent="menu_top_reports" action="action_report_prices_per_member"/>
-    </data>
+    <!-- menu action(s): Level 3 -->
+    <!-- Reports -->
+    <menuitem id="menu_sub_reports_prices_period" name="Prices per Period" parent="menu_top_reports" action="action_report_prices_per_period"/>
+    <menuitem id="menu_sub_reports_prices_user" name="Prices per User" parent="menu_top_reports" action="action_report_prices_per_member"/>
+</data>
 </odoo>

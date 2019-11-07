@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Action Server -->
-        <record id="action_calculate_membership_price_due" model="ir.actions.server">
-            <field name="name">Calculate Memberships Price Due</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_membership"/>
-            <field name="state">code</field>
-            <field name="code"><![CDATA[
+<data>
+    <!-- Action Server -->
+    <record id="action_calculate_membership_price_due" model="ir.actions.server">
+        <field name="name">Calculate Memberships Price Due</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_membership"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
 for record in records:
     record._calculate_price_due()
 ]]>
-            </field>
-        </record>
+        </field>
+    </record>
 
-        <!-- Enable a flag on the model -->
-        <record id="sport_club_manager.model_membership" model="ir.model">
-            <field name="website_form_access">True</field>
-        </record>
+    <!-- Enable a flag on the model -->
+    <record id="sport_club_manager.model_membership" model="ir.model">
+        <field name="website_form_access">True</field>
+    </record>
 
-        <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
-        <function model="ir.model.fields" name="formbuilder_whitelist">
-            <value>sport_club_manager.membership</value>
-            <value eval="['period_category_id']"/>
-        </function>
+    <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
+    <function model="ir.model.fields" name="formbuilder_whitelist">
+        <value>sport_club_manager.membership</value>
+        <value eval="['period_category_id']"/>
+    </function>
 
-        <!-- Add membership in the website menu -->
-        <record id="menu_membership" model="website.menu">
-            <field name="name">Membership</field>
-            <field name="parent_id" ref="website.main_menu"/>
-            <field name="sequence" type="int">10</field>
-        </record>
-        <record id="menu_membership_request" model="website.menu">
-            <field name="name">Make a request</field>
-            <field name="url">sport/membership/request</field>
-            <field name="parent_id" ref="menu_membership"/>
-            <field name="sequence" type="int">10</field>
-        </record>
-        <record id="menu_membership_historical" model="website.menu">
-            <field name="name">My historical</field>
-            <field name="url">sport/my/membership/historical</field>
-            <field name="parent_id" ref="menu_membership"/>
-            <field name="sequence" type="int">20</field>
-        </record>
+    <!-- Add membership in the website menu -->
+    <record id="menu_membership" model="website.menu">
+        <field name="name">Membership</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">10</field>
+    </record>
+    <record id="menu_membership_request" model="website.menu">
+        <field name="name">Make a request</field>
+        <field name="url">sport/membership/request</field>
+        <field name="parent_id" ref="menu_membership"/>
+        <field name="sequence" type="int">10</field>
+    </record>
+    <record id="menu_membership_historical" model="website.menu">
+        <field name="name">My historical</field>
+        <field name="url">sport/my/membership/historical</field>
+        <field name="parent_id" ref="menu_membership"/>
+        <field name="sequence" type="int">20</field>
+    </record>
 
-        <!-- Add club information in the website menu -->
-        <record id="menu_club_info" model="website.menu">
-            <field name="name">About us</field>
-            <field name="parent_id" ref="website.main_menu"/>
-            <field name="url">aboutus</field>
-            <field name="sequence" type="int">30</field>
-        </record>
+    <!-- Add club information in the website menu -->
+    <record id="menu_club_info" model="website.menu">
+        <field name="name">About us</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="url">aboutus</field>
+        <field name="sequence" type="int">30</field>
+    </record>
 
-        <!--Email template for Membership Affiliation Confirmation-->
-        <record id="email_template_membership_affiliation_confirmation" model="mail.template">
-            <field name="name">Membership Affiliation Confirmation</field>
-            <field name="model_id" ref="model_membership"/>
-            <field name="email_from"><![CDATA[
+    <!--Email template for Membership Affiliation Confirmation-->
+    <record id="email_template_membership_affiliation_confirmation" model="mail.template">
+        <field name="name">Membership Affiliation Confirmation</field>
+        <field name="model_id" ref="model_membership"/>
+        <field name="email_from"><![CDATA[
 "${user.company_id.name|safe}" <${(user.company_id.email or user.email)|safe}>
 ]]>
-            </field>
+        </field>
 
-            <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
-            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
-            <field name="auto_delete" eval="False"/>
-            <field name="is_membership_confirmation_mail" eval="True"/>
-            <field name="lang">${object.member_id.lang}</field>
-            <field name="body_html"><![CDATA[
+        <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
+        <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="is_membership_confirmation_mail" eval="True"/>
+        <field name="lang">${object.member_id.lang}</field>
+        <field name="body_html"><![CDATA[
 <p>
     Dear ${(object.member_id.name or 'player')|safe},
 </p>
@@ -97,22 +97,22 @@ Best regards,
 ${user.name}, for the ${user.company_id.name|safe} comittee members
 </p>
 ]]>
-            </field>
-        </record>
+        </field>
+    </record>
 
-        <!-- Email template for Membership Invitation -->
-        <record id="email_template_membership_affiliation_invitation" model="mail.template">
-            <field name="name">Membership Affiliation Invitation</field>
-            <field name="model_id" ref="model_membership"/>
-            <field name="email_from"><![CDATA[
+    <!-- Email template for Membership Invitation -->
+    <record id="email_template_membership_affiliation_invitation" model="mail.template">
+        <field name="name">Membership Affiliation Invitation</field>
+        <field name="model_id" ref="model_membership"/>
+        <field name="email_from"><![CDATA[
 "${user.company_id.name|safe}" <${(user.company_id.email or '')|safe}>
 ]]>
-            </field>
-            <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
-            <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
-            <field name="auto_delete" eval="False"/>
-            <field name="is_membership_invitation_mail" eval="True"/>
-            <field name="body_html"><![CDATA[
+        </field>
+        <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
+        <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="is_membership_invitation_mail" eval="True"/>
+        <field name="body_html"><![CDATA[
 <div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
     <p>
         Dear ${(object.member_id.name or 'player')|safe},
@@ -136,85 +136,85 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
     <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
 
 </div>
-]]></field>
-        </record>
+]]>
+        </field>
+    </record>
 
-        <!-- Template rendered in route auth=None, for anonymous user. This allow them to see memberhip details -->
-        <template id="membership_affiliation_page_anonymous" name="Membership Invitation Page for anonymous users">
-            <t t-call="web.layout">
-                <t t-set="head">
-                    <t t-call-assets="web.assets_common" t-js="false"/>
-                    <t t-call-assets="web.assets_frontend" t-js="false"/>
-                    <t t-call-assets="sport_club_manager.membership_assets"/>
-                </t>
+    <!-- Template rendered in route auth=None, for anonymous user. This allow them to see memberhip details -->
+    <template id="membership_affiliation_page_anonymous" name="Membership Invitation Page for anonymous users">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <t t-call-assets="web.assets_common" t-js="false"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <t t-call-assets="sport_club_manager.membership_assets"/>
+            </t>
 
-                <div class="container">
-                    <div class="o_logo">
-                        <img class="img img-responsive center-block" src="/web/binary/company_logo"/>
+            <div class="container">
+                <div class="o_logo">
+                    <img class="img img-responsive center-block" src="/web/binary/company_logo"/>
+                </div>
+                <t t-foreach="('success', 'warning', 'info')" t-as="alert_level">
+                    <div t-if="messages.get(alert_level)" t-att-class="'alert alert-%s' % alert_level">
+                        <t t-esc="messages[alert_level]"/>
                     </div>
-                    <t t-foreach="('success', 'warning', 'info')" t-as="alert_level">
-                        <div t-if="messages.get(alert_level)" t-att-class="'alert alert-%s' % alert_level">
-                            <t t-esc="messages[alert_level]"/>
+                </t>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Season <small><t t-esc="membership.period_id.name"/></small></h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="clearfix mb16" t-if="membership.user_response != 'undefined'">
+                            <span class="pull-right">
+                                <span>Your invitation response: </span>
+                                <span t-if="membership.user_response == 'accepted'" class="label label-success">Accepted</span>
+                                <span t-if="membership.user_response == 'declined'" class="label label-danger">Declined</span>
+                            </span>
                         </div>
-                    </t>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h2>Season <small><t t-esc="membership.period_id.name"/></small></h2>
-                        </div>
-                        <div class="panel-body">
-                            <div class="clearfix mb16" t-if="membership.user_response != 'undefined'">
-                                <span class="pull-right">
-                                    <span>Your invitation response: </span>
-                                    <span t-if="membership.user_response == 'accepted'" class="label label-success">Accepted</span>
-                                    <span t-if="membership.user_response == 'declined'" class="label label-danger">Declined</span>
-                                </span>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="membership_invitation" class="o_event_table table table-striped">
-                                    <tr>
-                                        <th>Player</th>
-                                        <td>
-                                            <t t-esc="membership.member_id.name"/>
-                                            <t t-if="membership.member_user_id">
-                                                (<t t-esc="membership.member_user_id.login"/>)
-                                            </t>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Period</th>
-                                        <td>From <span t-field="membership.period_id.start_date"/> To <span t-field="membership.period_id.end_date"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Category</th>
-                                        <td><t t-esc="membership.category_id.name"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Member Status</th>
-                                        <td><span t-field="membership.state"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Amount Due</th>
-                                        <td>
-                                            <span t-field="membership.price_due"  t-options='{"widget": "monetary"}'/>
-                                            <t t-if="membership.state in ('requested', 'member')">
-                                                <span t-if="membership.paid" class="block label label-success">Everything is paid!</span>
-                                                <span t-else="" class="block label label-danger">
-                                                    <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
-                                                    <span>still to pay</span><br/>
-                                                    <span t-if="membership.member_id.company_id.account_no"> (account: 
-                                                        <t t-esc="membership.member_id.company_id.account_no"/>)
-                                                    </span>
+                        <div class="table-responsive">
+                            <table id="membership_invitation" class="o_event_table table table-striped">
+                                <tr>
+                                    <th>Player</th>
+                                    <td>
+                                        <t t-esc="membership.member_id.name"/>
+                                        <t t-if="membership.member_user_id">
+                                            (<t t-esc="membership.member_user_id.login"/>)
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Period</th>
+                                    <td>From <span t-field="membership.period_id.start_date"/> To <span t-field="membership.period_id.end_date"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Category</th>
+                                    <td><t t-esc="membership.category_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Member Status</th>
+                                    <td><span t-field="membership.state"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Amount Due</th>
+                                    <td>
+                                        <span t-field="membership.price_due"  t-options='{"widget": "monetary"}'/>
+                                        <t t-if="membership.state in ('requested', 'member')">
+                                            <span t-if="membership.paid" class="block label label-success">Everything is paid!</span>
+                                            <span t-else="" class="block label label-danger">
+                                                <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                                <span>still to pay</span><br/>
+                                                <span t-if="membership.member_id.company_id.account_no"> (account: 
+                                                    <t t-esc="membership.member_id.company_id.account_no"/>)
                                                 </span>
-                                            </t>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
+                                            </span>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </t>
-        </template>
-
-    </data>
+            </div>
+        </t>
+    </template>
+</data>
 </odoo>

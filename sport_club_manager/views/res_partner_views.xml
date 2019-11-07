@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="view_partner_short_form_sport" model="ir.ui.view">
-            <field name="name">res.partner.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_short_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='company_type']" position="attributes">
-                    <attribute name="readonly">True</attribute>
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-            </field>
-        </record>
-    </data>
+<data>
+    <record id="view_partner_short_form_sport" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_short_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="readonly">True</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</data>
 </odoo>

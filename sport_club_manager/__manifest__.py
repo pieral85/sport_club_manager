@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 {
+# TODO Review this file
     'name': "sport_club_manager",
 
     'summary': """

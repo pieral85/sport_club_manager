@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-
     <!-- form view(s) -->
     <record id="view_email_template_form_sport" model="ir.ui.view">
         <field name="name">email.template.form.inherit.scm</field>
@@ -16,6 +15,5 @@
             </xpath>
         </field>
     </record>
-
 </data>
 </odoo>

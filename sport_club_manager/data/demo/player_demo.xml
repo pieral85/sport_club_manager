@@ -1,100 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="partner_demo_player_1" model="res.partner">
-            <field name="name">Ana Ivanovic</field>
-            <field name="email">ana.ivanovic@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">Paris</field>
-            <field name="zip">1234</field>
-            <field name="country_id" ref="base.fr"/>
-            <field name="street">Rue Foo, 123</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_1.jpg"/>
-        </record>
-        <record id="partner_demo_player_1_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_player_1"/>
-            <field name="login">ana.ivanovic</field>
-            <field name="password">ana.ivanovic</field>
-        </record>
+<data>
+    <record id="partner_demo_player_1" model="res.partner">
+        <field name="name">Ana Ivanovic</field>
+        <field name="email">ana.ivanovic@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">Paris</field>
+        <field name="zip">1234</field>
+        <field name="country_id" ref="base.fr"/>
+        <field name="street">Rue Foo, 123</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_1.jpg"/>
+    </record>
+    <record id="partner_demo_player_1_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_player_1"/>
+        <field name="login">ana.ivanovic</field>
+        <field name="password">ana.ivanovic</field>
+    </record>
 
-        <record id="partner_demo_player_2" model="res.partner">
-            <field name="name">Michael Goodplayer</field>
-            <field name="email">michael.goodplayer@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">NY</field>
-            <field name="zip">4321</field>
-            <field name="country_id" ref="base.us"/>
-            <field name="street">Rue Kennedy, 2</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_2.jpg"/>
-        </record>
-        <record id="partner_demo_player_2_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_player_2"/>
-            <field name="login">michael.goodplayer</field>
-            <field name="password">michael.goodplayer</field>
-        </record>
+    <record id="partner_demo_player_2" model="res.partner">
+        <field name="name">Michael Goodplayer</field>
+        <field name="email">michael.goodplayer@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">NY</field>
+        <field name="zip">4321</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="street">Rue Kennedy, 2</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_2.jpg"/>
+    </record>
+    <record id="partner_demo_player_2_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_player_2"/>
+        <field name="login">michael.goodplayer</field>
+        <field name="password">michael.goodplayer</field>
+    </record>
 
-        <record id="partner_demo_player_3" model="res.partner">
-            <field name="name">Derek Morgan</field>
-            <field name="email">derek.morgan@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">Roma</field>
-            <field name="zip">77</field>
-            <field name="country_id" ref="base.it"/>
-            <field name="street">Rue Foo, 123</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_3.png"/>
-        </record>
-        <record id="partner_demo_player_3_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_player_3"/>
-            <field name="login">derek.morgan</field>
-            <field name="password">derek.morgan</field>
-        </record>
+    <record id="partner_demo_player_3" model="res.partner">
+        <field name="name">Derek Morgan</field>
+        <field name="email">derek.morgan@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">Roma</field>
+        <field name="zip">77</field>
+        <field name="country_id" ref="base.it"/>
+        <field name="street">Rue Foo, 123</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_3.png"/>
+    </record>
+    <record id="partner_demo_player_3_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_player_3"/>
+        <field name="login">derek.morgan</field>
+        <field name="password">derek.morgan</field>
+    </record>
 
-        <record id="partner_demo_player_4" model="res.partner">
-            <field name="name">David Goodenough</field>
-            <field name="email">david.goodenough@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">Namur</field>
-            <field name="zip">5000</field>
-            <field name="country_id" ref="base.be"/>
-            <field name="street">Rue Petite, 88</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_4.jpg"/>
-        </record>
-        <record id="partner_demo_player_4_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_player_4"/>
-            <field name="login">david.goodenough</field>
-            <field name="password">david.goodenough</field>
-        </record>
+    <record id="partner_demo_player_4" model="res.partner">
+        <field name="name">David Goodenough</field>
+        <field name="email">david.goodenough@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">Namur</field>
+        <field name="zip">5000</field>
+        <field name="country_id" ref="base.be"/>
+        <field name="street">Rue Petite, 88</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_4.jpg"/>
+    </record>
+    <record id="partner_demo_player_4_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_player_4"/>
+        <field name="login">david.goodenough</field>
+        <field name="password">david.goodenough</field>
+    </record>
 
-        <record id="partner_demo_young_player_1" model="res.partner">
-            <field name="name">Young Girl</field>
-            <field name="email">young.girl@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">Arlon</field>
-            <field name="zip">6700</field>
-            <field name="country_id" ref="base.be"/>
-            <field name="street">Rue Grande, 43</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_1.jpg"/>
-        </record>
-        <record id="partner_demo_young_player_1_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_young_player_1"/>
-            <field name="login">young.girl</field>
-            <field name="password">young.girl</field>
-        </record>
+    <record id="partner_demo_young_player_1" model="res.partner">
+        <field name="name">Young Girl</field>
+        <field name="email">young.girl@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">Arlon</field>
+        <field name="zip">6700</field>
+        <field name="country_id" ref="base.be"/>
+        <field name="street">Rue Grande, 43</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_1.jpg"/>
+    </record>
+    <record id="partner_demo_young_player_1_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_young_player_1"/>
+        <field name="login">young.girl</field>
+        <field name="password">young.girl</field>
+    </record>
 
-        <record id="partner_demo_young_player_2" model="res.partner">
-            <field name="name">Young Boy</field>
-            <field name="email">young.boy@test.com</field>
-            <field name="parent_id" ref="base.main_partner"/>
-            <field name="city">Brussels</field>
-            <field name="zip">1000</field>
-            <field name="country_id" ref="base.be"/>
-            <field name="street">Avenue Principale, 1</field>
-            <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_2.jpg"/>
-        </record>
-        <record id="partner_demo_young_player_2_user" model="res.users">
-            <field name="partner_id" ref="partner_demo_young_player_2"/>
-            <field name="login">young.boy</field>
-            <field name="password">young.boy</field>
-        </record>
-    </data>
+    <record id="partner_demo_young_player_2" model="res.partner">
+        <field name="name">Young Boy</field>
+        <field name="email">young.boy@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="city">Brussels</field>
+        <field name="zip">1000</field>
+        <field name="country_id" ref="base.be"/>
+        <field name="street">Avenue Principale, 1</field>
+        <field name="image" type="base64" file="sport_club_manager/static/img/res_partner_child_2.jpg"/>
+    </record>
+    <record id="partner_demo_young_player_2_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_young_player_2"/>
+        <field name="login">young.boy</field>
+        <field name="password">young.boy</field>
+    </record>
+</data>
 </odoo>

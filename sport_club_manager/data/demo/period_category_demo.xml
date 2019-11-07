@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- Period Categories -->
-        <record id="period_current_category_starter" model="period_category">
-            <field name="period_id" ref="period_current"/>
-            <field name="category_id" ref="category_starter"/>
-            <field name="price_due">80</field>
-            <field name="default">True</field>
-        </record>
-        <record id="period_current_category_competitor" model="period_category">
-            <field name="period_id" ref="period_current"/>
-            <field name="category_id" ref="category_competitor"/>
-            <field name="price_due">100</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_current_category_child" model="period_category">
-            <field name="period_id" ref="period_current"/>
-            <field name="category_id" ref="category_child"/>
-            <field name="price_due">60</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_current_category_teenager" model="period_category">
-            <field name="period_id" ref="period_current"/>
-            <field name="category_id" ref="category_teenager"/>
-            <field name="price_due">75</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_upcoming_category_starter" model="period_category">
-            <field name="period_id" ref="period_upcoming"/>
-            <field name="category_id" ref="category_starter"/>
-            <field name="price_due">80</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_upcoming_category_competitor" model="period_category">
-            <field name="period_id" ref="period_upcoming"/>
-            <field name="category_id" ref="category_competitor"/>
-            <field name="price_due">95</field>
-            <field name="default">True</field>
-        </record>
-        <record id="period_upcoming_category_child" model="period_category">
-            <field name="period_id" ref="period_upcoming"/>
-            <field name="category_id" ref="category_child"/>
-            <field name="price_due">50</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_past_1_category_starter" model="period_category">
-            <field name="period_id" ref="period_past_1"/>
-            <field name="category_id" ref="category_starter"/>
-            <field name="price_due">75</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_past_1_category_competitor" model="period_category">
-            <field name="period_id" ref="period_past_1"/>
-            <field name="category_id" ref="category_competitor"/>
-            <field name="price_due">90</field>
-            <field name="default">True</field>
-        </record>
-        <record id="period_past_2_category_starter" model="period_category">
-            <field name="period_id" ref="period_past_2"/>
-            <field name="category_id" ref="category_starter"/>
-            <field name="price_due">70</field>
-            <field name="default">False</field>
-        </record>
-        <record id="period_past_3_category_starter" model="period_category">
-            <field name="period_id" ref="period_past_3"/>
-            <field name="category_id" ref="category_starter"/>
-            <field name="price_due">70</field>
-            <field name="default">False</field>
-        </record>
-    </data>
+<data>
+    <record id="period_current_category_starter" model="period_category">
+        <field name="period_id" ref="period_current"/>
+        <field name="category_id" ref="category_starter"/>
+        <field name="price_due">80</field>
+        <field name="default">True</field>
+    </record>
+    <record id="period_current_category_competitor" model="period_category">
+        <field name="period_id" ref="period_current"/>
+        <field name="category_id" ref="category_competitor"/>
+        <field name="price_due">100</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_current_category_child" model="period_category">
+        <field name="period_id" ref="period_current"/>
+        <field name="category_id" ref="category_child"/>
+        <field name="price_due">60</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_current_category_teenager" model="period_category">
+        <field name="period_id" ref="period_current"/>
+        <field name="category_id" ref="category_teenager"/>
+        <field name="price_due">75</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_upcoming_category_starter" model="period_category">
+        <field name="period_id" ref="period_upcoming"/>
+        <field name="category_id" ref="category_starter"/>
+        <field name="price_due">80</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_upcoming_category_competitor" model="period_category">
+        <field name="period_id" ref="period_upcoming"/>
+        <field name="category_id" ref="category_competitor"/>
+        <field name="price_due">95</field>
+        <field name="default">True</field>
+    </record>
+    <record id="period_upcoming_category_child" model="period_category">
+        <field name="period_id" ref="period_upcoming"/>
+        <field name="category_id" ref="category_child"/>
+        <field name="price_due">50</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_past_1_category_starter" model="period_category">
+        <field name="period_id" ref="period_past_1"/>
+        <field name="category_id" ref="category_starter"/>
+        <field name="price_due">75</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_past_1_category_competitor" model="period_category">
+        <field name="period_id" ref="period_past_1"/>
+        <field name="category_id" ref="category_competitor"/>
+        <field name="price_due">90</field>
+        <field name="default">True</field>
+    </record>
+    <record id="period_past_2_category_starter" model="period_category">
+        <field name="period_id" ref="period_past_2"/>
+        <field name="category_id" ref="category_starter"/>
+        <field name="price_due">70</field>
+        <field name="default">False</field>
+    </record>
+    <record id="period_past_3_category_starter" model="period_category">
+        <field name="period_id" ref="period_past_3"/>
+        <field name="category_id" ref="category_starter"/>
+        <field name="price_due">70</field>
+        <field name="default">False</field>
+    </record>
+</data>
 </odoo>

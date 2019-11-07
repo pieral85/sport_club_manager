@@ -1,114 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="view_users_simple_form_sport" model="ir.ui.view">
-            <field name="name">res.users.simplified.form</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_simple_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//sheet/div" position="before">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
-                            <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
-                        </button>
-                    </div>
-                </xpath>
-                <xpath expr="//field[@name='mobile']" position="replace">
-                    <field name="partner_id"/>
-                </xpath>
-                <xpath expr="//sheet" position="after">
-                    <sheet>
-                        <notebook>
-                            <page string="Affiliations">
-                                <field name="membership_ids">
-                                    <tree editable="bottom">
-                                        <field name="period_category_id"/>
-                                        <field name="price_due" widget="monetary" sum="Total"/>
-                                        <field name="price_paid" widget="monetary" sum="Total"/>
-                                        <field name="price_remaining" widget="monetary" sum="Total"/>
-                                        <field name="price_paid_percentage" widget="progressbar"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Address">
-                                <group>
-                                    <field name="street" string="Address"/>
-                                    <field name="street2" string=""/>
-                                    <field name="city"/>
-                                </group>
-                                <group>
-                                    <field name="state_id"/>
-                                    <field name="zip"/>
-                                    <field name="country_id"/>
-                                </group>
-                            </page>
-                            <page string="Roles &amp; Groups">
-                                <field name="groups_id" string="Groups" widget="many2many_tags" readonly="1" groups="base.group_no_one"/>
-                                <!-- <group col="12"> -->
-                                <!-- 
-                                <div>
-                                    <field name="president"/>
-                                    <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary oe_left" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
-                                    <button name="modify_role" type="object" string="Start President Role" class="btn-primary oe_left" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
-                                    <newline/>
-                                </div>
- -->
+<data>
+    <!-- TODO Clean code -->
+    <record id="view_users_simple_form_sport" model="ir.ui.view">
+        <field name="name">res.users.simplified.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                        <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="replace">
+                <field name="partner_id"/>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <sheet>
+                    <notebook>
+                        <page string="Affiliations">
+                            <field name="membership_ids">
+                                <tree editable="bottom">
+                                    <field name="period_category_id"/>
+                                    <field name="price_due" widget="monetary" sum="Total"/>
+                                    <field name="price_paid" widget="monetary" sum="Total"/>
+                                    <field name="price_remaining" widget="monetary" sum="Total"/>
+                                    <field name="price_paid_percentage" widget="progressbar"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Address">
+                            <group>
+                                <field name="street" string="Address"/>
+                                <field name="street2" string=""/>
+                                <field name="city"/>
+                            </group>
+                            <group>
+                                <field name="state_id"/>
+                                <field name="zip"/>
+                                <field name="country_id"/>
+                            </group>
+                        </page>
+                        <page string="Roles &amp; Groups">
+                            <field name="groups_id" string="Groups" widget="many2many_tags" readonly="1" groups="base.group_no_one"/>
+                            <!-- <group col="12"> -->
+                            <!-- 
+                            <div>
+                                <field name="president"/>
+                                <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary oe_left" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
+                                <button name="modify_role" type="object" string="Start President Role" class="btn-primary oe_left" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+                                <newline/>
+                            </div>
+-->
 <group col="3">
-    <group col="12" colspan="1">
-    <!-- <div class="oe_inline" name="edit_alias" style="display: inline;" > -->
-        <field name="president" colspan="2"/>
-        <button name="modify_role" type="object" string="Start President Role" class="btn-primary" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
-        <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="5"/>
-    <!-- </div> -->
-    </group>
-    <newline/>
+<group col="12" colspan="1">
+<!-- <div class="oe_inline" name="edit_alias" style="display: inline;" > -->
+    <field name="president" colspan="2"/>
+    <button name="modify_role" type="object" string="Start President Role" class="btn-primary" attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+    <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary" attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="5"/>
+<!-- </div> -->
+</group>
+<newline/>
 <!-- </group> -->
 <!-- 
 <group>
-    <label for="president" string="President!"/>
-    <div class="oe_inline" name="edit_alias" style="display: inline;" >
-        <field name="president"/>            
-        <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary " attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
-        <button name="modify_role" type="object" string="Start President Role" class="btn-primary " attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
-    </div>
+<label for="president" string="President!"/>
+<div class="oe_inline" name="edit_alias" style="display: inline;" >
+    <field name="president"/>            
+    <button name="modify_role" type="object" string="Stop President Role" class="btn-secondary " attrs="{'invisible': [('president', '=', False)]}" confirm="Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'president', 'action': 'stop'}" colspan="1"/>
+    <button name="modify_role" type="object" string="Start President Role" class="btn-primary " attrs="{'invisible': [('president', '=', True)]}" confirm="Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'president', 'action': 'start'}" colspan="5"/>
+</div>
 </group>
- -->
-                                <!-- <group> --><group col="12" colspan="1">
-                                    <field name="secretary"/>
-                                    <button name="modify_role" type="object" string="Start Secretary Role" class="btn-primary" attrs="{'invisible': [('secretary', '=', True)]}" confirm="Are you sure to start secretary role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'secretary', 'action': 'start'}" colspan="5"/>
-                                    <button name="modify_role" type="object" string="Stop Secretary Role" class="btn-secondary" attrs="{'invisible': [('secretary', '=', False)]}" confirm="Are you sure to stop current secretary role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'secretary', 'action': 'stop'}" colspan="5"/>
-                                    <!-- <newline/> -->
-                                </group><newline/><!-- </group> -->
-                                <!-- <group> --><group col="12" colspan="1">
-                                    <field name="treasurer" class="oe_inline"/>
-                                    <button name="modify_role" type="object" string="Start Treasurer Role" class="btn-primary" attrs="{'invisible': [('treasurer', '=', True)]}" confirm="Are you sure to start treasurer role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'treasurer', 'action': 'start'}" colspan="5"/>
-                                    <button name="modify_role" type="object" string="Stop Treasurer Role" class="btn-secondary" attrs="{'invisible': [('treasurer', '=', False)]}" confirm="Are you sure to stop current treasurer role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'treasurer', 'action': 'stop'}" colspan="5"/>
-                                </group>
-                                <newline/>
-                                <group>
-                                    <field name="committee_manager"/>
-                                    <field name="committee_user"/>
-                                </group>
-                                </group>
-                                <group string="Roles Historical">
-                                    <field name="role_ids" nolabel="1">
-                                        <tree editable="bottom">
-                                            <field name="name"/>
-                                            <field name="start_date"/>
-                                            <field name="end_date"/>
-                                            <field name="current"/>
-                                        </tree>
-                                    </field>
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-    </data>
+-->
+                            <!-- <group> --><group col="12" colspan="1">
+                                <field name="secretary"/>
+                                <button name="modify_role" type="object" string="Start Secretary Role" class="btn-primary" attrs="{'invisible': [('secretary', '=', True)]}" confirm="Are you sure to start secretary role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'secretary', 'action': 'start'}" colspan="5"/>
+                                <button name="modify_role" type="object" string="Stop Secretary Role" class="btn-secondary" attrs="{'invisible': [('secretary', '=', False)]}" confirm="Are you sure to stop current secretary role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'secretary', 'action': 'stop'}" colspan="5"/>
+                                <!-- <newline/> -->
+                            </group><newline/><!-- </group> -->
+                            <!-- <group> --><group col="12" colspan="1">
+                                <field name="treasurer" class="oe_inline"/>
+                                <button name="modify_role" type="object" string="Start Treasurer Role" class="btn-primary" attrs="{'invisible': [('treasurer', '=', True)]}" confirm="Are you sure to start treasurer role as of today? You can still modify it by changing the related record in the historical below." context="{'role_name': 'treasurer', 'action': 'start'}" colspan="5"/>
+                                <button name="modify_role" type="object" string="Stop Treasurer Role" class="btn-secondary" attrs="{'invisible': [('treasurer', '=', False)]}" confirm="Are you sure to stop current treasurer role? You can still reactivate it by removing the related end date in the historical below." context="{'role_name': 'treasurer', 'action': 'stop'}" colspan="5"/>
+                            </group>
+                            <newline/>
+                            <group>
+                                <field name="committee_manager"/>
+                                <field name="committee_user"/>
+                            </group>
+                            </group>
+                            <group string="Roles Historical">
+                                <field name="role_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="current"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</data>
 </odoo>

@@ -1,146 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <!-- tree view(s) -->
-        <record id="period_view_list" model="ir.ui.view">
-            <field name="name">period list</field>
-            <field name="model">period</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="current"/>
-                    <field name="upcoming"/>
-                    <field name="start_date"/>
-                    <field name="end_date"/>
-                    <field name="count_members" sum="Total"/>
-                    <field name="total_price_due" sum="Total"/>
-                    <field name="total_price_paid" sum="Total"/>
-                    <field name="total_remaining_price_due" sum="Total"/>
-                </tree>
-            </field>
-        </record>
+<data>
+    <!-- tree view(s) -->
+    <record id="period_view_list" model="ir.ui.view">
+        <field name="name">period list</field>
+        <field name="model">period</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="current"/>
+                <field name="upcoming"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="count_members" sum="Total"/>
+                <field name="total_price_due" sum="Total"/>
+                <field name="total_price_paid" sum="Total"/>
+                <field name="total_remaining_price_due" sum="Total"/>
+            </tree>
+        </field>
+    </record>
 
-        <!-- form view(s) -->
-        <record id="period_view_form" model="ir.ui.view">
-            <field name="name">period form</field>
-            <field name="model">period</field>
-            <field name="arch" type="xml">
-                <form>
-                    <header>
-                        <field name="current" invisible="1"/>
-                        <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-primary"/>
-                        <!-- TODO
-                        <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
-                         -->
-                        <button name="update_periods" type="object" string="Recalculate Active Periods"/>
-                    </header>
-                    <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                                <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
-                            </button>
-                        </div>
-                        <group>
-                            <h1>
-                                <field name="name" placeholder="Name..."/>
-                            </h1>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="current" readonly="1"/>
-                            <field name="upcoming" readonly="1"/>
-                        </group>
-                        <notebook>
-                            <page string="Categories">
-                                <field name="period_category_ids">
-                                    <tree editable="bottom">
-                                        <field name="category_id"/>
-                                        <field name="default"/>
-                                        <field name="price_due" widget="monetary"/>
-                                        <field name="count_members" sum="Total"/>
-                                        <field name="total_price_due" sum="Total"/>
-                                        <field name="total_price_paid" sum="Total"/>
-                                        <field name="total_remaining_price_due" sum="Total"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Members">
-                                <field name="member_ids">
-                                    <tree editable="bottom">
-                                        <field name="name"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Memberships">
-                                <field name="membership_ids">
-                                    <tree editable="bottom">
-                                        <field name="member_id"/>
-                                        <field name="category_id"/>
-                                        <field name="state"/>
-                                        <field name="paid"/>
-                                        <field name="price_due" sum="Total"/>
-                                        <field name="price_paid" sum="Total"/>
-                                        <field name="price_remaining" sum="Total"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="Emails">
-                                <group>
-                                    <label for="alias_name" string="Email Alias"/>
-                                    <div name="alias_def">
-                                        <field name="alias_id" class="oe_read_only oe_inline" string="Email Alias" required="0"/>
-                                        <div class="oe_edit_only oe_inline" name="edit_alias" style="display: inline;" >
-                                            <field name="alias_name" class="oe_inline"/>
-                                            @
-                                            <field name="alias_domain" class="oe_inline" readonly="1"/>
-                                        </div>
-                                    </div>
-                                    <field name="alias_contact" class="oe_inline" string="Accept Emails From"/>
-                                </group>
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <!-- search view(s) -->
-        <record id="period_search" model="ir.ui.view">
-            <field name="name">period.inactive.search</field>
-            <field name="model">period</field>
-            <field name="arch" type="xml">
-                <search string="Periods">
-                    <field name="name" string="Period Name" filter_domain="[('name','ilike',self)]"/>
-                    <field name="start_date" string="Period Including Date" filter_domain="[('start_date','&lt;=',self), ('end_date','&gt;=',self)]"/>
-                    <separator/>
-                    <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active period."/>
-                    <filter name="inactive_search" string="Archived" domain="[('active','=',False)]" help="Only inactive periods."/>
-                </search>
-            </field>
-        </record>
-
-        <!-- wizard view(s) -->
-        <record id="period_wizard_form_view" model="ir.ui.view">
-            <field name="name">period.wizard.form</field>
-            <field name="model">period_wizard</field>
-            <field name="arch" type="xml">
-                <form string="Period Duplication">
+    <!-- form view(s) -->
+    <record id="period_view_form" model="ir.ui.view">
+        <field name="name">period form</field>
+        <field name="model">period</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="current" invisible="1"/>
+                    <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-primary"/>
+                    <!-- TODO
+                    <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
+                     -->
+                    <button name="update_periods" type="object" string="Recalculate Active Periods"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                        </button>
+                    </div>
                     <group>
-                        <group>
-                            <field name="period_id" string="Period to Duplicate"/>
-                            <field name="name" string="New Name"/>
-                        </group>
-                        <group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                        </group>
+                        <h1>
+                            <field name="name" placeholder="Name..."/>
+                        </h1>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="current" readonly="1"/>
+                        <field name="upcoming" readonly="1"/>
                     </group>
-                    <footer>
-                        <button name="duplicate" type="object"
-                                string="Duplicate Period" class="oe_highlight"/>
-                        <button special="cancel" string="Cancel"/>
-                    </footer>
-                </form>
-            </field>
-        </record>
-    </data>
+                    <notebook>
+                        <page string="Categories">
+                            <field name="period_category_ids">
+                                <tree editable="bottom">
+                                    <field name="category_id"/>
+                                    <field name="default"/>
+                                    <field name="price_due" widget="monetary"/>
+                                    <field name="count_members" sum="Total"/>
+                                    <field name="total_price_due" sum="Total"/>
+                                    <field name="total_price_paid" sum="Total"/>
+                                    <field name="total_remaining_price_due" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Members">
+                            <field name="member_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Memberships">
+                            <field name="membership_ids">
+                                <tree editable="bottom">
+                                    <field name="member_id"/>
+                                    <field name="category_id"/>
+                                    <field name="state"/>
+                                    <field name="paid"/>
+                                    <field name="price_due" sum="Total"/>
+                                    <field name="price_paid" sum="Total"/>
+                                    <field name="price_remaining" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Emails">
+                            <group>
+                                <label for="alias_name" string="Email Alias"/>
+                                <div name="alias_def">
+                                    <field name="alias_id" class="oe_read_only oe_inline" string="Email Alias" required="0"/>
+                                    <div class="oe_edit_only oe_inline" name="edit_alias" style="display: inline;" >
+                                        <field name="alias_name" class="oe_inline"/>
+                                        @
+                                        <field name="alias_domain" class="oe_inline" readonly="1"/>
+                                    </div>
+                                </div>
+                                <field name="alias_contact" class="oe_inline" string="Accept Emails From"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- search view(s) -->
+    <record id="period_search" model="ir.ui.view">
+        <field name="name">period.inactive.search</field>
+        <field name="model">period</field>
+        <field name="arch" type="xml">
+            <search string="Periods">
+                <field name="name" string="Period Name" filter_domain="[('name','ilike',self)]"/>
+                <field name="start_date" string="Period Including Date" filter_domain="[('start_date','&lt;=',self), ('end_date','&gt;=',self)]"/>
+                <separator/>
+                <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active period."/>
+                <filter name="inactive_search" string="Archived" domain="[('active','=',False)]" help="Only inactive periods."/>
+            </search>
+        </field>
+    </record>
+
+    <!-- wizard view(s) -->
+    <record id="period_wizard_form_view" model="ir.ui.view">
+        <field name="name">period.wizard.form</field>
+        <field name="model">period_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Period Duplication">
+                <group>
+                    <group>
+                        <field name="period_id" string="Period to Duplicate"/>
+                        <field name="name" string="New Name"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="duplicate" type="object"
+                            string="Duplicate Period" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</data>
 </odoo>

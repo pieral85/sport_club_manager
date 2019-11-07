@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-
     <record id="action_user" model="ir.actions.act_window">
         <field name="name">Users</field>
         <field name="res_model">res.users</field>
@@ -18,6 +17,5 @@
                 }),
             ]"/>
     </record>
-
 </data>
 </odoo>

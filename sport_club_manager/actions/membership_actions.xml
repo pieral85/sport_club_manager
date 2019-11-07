@@ -1,86 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="action_membership" model="ir.actions.act_window">
-            <field name="name">Memberships</field>
-            <field name="res_model">membership</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">kanban,tree,form,graph</field>
-            <field name="context">{
-                'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
-                'search_default_current_period_search': 1,
-                'search_default_upcoming_period_search': 0,
-            }
-            </field>
-            <!-- List of the views linked to this action window -->
-            <field name="view_ids" eval="[
-                (5, 0, 0),
-                (0, 0, {
-                    'view_mode': 'kanban',
-                    'view_id': ref('membership_view_kanban'),
-                    }),
-                (0, 0, {
-                    'view_mode': 'tree',
-                    'view_id': ref('membership_view_list'),
-                    }),
-                (0, 0, {
-                    'view_mode': 'graph',
-                    'view_id': ref('membership_view_graph_members'),
-                    }),
-                (0, 0, {
-                    'view_mode': 'pivot',
-                    'view_id': ref('membership_view_pivot'),
-                    }),
-                ]"/>
-        </record>
+<data>
+    <record id="action_membership" model="ir.actions.act_window">
+        <field name="name">Memberships</field>
+        <field name="res_model">membership</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="context">{
+            'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
+            'search_default_current_period_search': 1,
+            'search_default_upcoming_period_search': 0,
+        }
+        </field>
+        <!-- List of the views linked to this action window -->
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {
+                'view_mode': 'kanban',
+                'view_id': ref('membership_view_kanban'),
+                }),
+            (0, 0, {
+                'view_mode': 'tree',
+                'view_id': ref('membership_view_list'),
+                }),
+            (0, 0, {
+                'view_mode': 'graph',
+                'view_id': ref('membership_view_graph_members'),
+                }),
+            (0, 0, {
+                'view_mode': 'pivot',
+                'view_id': ref('membership_view_pivot'),
+                }),
+            ]"/>
+    </record>
 
-        <record id="action_report_prices_per_period" model="ir.actions.act_window">
-            <field name="name">Prices per Period (validated members only)</field>
-            <field name="res_model">membership</field>
-            <field name="domain">[('state', '=', 'member')]</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">graph</field>
-            <field name="view_id" ref="membership_view_graph_periods"/>
-        </record>
+    <record id="action_report_prices_per_period" model="ir.actions.act_window">
+        <field name="name">Prices per Period (validated members only)</field>
+        <field name="res_model">membership</field>
+        <field name="domain">[('state', '=', 'member')]</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="membership_view_graph_periods"/>
+    </record>
 
-        <record id="action_report_prices_per_member" model="ir.actions.act_window">
-            <field name="name">Prices per Member (validated only)</field>
-            <field name="res_model">membership</field>
-            <field name="domain">[('state', '=', 'member')]</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">graph</field>
-            <field name="view_id" ref="membership_view_graph_members"/>
-        </record>
+    <record id="action_report_prices_per_member" model="ir.actions.act_window">
+        <field name="name">Prices per Member (validated only)</field>
+        <field name="res_model">membership</field>
+        <field name="domain">[('state', '=', 'member')]</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="membership_view_graph_members"/>
+    </record>
 
-        <record id="action_send_email_connection_invitation" model="ir.actions.server">
-            <field name="name">Send Connection Invitation Email (for users who have never been connected)</field>
-            <field name="model_id" ref="sport_club_manager.model_membership"/>
-            <!-- <field name="binding_model_id" ref="sport_club_manager.model_membership"/> -->
-            <field name="state">code</field>
-            <field name="code">
+    <record id="action_send_email_connection_invitation" model="ir.actions.server">
+        <field name="name">Send Connection Invitation Email (for users who have never been connected)</field>
+        <field name="model_id" ref="sport_club_manager.model_membership"/>
+        <!-- <field name="binding_model_id" ref="sport_club_manager.model_membership"/> -->
+        <field name="state">code</field>
+        <field name="code">
 records.mapped('member_user_id').filtered(lambda u: u.state == 'new').with_context({'create_user': 1}).action_reset_password()
-            </field>
-        </record>
+        </field>
+    </record>
 
-        <record id="action_send_email_membership_invitation" model="ir.actions.server">
-            <field name="name">(Re)Send Membership Invitation Email</field>
-            <field name="model_id" ref="sport_club_manager.model_membership"/>
-            <field name="binding_model_id" ref="model_membership"/>
-            <field name="state">code</field>
-            <field name="code">
+    <record id="action_send_email_membership_invitation" model="ir.actions.server">
+        <field name="name">(Re)Send Membership Invitation Email</field>
+        <field name="model_id" ref="sport_club_manager.model_membership"/>
+        <field name="binding_model_id" ref="model_membership"/>
+        <field name="state">code</field>
+        <field name="code">
 action = records.send_email_invitation()
-            </field>
-        </record>
+        </field>
+    </record>
 
-        <record id="action_send_email_membership_confirmation" model="ir.actions.server">
-            <field name="name">(Re)Send Membership Confirmation Email</field>
-            <field name="model_id" ref="model_membership"/>
-            <field name="binding_model_id" ref="model_membership"/>
-            <field name="state">code</field>
-            <field name="code">
+    <record id="action_send_email_membership_confirmation" model="ir.actions.server">
+        <field name="name">(Re)Send Membership Confirmation Email</field>
+        <field name="model_id" ref="model_membership"/>
+        <field name="binding_model_id" ref="model_membership"/>
+        <field name="state">code</field>
+        <field name="code">
 action = records.send_email_confirmation()
-            </field>
-        </record>
-
-    </data>
+        </field>
+    </record>
+</data>
 </odoo>
