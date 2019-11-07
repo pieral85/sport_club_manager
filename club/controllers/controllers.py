@@ -13,7 +13,7 @@ class SportClubManager(AuthSignupHome):
     @http.route('%s/period/' % _URL_ROOT, auth='public', website=True)
     def period(self, **kw):
         periods = http.request.env['period'].search([])
-        return http.request.render('sport_club_manager.website_period', {
+        return http.request.render('club.website_period', {
             'periods': periods,
         })
 
@@ -25,13 +25,13 @@ class SportClubManager(AuthSignupHome):
             ('period_id.id', 'not in', consumed_period_ids),
             ]
         )
-        return http.request.render('sport_club_manager.website_membership_request', {
+        return http.request.render('club.website_membership_request', {
             'period_categories': period_category_ids,
         })
 
     # @http.route('%s/members/<model("res.partner"):member>/' % _URL_ROOT, auth='public', website=True)
     # def member(self, member):
-    #     return http.request.render('sport_club_manager.website_member_info', {
+    #     return http.request.render('club.website_member_info', {
     #         'player': member
     #     })
 
@@ -42,7 +42,7 @@ class SportClubManager(AuthSignupHome):
             ('Secretary', http.request.env['res.users'].sudo().search([('secretary', '=', True),])),
             ('Treasurer', http.request.env['res.users'].sudo().search([('treasurer', '=', True),])),
         )
-        return http.request.render('sport_club_manager.website_info_club', {
+        return http.request.render('club.website_info_club', {
             'committee': committee,
         })
     # @http.route('%s/info_club/' % _URL_ROOT, auth='public', website=True)
@@ -52,7 +52,7 @@ class SportClubManager(AuthSignupHome):
     #         ('Secretary', http.request.env['res.users'].search([('secretary', '=', True),])),
     #         ('Treasurer', http.request.env['res.users'].search([('treasurer', '=', True),])),
     #     )
-    #     return http.request.render('sport_club_manager.website_info_club', {
+    #     return http.request.render('club.website_info_club', {
     #         'committee': committee,
     #     })
 
@@ -65,7 +65,7 @@ class SportClubManager(AuthSignupHome):
             ],
             order='period_id desc',
         )
-        return http.request.render('sport_club_manager.website_my_historical', {
+        return http.request.render('club.website_my_historical', {
             'memberships': memberships,
         })
 
@@ -96,7 +96,7 @@ class SportClubManager(AuthSignupHome):
                         Please ensure to pay the amount due first.'
 
             response_content = env['ir.ui.view'].render_template(
-                'sport_club_manager.membership_affiliation_page_anonymous', {
+                'club.membership_affiliation_page_anonymous', {
                     'membership': membership,
                     'messages': messages,
                 })

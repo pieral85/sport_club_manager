@@ -9,7 +9,7 @@
     </template>
 
     <record id="base.user_admin" model="res.users">
-        <field name="groups_id" eval="[(4, ref('group_scm_committee_manager'))]"/>
+        <field name="groups_id" eval="[(4, ref('group_club_committee_manager'))]"/>
     </record>
 </data>
 </odoo>

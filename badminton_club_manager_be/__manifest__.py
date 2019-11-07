@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sport_club_manager'],#, 'board', 'website', 'website_sale'],
+    'depends': ['club'],#, 'board', 'website', 'website_sale'],
 
     # always loaded
     'data': [

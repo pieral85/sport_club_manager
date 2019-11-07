@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- TODO Check if record is needed and clean code -->
-    <record id="res_config_settings_view_form_scm" model="ir.ui.view">
-        <field name="name">res.config.settings.view.form.inherit.scm</field>
+    <record id="res_config_settings_view_form_club" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.club</field>
         <field name="model">res.config.settings</field>
         <!-- <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/> -->
         <field name="inherit_id" ref="mail.res_config_settings_view_form"/>

@@ -169,7 +169,7 @@ class Period(models.Model):
             'view_mode': 'form',
             'src_model': 'period',
             'res_model': 'period_wizard',
-            'view_id': self.env.ref('sport_club_manager.period_wizard_form_view').id,
+            'view_id': self.env.ref('club.period_wizard_form_view').id,
             'context': ctx,
             'target': 'new',
         }

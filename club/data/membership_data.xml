@@ -15,13 +15,13 @@ for record in records:
     </record>
 
     <!-- Enable a flag on the model -->
-    <record id="sport_club_manager.model_membership" model="ir.model">
+    <record id="club.model_membership" model="ir.model">
         <field name="website_form_access">True</field>
     </record>
 
     <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
     <function model="ir.model.fields" name="formbuilder_whitelist">
-        <value>sport_club_manager.membership</value>
+        <value>club.membership</value>
         <value eval="['period_category_id']"/>
     </function>
 
@@ -146,7 +146,7 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
             <t t-set="head">
                 <t t-call-assets="web.assets_common" t-js="false"/>
                 <t t-call-assets="web.assets_frontend" t-js="false"/>
-                <t t-call-assets="sport_club_manager.membership_assets"/>
+                <t t-call-assets="club.membership_assets"/>
             </t>
 
             <div class="container">

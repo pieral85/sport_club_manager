@@ -2,7 +2,7 @@
 <odoo>
     <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
         <xpath expr="." position="inside">
-            <link rel='stylesheet' href='/sport_club_manager/static/src/css/website.css'/>
+            <link rel='stylesheet' href='/club/static/src/css/website.css'/>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
              <attribute name="t-att-class">(pageName or '') + ' bg_02'</attribute>
@@ -12,6 +12,6 @@
         </xpath>
     </template>
     <template id="membership_assets" name="Membership Assets">
-        <link rel='stylesheet' href='/sport_club_manager/static/src/less/membership.less'/>
+        <link rel='stylesheet' href='/club/static/src/less/membership.less'/>
     </template>
 </odoo>

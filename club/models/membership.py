@@ -195,7 +195,7 @@ class Membership(models.Model):
 
     @api.multi
     def send_email_invitation(self):
-        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_invitation')
+        template = self.env.ref('club.email_template_membership_affiliation_invitation')
         memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
         if memberships:
             compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
@@ -221,7 +221,7 @@ class Membership(models.Model):
 
     @api.multi
     def send_email_confirmation(self):
-        template = self.env.ref('sport_club_manager.email_template_membership_affiliation_confirmation')
+        template = self.env.ref('club.email_template_membership_affiliation_confirmation')
         memberships = self.filtered(lambda m: m.state == 'member')
         if memberships:
             compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
@@ -392,7 +392,7 @@ class Membership(models.Model):
     @api.depends('token_validity')
     def _compute_token_is_valid(self):
         for record in self:
-            # TODO 30 should be in scm parameters
+            # TODO 30 should be in club parameters
             record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
 
     @api.onchange('period_category_id')

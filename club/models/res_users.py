@@ -80,9 +80,9 @@ class ResUsers(models.Model):
         """
         new_groups = []
         status_groups = (
-            ('president', 'sport_club_manager.group_scm_president'),
-            ('secretary', 'sport_club_manager.group_scm_secretary'),
-            ('treasurer', 'sport_club_manager.group_scm_treasurer'),
+            ('president', 'club.group_club_president'),
+            ('secretary', 'club.group_club_secretary'),
+            ('treasurer', 'club.group_club_treasurer'),
         )
         committee_manager_group_todo = set()
         for status, group_name in status_groups:
@@ -102,35 +102,35 @@ class ResUsers(models.Model):
                 committee_manager_group_todo.add('nothing')
 
         if 'add' in committee_manager_group_todo:
-            new_groups.append((4, self.env.ref('sport_club_manager.group_scm_committee_manager').id))
+            new_groups.append((4, self.env.ref('club.group_club_committee_manager').id))
         elif 'nothing' in committee_manager_group_todo:
             pass
         elif 'delete' in committee_manager_group_todo:
-            new_groups.append((3, self.env.ref('sport_club_manager.group_scm_committee_manager').id))
+            new_groups.append((3, self.env.ref('club.group_club_committee_manager').id))
         return {'groups_id': new_groups} if new_groups else {}
 
 
     @api.multi
     def _compute_committee_user(self):
         for user in self:
-            user.committee_user = user.has_group('sport_club_manager.group_scm_committee_user')
+            user.committee_user = user.has_group('club.group_club_committee_user')
 
     @api.multi
     def _inverse_committee_user(self):
         ''' Edit user groups when field 'committee_user' is edited. '''
         for user in self:
-            user.write({'groups_id': [(4 if user.committee_user else 3, self.env.ref('sport_club_manager.group_scm_committee_user').id)]})
+            user.write({'groups_id': [(4 if user.committee_user else 3, self.env.ref('club.group_club_committee_user').id)]})
 
     @api.multi
     def _compute_committee_manager(self):
         for user in self:
-            user.committee_manager = user.has_group('sport_club_manager.group_scm_committee_manager')
+            user.committee_manager = user.has_group('club.group_club_committee_manager')
 
     @api.multi
     def _inverse_committee_manager(self):
         ''' Edit user groups when field 'committee_manager' is edited. '''
         for user in self:
-            user.write({'groups_id': [(4 if user.committee_manager else 3, self.env.ref('sport_club_manager.group_scm_committee_manager').id)]})
+            user.write({'groups_id': [(4 if user.committee_manager else 3, self.env.ref('club.group_club_committee_manager').id)]})
 
     @api.depends('role_ids', 'role_ids.current', 'role_ids.name')
     def _compute_role(self):
@@ -148,8 +148,8 @@ class ResUsers(models.Model):
         # TODO This method is called multiple times when a group is changed on the user (should be 1x)
         for record in self:
             if self.env.ref('base.group_system') in record.groups_id or \
-               self.env.ref('sport_club_manager.group_scm_committee_user') in record.groups_id:
-                record.action_id = self.env.ref('sport_club_manager.action_membership').id
+               self.env.ref('club.group_club_committee_user') in record.groups_id:
+                record.action_id = self.env.ref('club.action_membership').id
             else:
                 record.action_id = None
 

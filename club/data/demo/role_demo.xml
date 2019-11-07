@@ -14,7 +14,7 @@
         <field name="start_date" eval="(DateTime.now() + relativedelta(years=-4, months=1)).strftime('%Y-%m-03')"/>
     </record>
     <record id="partner_demo_player_1_user" model="res.users">
-        <field name="groups_id" eval="[(4, ref('group_scm_secretary'))]"/>
+        <field name="groups_id" eval="[(4, ref('group_club_secretary'))]"/>
     </record>
 
     <record id="role_demo_3" model="role">
@@ -30,7 +30,7 @@
         <field name="start_date" eval="(DateTime.now() + relativedelta(years=-1)).strftime('%Y-07-01')"/>
     </record>
     <record id="partner_demo_player_3_user" model="res.users">
-        <field name="groups_id" eval="[(4, ref('group_scm_treasurer'))]"/>
+        <field name="groups_id" eval="[(4, ref('group_club_treasurer'))]"/>
     </record>
 </data>
 </odoo>
