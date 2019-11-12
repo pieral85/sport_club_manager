@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="action_interclub_event" model="ir.actions.act_window">
+        <field name="name">Interclub Events</field>
+        <field name="res_model">interclub.event</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="context">{
+            'search_default_state_draft_search': 1, 'search_default_state_confirmed_search': 1,
+            'search_default_state_opened_search': 1,
+            'search_default_current_season_search': 1, 'search_default_my_events_search': 1,
+            }</field>
+        <!-- List of the views linked to this action window -->
+        <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {
+                'view_mode': 'calendar',
+                'view_id': ref('interclub_event_view_calendar'),
+                }),
+            (0, 0, {
+                'view_mode': 'tree',
+                'view_id': ref('interclub_event_view_list'),
+                }),
+            (0, 0, {
+                'view_mode': 'form',
+                'view_id': ref('interclub_event_view_form'),
+                }),
+            ]"/>
+    </record>
+</data>
+</odoo>

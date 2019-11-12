@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- tree view(s) -->
+    <record id="interclub_event_view_list" model="ir.ui.view">
+        <field name="name">interclub event list</field>
+        <field name="model">interclub.event</field>
+        <field name="arch" type="xml">
+            <tree create="false"
+                decoration-muted="action_required=='nothing_cancelled'"
+                decoration-warning="action_required in ('need_confirmation', 'need_opening')"
+                decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
+                decoration-info="action_required=='need_close'"
+                decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
+                <field name="action_required" invisible="1"/>
+                <field name="interclub_id"/>
+                <field name="season_id"/>
+                <field name="start"/>
+                <field name="opponent_id"/>
+                <field name="at_home"/>
+                <field name="partner_ids" widget="many2many_tags"/>
+                <field name="state"/>
+                <field name="action_required"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view(s) -->
+    <record id="interclub_event_view_form" model="ir.ui.view">
+        <field name="name">interclub event form</field>
+        <field name="model">interclub.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="open_interclub_event" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="confirm_interclub_event" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="close_interclub_event" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="cancel_interclub_event" type="object" string="Cancel" class="" states="draft,opened,confirmed,done" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="set_draft_interclub_event" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_user"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-danger" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_opening_overdue')]}">
+                        <div><b>One action is overdue!</b><br/>Please do not forget to <b>open</b> this interclub event (or cancel it).</div>
+                    </div>
+                    <div class="alert alert-warning" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_opening')]}">
+                        <div>One action is pending:<br/>Please do not forget to <b>open</b> this interclub event (or cancel it).</div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_confirmation_overdue')]}">
+                        <div><b>One action is overdue!</b><br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it).</div>
+                    </div>
+                    <div class="alert alert-warning" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_confirmation')]}">
+                        <div>One action is pending:<br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it).</div>
+                    </div>
+                    <div class="alert alert-info" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_close')]}">
+                        <div>One action is pending:<br/>Please do not forget to <b>close</b> this interclub event.</div>
+                    </div>
+                    <field name="action_required" invisible="1"/>
+                    <field name="interclub_player_ids" invisible="1"/>
+                    <field name="interclub_referee_ids" invisible="1"/>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="interclub_id"/>
+                        </div>
+                        <h1>
+                            <field name="interclub_id"/>
+                        </h1>
+                        <label for="partner_ids" string="Players" class="oe_edit_only"/>
+                        <h2>
+                            <field name="partner_ids" widget="many2manyattendee"
+                                placeholder="Select players..."
+                                context="{'force_email':True}"
+                                class="oe_inline"
+                                domain="[('id', 'in', interclub_player_ids)]"
+                                options="{'no_create': True}"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="start"/>
+                            <field name="season_id"/>
+                            <field name="stop" invisible="1"/>
+                            <field name="opponent_id"/>
+                        </group>
+                        <group>
+                            <field name="at_home"/>
+                            <field name="referee_id"
+                                domain="[('id', 'in', interclub_referee_ids)]"
+                                options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="page_invitations" string="Players">
+                            <button name="action_sendmail" type="object" string="Send mail" icon="fa-envelope" class="oe_link"/>
+                            <field name="attendee_ids" widget="one2many" >
+                                <tree string="Invitation details" editable="top" create="false" delete="false">
+                                    <field name="partner_id" />
+                                    <field name="state" />
+                                    <field name="email" widget="email"/>
+                                    <button name="do_tentative" states="needsAction,declined,accepted" string="Uncertain" type="object" icon="fa-asterisk" />
+                                    <button name="do_accept" string="Accept" states="needsAction,tentative,declined" type="object" icon="fa-check text-success"/>
+                                    <button name="do_decline" string="Decline" states="needsAction,tentative,accepted" type="object" icon="fa-times-circle text-danger"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Options">
+                            <group>
+                                <field name="event_id"/>
+                                <field name="item_color" widget="color" options="{'readonly_mode': 'color'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="interclub_event_view_form_quick_create" model="ir.ui.view">
+        <field name="name">interclub event form quick create</field>
+        <field name="model">interclub.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="interclub_player_ids" invisible="1"/>
+                    <field name="interclub_referee_ids" invisible="1"/>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="interclub_id"/>
+                        </div>
+                        <h1>
+                            <field name="interclub_id"/>
+                        </h1>
+                        <label for="partner_ids" string="Players" class="oe_edit_only"/>
+                        <h2>
+                            <field name="partner_ids" widget="many2manyattendee"
+                                placeholder="Select players..."
+                                context="{'force_email':True}"
+                                class="oe_inline"
+                                domain="[('id', 'in', interclub_player_ids)]"
+                                options="{'no_create': True}"/>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="start"/>
+                            <field name="stop" invisible="1"/>
+                            <field name="opponent_id"/>
+                        </group>
+                        <group>
+                            <field name="at_home"/>
+                            <field name="referee_id"
+                                domain="[('id', 'in', interclub_referee_ids)]"
+                                options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interclub_event_view_form_popup" model="ir.ui.view">
+        <field name="name">interclub_event form popup</field>
+        <field name="model">interclub.event</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form_popup"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='alarm_ids']" position="after">
+                <field name="referee_id"/>
+                <field name="event_id"/>
+            </xpath>
+            <xpath expr="//button[@name='action_open_calendar_event']" position="before">
+                <button string="Open Event" class="oe_stat_button float-right" icon="fa-bars" type="object" name="action_open_interclub_event"/>
+            </xpath>
+            <xpath expr="//button[@name='action_open_calendar_event']" position="replace"/>
+        </field>
+    </record>
+
+    <!-- calendar view(s) -->
+    <record id="view_calendar_event_calendar_interclubs" model="ir.ui.view">
+        <field name="name">calendar.event.calendar.interclubs</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="color">item_color</attribute>
+                <attribute name="mode">month</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="interclub_event_view_calendar" model="ir.ui.view">
+        <field name="name">interclub_event calendar</field>
+        <field name="model">interclub.event</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="readonly_form_view_id">%(interclubs.interclub_event_view_form_popup)s</attribute>
+                <attribute name="quick_add">False</attribute>
+                <attribute name="form_view_id">%(interclubs.interclub_event_view_form_quick_create)s</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- search view(s) -->
+    <record id="interclub_event_search" model="ir.ui.view">
+        <field name="name">interclub.event.search</field>
+        <field name="model">interclub.event</field>
+        <field name="arch" type="xml">
+            <search string="Search Interclub Events">
+                <!-- fields -->
+                <field name="season_id" string="Season" filter_domain="[('season_id', 'ilike', self)]"/>
+                <field name="interclub_id" string="Interclub" filter_domain="[('interclub_id', 'ilike', self)]"/>
+                <field name="partner_ids" string="Players" filter_domain="[('partner_ids', 'ilike', self)]"/>
+                <field name="opponent_id" string="Opponent" filter_domain="[('opponent_id', 'ilike', self)]"/>
+                <field name="referee_id" string="Referee" filter_domain="[('referee_id', 'ilike', self)]"/>
+                <field name="start" string="Date" filter_domain="[('start', 'ilike', self)]"/><!-- TODO Not working well -->
+                <!-- <field name="start" string="Date!"/> --><!--  widget="date"/> -->
+                <field name="at_home" string="At Home" filter_domain="[('at_home', '=', self)]"/>
+                <!-- filters -->
+                <filter name="my_events_search" string="My Events" domain="['|', '|', ('partner_ids.user_ids', 'in', [uid]), ('referee_id.user_ids', 'in', [uid]), ('interclub_id.responsible_id.user_ids', 'in', [uid])]" help="Interclub events for which I am a player, referee or responsible."/>
+                <separator/>
+                <filter name="my_events_player_search" string="My Events (as player)" domain="[('partner_ids.user_ids', 'in', [uid])]" help="Interclub events for which I am playing."/>
+                <filter name="my_events_referee_search" string="My Events (as referee)" domain="[('referee_id.user_ids', 'in', [uid])]" help="Interclub events for which I am the referee."/>
+                <filter name="my_events_responsible_search" string="My Events (as responsible)" domain="[('interclub_id.responsible_id.user_ids', 'in', [uid])]" help="Interclub events for which I am the responsible."/>
+                <separator/>
+                <filter name="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclub events for current season."/>
+                <filter name="upcoming_season_search" string="Upcoming Season"  domain="[('season_id.upcoming', '=', True)]" help="Interclub events for upcoming season."/>
+                <separator/>
+                <filter string="Draft" name="state_draft_search" domain="[('state', '=', 'draft')]" help="Interclub events in a draft state."/>
+                <filter string="Opened" name="state_opened_search" domain="[('state', '=', 'opened')]" help="Interclub events in an opened state."/>
+                <filter string="Confirmed" name="state_confirmed_search" domain="[('state', '=', 'confirmed')]" help="Interclub events in a confirmed state."/>
+                <filter string="Done" name="state_done_search" domain="[('state', '=', 'done')]" help="Interclub events in a done state."/>
+                <filter string="Cancelled" name="state_cancelled_search" domain="[('state', '=', 'cancelled')]" help="Interclub events in a cancelled state."/>
+                <!-- groups by -->
+                <group string="Group by" expand="0">
+                    <filter name="interclub_groupby" string="Interclub" context="{'group_by': 'interclub_id'}"/>
+                    <filter name="season_groupby" string="Season" context="{'group_by': 'season_id'}"/>
+                    <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</data>
+</odoo>

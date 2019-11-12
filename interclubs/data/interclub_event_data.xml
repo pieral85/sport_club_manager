@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="cron_interclub_event_states_update" model="ir.cron">
+        <field name="name">Update Events State</field>
+        <field name="model_id" ref="model_interclub_event"/>
+        <field name="state">code</field>
+        <field name="code">model.update_states()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="nextcall" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 01:30:00')"/>
+    </record>
+</data>
+</odoo>

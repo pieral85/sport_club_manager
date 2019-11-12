@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- menu(s): Level  1 -->
+    <menuitem id="menu_top_competition" name="Competition" parent="club.menu_root" sequence="15"/>
+
+    <!-- menu action(s): Level 2 -->
+    <menuitem id="menu_sub_interclubs" name="Interclubs" parent="menu_top_competition" sequence="10" action="action_interclubs" groups="interclubs.group_interclubs_interclub_user"/>
+    <menuitem id="menu_sub_interclub_events" name="Interclub Events" parent="menu_top_competition" sequence="20" action="action_interclub_event" groups="interclubs.group_interclubs_interclub_user"/>
+    <menuitem id="menu_sub_competition_settings" name="Competition" parent="club.menu_top_settings" sequence="10" action="action_competition_configuration" groups="interclubs.group_interclubs_interclub_manager"/>
+
+</data>
+</odoo>

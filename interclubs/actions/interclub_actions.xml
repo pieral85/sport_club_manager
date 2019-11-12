@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="action_interclubs" model="ir.actions.act_window">
+        <field name="name">Interclubs</field>
+        <field name="res_model">interclub</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+            'search_default_current_season_search': 1,
+            'search_default_my_interclubs_search': 1,
+        }
+        </field>
+    </record>
+
+    <record id="action_competition_configuration" model="ir.actions.act_window">
+        <field name="name">Competition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'interclubs'}</field>
+    </record>
+</data>
+</odoo>

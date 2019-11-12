@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="view_calendar_event_form_interclubs" model="ir.ui.view">
+        <field name="name">calendar.event.form.interclubs</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='show_as']" position="after">
+            	<field name="item_color" widget="color"/>
+            </xpath>
+        </field>
+    </record>
+</data>
+</odoo>
