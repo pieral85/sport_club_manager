@@ -30,24 +30,21 @@
         # security
         'security/security.xml',
         'security/ir.model.access.csv',
-
         # views
         'views/calendar_views.xml',
         'views/interclub_views.xml',
         'views/interclub_event_views.xml',
         'views/interclub_event_templates.xml',
         'views/res_config_settings_views.xml',
-
+        # wizards
+        'wizards/interclub_event_mail_wizard_views.xml',
         # actions
         'actions/interclub_actions.xml',
         'actions/interclub_event_actions.xml',
-
         # menus
         'views/menus.xml',
-
         # # templates
         # 'controllers/templates.xml',
-
         # data
         'data/res_users_data.xml',
         'data/interclub_event_data.xml',

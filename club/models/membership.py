@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+# TODO Replace all references to "player(s)" by "member(s)"
+
 import uuid
 from datetime import datetime, timedelta
 

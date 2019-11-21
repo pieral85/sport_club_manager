@@ -121,6 +121,7 @@ class Period(models.Model):
     @api.model
     def module_update_function(self):
         """ Call required functions at module upgrade/install. """
+        # TODO It does not seem to be called when installing demo data
         self.update_periods()
 
     def update_periods(self):

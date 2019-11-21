@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="interclub_event_mail_wizard_form_view" model="ir.ui.view">
+        <field name="name">interclub.event.mail.wizard.form</field>
+        <field name="model">interclub.event.mail.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Compose Email for Interclub Event">
+                <!-- truly invisible fields for control and options -->
+                <field name="event_attendee_ids" invisible="1"/>
+                <field name="interclub_event_id" invisible="1"/>
+                <!-- visible wizard -->
+                <group><field name="send_to_attendees"/></group><!-- TODO This display is not top-top -->
+                <group attrs="{'invisible': [('send_to_attendees', '=', False)]}">
+                    <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
+                        options="{'no_create': True}" colspan="4"/>
+                    <field name="players_template_id"/>
+                    <field name="mail_body_TEST"/><!-- <field name="body" options="{'style-inline': true}"/> -->
+                </group>
+                <group><field name="send_to_other_partners"/></group>
+                <group attrs="{'invisible': [('send_to_other_partners', '=', False)]}">
+                    <field name="others_composer_id"/><!-- TODO Delete me -->
+                    <field name="OLD_others_partner_ids" widget="many2many_tags"/>
+                    <field name="other_partner_ids" widget="many2many_tags"/>
+                    <field name="others_subject"/>
+                    <field name="others_body"/>
+                    <!-- <field name="others_template_id"/> -->
+                    <field name="other_contacts_template_id"/>
+                </group>
+                <footer>
+                    <button name="open_event" string="Open Event" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"  class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</data>
+</odoo>

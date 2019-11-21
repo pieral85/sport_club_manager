@@ -12,7 +12,7 @@ class PeriodWizard(models.TransientModel):
 
     period_id = fields.Many2one(
         comodel_name='period',
-        string="Period",
+        string='Period',
         required=True
     )
     name = fields.Char(

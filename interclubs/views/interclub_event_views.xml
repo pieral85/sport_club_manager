@@ -32,10 +32,10 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="open_interclub_event" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user"/><!--  confirm="Do you want to open this event and warn players and referee by email?"/> --><!-- TODO Delte confirm if wizard has been implemented -->
                     <button name="confirm_interclub_event" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_user"/>
                     <button name="close_interclub_event" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_user"/>
-                    <button name="cancel_interclub_event" type="object" string="Cancel" class="" states="draft,opened,confirmed,done" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="cancel_interclub_event" type="object" string="Cancel" class="" states="draft,opened,confirmed,done" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to cancel this event?"/>
                     <button name="set_draft_interclub_event" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_user"/>
                     <field name="state" widget="statusbar"/>
                 </header>
@@ -72,12 +72,13 @@
                                 context="{'force_email':True}"
                                 class="oe_inline"
                                 domain="[('id', 'in', interclub_player_ids)]"
-                                options="{'no_create': True}"/>
+                                options="{'no_create': True}"
+                                attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
                         </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="start"/>
+                            <field name="start" attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
                             <field name="season_id"/>
                             <field name="stop" invisible="1"/>
                             <field name="opponent_id"/>
@@ -124,6 +125,9 @@
         <field name="model">interclub.event</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <field name="interclub_player_ids" invisible="1"/>
                     <field name="interclub_referee_ids" invisible="1"/>
@@ -141,12 +145,13 @@
                                 context="{'force_email':True}"
                                 class="oe_inline"
                                 domain="[('id', 'in', interclub_player_ids)]"
-                                options="{'no_create': True}"/>
+                                options="{'no_create': True}"
+                                attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
                         </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="start"/>
+                            <field name="start" attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
                             <field name="stop" invisible="1"/>
                             <field name="opponent_id"/>
                         </group>

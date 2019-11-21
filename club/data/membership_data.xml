@@ -60,7 +60,6 @@ for record in records:
 "${user.company_id.name|safe}" <${(user.company_id.email or user.email)|safe}>
 ]]>
         </field>
-
         <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
         <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
         <field name="auto_delete" eval="False"/>
