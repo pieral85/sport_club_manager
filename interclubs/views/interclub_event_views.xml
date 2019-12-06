@@ -32,11 +32,12 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user"/><!--  confirm="Do you want to open this event and warn players and referee by email?"/> --><!-- TODO Delte confirm if wizard has been implemented -->
-                    <button name="confirm_interclub_event" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_user"/>
-                    <button name="close_interclub_event" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_user"/>
-                    <button name="cancel_interclub_event" type="object" string="Cancel" class="" states="draft,opened,confirmed,done" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to cancel this event?"/>
-                    <button name="set_draft_interclub_event" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_open'}"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_confirm'}"/>
+                    <button name="action_close" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_manager" confirm="Are you sure to close this event?"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Cancel" class="" states="opened,confirmed" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_cancel'}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="" states="draft" groups="interclubs.group_interclubs_interclub_manager" confirm="Are you sure to cancel this event?"/>
+                    <button name="action_draft" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_manager"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -178,7 +179,7 @@
                 <field name="event_id"/>
             </xpath>
             <xpath expr="//button[@name='action_open_calendar_event']" position="before">
-                <button string="Open Event" class="oe_stat_button float-right" icon="fa-bars" type="object" name="action_open_interclub_event"/>
+                <button name="open_record" type="object" string="Open Event" class="oe_stat_button float-right" icon="fa-bars"/>
             </xpath>
             <xpath expr="//button[@name='action_open_calendar_event']" position="replace"/>
         </field>

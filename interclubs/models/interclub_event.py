@@ -21,6 +21,8 @@
 # TODO In interclub.event, add a filter "Waiting Action"
 # TODO When creatin an interclub.event (from calendar view and all other cases), a domain
 #      should be applied on season_id (related to selected date)
+# TODO Add a default address (depending on at home is True or not)
+#      This must be reflected in all mail templates (in 'interclub_event_data.xml')
 
 from datetime import datetime, timedelta
 from dateutil import parser
@@ -79,11 +81,13 @@ class InterclubEvent(models.Model):
     # Calendar Event related fields
     # As writing '**WRITABLE_STATES' on a related field is not working, the equivalent domain must be written
     # in view(s) where this field appears
-    partner_ids = fields.Many2many('res.partner', related='event_id.partner_ids',
-        domain=lambda self: [('is_company', '=', False), ('id', 'child_of', self.env.user.company_id.partner_id.id), ('type', '=', 'contact')], readonly=False)
+    partner_ids = fields.Many2many('res.partner', related='event_id.partner_ids', readonly=False,
+        domain=lambda self: [('is_company', '=', False),
+                             ('id', 'child_of', self.env.user.company_id.partner_id.id),
+                             ('type', '=', 'contact')])
 
     @api.multi
-    def action_open_interclub_event(self):
+    def open_record(self):
         return self.get_formview_action()
 
     @api.multi
@@ -129,17 +133,26 @@ class InterclubEvent(models.Model):
     @api.multi
     def prepare_interclub_event_wizard(self):
         ctx = self._context.copy()
-        # ctx['default_interclub_event_id'] = self.id  # TODO I don't think it is required
-        # most_recent_period = self.env['period'].search(['|', ('active', '=', False), ('active', '=', True),], order='start_date desc', limit=1)
-        # start_date = Period._add_years(most_recent_period.start_date, 1)
-        # end_date = Period._add_years(most_recent_period.end_date, 1)
-        # ctx['default_start_date'] = start_date
-        # ctx['default_end_date'] = end_date
-        # ctx['default_name'] = 'Season %s' % start_date.year
-        # if start_date.year != end_date.year:
-        #     ctx['default_name'] += ' - %s' % end_date.year
+        role = self.env.context.get('role')
+        ctx.update(show_mail_to_players=True, show_mail_to_others=True)
+        if role == 'to_open':
+            ctx['send_mail_to_players'] = True
+            ctx['send_mail_to_others'] = False
+            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_opening').id
+        elif role == 'to_confirm':
+            ctx['send_mail_to_players'] = False
+            ctx['send_mail_to_others'] = True
+            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_confirmation').id
+        elif role == 'to_cancel':
+            ctx['show_mail_to_players'] = False
+            ctx['send_mail_to_players'] = False
+            ctx['send_mail_to_others'] = True
+            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_cancellation').id
+        else:
+            return
+
         return {
-            'name': 'TEST!!!',  # TODO Rename
+            'name': _('Interclub Event Mail Wizard'),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
@@ -151,41 +164,25 @@ class InterclubEvent(models.Model):
         }
 
     @api.multi
-    def open_interclub_event(self):
-        # for record in self:
-        #     # TODO
-        #     # self.event_id.action_sendmail()
-        #     record.action_sendmail()
-        #     # record.state = 'draft'  # TODO must be 'opened'
-        self.write({'state': 'draft'})  # TODO must be 'opened'
-        # return self.action_sendmail()  # TODO Delete if not needed
+    def action_open(self):
+        self.filtered(lambda ev: ev.state == 'draft').write({'state': 'opened'})
 
     @api.multi
-    def confirm_interclub_event(self):
-        for record in self:
-            # TODO Add a check: only record.intervlub_id.responsible_id or interclubs.group_interclubs_interclub_manager can do it (otherwise: error)
-            # TODO only from state 'draft'
-            # TODO Send an email to attendees
-            # TODO Do the same for other methods
-            record.state = 'confirmed'
+    def action_confirm(self):
+        self.filtered(lambda ev: ev.state == 'opened').write({'state': 'confirmed'})
+        # TODO Add a check: only record.intervlub_id.responsible_id or interclubs.group_interclubs_interclub_manager can do it (otherwise: error)
 
     @api.multi
-    def close_interclub_event(self):
-        for record in self:
-            # TODO
-            record.state = 'done'
+    def action_close(self):
+        self.filtered(lambda ev: ev.state == 'confirmed').write({'state': 'done'})
 
     @api.multi
-    def cancel_interclub_event(self):
-        for record in self:
-            # TODO
-            record.state = 'cancelled'
+    def action_cancel(self):
+        self.filtered(lambda ev: ev.state in ('draft', 'opened', 'confirmed')).write({'state': 'cancelled'})
 
     @api.multi
-    def set_draft_interclub_event(self):
-        for record in self:
-            # TODO
-            record.state = 'draft'
+    def action_draft(self):
+        self.filtered(lambda ev: ev.state == 'cancelled').write({'state': 'draft'})
 
     def update_states(self, auto_mail=False):
         today = datetime.today()
@@ -197,14 +194,14 @@ class InterclubEvent(models.Model):
                 ('state', '=', 'draft'),
                 ('start', '<=', expected_opening_date),
                 ('start', '>', today),
-            ]).open_interclub_event()
-            # ]).with_context(send_automatically=auto_mail).open_interclub_event()
+            ]).action_open()
+
         auto_close = bool(self.env['ir.config_parameter'].sudo().get_param('event.auto.close', default=False))
         if auto_close:
             events_to_close = self.env['interclub.event'].search([
                 ('state', '=', 'confirmed'),
                 ('stop', '<=', today),
-            ]).close_interclub_event()
+            ]).action_close()
 
     # TODO As a more generic method, we should extend 'DateField' and 'search_inputs.Field' JS widget instead
     # It would do the job for all date/datetime objects
@@ -213,7 +210,6 @@ class InterclubEvent(models.Model):
     #     new_domain = []
     #     for i, domain in enumerate(args):
     #         if domain[0] == 'start':
-    #             # import ipdb; ipdb.set_trace()
     #             try:
     #                 start_date = parser.parse(domain[2]).date()#, fuzzy=True)
     #                 end_date = start_date + relativedelta(days=1)
@@ -222,7 +218,6 @@ class InterclubEvent(models.Model):
     #                 # otherwise, dayfirst should be True (format ~= dd/mm/yyyy)
     #                 # new_domain.extend(['&', ['start', '>=', start_date], ['start', '<', end_date]])
     #                 # TODO We should consider timezone!!! Otherwise there is an offset of 2 hours
-    #                 # import ipdb; ipdb.set_trace()
     #                 test = fields.Date.to_date(start_date)
     #                 new_domain.extend(['&', ['start', '>=', start_date.strftime(DATE_FORMAT)], ['start', '<', end_date.strftime(DATE_FORMAT)]])
     #                 continue
@@ -235,36 +230,19 @@ class InterclubEvent(models.Model):
     #     print(new_domain)
     #     return super(InterclubEvent, self).search(new_domain, offset, limit, order, count=count)
 
-    # TODO
     @api.multi
     def action_sendmail(self):
-        from pprint import pprint as pp
-        print(self)
-        pp(self.env.context)
-        # if self.env.context.get('send_automatically'):
-        #     # return self.event_id.action_sendmail()
-        #     return self.mapped('event_id').action_sendmail()
-        #     # return super(InterclubEvent, self).action_sendmail()
         self.ensure_one()
-        # TODO Investigate why the layout of the generated email is different than the one following line:
+        # TODO Investigate why the layout of the generated email is different than the one following line (looking at 'custom_layout' could help)
         # return self.event_id.action_sendmail()
-        # looking at 'custom_layout' could help
-# attention, self peut etre multi!
         template = self.env.ref('calendar.calendar_template_meeting_invitation')
-        # memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
         attendees = self.attendee_ids
-        from pprint import pprint as pp
-        pp(attendees)
+        compose_form = self.env.ref('mail.email_compose_message_wizard_form')
 
-# <mail.template>.send_mail(..., notif_layout='...')
-
-        if attendees:
-            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+        if attendees and compose_form:
             ctx = dict(
-# @pal base_url=self.env['ir.config_parameter'].sudo().get_param('web.base.url', default='http://localhost:8069'),
 custom_layout='mail.mail_notification_light',  # @pal
-                # send_mail_kwargs={'custom_layout': 'mail.mail_notification_light'},
-                dbname=self._cr.dbname,  # USEFULL
+                dbname=self._cr.dbname,
 # @pal only_invitation_emails=True,
             default_res_id=attendees.ids[0],  # USEFULL
             # @pal default_partner_ids=attendees.mapped('partner_id').ids,  # mail recipients  # USEFULL
@@ -276,14 +254,6 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
                 default_composition_mode='comment',
                 force_email=True,
             )
-# ===== @pal =====
-# use_active_domain: True
-# 'default_use_active_domain': True,
-# 'active_domain': [('name', 'in', ['%s' % self.test_record.name, '%s' % test_record_2.name])],
-# ===== /@pal =====
-            pp(ctx)
-            # template = template.with_context(ctx)
-            # import ipdb; ipdb.set_trace()
             return {
                 'name': _('Compose Email - Interclub Event Invitation'),
                 'type': 'ir.actions.act_window',
@@ -293,74 +263,6 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
                 'target': 'new',
                 'context': ctx,
             }
-
-
-# Backup avec mass.mail
-#     # TODO
-#     @api.multi
-#     def action_sendmail(self):
-#         from pprint import pprint as pp
-#         print(self)
-#         pp(self.env.context)
-#         # if self.env.context.get('send_automatically'):
-#         #     # return self.event_id.action_sendmail()
-#         #     return self.mapped('event_id').action_sendmail()
-#         #     # return super(InterclubEvent, self).action_sendmail()
-#         self.ensure_one()
-#         # TODO Investigate why the layout of the generated email is different than the one following line:
-#         # return self.event_id.action_sendmail()
-#         # looking at 'custom_layout' could help
-# # attention, self peut etre multi!
-#         template = self.env.ref('calendar.calendar_template_meeting_invitation')
-#         # memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
-#         attendees = self.attendee_ids
-#         from pprint import pprint as pp
-#         pp(attendees)
-
-# # <mail.template>.send_mail(..., notif_layout='...')
-
-#         if attendees:
-#             compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-#             ctx = dict(
-# # @pal colors={
-# #     'needsAction': 'red',
-# #     'accepted': 'yellow',  #'green',
-# #     'tentative': '#FFAA11',
-# #     'declined': 'red'
-# # },
-# # @pal base_url=self.env['ir.config_parameter'].sudo().get_param('web.base.url', default='http://localhost:8069'),
-# custom_layout='mail.mail_notification_light',  # @pal
-#                 # send_mail_kwargs={'custom_layout': 'mail.mail_notification_light'},
-#                 dbname=self._cr.dbname,  # USEFULL
-# # @pal only_invitation_emails=True,
-#             # @pal default_res_id=attendees.ids[0],  # USEFULL
-#             # @pal default_partner_ids=attendees.mapped('partner_id').ids,  # mail recipients  # USEFULL
-#                 default_model='calendar.attendee',
-#                 active_ids=attendees.ids,
-# default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
-#                 default_use_template=bool(template),
-#                 default_template_id=template and template.id or False,
-#                 default_composition_mode='mass_mail',  #@pal: must be in ('mass_mail', 'mass_post')  # old: 'comment'
-#                 force_email=True,
-#             #@pal default_use_active_domain=True,  #@pal
-#             )
-# # ===== @pal =====
-# # use_active_domain: True
-# # 'default_use_active_domain': True,
-# # 'active_domain': [('name', 'in', ['%s' % self.test_record.name, '%s' % test_record_2.name])],
-# # ===== /@pal =====
-#             pp(ctx)
-#             # template = template.with_context(ctx)
-#             # import ipdb; ipdb.set_trace()
-#             return {
-#                 'name': _('Compose Email - Interclub Event Invitation'),
-#                 'type': 'ir.actions.act_window',
-#                 'view_mode': 'form',
-#                 'res_model': 'mail.compose.message',
-#                 'views': [(compose_form.id, 'form')],
-#                 'target': 'new',
-#                 'context': ctx,
-#             }
 
     @api.depends('interclub_id.event_items_color')
     def _compute_item_color(self):
@@ -398,7 +300,7 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
                     ic_event.action_required = 'nothing'
             elif ic_event.state == 'cancelled':
                 ic_event.action_required = 'nothing_cancelled'
-            else:  # elif ic_event.state == 'done':
+            else:
                 ic_event.action_required = 'nothing'
 
     @api.onchange('start')

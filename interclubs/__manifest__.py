@@ -29,6 +29,7 @@
     'data': [
         # security
         'security/security.xml',
+        'security/ir_rule.xml',
         'security/ir.model.access.csv',
         # views
         'views/calendar_views.xml',

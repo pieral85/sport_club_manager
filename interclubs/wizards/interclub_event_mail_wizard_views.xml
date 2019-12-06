@@ -6,29 +6,34 @@
         <field name="model">interclub.event.mail.wizard</field>
         <field name="arch" type="xml">
             <form string="Compose Email for Interclub Event">
-                <!-- truly invisible fields for control and options -->
-                <field name="event_attendee_ids" invisible="1"/>
+                <field name="default_attendee_ids" invisible="1"/>
                 <field name="interclub_event_id" invisible="1"/>
-                <!-- visible wizard -->
-                <group><field name="send_to_attendees"/></group><!-- TODO This display is not top-top -->
-                <group attrs="{'invisible': [('send_to_attendees', '=', False)]}">
-                    <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
-                        options="{'no_create': True}" colspan="4"/>
-                    <field name="players_template_id"/>
-                    <field name="mail_body_TEST"/><!-- <field name="body" options="{'style-inline': true}"/> -->
+                <group invisible="not context.get('show_mail_to_players', False)">
+                    <group class="oe_title"><field name="send_to_players"/></group>
+                    <group attrs="{'invisible': [('send_to_players', '=', False)]}">
+                        <field name="composer_id" invisible="1"/>
+                        <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
+                            options="{'no_create': True}" colspan="4"/>
+                        <field name="template_id"/>
+                        <field name="subject" string="Subject"/>
+                        <field name="body" string="Body"/>
+                    </group>
                 </group>
-                <group><field name="send_to_other_partners"/></group>
-                <group attrs="{'invisible': [('send_to_other_partners', '=', False)]}">
-                    <field name="others_composer_id"/><!-- TODO Delete me -->
-                    <field name="OLD_others_partner_ids" widget="many2many_tags"/>
-                    <field name="other_partner_ids" widget="many2many_tags"/>
-                    <field name="others_subject"/>
-                    <field name="others_body"/>
-                    <!-- <field name="others_template_id"/> -->
-                    <field name="other_contacts_template_id"/>
+                <group invisible="not context.get('show_mail_to_others', False)">
+                    <group class="oe_title"><field name="others_send_to_partners"/></group>
+                    <group attrs="{'invisible': [('others_send_to_partners', '=', False)]}" colspan="4">
+                        <field name="others_composer_id" invisible="1"/>
+                        <!-- TODO Here we should add label "Followers of the document and" as in Odoo standard -->
+                        <field name="others_partner_ids" widget="many2many_tags"/>
+                        <field name="others_template_id" string="Mail Template"/>
+                        <field name="others_subject" string="Subject"/>
+                        <field name="others_body" string="Body"/>
+                    </group>
                 </group>
                 <footer>
-                    <button name="open_event" string="Open Event" type="object" class="btn-primary"/>
+                    <button name="change_event_state" string="Open Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_open'"/>
+                    <button name="change_event_state" string="Confirm Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_confirm'"/>
+                    <button name="change_event_state" string="Cancel Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_cancel'"/>
                     <button string="Cancel" special="cancel"  class="btn-secondary"/>
                 </footer>
             </form>
