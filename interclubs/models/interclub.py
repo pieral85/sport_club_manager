@@ -35,13 +35,11 @@ class Interclub(models.Model):
     event_items_color = fields.Char("Event Items Color",
         help="Color of the interclub event items in the calendar view")
 
-    @api.multi
     def write(self, vals):
         if 'event_items_color' in vals:
             self.event_ids.mapped('event_id').write({'item_color': vals['event_items_color']})
         return super(Interclub, self).write(vals)
 
-    @api.multi
     def unlink(self):
         # even if "ondelete='cascade'" has been activated on field <interclub.event>.interclub_id,
         # we need to explicitly call the "ondelete" method on the event_ids,

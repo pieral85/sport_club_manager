@@ -7,7 +7,6 @@ from odoo import api, models
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     def get_attendee_detail_multi_model(self, meeting_id, model):
         """ Get attendees details event if the model is not 'calendar.event' (which can happen in case of delegation inheritance).
         """

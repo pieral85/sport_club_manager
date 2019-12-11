@@ -31,7 +31,6 @@ class Message(models.Model):
                 res.mirror_message_id = mirrored_message.id
         return res
 
-    @api.multi
     def write(self, values):
         res = super(Message, self).write(values)
         values.pop('mirror_message_id', None)
@@ -39,7 +38,6 @@ class Message(models.Model):
             self.mapped('mirror_message_id').with_context(stop_propagation=True).write(values)
         return res
 
-    @api.multi
     def unlink(self):
         if not self.env.context.get('stop_propagation'):
             (self.mapped('mirror_message_id') - self).with_context(stop_propagation=True).unlink()

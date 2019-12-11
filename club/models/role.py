@@ -54,13 +54,11 @@ class Role(models.Model):
         for role in self:
             role.current = role.start_date <= today and (not role.end_date or role.end_date > today)
 
-    # @api.multi
     # def _stop_role(self):
     #     import ipdb; ipdb.set_trace()
     #     for role in self:
     #         ole
 
-    @api.one
     @api.constrains('start_date', 'end_date', 'name')
     def _check_dates(self):
         """ Checks that no other role has been defined in a common period for current user (otherwise, an exception is raised).
@@ -68,16 +66,17 @@ class Role(models.Model):
 
         :return: None
         """
-        _domain = [
-            ('user_id.id', '=', self.user_id.id),
-            ('name', '=', self.name),
-            '|', ('end_date', '=', False), ('end_date', '>', self.start_date),
-            ]
-        if self.end_date:
-            _domain.append(('start_date', '<', self.end_date))
-        count_common_roles = self.env['role'].search_count(_domain) - 1
-        if count_common_roles:
-            # TODO As self.name is a selection field, it should display its "correct" value (eg 'President' instead of 'president')
-            raise exceptions.ValidationError(_("The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly.") % (self.name, self.user_id.name))
-        if self.end_date and (not self.start_date or self.start_date >= self.end_date):
-            raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+        for role in self:
+            _domain = [
+                ('user_id.id', '=', role.user_id.id),
+                ('name', '=', role.name),
+                '|', ('end_date', '=', False), ('end_date', '>', role.start_date),
+                ]
+            if role.end_date:
+                _domain.append(('start_date', '<', role.end_date))
+            count_common_roles = role.env['role'].search_count(_domain) - 1
+            if count_common_roles:
+                # TODO As role.name is a selection field, it should display its "correct" value (eg 'President' instead of 'president')
+                raise exceptions.ValidationError(_("The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly.") % (role.name, role.user_id.name))
+            if role.end_date and (not role.start_date or role.start_date >= role.end_date):
+                raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))

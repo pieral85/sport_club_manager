@@ -136,7 +136,6 @@ class Membership(models.Model):
         # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
 
-    @api.multi
     @api.depends('period_id', 'member_id')
     def name_get(self):
         """ name_get() -> [(id, name), ...]
@@ -165,7 +164,6 @@ class Membership(models.Model):
         res._add_follower(vals)
         return res
 
-    @api.multi
     def write(self, vals):
         if vals.get('state') == 'member':
             vals['token_validity'] = None
@@ -186,7 +184,6 @@ class Membership(models.Model):
         new_membership = super(Membership, self).copy(default)
         return new_membership
 
-    @api.multi
     def reset_token(self):
         for membership in self:
             membership.write({
@@ -195,7 +192,6 @@ class Membership(models.Model):
                 'user_response': 'undefined',
             })
 
-    @api.multi
     def send_email_invitation(self):
         template = self.env.ref('club.email_template_membership_affiliation_invitation')
         memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
@@ -221,7 +217,6 @@ class Membership(models.Model):
                 'context': ctx,
             }
 
-    @api.multi
     def send_email_confirmation(self):
         template = self.env.ref('club.email_template_membership_affiliation_confirmation')
         memberships = self.filtered(lambda m: m.state == 'member')
@@ -246,26 +241,21 @@ class Membership(models.Model):
                 'context': ctx,
             }
 
-    @api.multi
     def validate_membership_payment(self):
         for record in self:
             record.price_paid = record.price_due
 
-    @api.multi
     def validate_membership_affiliation(self):
         for record in self:
             record.state = 'member'
 
-    @api.multi
     def reject_membership_affiliation(self):
         for record in self:
             record.state = 'rejected'
 
-    @api.multi
     def action_reset_password(self):
         return self.mapped('member_user_id').action_reset_password()
 
-    @api.multi
     def do_accept(self):
         """ Marks membership invitation as Accepted. """
         res = self.write({
@@ -276,7 +266,6 @@ class Membership(models.Model):
             membership.message_post(body="%s has accepted the invitation. His status has been changed to Requested." % (membership.member_id.name))
         return res
 
-    @api.multi
     def do_decline(self):
         """ Marks membership invitation as Declined. """
         res = self.write({
@@ -287,7 +276,6 @@ class Membership(models.Model):
             membership.message_post(body="%s has declined the invitation. His status has been changed to Rejected." % (membership.member_id.name))
         return res
 
-    @api.multi
     def message_update(self, msg_dict, update_vals=None):
         return super(Membership, self).message_update(msg_dict, update_vals)
 
@@ -430,25 +418,27 @@ class Membership(models.Model):
                 record.period_category_id = period_category_id
                 record.period_id = backup_period_id
 
-    @api.one
     @api.constrains('member_id', 'period_id')
     def _check_user_period(self):
         """ Checks that the member has only one membership per period (otherwise, an exception is raised).
 
         :return: None
         """
-        if self.env['membership'].search_count([('member_id.id', '=', self.member_id.id), ('period_id.id','=',self.period_id.id),]) > 1:
-            raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (self.member_id.name, self.period_id.name))
+        Membership = self.env['membership']
+        for membership in self:
+            if Membership.search_count([('member_id.id', '=', membership.member_id.id),
+                                        ('period_id.id', '=', membership.period_id.id),]) > 1:
+                raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (membership.member_id.name, membership.period_id.name))
 
-    @api.one
     @api.constrains('price_paid', 'price_due')
     def _check_price(self):
         """ Checks that the prices (paid and due) are positive.
 
         :return: None
         """
-        if self.price_paid < 0 or self.price_due < 0:
-            raise exceptions.ValidationError(_("Prices should be positive."))
+        for membership in self:
+            if membership.price_paid < 0 or membership.price_due < 0:
+                raise exceptions.ValidationError(_("Prices should be positive."))
 
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]

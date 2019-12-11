@@ -86,11 +86,9 @@ class InterclubEvent(models.Model):
                              ('id', 'child_of', self.env.user.company_id.partner_id.id),
                              ('type', '=', 'contact')])
 
-    @api.multi
     def open_record(self):
         return self.get_formview_action()
 
-    @api.multi
     @api.depends('opponent_id', 'interclub_id')
     def name_get(self):
         result = []
@@ -116,13 +114,11 @@ class InterclubEvent(models.Model):
         ret.event_id.write({'item_color': interclub.event_items_color})
         return ret
 
-    @api.multi
     def write(self, values):
         if 'partner_ids' in values:
             self = self.with_context(no_mail_to_attendees=True)
         return super(InterclubEvent, self).write(values)
 
-    @api.multi
     def unlink(self):
         ''' Delete related calendar event '''
         calendar_events = self.mapped('event_id')
@@ -130,7 +126,6 @@ class InterclubEvent(models.Model):
         calendar_events.unlink()
         return ret
 
-    @api.multi
     def prepare_interclub_event_wizard(self):
         ctx = self._context.copy()
         role = self.env.context.get('role')
@@ -163,24 +158,19 @@ class InterclubEvent(models.Model):
             'target': 'new',
         }
 
-    @api.multi
     def action_open(self):
         self.filtered(lambda ev: ev.state == 'draft').write({'state': 'opened'})
 
-    @api.multi
     def action_confirm(self):
         self.filtered(lambda ev: ev.state == 'opened').write({'state': 'confirmed'})
         # TODO Add a check: only record.intervlub_id.responsible_id or interclubs.group_interclubs_interclub_manager can do it (otherwise: error)
 
-    @api.multi
     def action_close(self):
         self.filtered(lambda ev: ev.state == 'confirmed').write({'state': 'done'})
 
-    @api.multi
     def action_cancel(self):
         self.filtered(lambda ev: ev.state in ('draft', 'opened', 'confirmed')).write({'state': 'cancelled'})
 
-    @api.multi
     def action_draft(self):
         self.filtered(lambda ev: ev.state == 'cancelled').write({'state': 'draft'})
 
@@ -230,7 +220,6 @@ class InterclubEvent(models.Model):
     #     print(new_domain)
     #     return super(InterclubEvent, self).search(new_domain, offset, limit, order, count=count)
 
-    @api.multi
     def action_sendmail(self):
         self.ensure_one()
         # TODO Investigate why the layout of the generated email is different than the one following line (looking at 'custom_layout' could help)

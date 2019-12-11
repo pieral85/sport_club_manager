@@ -19,16 +19,16 @@ class ResConfigSettings(models.TransientModel):
     event_auto_close = fields.Boolean('Event Automatic Closing', default=False,
         help='If true, the event is automatically closed once its end date is reached.', config_parameter='event.auto.close')
 
-    @api.one
     @api.constrains('event_opening_days', 'event_confirmation_days')
     def _check_days(self):
         """ Checks that the opening days is always higher than the confirmation days. Both must also be positive (otherwise, an exception is raised).
 
         :return: None
         """
-        if self.event_opening_days < 0:
-            raise ValidationError(_('The "Event Opening Days" must be positive. Please change it accordingly.'))
-        if self.event_confirmation_days < 0:
-            raise ValidationError(_('The "Event Confirmation Days" must be positive. Please change it accordingly.'))
-        if self.event_opening_days < self.event_confirmation_days:
-            raise ValidationError(_('The "Event Opening Days" must be higher than the "Event Confirmation Days". Please change them accordingly.'))
+        for rec in self:
+            if rec.event_opening_days < 0:
+                raise ValidationError(_('The "Event Opening Days" must be positive. Please change it accordingly.'))
+            if rec.event_confirmation_days < 0:
+                raise ValidationError(_('The "Event Confirmation Days" must be positive. Please change it accordingly.'))
+            if rec.event_opening_days < rec.event_confirmation_days:
+                raise ValidationError(_('The "Event Opening Days" must be higher than the "Event Confirmation Days". Please change them accordingly.'))

@@ -38,7 +38,6 @@ class Followers(models.Model):
                 res.mirror_follower_id = mirrored_follower.id
         return res
 
-    @api.multi
     def write(self, values):
         res = super(Followers, self).write(values)
         values.pop('mirror_follower_id', None)
@@ -46,7 +45,6 @@ class Followers(models.Model):
             self.mapped('mirror_follower_id').with_context(stop_propagation=True).write(values)
         return res
 
-    @api.multi
     def unlink(self):
         if not self.env.context.get('stop_propagation'):
             (self.mapped('mirror_follower_id') - self).with_context(stop_propagation=True).unlink()

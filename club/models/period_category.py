@@ -94,7 +94,6 @@ class PeriodCategory(models.Model):
                     total_remaining_price_due += membership_id.price_remaining
             record.total_remaining_price_due = total_remaining_price_due
 
-    @api.one
     @api.constrains('period_id', 'category_id', 'default')
     def _check_default_unique(self):
         """ Checks that each category within a single period must be unique (otherwise, an exception is raised).
@@ -102,12 +101,12 @@ class PeriodCategory(models.Model):
 
         :return: None
         """
-        if len(self.period_id.period_category_ids.filtered(lambda pc: pc.category_id.id == self.category_id.id)) > 1:
-            raise exceptions.ValidationError(_("For the period '%s', the category '%s' must be unique. Please change it accordingly.") % (self.period_id.name, self.category_id.name))
-        if len(self.period_id.period_category_ids.filtered(lambda pc: pc.default)) > 1:
-            raise exceptions.ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (self.period_id.name))
+        for pc in self:
+            if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.category_id.id == pc.category_id.id)) > 1:
+                raise exceptions.ValidationError(_("For the period '%s', the category '%s' must be unique. Please change it accordingly.") % (pc.period_id.name, pc.category_id.name))
+            if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.default)) > 1:
+                raise exceptions.ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (pc.period_id.name))
 
-    @api.multi
     @api.depends('period_id', 'category_id')
     def name_get(self):
         result = []

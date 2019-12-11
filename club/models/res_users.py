@@ -40,7 +40,6 @@ class ResUsers(models.Model):
         help='If checked, the user will have a write access to the application Club Membership Manager.\n\
         This will allow the user to manage the application.')
 
-    @api.multi
     def modify_role(self):
         self.ensure_one()
         if not self._context.get('role_name') or not self._context.get('action'):
@@ -110,23 +109,19 @@ class ResUsers(models.Model):
         return {'groups_id': new_groups} if new_groups else {}
 
 
-    @api.multi
     def _compute_committee_user(self):
         for user in self:
             user.committee_user = user.has_group('club.group_club_committee_user')
 
-    @api.multi
     def _inverse_committee_user(self):
         ''' Edit user groups when field 'committee_user' is edited. '''
         for user in self:
             user.write({'groups_id': [(4 if user.committee_user else 3, self.env.ref('club.group_club_committee_user').id)]})
 
-    @api.multi
     def _compute_committee_manager(self):
         for user in self:
             user.committee_manager = user.has_group('club.group_club_committee_manager')
 
-    @api.multi
     def _inverse_committee_manager(self):
         ''' Edit user groups when field 'committee_manager' is edited. '''
         for user in self:

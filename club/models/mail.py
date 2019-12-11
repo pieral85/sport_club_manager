@@ -20,7 +20,6 @@ class MailComposer(models.TransientModel):
 
         return {'domain': {'template_id': domain}}
 
-    @api.multi
     def send_mail(self, auto_commit=False):
         self.ensure_one()
         model = self.env.context.get('default_model')
@@ -47,7 +46,6 @@ class MailComposer(models.TransientModel):
             }
         return res
 
-    @api.multi
     def save_as_template(self):
         """ Override parent method that was only doing a shallow copy of the template.
             Parent method comment:

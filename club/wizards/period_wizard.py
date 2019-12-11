@@ -30,7 +30,6 @@ class PeriodWizard(models.TransientModel):
         required=True,
     )
 
-    @api.multi
     def duplicate(self):
         self.ensure_one()
         vals = {

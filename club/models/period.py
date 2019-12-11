@@ -86,7 +86,6 @@ class Period(models.Model):
         compute='_total_remaining_price_due',
     )
 
-    @api.multi
     def toggle_active(self):
         for template in self:
             template.active = not template.active
@@ -216,7 +215,6 @@ class Period(models.Model):
                 break
         return super(Period, self).search(args, offset, limit, order, count=count)
 
-    @api.multi
     def write(self, vals):
         vals.update(self._get_alias_name(vals))
         return super(Period, self).write(vals)
@@ -295,32 +293,22 @@ class Period(models.Model):
             return {'alias_name': '{}+{}'.format(local_part, vals['name'])}
         return {}
 
-    @api.one
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
-        """ Checks that no other period has a common date with self (otherwise, an exception is raised).
-        Also checks that the start date is lower than the end date (otherwise, an exception is raised).
+        """ Checks that the start date is lower than the end date (otherwise, an exception is raised).
 
         :return: None
         """
-        count_common_periods = self.env['period'].search_count([
-            '&', '&',
-            '|', ('active', '=', True), ('active', '=', False),
-            ('start_date', '<=', self.end_date),
-            ('end_date', '>=', self.start_date),
-            ]) - 1
-        if count_common_periods:
-            # TODO Remove this constrain?
-            raise exceptions.ValidationError(_('The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly.') % (self.start_date, self.end_date, count_common_periods))
-        if not self.start_date or not self.end_date or self.start_date > self.end_date:
-            raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+        for period in self:
+            if not period.start_date or not period.end_date or period.start_date > period.end_date:
+                raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
 
-    @api.one
     @api.constrains('name')
     def _check_name_unique(self):
         """ Checks that the name of the period is unique.
 
         :return: None
         """
-        if self.search_count([('name', '=', self.name)]) > 1:
-            raise exceptions.ValidationError(_("The name of the period must be unique! Please change it accordingly."))
+        for period in self:
+            if self.search_count([('name', '=', period.name)]) > 1:
+                raise exceptions.ValidationError(_('The name of the period must be unique! Please change it accordingly.'))

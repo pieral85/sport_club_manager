@@ -71,7 +71,6 @@ class InterclubEventMailWizard(models.TransientModel):
         })
         return res
 
-    @api.multi
     @api.onchange('template_id')
     def onchange_template_id(self):
         self.ensure_one()
@@ -79,7 +78,6 @@ class InterclubEventMailWizard(models.TransientModel):
             self.composer_id.template_id = self.template_id
             self.composer_id.onchange_template_id_wrapper()
 
-    @api.multi
     @api.onchange('others_template_id')
     def onchange_others_template_id(self):
         self.ensure_one()
@@ -96,7 +94,6 @@ class InterclubEventMailWizard(models.TransientModel):
     def _onchange_interclub_event_id(self):
         self.attendee_ids = self.default_attendee_ids.filtered(lambda a: a.state in ('needsAction', 'tentative'))
 
-    @api.multi
     def change_event_state(self):
         self.ensure_one()
         role = self.env.context.get('role')
