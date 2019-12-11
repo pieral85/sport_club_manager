@@ -5,7 +5,7 @@ from odoo import api, fields, models, exceptions, _
 
 
 class PeriodCategory(models.Model):
-    _name = 'period_category'  # TODO Change _ by . (apply this change in other models)
+    _name = 'period.category'
     _description = 'Period Category'
     _order = 'period_id asc'
 
@@ -119,7 +119,7 @@ class PeriodCategory(models.Model):
         """ Does a 'smart' duplication of self, including its membership_ids.
 
         :param dict default: values for the newly created record.
-        :return: New period_category created.
+        :return: New period.category created.
         """
         self.ensure_one()
         default = dict(default or {})

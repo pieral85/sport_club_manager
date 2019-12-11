@@ -55,7 +55,7 @@ class Period(models.Model):
         store=False,
     )
     period_category_ids = fields.One2many(
-        comodel_name='period_category',
+        comodel_name='period.category',
         inverse_name='period_id',
         string='Period Categories',
     )
@@ -169,7 +169,7 @@ class Period(models.Model):
             'view_type': 'form',
             'view_mode': 'form',
             'src_model': 'period',
-            'res_model': 'period_wizard',
+            'res_model': 'period.wizard',
             'view_id': self.env.ref('club.period_wizard_form_view').id,
             'context': ctx,
             'target': 'new',

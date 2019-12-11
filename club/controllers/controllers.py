@@ -8,6 +8,7 @@ from odoo import registry as registry_get
 
 _URL_ROOT = '/club'
 
+
 class Club(AuthSignupHome):
 
     @http.route('%s/period/' % _URL_ROOT, auth='public', website=True)
@@ -20,7 +21,7 @@ class Club(AuthSignupHome):
     @http.route('%s/membership/request' % _URL_ROOT, auth='user', website=True)
     def request_membership(self):
         consumed_period_ids = http.request.env['membership'].search([('member_id', '=', http.request.user.partner_id.id),]).mapped('period_id').ids  # TODO Test 'http.request.user.partner_id.id'
-        period_category_ids = http.request.env['period_category'].search([
+        period_category_ids = http.request.env['period.category'].search([
             ('period_id.active', '=', True),
             ('period_id.id', 'not in', consumed_period_ids),
             ]

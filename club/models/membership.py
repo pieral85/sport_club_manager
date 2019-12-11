@@ -24,7 +24,7 @@ class Membership(models.Model):
         return uuid.uuid4().hex
 
     period_category_id = fields.Many2one(
-        comodel_name='period_category',
+        comodel_name='period.category',
         ondelete='cascade',
         required=True,
         string='Period Category',
@@ -155,7 +155,7 @@ class Membership(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.setdefault('period_category_id', self.env['period_category'].search([
+        vals.setdefault('period_category_id', self.env['period.category'].search([
             ('period_id.current', '=', True),
             ('default', '=', True),
             ]
@@ -300,9 +300,9 @@ class Membership(models.Model):
             return
 
         # Get period_category
-        period_category = self.env['period_category'].search([('period_id.id', '=', period_id), ('default', '=', True),], limit=1,)
+        period_category = self.env['period.category'].search([('period_id.id', '=', period_id), ('default', '=', True),], limit=1,)
         if not period_category:
-            period_category = self.env['period_category'].search([('period_id.id', '=', period_id),], order='create_date asc, category_id asc', limit=1,)
+            period_category = self.env['period.category'].search([('period_id.id', '=', period_id),], order='create_date asc, category_id asc', limit=1,)
         if not vals.setdefault('period_category_id', period_category.id):
             return
         vals.setdefault('price_due', period_category.price_due)
@@ -406,7 +406,7 @@ class Membership(models.Model):
     def _onchange_category_id(self):
         for record in self:
             if record.category_id and record.period_id:
-                period_category_id = self.env['period_category'].search([
+                period_category_id = self.env['period.category'].search([
                     ('period_id.id','=',record.period_id.id),
                     ('category_id.id','=',record.category_id.id),
                     ],
@@ -420,7 +420,7 @@ class Membership(models.Model):
     def _onchange_period_id(self):
         for record in self:
             if record.period_id and record.category_id:
-                period_category_id = self.env['period_category'].search([
+                period_category_id = self.env['period.category'].search([
                     ('period_id.id','=',record.period_id.id),
                     ('category_id.id','=',record.category_id.id),
                     ],

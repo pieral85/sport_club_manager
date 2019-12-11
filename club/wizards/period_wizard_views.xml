@@ -3,7 +3,7 @@
 <data>
     <record id="period_wizard_form_view" model="ir.ui.view">
         <field name="name">period.wizard.form</field>
-        <field name="model">period_wizard</field>
+        <field name="model">period.wizard</field>
         <field name="arch" type="xml">
             <form string="Period Duplication">
                 <group>

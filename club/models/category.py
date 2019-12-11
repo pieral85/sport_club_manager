@@ -14,7 +14,7 @@ class Category(models.Model):
     )
     description = fields.Char(string='Description')
     period_category_ids = fields.One2many(
-        comodel_name='period_category',
+        comodel_name='period.category',
         inverse_name='category_id',
         string='Period Categories',
     )
