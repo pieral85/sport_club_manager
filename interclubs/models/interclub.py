@@ -20,7 +20,7 @@ class Interclub(models.Model):
     kind = fields.Selection([('men', 'Men'), ('women', 'Women'), ('mixed', 'Mixed')],
         string='Kind', required=True, default='men')
     season_id = fields.Many2one('period', string='Season',
-        required=True, ondelete='set null',
+        required=True, ondelete='restrict',
         default=lambda self: self.env['period'].search([('current', '=', True)], limit=1))
     player_ids = fields.Many2many('res.partner', 'interclub_player_rel',
         column1='interclub_id', column2='player_id', string='Players',
