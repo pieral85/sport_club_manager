@@ -9,7 +9,7 @@
         <field name="zip">1234</field>
         <field name="country_id" ref="base.fr"/>
         <field name="street">Rue Foo, 123</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_1.jpg"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_1.jpg"/>
     </record>
     <record id="partner_demo_player_1_user" model="res.users">
         <field name="partner_id" ref="partner_demo_player_1"/>
@@ -25,7 +25,7 @@
         <field name="zip">4321</field>
         <field name="country_id" ref="base.us"/>
         <field name="street">Rue Kennedy, 2</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_2.jpg"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_2.jpg"/>
     </record>
     <record id="partner_demo_player_2_user" model="res.users">
         <field name="partner_id" ref="partner_demo_player_2"/>
@@ -41,7 +41,7 @@
         <field name="zip">77</field>
         <field name="country_id" ref="base.it"/>
         <field name="street">Rue Foo, 123</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_3.png"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_3.png"/>
     </record>
     <record id="partner_demo_player_3_user" model="res.users">
         <field name="partner_id" ref="partner_demo_player_3"/>
@@ -57,7 +57,7 @@
         <field name="zip">5000</field>
         <field name="country_id" ref="base.be"/>
         <field name="street">Rue Petite, 88</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_4.jpg"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_4.jpg"/>
     </record>
     <record id="partner_demo_player_4_user" model="res.users">
         <field name="partner_id" ref="partner_demo_player_4"/>
@@ -73,7 +73,7 @@
         <field name="zip">6700</field>
         <field name="country_id" ref="base.be"/>
         <field name="street">Rue Grande, 43</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_child_1.jpg"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_child_1.jpg"/>
     </record>
     <record id="partner_demo_young_player_1_user" model="res.users">
         <field name="partner_id" ref="partner_demo_young_player_1"/>
@@ -89,7 +89,7 @@
         <field name="zip">1000</field>
         <field name="country_id" ref="base.be"/>
         <field name="street">Avenue Principale, 1</field>
-        <field name="image" type="base64" file="club/static/img/res_partner_child_2.jpg"/>
+        <field name="image_1920" type="base64" file="club/static/img/res_partner_child_2.jpg"/>
     </record>
     <record id="partner_demo_young_player_2_user" model="res.users">
         <field name="partner_id" ref="partner_demo_young_player_2"/>
