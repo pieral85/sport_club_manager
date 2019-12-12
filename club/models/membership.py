@@ -31,7 +31,7 @@ class Membership(models.Model):
     )
     member_id = fields.Many2one('res.partner', string='Member',
         ondelete='restrict', required=True, domain=[('is_company', '=', False)])
-    member_user_id = fields.Many2many('res.users', compute='_compute_member_user_id',
+    member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id',
         domain=[('is_company', '=', False)])
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
