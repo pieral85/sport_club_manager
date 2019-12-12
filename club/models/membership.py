@@ -61,6 +61,7 @@ class Membership(models.Model):
     price_paid_percentage = fields.Float(
         string='Percentage Paid',
         compute='_compute_payment',
+        store=True,
     )
     price_remaining = fields.Monetary(
         string='Price Remaining',
