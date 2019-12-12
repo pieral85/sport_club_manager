@@ -51,7 +51,7 @@ class Period(models.Model):
         comodel_name='res.currency',
         string='Currency',
         required=True,
-        default=lambda self: self.env['res.company']._company_default_get(),
+        default=lambda self: self.env.company.currency_id,
         store=False,
     )
     period_category_ids = fields.One2many(

@@ -25,7 +25,7 @@ class PeriodCategory(models.Model):
         comodel_name='res.currency',
         string='Currency',
         required=True,
-        default=lambda self: self.env['res.company']._company_default_get(),
+        default=lambda self: self.env.company.currency_id,
     )
     price_due = fields.Monetary(
         string='Due Price',
