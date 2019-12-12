@@ -39,7 +39,7 @@
     </record>
 
     <!-- Set the "Internal User" group as the only group for the user "Default User Template" -->
-    <function id="function_update_record" name="_update_record" model="res.users">
+    <function name="_update_record" model="res.users">
         <value eval="{'model': 'res.users',
                       'browse_id': [ref('base.default_user')],
                       'write_values': {'groups_id': [(6, 0, [ref('base.group_user')])]}}"/>
