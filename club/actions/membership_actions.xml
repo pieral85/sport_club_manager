@@ -4,7 +4,6 @@
     <record id="action_membership" model="ir.actions.act_window">
         <field name="name">Memberships</field>
         <field name="res_model">membership</field>
-        <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form,graph</field>
         <field name="context">{
             'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
@@ -38,7 +37,6 @@
         <field name="name">Prices per Period (validated members only)</field>
         <field name="res_model">membership</field>
         <field name="domain">[('state', '=', 'member')]</field>
-        <field name="view_type">form</field>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="membership_view_graph_periods"/>
     </record>
@@ -47,7 +45,6 @@
         <field name="name">Prices per Member (validated only)</field>
         <field name="res_model">membership</field>
         <field name="domain">[('state', '=', 'member')]</field>
-        <field name="view_type">form</field>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="membership_view_graph_members"/>
     </record>

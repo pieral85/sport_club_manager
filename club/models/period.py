@@ -165,7 +165,6 @@ class Period(models.Model):
         return {
             'name': 'Duplicate a period',
             'type': 'ir.actions.act_window',
-            'view_type': 'form',
             'view_mode': 'form',
             'src_model': 'period',
             'res_model': 'period.wizard',

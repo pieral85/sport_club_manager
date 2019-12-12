@@ -4,7 +4,6 @@
     <record id="action_member" model="ir.actions.act_window">
         <field name="name">Members</field>
         <field name="res_model">res.partner</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
@@ -14,7 +13,6 @@
         <field name="res_model">res.partner</field>
         <!-- TODO Do I really want to exclude clubs? If yes, create a dedicated view for clubs!
         <field name="domain">[('is_company', '=', False),]</field> -->
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,kanban</field>
         <!-- TODO Do I really want to exclude clubs? If yes, create a dedicated view for clubs!
             <field name="context">{'default_is_company': False}</field> -->
@@ -35,7 +33,6 @@
         <field name="name">Locations</field>
         <field name="res_model">res.partner</field>
         <field name="domain">[('is_company', '=', True),]</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="context">{'default_is_company': True}</field>
         <!-- List of the views linked to this action window -->

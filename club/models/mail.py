@@ -41,7 +41,6 @@ class MailComposer(models.TransientModel):
                 'type': 'ir.actions.act_window',
                 'res_model': 'membership',
                 'view_mode': 'tree,form',
-                'view_type': 'form',
                 'domain': [('id', 'in', self.env.context['active_ids'])],
             }
         return res

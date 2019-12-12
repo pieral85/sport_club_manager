@@ -149,7 +149,6 @@ class InterclubEvent(models.Model):
         return {
             'name': _('Interclub Event Mail Wizard'),
             'type': 'ir.actions.act_window',
-            'view_type': 'form',
             'view_mode': 'form',
             'src_model': 'interclub.event',
             'res_model': 'interclub.event.mail.wizard',
