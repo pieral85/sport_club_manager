@@ -129,7 +129,9 @@ class InterclubEvent(models.Model):
     def prepare_interclub_event_wizard(self):
         ctx = self._context.copy()
         role = self.env.context.get('role')
-        ctx.update(show_mail_to_players=True, show_mail_to_others=True)
+
+        ctx.update(show_mail_to_players=True, show_mail_to_others=True,
+            active_model='interclub.event', active_id=self.id, active_ids=[self.id])
         if role == 'to_open':
             ctx['send_mail_to_players'] = True
             ctx['send_mail_to_others'] = False
