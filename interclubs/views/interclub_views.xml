@@ -74,6 +74,70 @@
         </field>
     </record>
 
+    <!-- kanban view(s) -->
+    <record id="interclub_view_kanban" model="ir.ui.view">
+        <field name="name">interclub kanban</field>
+        <field name="model">interclub</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors" on_create="project.open_create_project">
+                <field name="name"/>
+                <field name="responsible_id"/>
+                <field name="location_id"/>
+                <field name="events_count"/>
+                <field name="player_ids"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click o_has_icon">
+                            <div class="o_project_kanban_main">
+                                <div class="o_kanban_card_content">
+                                    <div class="o_kanban_primary_left">
+                                        <div class="o_primary">
+                                            <span><t t-esc="record.name.value"/></span>
+                                            <span>
+                                                <t t-if="record.responsible_id.value">
+                                                    <span class="fa fa-user" title="User"/>
+                                                    <strong><t t-esc="record.responsible_id.value"/></strong>
+                                                </t>
+                                                <t t-if="record.location_id.value">
+                                                    <br/>
+                                                    <span class="fa fa-home" title="Home"/>
+                                                    <strong><t t-esc="record.location_id.value"/></strong>
+                                                </t>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                    <!-- if adding a 2nd menuitem, consider addding a <div> with class="o_kanban_card_manage_section" section
+                                    (grep Odoo standard code to find examples) -->
+                                    <div role="menuitem">
+                                        <a type="edit">Edit</a>
+                                    </div>
+                                </div>
+                                <a class="o_kanban_manage_toggle_button o_left" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a><!-- TODO Add groups for manager -->
+                                <span class="o_right"><field name="is_favorite" widget="boolean_favorite" nolabel="1" force_save="1" /></span>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="o_project_kanban_boxes oe_kanban_bottom_left">
+                                    <!-- "name" attribute is defined in 'interclub_view_kanban_inherit', as related action
+                                    'action_interclub_event_active_interclub' is not created yet at this stage -->
+                                    <a class="o_project_kanban_box" type="action">
+                                        <field name="events_count" string="event(s)" widget="statinfo"/>
+                                    </a>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <t t-foreach="record.player_ids.raw_value.slice(0, 11)" t-as="player">
+                                        <img class="oe_kanban_avatar float-right" t-att-src="kanban_image('res.partner', 'image_256', player)" t-att-title="player.value" t-att-alt="player.value"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- search view(s) -->
     <record id="interclub_search" model="ir.ui.view">
         <field name="name">interclub.search</field>
@@ -83,6 +147,8 @@
                 <field name="season_id" string="Season" filter_domain="[('season_id', 'ilike', self)]"/>
                 <field name="kind" string="Kind" filter_domain="[('kind', 'ilike', self)]"/>
                 <filter name ="my_interclubs_search" string="My Interclubs" domain="['|', '|', ('player_ids.user_ids', 'in', [uid]), ('referee_ids.user_ids', 'in', [uid]), ('responsible_id.user_ids', 'in', [uid])]" help="Interclubs for which I am a player, referee or responsible."/>
+                <separator/>
+                <filter name="my_favorites_search" string="My Favorites" domain="[('favorite_user_ids', 'in', uid)]"/>
                 <separator/>
                 <filter name ="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclubs of current season."/>
                 <filter name ="upcoming_season_search" string="Upcoming Season" domain="[('season_id.upcoming', '=', True)]" help="Interclubs of upcoming period."/>

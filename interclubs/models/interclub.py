@@ -14,6 +14,29 @@ class Interclub(models.Model):
     _description = 'Interclub'
     _order = 'season_id asc, kind asc'
 
+    def _compute_events_count(self):
+        for interclub in self:
+            interclub.events_count = len(interclub.event_ids)
+
+    def _compute_is_favorite(self):
+        for interclub in self:
+            interclub.is_favorite = self.env.user in interclub.favorite_user_ids
+
+    def _inverse_is_favorite(self):
+        favorite_interclubs = not_fav_interclubs = self.env['interclub'].sudo()
+        for interclub in self:
+            if self.env.user in interclub.favorite_user_ids:
+                favorite_interclubs |= interclub
+            else:
+                not_fav_interclubs |= interclub
+
+        # Interclub User has no write access for interclub
+        not_fav_interclubs.write({'favorite_user_ids': [(4, self.env.uid)]})
+        favorite_interclubs.write({'favorite_user_ids': [(3, self.env.uid)]})
+
+    def _get_default_favorite_user_ids(self):
+        return [(6, 0, [self.env.uid])]
+
     name = fields.Char(string='Name', required=True)
     event_ids = fields.One2many('interclub.event', 'interclub_id',
         string='Interclub Events')
@@ -34,6 +57,15 @@ class Interclub(models.Model):
         domain=CONTACT_DOMAIN)
     event_items_color = fields.Char('Event Items Color',
         help='Color of the interclub event items in the calendar view')  # TODO Rename with events_color?
+    events_count = fields.Integer(compute='_compute_events_count', string='Events Count')
+
+    favorite_user_ids = fields.Many2many(
+        'res.users', 'interclub_favorite_user_rel', 'interclub_id', 'user_id',
+        default=_get_default_favorite_user_ids,
+        string='Favorite Users')
+    is_favorite = fields.Boolean(compute='_compute_is_favorite', inverse='_inverse_is_favorite',
+        string='Show Interclub on dashboard',
+        help='Whether this Interclub should be displayed on your dashboard.')
 
     def write(self, vals):
         if 'event_items_color' in vals:

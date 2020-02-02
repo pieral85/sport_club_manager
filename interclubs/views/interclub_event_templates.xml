@@ -4,6 +4,7 @@
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/interclubs/static/src/js/interclub_event_calendar.js"></script>
 			<link rel="stylesheet" type="text/scss" href="/interclubs/static/src/scss/web_calendar.scss"/>
+            <script type="text/javascript" src="/interclubs/static/src/js/interclub.js"></script>
         </xpath>
     </template>
 </odoo>

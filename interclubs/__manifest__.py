@@ -22,6 +22,7 @@
     'depends': [
         'calendar',
         'club',
+        'project',  # Used for some scss styling (see https://github.com/odoo/odoo/blob/13.0/addons/project/static/src/scss/project_dashboard.scss#L18)
     ],
 
     # always loaded
