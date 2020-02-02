@@ -50,7 +50,6 @@
         'data/interclub_event_data.xml',
     ],
     'qweb': [
-        'static/src/xml/web_calendar.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

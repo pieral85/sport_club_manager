@@ -171,23 +171,6 @@
         </field>
     </record>
 
-    <record id="interclub_event_view_form_popup" model="ir.ui.view">
-        <field name="name">interclub_event form popup</field>
-        <field name="model">interclub.event</field>
-        <field name="mode">primary</field>
-        <field name="inherit_id" ref="calendar.view_calendar_event_form_popup"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='alarm_ids']" position="after">
-                <field name="referee_id"/>
-                <field name="event_id"/>
-            </xpath>
-            <xpath expr="//button[@name='action_open_calendar_event']" position="before">
-                <button name="open_record" type="object" string="Open Event" class="oe_stat_button float-right" icon="fa-bars"/>
-            </xpath>
-            <xpath expr="//button[@name='action_open_calendar_event']" position="replace"/>
-        </field>
-    </record>
-
     <!-- calendar view(s) -->
     <record id="view_calendar_event_calendar_interclubs" model="ir.ui.view">
         <field name="name">calendar.event.calendar.interclubs</field>
@@ -208,9 +191,27 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
         <field name="arch" type="xml">
             <xpath expr="//calendar" position="attributes">
-                <attribute name="readonly_form_view_id">%(interclubs.interclub_event_view_form_popup)s</attribute>
                 <attribute name="quick_add">False</attribute>
+                <attribute name="event_open_popup">False</attribute>
                 <attribute name="form_view_id">%(interclubs.interclub_event_view_form_quick_create)s</attribute>
+            </xpath>
+            <xpath expr="//field[@name='attendee_status']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="opponent_id"/>
+                <field name="interclub_id" write_model="calendar.interclubs" write_field="interclub_id"/>
+            </xpath>
+            <!-- TODO Investigate why 'hide_company' and 'always_reload' are not working (see TODO above) -->
+            <xpath expr="//field[@name='partner_ids']" position="replace">
+                <field name="partner_ids" widget="many2many_tags_avatar" context="{'hide_company': 1}" options='{"always_reload": True}'/>
+            </xpath>
+            <xpath expr="//field[@name='description']" position="replace">
+                <field name="at_home" invisible="1"/>
+                <!-- TODO Dynamic domain for invisible attr is not working (standard bug?) -->
+                <field name="referee_id" attrs="{'invisible': [('at_home', '=', False)]}" context="{'hide_company': 1}" options='{"always_reload": True}'/>
+                <field name="responsible_id" string="Responsible" context="{'hide_company': 1}" options='{"always_reload": True}'/>
+                <field name="season_id"/>
             </xpath>
         </field>
     </record>

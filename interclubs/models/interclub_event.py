@@ -76,6 +76,7 @@ class InterclubEvent(models.Model):
     # Interclub related fields
     interclub_player_ids = fields.Many2many('res.partner', related='interclub_id.player_ids', readonly=True)
     interclub_referee_ids = fields.Many2many('res.partner', related='interclub_id.referee_ids', readonly=True)
+    responsible_id = fields.Many2one('res.partner', related='interclub_id.responsible_id', string='Inteclub Responsible', readonly=True)
     season_id = fields.Many2one('period', related='interclub_id.season_id', readonly=True, store=True)
 
     # Calendar Event related fields
