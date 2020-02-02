@@ -1,0 +1,16 @@
+diff --git a/addons/web/static/src/js/views/calendar/calendar_renderer.js b/addons/web/static/src/js/views/calendar/calendar_renderer.js
+index 597f20d8239..ddf01bb01f3 100644
+--- a/addons/web/static/src/js/views/calendar/calendar_renderer.js
++++ b/addons/web/static/src/js/views/calendar/calendar_renderer.js
+@@ -417,6 +417,11 @@ return AbstractRenderer.extend({
+                 element.addClass($render.attr('class'));
+                 element.attr('data-event-id', event.id);
+ 
++                // add background color to calendar items as template 'calendar-box'
++                // initially allows to add inline style for 'background-color' attribute
++                if (!!$render.css('background-color') && !element.css('background-color')) {
++                    element.css('background-color', $render.css('background-color'));
++                }
+                 // Add background if doesn't exist
+                 if (!element.find('.fc-bg').length) {
+                     element.find('.fc-content').after($('<div/>', {class: 'fc-bg'}));
