@@ -68,12 +68,14 @@
                         </h1>
                         <label for="partner_ids" string="Players" class="oe_edit_only"/>
                         <h2>
+                            <!-- TODO Investigate why 'hide_company' + 'always_reload' do not impact the recompute of
+                            name_get (it seems to be well triggered but at the end, field 'display_name' is shown) -->
                             <field name="partner_ids" widget="many2manyattendee"
                                 placeholder="Select players..."
-                                context="{'force_email':True}"
+                                context="{'force_email':True, 'hide_company': 1}"
                                 class="oe_inline"
                                 domain="[('id', 'in', interclub_player_ids)]"
-                                options="{'no_create': True}"
+                                options="{'no_create': True, 'always_reload': True}"
                                 attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
                         </h2>
                     </div>
@@ -88,7 +90,8 @@
                             <field name="at_home"/>
                             <field name="referee_id"
                                 domain="[('id', 'in', interclub_referee_ids)]"
-                                options="{'no_create': True}"/>
+                                options="{'no_create': True, 'always_reload': True}"
+                                context="{'hide_company': 1}"/>
                         </group>
                     </group>
                     <notebook>

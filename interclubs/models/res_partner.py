@@ -21,3 +21,11 @@ class ResPartner(models.Model):
             calendar_event_field = _models_fields[model]
             real_meeting_id = self.env[model].browse(meeting_id)[calendar_event_field].id
         return super(ResPartner, self).get_attendee_detail(real_meeting_id)
+
+    def name_get(self):
+        if not self._context.get('hide_company'):
+            return super().name_get()
+        res = []
+        for partner in self:
+            res.append((partner.id, partner.name))
+        return res
