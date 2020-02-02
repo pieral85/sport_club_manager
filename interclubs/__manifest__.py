@@ -22,7 +22,6 @@
     'depends': [
         'calendar',
         'club',
-        'web_widget_color', # External module developped by the OCA: https://github.com/OCA/web/tree/12.0/web_widget_color
     ],
 
     # always loaded
