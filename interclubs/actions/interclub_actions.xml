@@ -4,10 +4,9 @@
     <record id="action_interclubs" model="ir.actions.act_window">
         <field name="name">Interclubs</field>
         <field name="res_model">interclub</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="context">{
-            'search_default_current_season_search': 1,
-            'search_default_my_interclubs_search': 1,
+            'search_default_my_favorites_search': 1,
         }
         </field>
     </record>
