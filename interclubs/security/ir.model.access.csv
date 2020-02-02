@@ -11,3 +11,6 @@ access_interclubs_employee_interclub_event,access_interclubs_employee_interclub_
 
 access_interclubs_portal_interclub,access_interclubs_portal_interclub,model_interclub,base.group_portal,1,0,0,0
 access_interclubs_portal_interclub_event,access_interclubs_portal_interclub_event,model_interclub_event,base.group_portal,1,0,0,0
+
+access_calendar_interclubs_all,access_calendar_interclubs_all,model_calendar_interclubs,base.group_user,1,1,1,1
+access_calendar_interclubs,access_calendar_interclubs,model_calendar_interclubs,base.group_system,1,1,1,1
