@@ -7,5 +7,5 @@ from odoo import fields, models
 class Meeting(models.Model):
     _inherit = 'calendar.event'
 
-    item_color = fields.Char("Item Color",
+    item_color = fields.Char('Item Color',
         help='Color of the item in the calendar view')

@@ -32,8 +32,8 @@ class Interclub(models.Model):
     referee_ids = fields.Many2many('res.partner', 'interclub_referee_rel',
         column1='interclub_id', column2='referee_id', string='Referees',
         domain=CONTACT_DOMAIN)
-    event_items_color = fields.Char("Event Items Color",
-        help="Color of the interclub event items in the calendar view")
+    event_items_color = fields.Char('Event Items Color',
+        help='Color of the interclub event items in the calendar view')  # TODO Rename with events_color?
 
     def write(self, vals):
         if 'event_items_color' in vals:

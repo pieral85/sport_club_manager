@@ -4,7 +4,7 @@
 from odoo import api, models
 
 
-class Partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def get_attendee_detail_multi_model(self, meeting_id, model):
@@ -20,4 +20,4 @@ class Partner(models.Model):
                 raise NotImplementedError('Model "{}" not supported in method get_attendee_detail_multi_model.'.format(model))
             calendar_event_field = _models_fields[model]
             real_meeting_id = self.env[model].browse(meeting_id)[calendar_event_field].id
-        return super(Partner, self).get_attendee_detail(real_meeting_id)
+        return super(ResPartner, self).get_attendee_detail(real_meeting_id)
