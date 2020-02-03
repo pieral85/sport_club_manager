@@ -10,7 +10,7 @@
                 <field name="interclub_event_id" invisible="1"/>
                 <group invisible="not context.get('show_mail_to_players', False)">
                     <group class="oe_title"><field name="send_to_players"/></group>
-                    <group attrs="{'invisible': [('send_to_players', '=', False)]}">
+                    <group attrs="{'invisible': [('send_to_players', '=', False)]}" colspan="4">
                         <field name="composer_id" invisible="1"/>
                         <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
                             options="{'no_create': True}" colspan="4"/>
