@@ -8,4 +8,5 @@ from . import category
 from . import period_category
 from . import membership
 from . import mail
+from . import res_company
 from . import res_config_settings
