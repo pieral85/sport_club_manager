@@ -32,7 +32,6 @@
                     <!-- TODO
                     <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
                      -->
-                    <button name="update_periods" type="object" string="Recalculate Active Periods"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
