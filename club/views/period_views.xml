@@ -28,17 +28,18 @@
             <form>
                 <header>
                     <field name="current" invisible="1"/>
+                    <field name="active" invisible="1"/>
                     <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-primary"/>
+                    <button type="object" name="toggle_active" string="Archive" attrs="{'invisible': [('active', '=', False)]}"/>
+                    <button type="object" name="toggle_active" string="Restore" attrs="{'invisible': [('active', '=', True)]}"/>
                     <!-- TODO
                     <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
                      -->
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
-                        </button>
                     </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <group>
                         <h1>
                             <field name="name" placeholder="Name..."/>
