@@ -77,6 +77,8 @@ class InterclubEventMailWizard(models.TransientModel):
         if self.composer_id:
             self.composer_id.template_id = self.template_id
             self.composer_id.onchange_template_id_wrapper()
+            self.subject = self.composer_id.subject if self.template_id else ''
+            self.body = self.composer_id.body
 
     @api.onchange('others_template_id')
     def onchange_others_template_id(self):
@@ -89,6 +91,8 @@ class InterclubEventMailWizard(models.TransientModel):
                     | self.interclub_event_id.interclub_id.responsible_id | players
             self.others_composer_id.template_id = self.others_template_id
             self.others_composer_id.onchange_template_id_wrapper()
+            self.others_subject = self.others_composer_id.subject if self.others_template_id else ''
+            self.others_body = self.others_composer_id.body
 
     @api.onchange('interclub_event_id')
     def _onchange_interclub_event_id(self):
@@ -121,4 +125,4 @@ class InterclubEventMailWizard(models.TransientModel):
             self.others_body = body
             self.others_composer_id.send_mail()
 
-        return {'type': 'ir.actions.act_window_close'}#, 'infos': 'mail_sent'}
+        return {'type': 'ir.actions.act_window_close'}
