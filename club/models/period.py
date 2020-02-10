@@ -117,39 +117,26 @@ class Period(models.Model):
         values['alias_defaults'] = {'period_id': self.id}
         return values
 
-    @api.model
-    def module_update_function(self):
-        """ Call required functions at module upgrade/install. """
-        # TODO It does not seem to be called when installing demo data
-        self.update_periods()
-
     def update_periods(self):
         """ Updates 'active', 'current' and 'incoming' attributes of self, based on their 'start_date' and 'end_date' attributes.
 
         :return: None
         """
-        current_period_id = self.env['period'].search(
-            ['&', '&',
-             '|', ('active', '=', True), ('active', '=', False),
-             ('start_date', '<=', fields.Date.today()),
-             ('end_date', '>=', fields.Date.today()),
-            ],
-            order='start_date asc',
-            limit=1,
-        ).id
-        upcoming_period_ids = self.env['period'].search(
-            ['&',
-             '|', ('active', '=', True), ('active', '=', False),
-             ('start_date', '>', fields.Date.today()),
-            ],
-            order='start_date asc',
-        ).ids
+        if self.env.context.get('stop_propagation'):
+            return None
+        Period = self.env['period'].with_context(active_test=False)
+        today = fields.Date.today()
+        current_period_id = Period.search([('start_date', '<=', today), ('end_date', '>=', today)],
+            order='start_date asc', limit=1).id
+        upcoming_period_ids = Period.search([('start_date', '>', today)], order='start_date asc').ids
         upcoming_period_id = upcoming_period_ids[0] if upcoming_period_ids else []
 
-        for record in self.env['period'].search(['|', ('active', '=', False), ('active', '=', True),]):
-            record.active = record.id == current_period_id or record.id in upcoming_period_ids
-            record.current = record.id == current_period_id
-            record.upcoming = record.id == upcoming_period_id
+        for period in Period.search([]):
+            period.write({
+                'active': period.id == current_period_id or period.id in upcoming_period_ids,
+                'current': period.id == current_period_id,
+                'upcoming': period.id == upcoming_period_id,
+            })
 
     def prepare_duplication_wizard(self, default=None):
         ctx = self._context.copy()
@@ -214,14 +201,19 @@ class Period(models.Model):
                 break
         return super(Period, self).search(args, offset, limit, order, count=count)
 
-    def write(self, vals):
-        vals.update(self._get_alias_name(vals))
-        return super(Period, self).write(vals)
-
     @api.model
     def create(self, vals):
         vals.update(self._get_alias_name(vals))
-        return super(Period, self).create(vals)
+        res = super(Period, self).create(vals)
+        res.update_periods()
+        return res
+
+    def write(self, vals):
+        vals.update(self._get_alias_name(vals))
+        res = super(Period, self).write(vals)
+        if 'start_date' in vals or 'end_date' in vals:
+            self.update_periods()
+        return res
 
     def _compute_get_members(self):
         for record in self:

@@ -12,7 +12,5 @@
         <field name="doall" eval="False"/>
         <field name="nextcall" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 01:00:00')"/>
     </record>
-
-    <function name="module_update_function" model="period"/>
 </data>
 </odoo>
