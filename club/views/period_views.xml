@@ -29,7 +29,7 @@
                 <header>
                     <field name="current" invisible="1"/>
                     <field name="active" invisible="1"/>
-                    <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-primary"/>
+                    <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-secondary"/>
                     <button type="object" name="toggle_active" string="Archive" attrs="{'invisible': [('active', '=', False)]}"/>
                     <button type="object" name="toggle_active" string="Restore" attrs="{'invisible': [('active', '=', True)]}"/>
                     <!-- TODO
