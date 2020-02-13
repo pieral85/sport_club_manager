@@ -119,9 +119,7 @@
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="o_project_kanban_boxes oe_kanban_bottom_left">
-                                    <!-- "name" attribute is defined in 'interclub_view_kanban_inherit', as related action
-                                    'action_interclub_event_active_interclub' is not created yet at this stage -->
-                                    <a class="o_project_kanban_box" type="action">
+                                    <a class="o_project_kanban_box" type="object" name="action_view_events">
                                         <field name="events_count" string="event(s)" widget="statinfo"/>
                                     </a>
                                 </div>

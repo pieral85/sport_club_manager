@@ -88,3 +88,8 @@ class Interclub(models.Model):
             vals.append(self.season_id.name)
         if vals:
             self.name = ' - '.join(vals)
+
+    def action_view_events(self):
+        action = self.with_context(active_id=self.id, active_ids=self.ids).env.ref('interclubs.action_interclub_event_active_interclub').read()[0]
+        action['display_name'] = self.name
+        return action
