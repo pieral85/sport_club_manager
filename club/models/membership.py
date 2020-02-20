@@ -372,6 +372,7 @@ class Membership(models.Model):
                 record.price_remaining = record.price_due - record.price_paid
                 record.paid = False
 
+    @api.depends('price_paid_percentage', 'state')
     def _compute_color(self):
         """ Computes color value based on the price paid (used in the Kanban view.)
 
