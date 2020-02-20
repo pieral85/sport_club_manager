@@ -125,32 +125,25 @@
         <field name="arch" type="xml">
             <kanban default_group_by="state">
                 <field name="color"/>
+                <field name="member_parent_id"/>
                 <field name="price_paid_percentage"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click
+                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} o_kanban_record_has_image_fill o_res_partner_kanban oe_kanban_global_click
                             oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
                             ? 'oe_kanban_card_fancy' : ''}}">
-                            <div>
-                                <img t-att-src="kanban_image('res.partner', 'image_medium', record.member_id.raw_value)" style="width:120px" class="oe_kanban_avatar pull-right" t-att-alt="record.member_id.value"/>
+                            <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.member_id.raw_value)}')">
+                                <img class="o_kanban_image_inner_pic" t-if="record.member_parent_id.raw_value" t-att-alt="record.member_parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.member_parent_id.raw_value)"/>
                             </div>
-
+                            <div class="o_kanban_image rounded-circle d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.member_id.raw_value)}')">
+                                <img class="o_kanban_image_inner_pic" t-if="record.member_parent_id.raw_value" t-att-alt="record.member_parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.member_parent_id.raw_value)"/>
+                            </div>
                             <div class="oe_kanban_details">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
-                                        <strong class="o_kanban_record_title">
+                                        <strong class="o_kanban_record_title oe_partner_heading">
                                             <field name="member_id"/>
                                         </strong>
-                                        <span>
-                                            <div class="o_dropdown_kanban dropdown col-xs-4" >
-                                                <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" role="button" title="Dropdown menu">
-                                                    <span class="fa fa-bars fa-lg"/>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                    <t t-if="widget.editable"><li><a type="edit">Edit Membership</a></li></t>
-                                                </ul>
-                                            </div>
-                                        </span>
                                     </div>
                                 </div>
                                 <ul>
