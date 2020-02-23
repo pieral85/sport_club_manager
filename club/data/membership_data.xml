@@ -56,10 +56,7 @@ for record in records:
     <record id="email_template_membership_affiliation_confirmation" model="mail.template">
         <field name="name">Membership Affiliation Confirmation</field>
         <field name="model_id" ref="model_membership"/>
-        <field name="email_from"><![CDATA[
-"${user.company_id.name|safe}" <${(user.company_id.email or user.email)|safe}>
-]]>
-        </field>
+        <field name="email_from">"${user.company_id.name|safe}" &lt;${(user.company_id.email or user.email)|safe}&gt;</field>
         <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
         <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
         <field name="auto_delete" eval="False"/>
@@ -103,10 +100,7 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
     <record id="email_template_membership_affiliation_invitation" model="mail.template">
         <field name="name">Membership Affiliation Invitation</field>
         <field name="model_id" ref="model_membership"/>
-        <field name="email_from"><![CDATA[
-"${user.company_id.name|safe}" <${(user.company_id.email or '')|safe}>
-]]>
-        </field>
+        <field name="email_from">"${user.company_id.name|safe}" &lt;${(user.company_id.email or '')|safe}&gt;</field>
         <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
         <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
         <field name="auto_delete" eval="False"/>
