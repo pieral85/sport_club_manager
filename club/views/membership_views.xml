@@ -58,11 +58,21 @@
                             <field name="price_due"/>
                         </group>
                     </group>
-                    <group groups="base.group_no_one">
-                        <field name="token"/>
-                        <field name="token_validity"/>
-                        <field name="token_is_valid"/>
-                    </group>
+                    <!-- Move "groups" attribute to "details" page once a 2nd will be added -->
+                    <notebook groups="base.group_no_one">
+                        <page name="details" string="Details">
+                            <group>
+                                <group>
+                                    <field name="token"/>
+                                    <field name="token_validity"/>
+                                </group>
+                                <group>
+                                    <field name="token_is_valid"/>
+                                    <field name="company_id"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

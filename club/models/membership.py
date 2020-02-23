@@ -38,6 +38,8 @@ class Membership(models.Model):
         domain=[('is_company', '=', False)])
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
+    company_id = fields.Many2one('res.company', string='Company', required=True,
+        default=lambda self: self.env.company)
     user_state = fields.Selection(
         string='User Status',
         related='member_user_id.state',
@@ -173,7 +175,7 @@ class Membership(models.Model):
             vals['token_validity'] = None
             if not self.member_id.parent_id:
                 # when becoming a member, the related partner should belong to the company
-                self.member_id.parent_id = self.env.user.company_id.partner_id
+                self.member_id.parent_id = self.company_id.partner_id
 
         return super(Membership, self).write(vals)
 

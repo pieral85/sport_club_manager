@@ -139,7 +139,6 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
             <t t-set="head">
                 <t t-call-assets="web.assets_common" t-js="false"/>
                 <t t-call-assets="web.assets_frontend" t-js="false"/>
-                <t t-call-assets="club.membership_assets"/>
             </t>
 
             <div class="container">
@@ -159,8 +158,8 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
                         <div class="clearfix mb16" t-if="membership.user_response != 'undefined'">
                             <span class="pull-right">
                                 <span>Your invitation response: </span>
-                                <span t-if="membership.user_response == 'accepted'" class="label label-success">Accepted</span>
-                                <span t-if="membership.user_response == 'declined'" class="label label-danger">Declined</span>
+                                <span t-if="membership.user_response == 'accepted'" class="badge badge-success">Accepted</span>
+                                <span t-if="membership.user_response == 'declined'" class="badge badge-danger">Declined</span>
                             </span>
                         </div>
                         <div class="table-responsive">
@@ -191,12 +190,12 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
                                     <td>
                                         <span t-field="membership.price_due"  t-options='{"widget": "monetary"}'/>
                                         <t t-if="membership.state in ('requested', 'member')">
-                                            <span t-if="membership.paid" class="block label label-success">Everything is paid!</span>
-                                            <span t-else="" class="block label label-danger">
+                                            <span t-if="membership.paid" class="badge badge-success ml-2">Everything is paid!</span>
+                                            <span t-else="" class="badge badge-danger ml-2">
                                                 <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
                                                 <span>still to pay</span><br/>
-                                                <span t-if="membership.member_id.company_id.account_no"> (account: 
-                                                    <t t-esc="membership.member_id.company_id.account_no"/>)
+                                                <span t-if="membership.company_id.account_no"> (account: 
+                                                    <t t-esc="membership.company_id.account_no"/>)
                                                 </span>
                                             </span>
                                         </t>
