@@ -49,30 +49,33 @@
 
     <!-- Web Page showing info on the club -->
     <template id="website_info_club" inherit_id="website.aboutus">
-        <!-- <t t-call="website.layout"> -->
-            <xpath expr="//div[@id='wrap']" position="replace">
-                <t t-set="title">Club Info</t>
-                <div id="wrap">
-                    <div class="oe_structure">
-                        <div class="container">
-                            <h2>Comittee Info</h2>
-                            <t t-foreach="committee" t-as="status">
-                                <t t-foreach="status[1]" t-as="member">
-                                    <t t-if="member_first"><h3><t t-esc="status[0]"/></h3></t>
-                                    <div class="container" style="padding: 5px 10px; font-size: 14px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">
-                                        <!-- <a t-attf-href="/club/members/{{ slug(member) }}"> -->
-                                        <strong><p t-field="member.name"/></strong>
-                                        <p t-field="member.login"/>
-                                        <!-- </a> -->
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <section class="s_company_team pt48 pb48">
+                <div class="container">
+                    <h1 style="text-align: center;">Comittee Info</h1>
+                    <t t-foreach="committee" t-as="status">
+                        <h2><t t-esc="status[0]"/></h2>
+                        <div class="row s_nb_column_fixed">
+                            <t t-foreach="status[1]" t-as="member">
+                                <div class="col-lg-6 pt32 pb16">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <div class="col-lg-4">
+                                            <img t-if="member.image_128" class="img-fluid rounded-circle d-block mx-auto shadow o_portal_committee_img" t-att-src="image_data_uri(member.image_128)" alt="Comittee"/>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <h3><p t-field="member.name"/></h3>
+                                            <p t-field="member.email"/>
+                                            <!-- TODO Implement a html field and add it here -->
+                                            <p class="text-muted"></p>
+                                        </div>
                                     </div>
-                                </t>
+                                </div>
                             </t>
                         </div>
-                    </div>
+                    </t>
                 </div>
-                <!-- <div class="oe_structure"/> -->
-            </xpath>
-        <!-- </t> -->
+            </section>
+        </xpath>
     </template>
 
     <!-- Web Page showing the historical of the user -->

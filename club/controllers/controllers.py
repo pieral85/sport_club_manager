@@ -39,6 +39,7 @@ class Club(AuthSignupHome):
     @route('/aboutus', auth='public', website=True)
     def info_club(self):
         User = request.env['res.users'].sudo()
+        # TODO Add _ for following terms
         committee = (
             ('President', User.search([('president', '=', True),])),
             ('Secretary', User.search([('secretary', '=', True),])),
