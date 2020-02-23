@@ -1,0 +1,1793 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-23 01:10+0000\n"
+"PO-Revision-Date: 2020-02-23 01:08+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: lang_iso_code\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: interclubs
+#: model:mail.template,body_html:interclubs.email_template_interclub_event_cancellation
+msgid ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Hello,<br/><br/>\n"
+"        The interclub event \"${object.name}\" has just been <b>cancelled</b>!<br/>\n"
+"        Here are all the useful information :\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Details of the event</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Location: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Attendees\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">You</span>\n"
+"                        % endif\n"
+"                        <!-- TODO Add status for each player in each template -->\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Referee: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Thank you,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+msgstr ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Bonjour,<br/><br/>\n"
+"        La rencontre d'interclub \"${object.name}\" vient d'être <b>annulé</b>!<br/>\n"
+"        Voici toutes les informations utiles :\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Détails de l'événement</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Lieu: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Participants\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">Vous</span>\n"
+"                        % endif\n"
+"                        <!-- TODO Add status for each player in each template -->\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Merci,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+
+#. module: interclubs
+#: model:mail.template,body_html:interclubs.email_template_interclub_event_confirmation
+msgid ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Hello,<br/><br/>\n"
+"        The interclub event \"${object.name}\" has just been confirmed.<br/>\n"
+"        Here are all the useful information :\n"
+"<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Details of the event</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Location: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Attendees\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">You</span>\n"
+"                        % endif\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Referee: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Thank you,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+msgstr ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Bonjour,<br/><br/>\n"
+"        L'interclub \"${object.name}\" vient d'être confirmé.<br/>\n"
+"        Voici toutes les informations utiles :\n"
+"<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Détails de l'événement</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Lieu: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Participants\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">Vous</span>\n"
+"                        % endif\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Merci,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+
+#. module: interclubs
+#: model:mail.template,body_html:interclubs.email_template_interclub_event_opening
+msgid ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Hello,<br/><br/>\n"
+"        This is a reminder for the below event :\n"
+"<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Details of the event</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Location: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Attendees\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">You</span>\n"
+"                        % endif\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Referee: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Thank you,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+msgstr ""
+"\n"
+"<div>\n"
+"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+"    <p>\n"
+"        Bonjour,<br/><br/>\n"
+"        Ceci est un rappel pour l'événement ci-dessous :\n"
+"<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
+"    </p>\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"        <td width=\"130px;\">\n"
+"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+"            </div>\n"
+"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+"            </div>\n"
+"        </td>\n"
+"        <td width=\"20px;\"/>\n"
+"        <td style=\"padding-top: 5px;\">\n"
+"            <p><strong>Détails de l'événement</strong></p>\n"
+"            <ul>\n"
+"                % if object.event_id.location:\n"
+"                    <li>Lieu: ${object.event_id.location}\n"
+"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+"                    </li>\n"
+"                % endif\n"
+"                % if object.event_id.description :\n"
+"                    <li>Description: ${object.event_id.description}</li>\n"
+"                % endif\n"
+"                % if not object.event_id.allday and object.event_id.duration\n"
+"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+"                % endif\n"
+"                <li>Participants\n"
+"                <ul>\n"
+"                % for attendee in object.event_id.attendee_ids:\n"
+"                    <li>\n"
+"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+"                        % if attendee.common_name != object.common_name:\n"
+"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+"                        % else:\n"
+"                            <span style=\"margin-left:5px\">Vous</span>\n"
+"                        % endif\n"
+"                    </li>\n"
+"                % endfor\n"
+"                </ul></li>\n"
+"                % if object.referee_id :\n"
+"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+"                % endif\n"
+"                % if object.interclub_id.responsible_id :\n"
+"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+"                % endif\n"
+"            </ul>\n"
+"        </td>\n"
+"    </tr></table>\n"
+"    <br/>\n"
+"    Merci,\n"
+"    <br/>\n"
+"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+"        ${object.event_id.user_id.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"\n"
+"        "
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__state
+msgid ""
+" * The 'Draft' status is used at the creation on the event. In this state, the event can be modified without any restriction. None of the players will be warned of the change.\n"
+" * Once 'Opened', the players linked to the event will be advised of the event. In this state, they are invited to define their availability. In the meantime, modifications on the event are still possible. This state should be triggered enough days/weeks before the event occurs, so that players have enough time to give their availability.\n"
+" * Once 'Confirmed', the players receive an email summarizing the information related to the event. In this state, the record is locked, so that no modification is possible. This state should be triggered a few days before the event and remain until it occurs.\n"
+" * The 'Done' status should be set only after the event occured.\n"
+" * The 'Cancelled' status is used when the event won't happen and therefore, must be cancelled."
+msgstr ""
+" * Le statut 'Brouillon' est utilisé à la création de l'événement. Dans cet état, l'événement peut être modifié sans aucune restriction. Aucun des joueurs ne sera averti des changements.\n"
+" * Une fois 'Ouvert', les joueurs attachés à l'événement en seront avertis. Dans cet état, ils sont invités à définir leur disponibilité. Dans le même temps, des modifications sur l'événement sont toujours possible. Cet état devrait être atteint quelques jours/semaines avant que la rencontre n'ait lieu, afin que les joueurs aient assez de temps pour donner leur disponibilité.\n"
+" * Une fois 'Confirmé', les joueurs reçoivent un email résumant les informations liées à la rencontre. Dans cet état, l'enregistrement est bloqué, de telle sorte qu'aucune modification ne soit possible. Cet état devrait être atteint peu de jours avant que la rencontre n'ait lieu et demeurer au moins jusqu'à ce qu'elle ait lieu.\n"
+" * Le statut 'Terminé'' devrait être atteint seulement une fois que la rencontre a eu lieu.\n"
+" * Le statut 'Annulé' est utilisé quand la rencontre n'aura pas lieu et qu'elle doit, par conséquent, être annulée."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid ""
+"<b>One action is overdue!</b><br/>Please do not forget to <b>confirm</b> "
+"this interclub event (or cancel it)."
+msgstr ""
+"<b>Une action est passée!</b><br/>N'oubliez pas de <b>confirmer</b> "
+"cette rencontre d'interclub (ou de l'annuler)."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid ""
+"<b>One action is overdue!</b><br/>Please do not forget to <b>open</b> this "
+"interclub event (or cancel it)."
+msgstr ""
+"<b>Une action est passée!</b><br/>N'oubliez pas d'<b>ouvrir</b> cette "
+"rencontre d'interclub (ou de l'annuler)."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
+msgid ""
+"<br/>\n"
+"                                                    <span class=\"fa fa-home\" title=\"Home\"/>"
+msgstr ""
+"<br/>\n"
+"                                                    <span class=\"fa fa-home\" title=\"A domicile\"/>"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Gérer\" title=\"Gérer\"/>"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
+msgid "<span class=\"fa fa-user\" title=\"User\"/>"
+msgstr "<span class=\"fa fa-user\" title=\"Utilisateur\"/>"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Accept"
+msgstr "Accepter"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_needaction
+msgid "Action Needed"
+msgstr "Action demandée"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__action_required
+msgid "Action Required"
+msgstr "Action requise"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__active
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Add contacts to notify..."
+msgstr "Ajouter des contacts à notifier..."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_partner_ids
+msgid "Additional Contacts"
+msgstr "Contacts additionnels"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__allday
+msgid "All Day"
+msgstr "Toute la journée"
+
+#. module: interclubs
+#: model:ir.actions.act_window,name:interclubs.action_interclub_event
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events
+msgid "All Interclub Events"
+msgstr "Toutes les rencontres d'interclub"
+
+#. module: interclubs
+#: model:ir.model.constraint,message:interclubs.constraint_calendar_interclubs_user_id_interclub_id_unique
+msgid "An user cannot have twice the same interclub."
+msgstr "Un utilisateur ne peut pas avoir deux fois le même interclub."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Are you sure to cancel this event?"
+msgstr "Etes-vous sûr d'annuler cette rencontre?"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Are you sure to close this event?"
+msgstr "Etes-vous sûr de fermer cette rencontre?"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_mail_followers__mirror_follower_id
+msgid ""
+"As followers are replicated between \"Event\" and \"Interclub Event\" "
+"models, a reference must be kept between those 2 records."
+msgstr ""
+"Comme les abonnés sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" "
+", une référence doit être gardée entre ces 2 enregistrements."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_mail_mail__mirror_message_id
+#: model:ir.model.fields,help:interclubs.field_mail_message__mirror_message_id
+msgid ""
+"As messages are replicated between \"Event\" and \"Interclub Event\" models,"
+" a reference must be kept between those 2 records."
+msgstr ""
+"Comme les messages sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" "
+", une référence doit être gardée entre ces 2 enregistrements."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__at_home
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "At Home"
+msgstr "A domicile"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_attachment_count
+msgid "Attachment Count"
+msgstr "Compte des pièces jointes"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__is_attendee
+msgid "Attendee"
+msgstr "Participant"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__attendee_status
+msgid "Attendee Status"
+msgstr "Statut du participant"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__partner_ids
+msgid "Attendees"
+msgstr "Participants"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Body"
+msgstr "Corps"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_body
+msgid "Body (Others)"
+msgstr "Corps (autres)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__body
+msgid "Body (Players)"
+msgstr "Corps (joueurs)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__byday
+msgid "By day"
+msgstr "Par jour"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_calendar_event
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__event_id
+msgid "Calendar Event"
+msgstr "Calendrier de l'événement"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_calendar_interclubs
+msgid "Calendar Interclubs"
+msgstr "Calendrier d'interclubs"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Cancel Event"
+msgstr "Annuler l'événement"
+
+#. module: interclubs
+#: model:mail.template,subject:interclubs.email_template_interclub_event_cancellation
+msgid "Cancellation of the interclub event \"${object.name}\""
+msgstr "Annulation de la rencontre d'interclub \"${object.name}\""
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__cancelled
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Close"
+msgstr "Fermé"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__event_items_color
+msgid "Color of the interclub event items in the calendar view"
+msgstr "Couleur des items des rencontres d'interclub dans la vue Calendrier"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_calendar_event__item_color
+#: model:ir.model.fields,help:interclubs.field_interclub_event__item_color
+msgid "Color of the item in the calendar view"
+msgstr "Couleur d'un item dans la vue Calendrier"
+
+#. module: interclubs
+#: model:ir.actions.act_window,name:interclubs.action_competition_configuration
+#: model:ir.ui.menu,name:interclubs.menu_sub_competition_settings
+#: model:ir.ui.menu,name:interclubs.menu_top_competition
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Competition"
+msgstr "Compétition"
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "Compose Email - Interclub Event Invitation"
+msgstr "Rédiger un email - Invitation à une rencontre d'interclub"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Compose Email for Interclub Event"
+msgstr "Rédiger un email pour une rencontre d'interclub"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_composer_id
+msgid "Composer (Others)"
+msgstr "Compositeur (autres)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__composer_id
+msgid "Composer (Players)"
+msgstr "Compositeur (joueurs)"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Confirm Event"
+msgstr "Confirmer l'événement"
+
+#. module: interclubs
+#: model:mail.template,subject:interclubs.email_template_interclub_event_confirmation
+msgid "Confirmation of the interclub event \"${object.name}\""
+msgstr "Confirmation de la rencontre d'interclub \"${object.name}\""
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__confirmed
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__create_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub__create_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__create_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__create_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub__create_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__create_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Current Season"
+msgstr "Saison actuelle"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__display_start
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Date"
+msgstr "Date"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__day
+msgid "Date of month"
+msgstr "Date du mois"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Decline"
+msgstr "Refuser"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Default Event Duration"
+msgstr "Durée de l'événement par défaut"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__default_attendee_ids
+msgid "Default Players"
+msgstr "Joueurs par défaut"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+#: model:ir.model.fields,help:interclubs.field_res_config_settings__interclub_event_duration
+msgid "Default duration for an interclub event (in hours)."
+msgstr "Durée par défaut d'une rencontre d'interclub (en heures)."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__description
+msgid "Description"
+msgstr "Description"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__display_name
+#: model:ir.model.fields,field_description:interclubs.field_interclub__display_name
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__display_name
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_mail_followers
+msgid "Document Followers"
+msgstr "Abonnés au document"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__res_id
+msgid "Document ID"
+msgstr "ID du document"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__res_model_id
+msgid "Document Model"
+msgstr "Modèle du document"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__res_model
+msgid "Document Model Name"
+msgstr "Nom du modèle du document"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__done
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Done"
+msgstr "Terminé"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__draft
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__duration
+msgid "Duration"
+msgstr "Durée"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
+msgid "Edit"
+msgstr "Editer"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop_date
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop_datetime
+msgid "End Datetime"
+msgstr "Date de fin"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_res_config_settings__event_auto_close
+msgid "Event Automatic Closing"
+msgstr "Fermeture automatique de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_res_config_settings__event_auto_open
+msgid "Event Automatic Opening"
+msgstr "Ouverture automatique de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_res_config_settings__event_confirmation_days
+msgid "Event Confirmation Days"
+msgstr "Jours de confirmation de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__event_items_color
+msgid "Event Items Color"
+msgstr "Couleur des items de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_res_config_settings__event_opening_days
+msgid "Event Opening Days"
+msgstr "Jours d'ouverture de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__display_time
+msgid "Event Time"
+msgstr "Heure de l'événement"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_form
+msgid "Events"
+msgstr "Evénements"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__events_count
+msgid "Events Count"
+msgstr "Compte d'événements"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__favorite_user_ids
+msgid "Favorite Users"
+msgstr "Utilisateurs Favoris"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (Canaux)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__fr
+msgid "Fri"
+msgstr "Ven."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Group by"
+msgstr "Regrouper par"
+
+#. module: interclubs
+#: model:ir.module.category,description:interclubs.module_category_interclub
+msgid "Helps you manage interclub groups."
+msgstr "Aide à gérer les groupes d'interclub."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__id
+#: model:ir.model.fields,field_description:interclubs.field_interclub__id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_needaction
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_error
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si actif, certains messages ont une erreur de livraison."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__active
+msgid ""
+"If the active field is set to false, it will allow you to hide the event "
+"alarm information without removing it."
+msgstr "Si le champ actif est mis à 'Faux', cela autorisera de cacher "
+"l'alerte de l'événement sans la supprimer."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_res_config_settings__event_auto_close
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid ""
+"If true, the event is automatically closed once its end date is reached."
+msgstr "Si coché, l'événement est automatiquement fermé une fois que la date de fin est atteinte."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_res_config_settings__event_auto_open
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid ""
+"If true, the event is automatically opened when today is X days before the "
+"event starts (\"X\" is defined by the \"Event Opening Days\" parameter)."
+msgstr "Si coché, l'événement est automatiquement ouvert quand aujourd'hui est X jours avant "
+"que l'événement ne démarre (\"X\" est défini par le paramètre \"Jours d'ouverture de l'événement\")."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__responsible_id
+msgid "Inteclub Responsible"
+msgstr "Responsable d'interclub"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_interclub
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__interclub_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__interclub_id
+#: model:ir.module.category,name:interclubs.module_category_interclub
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub"
+msgstr "Interclub"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_interclub_event
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__interclub_event_id
+msgid "Interclub Event"
+msgstr "Rencontre d'interclub"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_res_config_settings__interclub_event_duration
+msgid "Interclub Event Duration"
+msgstr "Durée de la rencontre d'interclub"
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#: model:ir.model,name:interclubs.model_interclub_event_mail_wizard
+#, python-format
+msgid "Interclub Event Mail Wizard"
+msgstr "Assistant de mail pour rencontre d'interclub"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__event_ids
+msgid "Interclub Events"
+msgstr "Rencontres d'interclub"
+
+#. module: interclubs
+#: model:ir.actions.act_window,name:interclubs.action_interclub_event_active_interclub
+msgid "Interclub Events - Active Interclub"
+msgstr "Rencontres d'interclub - Interclub actif"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for current season."
+msgstr "Rencontres d'interclub pour la saison actuelle."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for upcoming season."
+msgstr "Rencontres d'interclub pour la saison à venir."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which I am a player, referee or responsible."
+msgstr "Rencontres d'interclub pour lesquelles je suis joueur, arbitre ou responsable."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which I am playing."
+msgstr "Rencontres d'interclub pour lesquelles je suis joueur."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which I am the referee."
+msgstr "Rencontres d'interclub pour lesquelles je suis arbitre."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which I am the responsible."
+msgstr "Rencontres d'interclub pour lesquelles je suis responsable."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events in a cancelled state."
+msgstr "Rencontres d'interclub dans un état annulé."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events in a confirmed state."
+msgstr "Rencontres d'interclub dans un état confirmé."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events in a done state."
+msgstr "Rencontres d'interclub dans un état terminé."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events in a draft state."
+msgstr "Rencontres d'interclub dans un état brouillon."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events in an opened state."
+msgstr "Rencontres d'interclub dans un état ouvert."
+
+#. module: interclubs
+#: model:res.groups,comment:interclubs.group_interclubs_interclub_manager
+msgid ""
+"Interclub managers for the module Interclubs. On top of the interclub users,"
+" managers can usually create/modify/delete records."
+msgstr "Gestionnaires d'interclub pour le module Interclubs. En plus des utilisateurs d'interclubs,"
+" les gestionnaires peuvent habituellement créer/modifier/suprrimer des enregistrements."
+
+#. module: interclubs
+#: model:res.groups,comment:interclubs.group_interclubs_interclub_user
+msgid ""
+"Interclub users for the module Interclubs. They usually have only a read "
+"access to the application."
+msgstr "Utilisateurs d'interclub pour le module Interclubs. Ils ont habituellement un accès "
+"en lecture seule à l'application."
+
+#. module: interclubs
+#: model:ir.actions.act_window,name:interclubs.action_interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Interclubs"
+msgstr "Interclubs"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Interclubs for which I am a player, referee or responsible."
+msgstr "Interclubs pour lesquels je suis joueur, arbitre ou responsable."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Interclubs of current season."
+msgstr "Interclubs de la saison actuelle."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Interclubs of upcoming period."
+msgstr "Interclubs de la saison à venir."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Invitation details"
+msgstr "Détails de l'invitation"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__is_highlighted
+msgid "Is the Event Highlighted"
+msgstr "L'évènement est-il mis en avant"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_event__item_color
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__item_color
+msgid "Item Color"
+msgstr "Couleur de l'item"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__kind
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Kind"
+msgstr "Genre"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs____last_update
+#: model:ir.model.fields,field_description:interclubs.field_interclub____last_update
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event____last_update
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__write_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub__write_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__write_uid
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__write_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub__write_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__write_date
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__rrule_type
+msgid "Let the event automatically repeat at that interval"
+msgstr "Laisser l'événement se répéter automatiquement à chaque intervalle"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__location_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__location
+msgid "Location"
+msgstr "Lieu"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__location
+msgid "Location of Event"
+msgstr "Lieu de l'événement"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__template_id
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Mail Template"
+msgstr "Modèles de courriels"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_template_id
+msgid "Mail Template (Others)"
+msgstr "Modèles de courriels (autres)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Attachement principal"
+
+#. module: interclubs
+#: model:res.groups,name:interclubs.group_interclubs_interclub_manager
+msgid "Manager"
+msgstr "Gestionnaire"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__user_id
+msgid "Me"
+msgstr "Moi"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__name
+msgid "Meeting Subject"
+msgstr "Titre de l'évènement"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub__kind__men
+msgid "Men"
+msgstr "Hommes"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_mail_message
+msgid "Message"
+msgstr "Message"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur d'envoi du message"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_mail_followers__mirror_follower_id
+msgid "Mirror Follower"
+msgstr "Abonné miroir"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_mail_mail__mirror_message_id
+#: model:ir.model.fields,field_description:interclubs.field_mail_message__mirror_message_id
+msgid "Mirror Message"
+msgstr "Message miroir"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub__kind__mixed
+msgid "Mixed"
+msgstr "Mixtes"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__mo
+msgid "Mon"
+msgstr "Lun."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "My Events"
+msgstr "Mes rencontres"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "My Events (as player)"
+msgstr "Mes rencontres (comme joueur)"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "My Events (as referee)"
+msgstr "Mes rencontres (comme arbitre)"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "My Events (as responsible)"
+msgstr "Mes rencontres (comme responsable"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "My Favorites"
+msgstr "Mes favorits"
+
+#. module: interclubs
+#: model:ir.actions.act_window,name:interclubs.action_interclub_event_my
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events_my
+msgid "My Interclub Events"
+msgstr "Mes rencontres d'interclub"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "My Interclubs"
+msgstr "Mes interclubs"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__name
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Name"
+msgstr "Nom"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_confirmation
+msgid "Need Confirmation"
+msgstr "Besoin de confirmation"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_confirmation_overdue
+msgid "Need Confirmation (overdue)"
+msgstr "En attente de confirmation (passée)"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_opening
+msgid "Need Opening"
+msgstr "En attente d'ouverture'"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_opening_overdue
+msgid "Need Opening (overdue)"
+msgstr "En attente d'ouverture (passée)"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_close
+msgid "Need to Close"
+msgstr "En attente de fermeture"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
+msgid "Nothing"
+msgstr "Rien"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_res_config_settings__event_confirmation_days
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Number of days before the event from which it must be confirmed."
+msgstr "Nombre de jours avant que l'événement ne doive être confirmé.'"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_res_config_settings__event_opening_days
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Number of days before the event from which it must be opened."
+msgstr "Nombre de jours avant que l'événement ne doive être ouvert.'"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages exigeant une action"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec des erreurs d'envoi"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid ""
+"One action is pending:<br/>Please do not forget to <b>close</b> this "
+"interclub event."
+msgstr ""
+"Une action est en cours:<br/>N'oubliez pas de <b>fermer</b> cette "
+"rencontre d'interclub."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid ""
+"One action is pending:<br/>Please do not forget to <b>confirm</b> this "
+"interclub event (or cancel it)."
+msgstr ""
+"Une action est en cours:<br/>N'oubliez pas de <b>confirmer</b> cette "
+"rencontre d'interclub (ou de l'annuler)."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid ""
+"One action is pending:<br/>Please do not forget to <b>open</b> this "
+"interclub event (or cancel it)."
+msgstr ""
+"Une action est en cours:<br/>N'oubliez pas d'<b>ouvrir</b> cette "
+"rencontre d'interclub (ou de l'annuler)."
+
+#. module: interclubs
+#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
+#, python-format
+msgid ""
+"Only the model \"interclub.event\" is supported for this mail wizard. "
+"Current model: \"{}\"."
+msgstr ""
+"Seul le modèle \"interclub.event\" est supporté pour cet assistant de mail. "
+"Modèle actuel: \"{}\"."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Open"
+msgstr "Ouvrir"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Open Event"
+msgstr "Ouvrir l'événément"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__opened
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Opened"
+msgstr "Ouvert"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__opponent_id
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Opponent"
+msgstr "Adversaire"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__month_by
+msgid "Option"
+msgstr "Option"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_form
+msgid "Options"
+msgstr "Options"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__user_id
+msgid "Owner"
+msgstr "Propriétaire"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__attendee_ids
+msgid "Participant"
+msgstr "Participant"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__partner_id
+msgid "Partner-related data of the user"
+msgstr "Données du partenaire lié à l'utilisateur"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Periods"
+msgstr "Périodes"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__player_ids
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__interclub_player_ids
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__attendee_ids
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form_quick_create
+msgid "Players"
+msgstr "Joueurs"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__privacy
+msgid "Privacy"
+msgstr "Confidentialité"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__rrule_type
+msgid "Recurrence"
+msgstr "Récurrence"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__end_type
+msgid "Recurrence Termination"
+msgstr "Fin de la récurrence"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrency
+msgid "Recurrent"
+msgstr "Récurrent"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrent_id
+msgid "Recurrent ID"
+msgstr "ID récurrent"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrent_id_date
+msgid "Recurrent ID date"
+msgstr "Id. de la date récurrente"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__recurrency
+msgid "Recurrent Meeting"
+msgstr "Rendez-vous récurrents"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__rrule
+msgid "Recurrent Rule"
+msgstr "Règle de récurrence"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__referee_id
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Referee"
+msgstr "Arbitre"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__referee_ids
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__interclub_referee_ids
+msgid "Referees"
+msgstr "Arbitres"
+
+#. module: interclubs
+#: model:mail.template,subject:interclubs.email_template_interclub_event_opening
+msgid "Registrations opening for interclub event \"${object.name}\""
+msgstr "Inscriptions ouvertes pour la rencontre d'interclub \"${object.name}\""
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__alarm_ids
+msgid "Reminders"
+msgstr "Rappels"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__count
+msgid "Repeat"
+msgstr "Répéter"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__interval
+msgid "Repeat Every"
+msgstr "Répéter tous les"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__final_date
+msgid "Repeat Until"
+msgstr "Répéter jusqu'au"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__interval
+msgid "Repeat every (Days/Week/Month/Year)"
+msgstr "Répéter chaque (Jour/Semaine/Mois/Année)"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__count
+msgid "Repeat x times"
+msgstr "Répéter x fois"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__responsible_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__partner_id
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_calendar
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur d'envoi SMS"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__sa
+msgid "Sat"
+msgstr "Sam."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Search Interclub Events"
+msgstr "Chercher des rencontres d'interclub"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__season_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__season_id
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Season"
+msgstr "Saison"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form_quick_create
+msgid "Select players..."
+msgstr "Sélectionner des joueurs..."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__send_to_players
+msgid "Send Email to Players"
+msgstr "Encoyer un email aux joueurs"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Send mail"
+msgstr "Envoyer mail"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_send_to_partners
+msgid "Send to Other Partners"
+msgstr "Envoyer à d'autres contacts"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Set in Draft"
+msgstr "Mettre en brouillon"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__is_favorite
+msgid "Show Interclub on dashboard"
+msgstr "Montrer l'interclub dans le tableau de bord"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__show_as
+msgid "Show Time as"
+msgstr "Afficher l'heure comme"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__start
+msgid "Start"
+msgstr "Démarrer"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__start_date
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__start_datetime
+msgid "Start DateTime"
+msgstr "Date de début"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__start
+msgid "Start date of an event, without time for full days events"
+msgstr ""
+"Date de début d'événement, sans heure pour les événements durant toute la "
+"journée"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__state
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "State"
+msgstr "Etat"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop
+msgid "Stop"
+msgstr "Arrêter"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__stop
+msgid "Stop date of an event, without time for full days events"
+msgstr ""
+"Date de fin d'événement, sans heure pour les événements durant toute la "
+"journée"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Subject"
+msgstr "Sujet"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_subject
+msgid "Subject (Others)"
+msgstr "Sujet (autres)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__subject
+msgid "Subject (Players)"
+msgstr "Sujet (joueurs)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__su
+msgid "Sun"
+msgstr "Dim."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__categ_ids
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: interclubs
+#: code:addons/interclubs/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"The \"Event Confirmation Days\" must be positive. Please change it "
+"accordingly."
+msgstr ""
+"Le nombre de \"Jours de confirmation de l'événement\" doit être positif. Modifiez-le "
+"en tant que tel."
+
+#. module: interclubs
+#: code:addons/interclubs/models/res_config_settings.py:0
+#, python-format
+msgid ""
+"The \"Event Opening Days\" must be higher than the \"Event Confirmation "
+"Days\". Please change them accordingly."
+msgstr ""
+"Le nombre de \"Jours d'ouverture de l'événement\" doit être plus grand que "
+"le nombre de \"Jours de confirmation\". Modifiez-le en tant que tel."
+
+#. module: interclubs
+#: code:addons/interclubs/models/res_config_settings.py:0
+#, python-format
+msgid "The \"Event Opening Days\" must be positive. Please change it accordingly."
+"Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Modifiez-le "
+"en tant que tel."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__th
+msgid "Thu"
+msgstr "Jeu."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__event_tz
+msgid "Timezone"
+msgstr "Fuseau horaire"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__tu
+msgid "Tue"
+msgstr "Mar."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Uncertain"
+msgstr "Incertain"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non lus"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
+msgid "Upcoming Season"
+msgstr "Saison à venir"
+
+#. module: interclubs
+#: model:ir.actions.server,name:interclubs.cron_interclub_event_states_update_ir_actions_server
+#: model:ir.cron,cron_name:interclubs.cron_interclub_event_states_update
+#: model:ir.cron,name:interclubs.cron_interclub_event_states_update
+msgid "Update Events State"
+msgstr "Mettre à jour l'état des événements"
+
+#. module: interclubs
+#: model:res.groups,name:interclubs.group_interclubs_interclub_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__website_message_ids
+msgid "Website communication history"
+msgstr "Historique de communication du site web"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__we
+msgid "Wed"
+msgstr "Mer."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__week_list
+msgid "Weekday"
+msgstr "Jour de la semaine"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__is_favorite
+msgid "Whether this Interclub should be displayed on your dashboard."
+msgstr "Si cet interclub doit être affiché sur votre tablea de bord."
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub__kind__women
+msgid "Women"
+msgstr "Femmes"
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "You cannot create an event without being attached to an interclub."
+msgstr "Vous ne pouvez pas créer un évnement sans être lié à un interclub."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
+msgid "event(s)"
+msgstr "événement(s)"

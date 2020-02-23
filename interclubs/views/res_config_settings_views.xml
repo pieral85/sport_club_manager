@@ -18,7 +18,7 @@
                             <div class="o_setting_right_pane">
                                 <label string="Default Event Duration" for="interclub_event_duration"/>
                                 <div class="text-muted">
-                                    Default duration for an interclub event (in hours)
+                                    Default duration for an interclub event (in hours).
                                 </div>
                             </div>
                         </div>
