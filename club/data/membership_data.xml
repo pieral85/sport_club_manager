@@ -24,21 +24,26 @@ for record in records:
         <value>club.membership</value>
         <value eval="['period_category_id']"/>
     </function>
+</data>
 
+<data noupdate="1">
     <!-- Add membership in the website menu -->
     <record id="menu_membership" model="website.menu">
         <field name="name">Membership</field>
+        <field name="website_id" ref="website.default_website"/>
         <field name="parent_id" ref="website.main_menu"/>
         <field name="sequence" type="int">10</field>
     </record>
     <record id="menu_membership_request" model="website.menu">
         <field name="name">Make a request</field>
+        <field name="website_id" ref="website.default_website"/>
         <field name="url">club/membership/request</field>
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">10</field>
     </record>
     <record id="menu_membership_historical" model="website.menu">
         <field name="name">My historical</field>
+        <field name="website_id" ref="website.default_website"/>
         <field name="url">club/my/membership/historical</field>
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">20</field>
@@ -47,6 +52,7 @@ for record in records:
     <!-- Add club information in the website menu -->
     <record id="menu_club_info" model="website.menu">
         <field name="name">About us</field>
+        <field name="website_id" ref="website.default_website"/>
         <field name="parent_id" ref="website.main_menu"/>
         <field name="url">aboutus</field>
         <field name="sequence" type="int">30</field>

@@ -10,3 +10,4 @@ from . import membership
 from . import mail
 from . import res_company
 from . import res_config_settings
+from . import website_menu
