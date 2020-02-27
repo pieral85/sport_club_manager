@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_menu_membership" name="Portal layout : membership menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'membership'" t-attf-class="breadcrumb-item active">
+                Memberships
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_membership" name="Portal My Home: membership entries" inherit_id="portal.portal_my_home" priority="60">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="membership_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Memberships</t>
+                <t t-set="url" t-value="'/my/memberships'"/>
+                <t t-set="count" t-value="membership_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_memberships" name="Portal: My Memberships">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Memberships</t>
+            </t>
+            <t t-if="not memberships">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no memberships.
+                </div>
+            </t>
+            <t t-if="memberships" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-center">Season</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Price Due</th>
+                        <th class="text-center">Price Paid</th>
+                        <th class="text-center">Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="memberships" t-as="membership">
+                        <td style="vertical-align: middle;"><span t-field="membership.period_id.name"/></td>
+                        <td style="vertical-align: middle;"><span t-field="membership.category_id.name"/></td>
+                        <td style="vertical-align: middle;">
+                            <span t-if="membership.state == 'member'" class="badge badge-success" t-field="membership.state"/>
+                            <span t-elif="membership.state == 'requested'" class="badge badge-primary" t-field="membership.state"/>
+                            <span t-elif="membership.state == 'rejected'" class="badge badge-danger" t-field="membership.state"/>
+                            <span t-else="" class="badge badge-warning" t-field="membership.state"/>
+                        </td>
+                        <td style="vertical-align: middle;"><span t-field="membership.price_due" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                        <td style="vertical-align: middle;"><span t-field="membership.price_paid" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                        <td style="vertical-align: middle;">
+                            <t t-if="membership.state == 'member'">
+                                <t t-if="membership.paid"><span class="badge badge-success">Payment OK</span></t>
+                                <t t-else=""><span class="badge badge-danger">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></span></t>
+                            </t>
+                            <t t-elif="membership.state == 'requested'">
+                                <t t-if="membership.paid">
+                                    <span class="badge badge-success">Payment OK</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="badge badge-warning">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                    </span>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+</odoo>

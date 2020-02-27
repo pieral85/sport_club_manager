@@ -59,19 +59,6 @@ class Club(AuthSignupHome):
     #         'committee': committee,
     #     })
 
-    @route('%s/my/membership/historical' % _URL_ROOT, auth='user', website=True)
-    def membership_historical(self):
-        # import ipdb; ipdb.set_trace()
-        memberships = request.env['membership'].search([
-            ('member_id.id', '=', request.env.user.partner_id.id),
-            ('state', 'in', ['requested', 'member']),
-            ],
-            order='period_id desc',
-        )
-        return request.render('club.website_my_historical', {
-            'memberships': memberships,
-        })
-
     @route('%s/my/membership/<string:action>' % _URL_ROOT, type='http', auth='public', website=True)
     def membership_invitation_response(self, action, db, token):
         registry = registry_get(db)

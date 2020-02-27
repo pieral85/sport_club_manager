@@ -78,69 +78,6 @@
         </xpath>
     </template>
 
-    <!-- Web Page showing the historical of the user -->
-    <template id="website_my_historical">
-        <t t-call="website.layout">
-            <!-- <xpath expr="//div[@id='wrap']" position="replace"> -->
-            <t t-set="title">My Historical</t>
-            <div id="wrap">
-                <!-- <table class="table-condensed"> -->
-                <div class="container-fluid form-control-static">
-                    <t t-if="memberships">
-                        <table class="table table-bordered table-striped table-hover text-center">
-                            <tr>
-                                <th class="text-center">Season</th>
-                                <th class="text-center">Category</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Price Paid</th>
-                                <th class="text-center">Price Due</th>
-                                <th class="text-center">Price Remaining</th>
-                                <th class="text-center">Payment Status</th>
-                            </tr>
-                            <t t-foreach="memberships" t-as="membership">
-                                <tr>
-                                    <td style="vertical-align: middle;"><span t-field="membership.period_id.name"/></td>
-                                    <td style="vertical-align: middle;"><span t-field="membership.category_id.name"/></td>
-                                    <td style="vertical-align: middle;">
-                                        <span t-if="membership.state == 'member'" class="btn btn-success" t-field="membership.state"/>
-                                        <span t-elif="membership.state == 'requested'" class="btn btn-primary" t-field="membership.state"/>
-                                        <span t-elif="membership.state == 'rejected'" class="btn btn-danger" t-field="membership.state"/>
-                                        <span t-else="" class="btn btn-warning" t-field="membership.state"/>
-                                    </td>
-                                    <td style="vertical-align: middle;"><span t-field="membership.price_paid" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
-                                    <td style="vertical-align: middle;"><span t-field="membership.price_due" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
-                                    <td style="vertical-align: middle;"><span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
-                                    <td style="vertical-align: middle;">
-                                        <t t-if="membership.state == 'member'">
-                                            <t t-if="membership.paid"><span class="btn btn-success">Payment OK</span></t>
-                                            <t t-else=""><span class="btn btn-danger">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></span></t>
-                                        </t>
-                                        <t t-elif="membership.state == 'requested'">
-                                            <t t-if="membership.paid">
-                                                <span class="btn btn-success">Payment OK</span>
-                                            </t>
-                                            <t t-else="">
-                                                <span class="btn btn-warning">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
-                                                </span>
-                                            </t>
-                                        </t>
-                                    </td>
-                                </tr>
-                            </t>
-                        </table>
-                    </t>
-                    <t t-else="">
-                        <div class="panel panel-info mt16">
-                            <div class="panel-heading clearfix">
-                                <span class="pull-left">You don't have any membership recorded.</span>
-                            </div>
-                        </div>
-                    </t>
-                </div>
-            </div>
-        </t>
-    </template>
-
     <!-- Web Page showing a form in order to request a membership -->
     <template id="website_membership_request" name="Request Affiliation">
         <t t-call="website.layout">

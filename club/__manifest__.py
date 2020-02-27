@@ -38,6 +38,7 @@ Following features are included in this module:
         'views/res_partner_views.xml',
         'views/role_views.xml',
         'views/res_company_views.xml',
+        'views/membership_portal_templates.xml',
         'views/membership_views.xml',
         'views/website.xml',
         'views/mail_views.xml',
