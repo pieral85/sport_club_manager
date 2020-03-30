@@ -43,6 +43,8 @@ Following features are included in this module:
         'views/website.xml',
         'views/mail_views.xml',
         'views/res_config_settings_views.xml',
+        # snippets
+        'views/snippets/s_committee.xml',
         # wizards
         'wizards/period_wizard_views.xml',
         # actions

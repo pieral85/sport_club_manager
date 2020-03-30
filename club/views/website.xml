@@ -5,4 +5,10 @@
             <link rel="stylesheet" type="text/less" href="/club/static/src/less/membership.less"/>
         </xpath>
     </template>
+
+    <template id="committee_assets_wysiwyg" inherit_id="website.assets_wysiwyg" name="Committee snippet options">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/club/static/src/snippets/s_committee/options.js"/>
+        </xpath>
+    </template>
 </odoo>

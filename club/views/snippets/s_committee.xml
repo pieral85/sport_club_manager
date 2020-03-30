@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Snippet -->
+    <!-- ......Testing snippet -->
+    <template id="s_committeeTEST" name="Comittee Info">
+        <section class="s_company_team s_committeeTEST pt48 pb48">
+            <div class="container">
+                <h1 style="text-align: center;">Comittee Info</h1>
+                <!-- <div class="row s_col_no_bgcolor s_nb_column_fixed js_get_posts s_latest_posts_big_picture s_latest_posts_effect_marley"
+                    data-loading="true"
+                    data-template="website_blog.s_latest_posts_big_picture_template"
+                    data-filter-by-blog-id="0"
+                    data-order="published_date desc"/> -->
+                <div class="row s_col_no_bgcolor s_nb_column_fixed js_get_committee_members"
+                    data-loading="true"
+                    data-template="website_blog.s_latest_posts_big_picture_template"
+                    data-filter-by-blog-id="0"
+                    data-order="published_date desc"/>
+            </div>
+        </section>
+    </template>
+
+    <!-- Options -->
+    <template id="s_company_team_options" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='background']" position="before">
+            <div data-js="js_get_committee_selectRole" data-selector=".s_committeeTEST" data-target=".js_get_committee_members" data-no-check="true">
+                <we-select string="Choose a role" data-no-preview="true" name="role_selection" data-attribute-name="filterByBlogId">
+                    <we-button data-select-data-attribute="0">All roles</we-button>
+                    <!-- the blog list will be generated in js -->
+                </we-select>
+            </div>
+        </xpath>
+        <xpath expr="//div[@data-js='layout_column']" position="attributes">
+            <attribute name="data-exclude" add=".s_committeeTEST" separator=","/>
+            <!-- <attribute name="data-exclude" add=".s_latest_posts, .s_latest_posts_big_picture" separator=","/> -->
+        </xpath>
+    </template>
+    <!-- ......End of Testing snippet -->
+
+
+<!-- Snippets & Themes Menu -->
+<!-- <template id="membership_snippets" inherit_id="web_editor.snippets" primary="True"> -->
+
+<!-- TODO 2020-02-29 01:06:38,843 12710 WARNING scm13 odoo.addons.base.models.ir_ui_view: Error-prone use of @class in view Membership Snippets (): use the hasclass(*classes) function to filter elements by their classes -->
+    <!-- Assets -->
+    <template id="membership_snippets" name="Membership Snippets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="club.s_committeeTEST" t-thumbnail="/website/static/src/img/blocks/block_banner.png"/>
+        </xpath>
+    </template>
+
+    <template id="assets_snippet_s_committee_js_000" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/club/static/src/snippets/s_committee/000.js"/>
+        </xpath>
+    </template>
+
+</odoo>
+
+
+    <!-- <xpath expr="//div[@id='snippets_menu']" position="inside">
+        <button type="button" disabled="disabled">Select a template</button>
+    </xpath>
+    <xpath expr="//t[@id='default_snippets']" position="replace">
+        <t id="default_snippets">
+            <t t-set="company_id" t-value="res_company"/>
+            <div id="email_designer_themes">
+                <div data-name="basic"
+                     data-nowrap="1"
+                     data-img="/mass_mailing/static/src/img/theme_imgs/basic_thumb"
+                     data-images-info='{"logo": {"format": "png"}}'>
+                    <t t-call="mass_mailing.theme_basic_template"/>
+                </div>
+                <div data-name="default"
+                     data-img="/mass_mailing/static/src/img/theme_imgs/default_thumb"
+                     data-images-info='{"logo": {"format": "png"}}'>
+                    <t t-call="mass_mailing.theme_default_template"/>
+                </div>
+            </div>
+            <div id="email_designer_default_headers" class="o_panel">
+                <div class="o_panel_header">
+                    <i class="fa fa-angle-double-up"/> Headers
+                </div>
+                <div class="o_panel_body" id="email_designer_header_elements">
+                    <t t-snippet="mass_mailing.s_mail_block_header_social" t-thumbnail="/mass_mailing/static/src/img/blocks/block_header_social.png"/> -->
+
+
+
+
+
+        <!-- Create House of training snippet's tab -->
+        <!-- <template id="hot-snippets-tab" inherit_id="website.snippets">
+            <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_header')]/i" position="attributes">
+                <attribute name="class">fa fa-magic</attribute>
+            </xpath>
+
+            <xpath expr="//div[@id='o_scroll']" position="inside">
+                <div id="snippet_houseoftraining" class="o_panel">
+                    <div class="o_panel_header">
+                        <i class="fa fa-th-large"/>
+                        House of Training
+                    </div>
+                    <div class="o_panel_body">
+                        <t t-snippet="theme_houseoftraining.s_articles_container" t-thumbnail="/snippet_latest_posts/static/src/img/s_latest_posts_big_picture.jpg"/>
+                        <t t-snippet="theme_houseoftraining.hot_s_text_block_header" t-thumbnail="/snippet_latest_posts/static/src/img/s_latest_posts_big_picture.jpg"/>
+                        <t t-snippet="theme_houseoftraining.hot_s_text_block_detail" t-thumbnail="/snippet_latest_posts/static/src/img/s_latest_posts_big_picture.jpg"/>
+                        <t t-snippet="theme_houseoftraining.hot_s_collapsible_text" t-thumbnail="/website/static/src/img/blocks/block_title.png"/>
+                    </div>
+                </div>
+            </xpath>
+        </template> -->
