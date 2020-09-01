@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Sport complex address -->
+    <record id="saintleger_sports_complex" model="res.partner">
+        <field name="name">Complexe Sportif</field>
+        <field name="type">other</field>
+        <field name="email">sports.complex@test.com</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="street">Rue du Stade, 1</field>
+        <field name="city">Saint-Léger</field>
+        <field name="zip">6747</field>
+        <field name="phone">0032 (0)63 21 89 70</field>
+        <field name="country_id" ref="base.be"/>
+        <field name="image_1920" type="base64" file="profile_bcsaintleger/static/img/sports_complex.jpg"/>
+    </record>
+</odoo>
