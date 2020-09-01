@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Web Page showing a form in order to request a membership -->
+    <template id="website_membership_request" name="Request Affiliation">
+        <t t-call="website.layout">
+            <t t-set="title">Request an Affiliation</t>
+            <div id="wrap" class="container form-control-static">
+                <div class="row">
+                    <t t-if="period_categories">
+                        <section id="forms">
+                            <form method="post" class="s_website_form container-fluid form-horizontal" action="/website_form/" data-model_name="membership" data-success_page="/club/info_club" enctype="multipart/form-data">
+                                <!-- Select Period -->
+                                <div class="form-group form-field">
+                                    <div class="col-md-3 col-sm-4 text-right">
+                                        <label class="control-label" for="period_category_id">Select Period and Category (work in progress)</label>
+                                    </div>
+                                    <div class="col-md-7 col-sm-8">
+                                        <select name="period_category_id" class="o_website_from_input form-control">
+                                            <t t-foreach="period_categories" t-as="period_category">
+                                                <option t-att-value="period_category.id">
+                                                    <t t-esc="period_category.name_get()[0][1]"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Submit button -->
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-7 col-sm-offset-4 col-sm-8">
+                                        <a class="o_website_form_send btn btn-primary btn-lg">
+                                            Request this membership
+                                        </a>
+                                        <span id="o_website_form_result"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </t>
+                    <t t-else="">
+                        <div class="panel panel-info mt16">
+                            <div class="panel-heading clearfix">
+                                <span class="pull-left">You have already subscribed to all available seasons.</span>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

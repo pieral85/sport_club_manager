@@ -38,11 +38,14 @@ Following features are included in this module:
         'views/res_partner_views.xml',
         'views/role_views.xml',
         'views/res_company_views.xml',
-        'views/membership_portal_templates.xml',
         'views/membership_views.xml',
-        'views/website.xml',
         'views/mail_views.xml',
         'views/res_config_settings_views.xml',
+        # views - website templates
+        'views/templates/membership_portal_templates.xml',
+        'views/templates/membership_templates.xml',
+        'views/templates/period_templates.xml',
+        'views/templates/website_templates.xml',
         # wizards
         'wizards/period_wizard_views.xml',
         # actions
@@ -53,8 +56,6 @@ Following features are included in this module:
         'actions/period_actions.xml',
         # menus
         'views/menus.xml',
-        # templates
-        'controllers/templates.xml',
         # data
         'data/res_users_data.xml',
         'data/period_data.xml',
