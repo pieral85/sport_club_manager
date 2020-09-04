@@ -35,7 +35,6 @@ Following features are included in this module:
         'views/period_views.xml',
         'views/category_views.xml',
         'views/res_users_views.xml',
-        'views/res_partner_views.xml',
         'views/role_views.xml',
         'views/res_company_views.xml',
         'views/membership_views.xml',
