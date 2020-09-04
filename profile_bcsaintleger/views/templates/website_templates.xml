@@ -16,7 +16,11 @@
                 <section class="" style="">
                   <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1585568646729_148">Complexe sportif<br/></h1>
                   <p class="text-center">
-                    <img class="img-fluid o_we_custom_image" src="/web/image/7607/Comlexe%20Sportif%20Saint-L%C3%A9ger.jpg" data-original-title="" title="" aria-describedby="tooltip551624" style=""/>
+sports_cafeteria.jpg
+sports_hall.jpg
+<!-- <section class="s_cover oe_img_bg pt8 pb8" data-snippet="s_cover" data-name="Cover" style="background-image: url('/web/image/website.header_image_1_default_image');"> -->
+                    <!-- <img class="img-fluid o_we_custom_image" src="/web/image/7607/Comlexe%20Sportif%20Saint-L%C3%A9ger.jpg" data-original-title="" title="" aria-describedby="tooltip551624" style=""/> -->
+                    <img class="img-fluid o_we_custom_image" src="profile_bcsaintleger/static/img/sports_complex.jpg" data-original-title="" title="" aria-describedby="tooltip551624" style=""/>
                     <br/>
                   </p>
                   <p>Lien vers le <a href="https://www.saint-leger.be/loisirs/sports/complexe-sportif" class="btn btn-outline-alpha btn-sm" target="_blank">site de la commune de Saint-Léger</a><br/></p>
