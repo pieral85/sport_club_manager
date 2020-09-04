@@ -73,17 +73,17 @@ class Period(models.Model):
     total_price_paid = fields.Monetary(
         string='Total Members Price Paid',
         currency_field='currency_id',
-        compute='_total_price_paid',
+        compute='_compute_prices',
     )
     total_price_due = fields.Monetary(
         string='Total Members Due Price',
         currency_field='currency_id',
-        compute='_total_price_due',
+        compute='_compute_prices',
     )
     total_remaining_price_due = fields.Monetary(
         string='Total Remaining Members Due Price',
         currency_field='currency_id',
-        compute='_total_remaining_price_due',
+        compute='_compute_prices',
     )
 
     def toggle_active(self):
@@ -229,31 +229,17 @@ class Period(models.Model):
             record.count_members = len(record.membership_ids.filtered(lambda m: m.state == 'member'))
 
     @api.depends('membership_ids')
-    def _total_price_paid(self):
+    def _compute_prices(self):
         for record in self:
-            total_price_paid = 0
+            paid, due, remaining = 0, 0, 0
             for membership_id in record.membership_ids:
                 if membership_id.state == 'member':
-                    total_price_paid += membership_id.price_paid
-            record.total_price_paid = total_price_paid
-
-    @api.depends('membership_ids')
-    def _total_price_due(self):
-        for record in self:
-            total_price_due = 0
-            for membership_id in record.membership_ids:
-                if membership_id.state == 'member':
-                    total_price_due += membership_id.price_due
-            record.total_price_due = total_price_due
-
-    @api.depends('membership_ids')
-    def _total_remaining_price_due(self):
-        for record in self:
-            total_remaining_price_due = 0
-            for membership_id in record.membership_ids:
-                if membership_id.state == 'member':
-                    total_remaining_price_due += membership_id.price_remaining
-            record.total_remaining_price_due = total_remaining_price_due
+                    paid += membership_id.price_paid
+                    due += membership_id.price_due
+                    remaining += membership_id.price_remaining
+            record.total_price_paid = paid
+            record.total_price_due = due
+            record.total_remaining_price_due = remaining
 
     def _compute_previous_period(self):
         for record in self:
