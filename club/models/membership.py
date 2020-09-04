@@ -2,8 +2,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 # TODO Replace all references to "player(s)" by "member(s)"
-# TODO 'price_due' is not alculated for demo data
-
 
 import uuid
 from datetime import datetime, timedelta
@@ -16,10 +14,6 @@ class Membership(models.Model):
     _inherit = 'mail.thread'
     _description = 'Membership'
     _order = "period_id asc, member_id asc"
-
-    @api.returns('self')
-    def _default_price_due(self):
-        return self.period_category_id.price_due
 
     @api.model
     def _get_token(self):
@@ -59,7 +53,7 @@ class Membership(models.Model):
     )
     price_due = fields.Monetary(
         string='Price Due',
-        default=_default_price_due,
+        compute='_compute_price_due',
         track_visibility='onchange',
         store=True,
     )
@@ -392,8 +386,8 @@ class Membership(models.Model):
             # TODO 30 should be in club parameters
             record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
 
-    @api.onchange('period_category_id')
-    def _calculate_price_due(self):
+    @api.depends('period_category_id')
+    def _compute_price_due(self):
         for record in self:
             record.price_due = record.period_category_id.price_due if record.period_category_id else 0
 
