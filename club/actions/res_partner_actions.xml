@@ -24,7 +24,7 @@
                 }),
             (0, 0, {
                 'view_mode': 'form',
-                'view_id': ref('view_partner_short_form_club'),
+                'view_id': ref('base.view_partner_simple_form'),
                 }),
             ]"/>
     </record>
@@ -44,7 +44,7 @@
                 }),
             (0, 0, {
                 'view_mode': 'form',
-                'view_id': ref('view_partner_short_form_club'),
+                'view_id': ref('base.view_partner_simple_form'),
                 }),
             ]"/>
     </record>
