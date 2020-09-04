@@ -26,15 +26,15 @@ class Category(models.Model):
         store=False,
     )
     member_ids = fields.Many2many('res.partner', string='Members',
-        compute='_compute_get_members')
+        compute='_compute_membership_ids')
     membership_ids = fields.Many2many(
         comodel_name='membership',
         string='Memberships',
-        compute='_compute_get_memberships',
+        compute='_compute_membership_ids',
     )
     count_members = fields.Integer(
         string='Active Members',
-        compute='_count_members',
+        compute='_compute_membership_ids',
     )
     total_price_paid = fields.Monetary(
         string='Total Members Price Paid',
@@ -52,18 +52,11 @@ class Category(models.Model):
         compute='_compute_prices',
     )
 
-    def _compute_get_members(self):
+    def _compute_membership_ids(self):
         for record in self:
-            record.member_ids = self.env['res.partner'].search([('membership_ids.period_category_id.category_id.id', '=', record.id),])
-
-    def _compute_get_memberships(self):
-        for record in self:
-            record.membership_ids = self.env['membership'].search([('period_category_id.category_id.id', '=', record.id),])
-
-    @api.depends('membership_ids')
-    def _count_members(self):
-        for record in self:
+            record.membership_ids = self.env['membership'].search([('period_category_id.category_id.id', '=', record.id or False),])
             record.count_members = len(record.membership_ids.filtered(lambda m: m.state == 'member'))
+            record.member_ids = record.membership_ids.mapped('member_id')
 
     @api.depends('membership_ids')
     def _compute_prices(self):
