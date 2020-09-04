@@ -48,7 +48,9 @@
     </template> -->
 
     <!-- Web Page showing info on the club -->
-    <template id="website_info_club" inherit_id="website.aboutus">
+    <!-- TODO "website.aboutus" is not existing anymore since saas-13.5.
+    Find a way to implement comittee info page anyway -->
+    <!--<template id="website_info_club" inherit_id="website.aboutus">
         <xpath expr="//div[@id='wrap']" position="replace">
             <section class="s_company_team pt48 pb48">
                 <div class="container">
@@ -65,7 +67,7 @@
                                         <div class="col-lg-8">
                                             <h3><p t-field="member.name"/></h3>
                                             <p t-field="member.email"/>
-                                            <!-- TODO Implement a html field and add it here -->
+                                            <!~~ TODO Implement a html field and add it here ~~>
                                             <p class="text-muted"></p>
                                         </div>
                                     </div>
@@ -76,7 +78,7 @@
                 </div>
             </section>
         </xpath>
-    </template>
+    </template>-->
 
     <template id="membership_assets_frontend" inherit_id="web.assets_frontend" name="Membership Assets Frontend">
         <xpath expr="//link[last()]" position="after">

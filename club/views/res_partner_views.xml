@@ -4,7 +4,10 @@
     <record id="view_partner_short_form_club" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_short_form"/>
+        <!-- TODO view_partner_short_form has been deleted as of v13.5
+        Check that new inherited view is fine -->
+        <!-- <field name="inherit_id" ref="base.view_partner_short_form"/> -->
+        <field name="inherit_id" ref="base.view_partner_simple_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='company_type']" position="attributes">
                 <attribute name="readonly">True</attribute>
