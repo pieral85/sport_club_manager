@@ -33,7 +33,7 @@ class Club(AuthSignupHome):
     # @route('%s/members/<model("res.partner"):member>/' % _URL_ROOT, auth='public', website=True)
     # def member(self, member):
     #     return request.render('club.website_member_info', {
-    #         'player': member
+    #         'member': member
     #     })
 
     @route('/aboutus', auth='public', website=True)

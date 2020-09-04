@@ -57,7 +57,7 @@
         <field name="lang">${object.member_id.lang}</field>
         <field name="body_html"><![CDATA[
 <p>
-    Dear ${(object.member_id.name or 'player')|safe},
+    Dear ${(object.member_id.name or 'member')|safe},
 </p>
 <p>
 We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>!
@@ -101,7 +101,7 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
         <field name="body_html"><![CDATA[
 <div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
     <p>
-        Dear ${(object.member_id.name or 'player')|safe},
+        Dear ${(object.member_id.name or 'member')|safe},
     </p>
     <p>
         An affiliation request has been done for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>.
@@ -158,7 +158,7 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
                         <div class="table-responsive">
                             <table id="membership_invitation" class="o_event_table table table-striped">
                                 <tr>
-                                    <th>Player</th>
+                                    <th>Member</th>
                                     <td>
                                         <t t-esc="membership.member_id.name"/>
                                         <t t-if="membership.member_user_id">

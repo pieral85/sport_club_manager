@@ -3,77 +3,77 @@
 <data>
     <record id="membership_1" model="membership">
         <field name="period_category_id" ref="period_current_category_competitor"/>
-        <field name="member_id" ref="partner_demo_player_1"/>
+        <field name="member_id" ref="partner_demo_member_1"/>
         <field name="price_paid">100</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_2" model="membership">
         <field name="period_category_id" ref="period_current_category_starter"/>
-        <field name="member_id" ref="partner_demo_player_3"/>
+        <field name="member_id" ref="partner_demo_member_3"/>
         <field name="price_paid">50</field>
         <field name="state">requested</field>
     </record>
 
     <record id="membership_3" model="membership">
         <field name="period_category_id" ref="period_current_category_competitor"/>
-        <field name="member_id" ref="partner_demo_young_player_1"/>
+        <field name="member_id" ref="partner_demo_young_member_1"/>
         <field name="price_paid">0</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_4" model="membership">
         <field name="period_category_id" ref="period_current_category_competitor"/>
-        <field name="member_id" ref="partner_demo_player_4"/>
+        <field name="member_id" ref="partner_demo_member_4"/>
         <field name="price_paid">50</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_5" model="membership">
         <field name="period_category_id" ref="period_current_category_teenager"/>
-        <field name="member_id" ref="partner_demo_young_player_2"/>
+        <field name="member_id" ref="partner_demo_young_member_2"/>
         <field name="price_paid">0</field>
         <field name="state">requested</field>
     </record>
 
     <record id="membership_6" model="membership">
         <field name="period_category_id" ref="period_upcoming_category_starter"/>
-        <field name="member_id" ref="partner_demo_player_2"/>
+        <field name="member_id" ref="partner_demo_member_2"/>
         <field name="price_paid">80</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_7" model="membership">
         <field name="period_category_id" ref="period_upcoming_category_competitor"/>
-        <field name="member_id" ref="partner_demo_young_player_1"/>
+        <field name="member_id" ref="partner_demo_young_member_1"/>
         <field name="price_paid">80</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_8" model="membership">
         <field name="period_category_id" ref="period_upcoming_category_child"/>
-        <field name="member_id" ref="partner_demo_young_player_2"/>
+        <field name="member_id" ref="partner_demo_young_member_2"/>
         <field name="price_paid">50</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_9" model="membership">
         <field name="period_category_id" ref="period_upcoming_category_competitor"/>
-        <field name="member_id" ref="partner_demo_player_4"/>
+        <field name="member_id" ref="partner_demo_member_4"/>
         <field name="price_paid">0</field>
         <field name="state">member</field>
     </record>
 
     <record id="membership_10" model="membership">
         <field name="period_category_id" ref="period_past_1_category_starter"/>
-        <field name="member_id" ref="partner_demo_player_4"/>
+        <field name="member_id" ref="partner_demo_member_4"/>
         <field name="price_paid">75</field>
         <field name="state">requested</field>
     </record>
 
     <record id="membership_11" model="membership">
         <field name="period_category_id" ref="period_past_1_category_starter"/>
-        <field name="member_id" ref="partner_demo_player_1"/>
+        <field name="member_id" ref="partner_demo_member_1"/>
         <field name="price_paid">70</field>
         <field name="state">member</field>
     </record>

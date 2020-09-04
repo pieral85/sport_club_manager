@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <record id="partner_demo_player_1" model="res.partner">
+    <record id="partner_demo_member_1" model="res.partner">
         <field name="name">Ana Ivanovic</field>
         <field name="email">ana.ivanovic@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -11,13 +11,13 @@
         <field name="street">Rue Foo, 123</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_1.jpg"/>
     </record>
-    <record id="partner_demo_player_1_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_player_1"/>
+    <record id="partner_demo_member_1_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_member_1"/>
         <field name="login">ana.ivanovic</field>
         <field name="password">ana.ivanovic</field>
     </record>
 
-    <record id="partner_demo_player_2" model="res.partner">
+    <record id="partner_demo_member_2" model="res.partner">
         <field name="name">Michael Goodplayer</field>
         <field name="email">michael.goodplayer@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -27,13 +27,13 @@
         <field name="street">Rue Kennedy, 2</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_2.jpg"/>
     </record>
-    <record id="partner_demo_player_2_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_player_2"/>
+    <record id="partner_demo_member_2_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_member_2"/>
         <field name="login">michael.goodplayer</field>
         <field name="password">michael.goodplayer</field>
     </record>
 
-    <record id="partner_demo_player_3" model="res.partner">
+    <record id="partner_demo_member_3" model="res.partner">
         <field name="name">Derek Morgan</field>
         <field name="email">derek.morgan@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -43,13 +43,13 @@
         <field name="street">Rue Foo, 123</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_3.png"/>
     </record>
-    <record id="partner_demo_player_3_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_player_3"/>
+    <record id="partner_demo_member_3_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_member_3"/>
         <field name="login">derek.morgan</field>
         <field name="password">derek.morgan</field>
     </record>
 
-    <record id="partner_demo_player_4" model="res.partner">
+    <record id="partner_demo_member_4" model="res.partner">
         <field name="name">David Goodenough</field>
         <field name="email">david.goodenough@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -59,13 +59,13 @@
         <field name="street">Rue Petite, 88</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_4.jpg"/>
     </record>
-    <record id="partner_demo_player_4_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_player_4"/>
+    <record id="partner_demo_member_4_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_member_4"/>
         <field name="login">david.goodenough</field>
         <field name="password">david.goodenough</field>
     </record>
 
-    <record id="partner_demo_young_player_1" model="res.partner">
+    <record id="partner_demo_young_member_1" model="res.partner">
         <field name="name">Young Girl</field>
         <field name="email">young.girl@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -75,13 +75,13 @@
         <field name="street">Rue Grande, 43</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_child_1.jpg"/>
     </record>
-    <record id="partner_demo_young_player_1_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_young_player_1"/>
+    <record id="partner_demo_young_member_1_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_young_member_1"/>
         <field name="login">young.girl</field>
         <field name="password">young.girl</field>
     </record>
 
-    <record id="partner_demo_young_player_2" model="res.partner">
+    <record id="partner_demo_young_member_2" model="res.partner">
         <field name="name">Young Boy</field>
         <field name="email">young.boy@test.com</field>
         <field name="parent_id" ref="base.main_partner"/>
@@ -91,8 +91,8 @@
         <field name="street">Avenue Principale, 1</field>
         <field name="image_1920" type="base64" file="club/static/img/res_partner_child_2.jpg"/>
     </record>
-    <record id="partner_demo_young_player_2_user" model="res.users">
-        <field name="partner_id" ref="partner_demo_young_player_2"/>
+    <record id="partner_demo_young_member_2_user" model="res.users">
+        <field name="partner_id" ref="partner_demo_young_member_2"/>
         <field name="login">young.boy</field>
         <field name="password">young.boy</field>
     </record>

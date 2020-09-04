@@ -4,10 +4,10 @@
     <!-- Note: in 'calendar.event' demo data, field 'name' has an empty value that will be overridden after creation of the 'interclub.event' demo record -->
     <record id="calendar_interclub_event_demo_1_1_1" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
-            ref('club.partner_demo_player_4'),
-            ref('club.partner_demo_young_player_2'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
+            ref('club.partner_demo_member_4'),
+            ref('club.partner_demo_young_member_2'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="name"></field>
@@ -30,8 +30,8 @@
         <field name="partner_ids" eval="[(6, 0, [
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_34'),
-            ref('club.partner_demo_player_4'),
-            ref('club.partner_demo_young_player_2'),
+            ref('club.partner_demo_member_4'),
+            ref('club.partner_demo_young_member_2'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="name"></field>
@@ -51,8 +51,8 @@
 
     <record id="calendar_interclub_event_demo_1_1_3" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_34'),
         ])]"/>
@@ -75,8 +75,8 @@
 
     <record id="calendar_interclub_event_demo_1_1_4" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_address_7'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -97,8 +97,8 @@
 
     <record id="calendar_interclub_event_demo_1_1_5" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_3'),
-            ref('club.partner_demo_young_player_2'),
+            ref('club.partner_demo_member_3'),
+            ref('club.partner_demo_young_member_2'),
             ref('base.res_partner_address_34'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -121,9 +121,9 @@
 
     <record id="calendar_interclub_event_demo_1_2_1" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
-            ref('club.partner_demo_young_player_1'),
-            ref('club.partner_demo_player_2'),
+            ref('club.partner_demo_member_1'),
+            ref('club.partner_demo_young_member_1'),
+            ref('club.partner_demo_member_2'),
             ref('base.res_partner_address_7'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -145,9 +145,9 @@
 
     <record id="calendar_interclub_event_demo_1_2_2" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_1'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_4'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="name"></field>
@@ -167,9 +167,9 @@
 
     <record id="calendar_interclub_event_demo_1_2_3" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_young_player_1'),
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_young_member_1'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_address_7'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -191,8 +191,8 @@
 
     <record id="calendar_interclub_event_demo_1_2_4" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_1'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_address_7'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -213,8 +213,8 @@
 
     <record id="calendar_interclub_event_demo_1_2_5" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_young_player_1'),
-            ref('club.partner_demo_player_2'),
+            ref('club.partner_demo_young_member_1'),
+            ref('club.partner_demo_member_2'),
             ref('base.res_partner_address_7'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -237,7 +237,7 @@
 
      <record id="calendar_interclub_event_demo_1_3_1" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
+            ref('club.partner_demo_member_1'),
             ref('base.res_partner_address_14'),
             ref('base.res_partner_address_33'),
         ])]"/>
@@ -250,7 +250,7 @@
         <field name="state">draft</field>
         <field name="interclub_id" ref="interclub_demo_3"/>
         <field name="at_home">True</field>
-        <field name="referee_id" ref="club.partner_demo_player_4"/>
+        <field name="referee_id" ref="club.partner_demo_member_4"/>
         <field name="opponent_id" ref="base.res_partner_3"/>
         <field name="event_id" ref="calendar_interclub_event_demo_1_3_1"/>
     </record>
@@ -282,7 +282,7 @@
 
     <record id="calendar_interclub_event_demo_1_3_5" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
+            ref('club.partner_demo_member_1'),
             ref('base.res_partner_address_33'),
             ref('base.res_partner_address_32'),
         ])]"/>
@@ -295,7 +295,7 @@
         <field name="state">done</field>
         <field name="interclub_id" ref="interclub_demo_3"/>
         <field name="at_home">True</field>
-        <field name="referee_id" ref="club.partner_demo_player_4"/>
+        <field name="referee_id" ref="club.partner_demo_member_4"/>
         <field name="opponent_id" ref="base.res_partner_12"/>
         <field name="event_id" ref="calendar_interclub_event_demo_1_3_5"/>
     </record>
@@ -306,7 +306,7 @@
 
     <record id="calendar_interclub_event_demo_2_1_1" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_4'),
             ref('base.partner_admin'),
             ref('base.res_partner_address_7'),
         ])]"/>
@@ -328,7 +328,7 @@
 
     <record id="calendar_interclub_event_demo_2_1_3" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_4'),
             ref('base.partner_admin'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_34'),
@@ -352,7 +352,7 @@
 
     <record id="calendar_interclub_event_demo_2_1_5" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_address_34'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -374,8 +374,8 @@
 
     <record id="calendar_interclub_event_demo_3_1_1" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_24'),
         ])]"/>
@@ -397,7 +397,7 @@
 
     <record id="calendar_interclub_event_demo_3_1_3" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_3'),
+            ref('club.partner_demo_member_3'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_24'),
         ])]"/>
@@ -410,7 +410,7 @@
         <field name="state">done</field>
         <field name="interclub_id" ref="interclub_demo_5"/>
         <field name="at_home">True</field>
-        <field name="referee_id" ref="club.partner_demo_player_1"/>
+        <field name="referee_id" ref="club.partner_demo_member_1"/>
         <field name="opponent_id" ref="base.res_partner_10"/>
         <field name="event_id" ref="calendar_interclub_event_demo_3_1_3"/>
     </record>
@@ -420,8 +420,8 @@
 
     <record id="calendar_interclub_event_demo_3_1_5" model="calendar.event">
         <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
             ref('base.res_partner_address_24'),
         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
@@ -433,7 +433,7 @@
         <field name="state">done</field>
         <field name="interclub_id" ref="interclub_demo_5"/>
         <field name="at_home">True</field>
-        <field name="referee_id" ref="club.partner_demo_player_1"/>
+        <field name="referee_id" ref="club.partner_demo_member_1"/>
         <field name="opponent_id" ref="base.res_partner_18"/>
         <field name="event_id" ref="calendar_interclub_event_demo_3_1_5"/>
     </record>
