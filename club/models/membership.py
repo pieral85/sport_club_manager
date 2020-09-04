@@ -24,6 +24,7 @@ class Membership(models.Model):
         ondelete='cascade',
         required=True,
         string='Period Category',
+        tracking=True,
     )
     member_id = fields.Many2one('res.partner', string='Member',
         ondelete='restrict', required=True, domain=[('is_company', '=', False)])
@@ -48,13 +49,13 @@ class Membership(models.Model):
     price_paid = fields.Monetary(
         string='Price Paid',
         currency_field='currency_id',
-        track_visibility='onchange',
+        tracking=True,
         copy=False,
     )
     price_due = fields.Monetary(
         string='Price Due',
         compute='_compute_price_due',
-        track_visibility='onchange',
+        tracking=True,
         store=True,
     )
     price_paid_percentage = fields.Float(
@@ -83,7 +84,7 @@ class Membership(models.Model):
         ],
         required=True,
         default='unknown',
-        track_visibility='always',
+        tracking=True,
         group_expand='_expand_state',
     )
     token = fields.Char('Invitation Token', readonly=True, copy=False)

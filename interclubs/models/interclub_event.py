@@ -47,7 +47,7 @@ class InterclubEvent(models.Model):
              ('confirmed', 'Confirmed'),
              ('done', 'Done'),
              ('cancelled', 'Cancelled'),
-        ], string='State', required=True, default='draft', track_visibility='always', readonly=True,
+        ], string='State', required=True, default='draft', tracking=True, readonly=True,
         help=" * The 'Draft' status is used at the creation on the event. In this state, the event can be modified without any restriction. None of the players will be warned of the change.\n"
              " * Once 'Opened', the players linked to the event will be advised of the event. In this state, they are invited to define their availability. In the meantime, modifications on the event are still possible. This state should be triggered enough days/weeks before the event occurs, so that players have enough time to give their availability.\n"
              " * Once 'Confirmed', the players receive an email summarizing the information related to the event. In this state, the record is locked, so that no modification is possible. This state should be triggered a few days before the event and remain until it occurs.\n"
