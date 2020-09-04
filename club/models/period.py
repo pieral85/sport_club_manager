@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import ast
 from datetime import date
 
 from odoo import models, fields, api, exceptions, _
@@ -100,21 +101,12 @@ class Period(models.Model):
     #         self.env['ir.config_parameter'].sudo().set_param('mail.local.part', ...):
     #     return super(Period, self)._register_hook()
 
-    def get_alias_model_name(self, vals):
-        """ Specify the model that will get created when the alias receives a message.
-
-        :param dict vals: values of the newly created record that will holding the alias.
-        :return: the model name for the alias.
-        """
-        return 'membership'
-
-    def get_alias_values(self):
-        """
-
-        :return: values to create an alias, or to write on the alias after its creation.
-        """
-        values = super(Period, self).get_alias_values()
-        values['alias_defaults'] = {'period_id': self.id}
+    def _alias_get_creation_values(self):
+        values = super(Period, self)._alias_get_creation_values()
+        values['alias_model_id'] = self.env['ir.model']._get('membership').id
+        if self.id:
+            values['alias_defaults'] = defaults = ast.literal_eval(self.alias_defaults or "{}")
+            defaults['period_id'] = self.id
         return values
 
     def update_periods(self):
@@ -203,7 +195,7 @@ class Period(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.update(self._get_alias_name(vals))
+        vals.update(self._get_alias_name(vals, force_get=True))
         res = super(Period, self).create(vals)
         res.update_periods()
         return res
@@ -257,11 +249,13 @@ class Period(models.Model):
         except ValueError:
             return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
 
-    def _get_alias_name(self, vals):
-        if 'name' in vals and not 'alias_name' in vals:
-            local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
-            return {'alias_name': '{}+{}'.format(local_part, vals['name'])}
-        return {}
+    def _get_alias_name(self, vals, force_get=False):
+        if 'name' not in vals or 'alias_name' in vals and not force_get:
+            return {}
+        local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
+        if local_part:
+            local_part += '+'
+        return {'alias_name': '{}{}'.format(local_part, vals['name'])}
 
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
