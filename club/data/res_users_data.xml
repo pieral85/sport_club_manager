@@ -2,7 +2,7 @@
 <odoo>
 <data>
     <!-- Link for user settings -->
-    <template id="my_settings_link" name="Link to frontend portal settings" inherit_id="portal.frontend_layout">
+    <template id="my_settings_link" name="Link to frontend portal settings" inherit_id="portal.user_dropdown">
         <xpath expr="//a[@id='o_logout']" position="before">
             <a href="/my/account" role="menuitem" class="dropdown-item">My Settings</a>
         </xpath>
