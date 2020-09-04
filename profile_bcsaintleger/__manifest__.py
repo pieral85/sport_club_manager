@@ -25,6 +25,7 @@ Following features are included in this module:
         'views/templates/website_templates.xml',
         # data
         'data/partner_data.xml',
+        'data/website_data.xml',
     ],
     'qweb': [
     ],
