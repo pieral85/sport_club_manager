@@ -15,7 +15,7 @@
     </record>
     <record id="category_teenager" model="category">
         <field name="name">Teenager</field>
-        <field name="description">Category for players between 12 and 18 years old.</field>
+        <field name="description">Category for members between 12 and 18 years old.</field>
     </record>
     </data>
 </odoo>

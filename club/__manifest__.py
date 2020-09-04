@@ -65,7 +65,7 @@ Following features are included in this module:
     'demo': [
         'data/demo/period_demo.xml',
         'data/demo/category_demo.xml',
-        'data/demo/player_demo.xml',
+        'data/demo/member_demo.xml',
         'data/demo/role_demo.xml',
         'data/demo/period_category_demo.xml',
         'data/demo/membership_demo.xml',

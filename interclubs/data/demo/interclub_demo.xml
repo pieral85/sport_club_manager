@@ -6,14 +6,14 @@
         <field name="kind">men</field>
         <field name="season_id" ref="club.period_current"/>
         <field name="player_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
-            ref('club.partner_demo_player_4'),
-            ref('club.partner_demo_young_player_2'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
+            ref('club.partner_demo_member_4'),
+            ref('club.partner_demo_young_member_2'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_34'),
         ])]"/>
-        <field name="responsible_id" ref="club.partner_demo_player_3"/>
+        <field name="responsible_id" ref="club.partner_demo_member_3"/>
         <field name="location_id" ref="sports_complex_1"></field>
         <field name="referee_ids" eval="[(6, 0, [
             ref('base.res_partner_main1'),
@@ -26,13 +26,13 @@
         <field name="kind">mixed</field>
         <field name="season_id" ref="club.period_current"/>
         <field name="player_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
-            ref('club.partner_demo_young_player_1'),
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_1'),
+            ref('club.partner_demo_young_member_1'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_address_7'),
         ])]"/>
-        <field name="responsible_id" ref="club.partner_demo_player_3"/>
+        <field name="responsible_id" ref="club.partner_demo_member_3"/>
         <field name="location_id" ref="sports_complex_2"></field>
         <field name="referee_ids" eval="[(6, 0, [
             ref('base.res_partner_main1'),
@@ -46,16 +46,16 @@
         <field name="kind">women</field>
         <field name="season_id" ref="club.period_current"/>
         <field name="player_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
+            ref('club.partner_demo_member_1'),
             ref('base.res_partner_address_14'),
             ref('base.res_partner_address_33'),
             ref('base.res_partner_address_13'),
             ref('base.res_partner_address_32'),
         ])]"/>
-        <field name="responsible_id" ref="club.partner_demo_player_4"/>
+        <field name="responsible_id" ref="club.partner_demo_member_4"/>
         <field name="location_id" ref="sports_complex_1"></field>
         <field name="referee_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_4'),
             ref('base.res_partner_main2'),
         ])]"/>
         <field name="event_items_color">#FFB4B4</field>
@@ -65,7 +65,7 @@
         <field name="kind">men</field>
         <field name="season_id" ref="club.period_upcoming"/>
         <field name="player_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_4'),
+            ref('club.partner_demo_member_4'),
             ref('base.partner_admin'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_34'),
@@ -83,15 +83,15 @@
         <field name="kind">men</field>
         <field name="season_id" ref="club.period_past_1"/>
         <field name="player_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_2'),
-            ref('club.partner_demo_player_3'),
+            ref('club.partner_demo_member_2'),
+            ref('club.partner_demo_member_3'),
             ref('base.res_partner_address_7'),
             ref('base.res_partner_address_24'),
         ])]"/>
-        <field name="responsible_id" ref="club.partner_demo_player_4"/>
+        <field name="responsible_id" ref="club.partner_demo_member_4"/>
         <field name="location_id" ref="sports_complex_1"></field>
         <field name="referee_ids" eval="[(6, 0, [
-            ref('club.partner_demo_player_1'),
+            ref('club.partner_demo_member_1'),
         ])]"/>
         <field name="event_items_color">#37FF61</field>
     </record>

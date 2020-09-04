@@ -83,7 +83,7 @@
     </record>
 
     <!-- graph view(s) -->
-    <!-- Prices per player with period details -->
+    <!-- Prices per member with period details -->
     <record id="membership_view_graph_members" model="ir.ui.view">
         <field name="name">membership graph users</field>
         <field name="model">membership</field>

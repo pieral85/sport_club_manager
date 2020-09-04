@@ -40,7 +40,7 @@
             <t t-set="title">Member Info</t>
             <div class="oe_structure">
                 <div class="container">
-                    <p><t t-esc="player.id"/> <t t-esc="player.login"/> <t t-esc="player.name"/></p>
+                    <p><t t-esc="member.id"/> <t t-esc="member.login"/> <t t-esc="member.name"/></p>
                 </div>
             </div>
             <div class="oe_structure"/>
