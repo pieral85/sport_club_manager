@@ -19,6 +19,7 @@ Following features are included in this module:
     'depends': [
         'interclubs',
         'badminton_be',
+        'theme_treehouse',
     ],
     'data': [
         # views - website templates

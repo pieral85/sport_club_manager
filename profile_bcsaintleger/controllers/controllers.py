@@ -6,7 +6,8 @@ from odoo.http import request, route, Controller
 class WebsitePartnerPage(Controller):
 
     # TODO Set route in english + manage fr translation
-    @route(['/infos-pratiques'], type='http', auth="public", website=True)
+    # @route(['/infos-pratiques'], type='http', auth="public", website=True)
+    @route(['/practical-information'], type='http', auth="public", website=True)
     def infos_pratiques(self, **post):
         sport_complex = request.env.ref('profile_bcsaintleger.saintleger_sports_complex')
         return request.render('profile_bcsaintleger.website_practical_information', {'sport_complex': sport_complex, 'partner': sport_complex,})
