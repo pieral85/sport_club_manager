@@ -8,11 +8,8 @@
         <field name="inherit_id" ref="base.view_users_simple_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/div" position="before">
-                <div class="oe_button_box" name="button_box">
-                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
-                        <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
-                    </button>
-                </div>
+                <field name="active" invisible="1"/>
+                <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             </xpath>
             <xpath expr="//field[@name='mobile']" position="replace">
                 <field name="partner_id"/>
