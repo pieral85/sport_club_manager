@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet/div" position="before">
                 <field name="active" invisible="1"/>
+                <field name="is_internal" invisible="1"/>
                 <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             </xpath>
             <xpath expr="//field[@name='mobile']" position="replace">
@@ -51,7 +52,10 @@
                                 <newline/>
                             </div>
 -->
-<group col="3">
+<group col="3" attrs="{'invisible': [('is_internal', '=', True)]}">
+    <span class="alert alert-warning">This user must be an internal user in order to assign him a role in the club.</span>
+</group>
+<group col="3" attrs="{'invisible': [('is_internal', '=', False)]}">
 <group col="12" colspan="1">
 <!-- <div class="oe_inline" name="edit_alias" style="display: inline;" > -->
     <field name="president" colspan="2"/>

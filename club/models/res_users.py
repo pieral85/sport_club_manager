@@ -39,6 +39,8 @@ class ResUsers(models.Model):
         compute='_compute_committee_manager', inverse='_inverse_committee_manager',
         help='If checked, the user will have a write access to the application Club Membership Manager.\n\
         This will allow the user to manage the application.')
+    # TODO Rename `committee_user` and `committee_manager` fields with `is_` prefix
+    is_internal = fields.Boolean('Is Internal', compute='_compute_committee_manager')
 
     def modify_role(self):
         self.ensure_one()
@@ -121,6 +123,7 @@ class ResUsers(models.Model):
     def _compute_committee_manager(self):
         for user in self:
             user.committee_manager = user.has_group('club.group_club_committee_manager')
+            user.is_internal = user.has_group('base.group_user')
 
     def _inverse_committee_manager(self):
         ''' Edit user groups when field 'committee_manager' is edited. '''
