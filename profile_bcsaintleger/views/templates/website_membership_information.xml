@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <!-- Membership information website page -->
+  <template id="website_membership_information" name="Membership Information">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <div class="s_popup o_snippet_invisible" data-vcss="001" data-snippet="s_popup" data-name="Popup" id="sPopup1602178449417" data-invisible="1">
+          <div class="modal fade s_popup_middle modal_shown" style="background-color: var(--black-50)   !important; display: none;" data-show-after="5000" data-display="afterDelay" data-consents-duration="7" data-focus="false" data-backdrop="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog d-flex">
+              <div class="modal-content oe_structure">
+                <div class="s_popup_close js_close_popup o_we_no_overlay o_not_editable o_default_snippet_text">×</div>
+                <section class="s_banner pt96 pb96 o_colored_level oe_img_bg" data-snippet="s_banner" style="background-image: url('/profile_bcsaintleger/static/img/racket_shuttlecock_corner.jpe');">
+                  <div class="container">
+                    <div class="row s_nb_column_fixed">
+                      <div class="col-lg-10 offset-lg-1 text-center jumbotron pt48 pb48 o_colored_level undefined" style="background-color: rgba(255, 255, 255, 0.76) !important;">
+                        <h2>
+                          <font style="font-size: 62px;">Envie de jouer?<br/></font>
+                        </h2>
+                        <p class="lead">N'hésitez pas et rejoignez-nous&amp;nbsp;sur un terrain!</p>
+                        <p class="lead">Vous pouvez venir à deux séances d'essai gratuites et ensuite décider si vous vous affiliez.<br/></p>
+                        <a href="#essai" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip652371">Plus d'info en bas de page</a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="s_color_blocks_2" data-snippet="s_color_blocks_2" data-name="Big Boxes" style="">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="o_cc o_cc5 o_colored_level pt32 text-center undefined col-lg-6 pb0" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Rainy/09&quot;,&quot;flip&quot;:[]}">
+                <div class="o_we_shape o_web_editor_Rainy_09"/>
+                <h1>Vous souhaitez vous affilier?<br/></h1>
+                <p>Plusieurs solutions s'offrent à vous:</p>
+                <div class="pb32 pt32 s_hr text-left" data-snippet="s_hr" data-name="Separator">
+                  <hr class="mx-auto w-100" style="border-top-width: 1px; border-top-style: solid;"/>
+                </div>
+                <p>Via le&amp;nbsp;<a href="#" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip74870">formulaire en ligne</a> </p>
+                <p>(Pour cela, un compte doit avoir été créé)<br/></p>
+                <p>Votre demande sera ensuite traitée par un des membres du comité.</p>
+                <div class="s_progress_bar" data-display="inline" data-snippet="s_progress_bar" data-name="Progress Bar">
+                  <h5>Cette fonctionnalité est en cours de réalisation et sera bientôt disponible!<br/></h5>
+                  <div class="progress pl64">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%; min-width: 3%;">
+                      <span class="s_progress_bar_text">50%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="pb32 pt32 s_hr text-left" data-snippet="s_hr" data-name="Separator">
+                  <hr class="mx-auto w-100" style="border-top-width: 1px; border-top-style: solid;"/>
+                </div>
+                <div style="text-align: left;">
+                  <p style="text-align: center;">En envoyant un email à l'adresse <a href="mailto:badsl@live.be" data-original-title="" title="" aria-describedby="tooltip745829" class="btn btn-primary">badsl@live.be</a></p>
+                  <p style="text-align: center;">Comme pour l'inscription via le formulaire,<br/>la demande sera traitée par un des membres du comité.</p>
+                </div>
+                <div class="pb32 pt32 s_hr text-left" data-snippet="s_hr" data-name="Separator">
+                  <hr class="mx-auto w-100" style="border-top-width: 1px; border-top-style: solid;"/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                </div>
+                <p>
+                  En remplissant le&amp;nbsp;<a href="profile_bcsaintleger/static/pdf/inscription_lfbb_fr.pdf?download=true" class="btn btn-primary" target="_blank">formulaire papier<br/></a></p>
+                <p> Il suffit ensuite de le donner&amp;nbsp;à l'un des membres du comité,<br/>par exemple lors d'une séance d'entraînement.</p>
+              </div>
+              <div class="col-lg-6 p-0 o_colored_level d-none d-md-block oe_img_bg" style="background-image: url('/profile_bcsaintleger/static/img/hand_shuttlecock.jpe')"/>
+            </div>
+          </div>
+          <a class="o_scroll_button mb-3 rounded-circle align-items-center justify-content-center mx-auto bg-primary" href="#" title="Scroll down to next section">
+            <i class="fa fa-angle-down fa-3x"/>
+          </a>
+        </section>
+        <section class="s_features_grid pt48 pb24 o_colored_level undefined o_cc o_cc2" data-snippet="s_features_grid" data-name="Features Grid" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Rainy/08&quot;,&quot;flip&quot;:[]}">
+          <div class="o_we_shape o_web_editor_Rainy_08"/>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 s_col_no_bgcolor pb24">
+                <div class="row">
+                  <div class="col-lg-12 pb24 o_colored_level" data-name="Box">
+                    <h2>Cotisation <i>récréant</i><br/></h2>
+                    <h5>Lorsque vous payez la cotisation récréant, voici ce à quoi vous avez droit:<br/></h5>
+                  </div>
+                  <div class="col-lg-12 pt16 pb16 o_colored_level" data-name="Box">
+                    <span class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check"/>
+                    <div class="s_features_grid_content">
+                      <h4>Entraînements<br/></h4>
+                      <p>Les entraînements sont libres et dirigés.</p>
+                      <p>Plus d'infos <a href="/infos-pratiquesn#table_of_content_heading_1601684331561_240">ici</a>.<br/></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pt16 pb16 o_colored_level" data-name="Box">
+                    <span class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check"/>
+                    <div class="s_features_grid_content">
+                      <h4>Assurance</h4>
+                      <p>Une assurance couvre (entre autre) les dommages corporels pouvant subvenir lors d'un entraînement / tournoi.<br/></p>
+                      <p>Plus de détails sur le <a href="https://www.lfbb.be/page/assurance" target="_blank">site de la LFBB</a>.<br/></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pt16 pb16 o_colored_level" data-name="Box">
+                    <span class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check"/>
+                    <div class="s_features_grid_content">
+                      <h4>Tournois amicaux<br/></h4>
+                      <p>Le club organise chaque année un tournoi amical pour des joueurs de tout niveau. Convivialité et amusement garantis!<br/></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 s_col_no_bgcolor pb24">
+                <div class="row">
+                  <div class="col-lg-12 pb24 o_colored_level" data-name="Box">
+                    <h2>Cotisation <i>compétiteur</i><br/></h2>
+                    <h5>En plus des services liés à la cotisation récréant, vous aurez droit à:<br/></h5>
+                  </div>
+                  <div class="col-lg-12 pt16 pb16 o_colored_level" data-name="Box">
+                    <span class="fa fa-2x rounded bg-secondary s_features_grid_icon fa-check" data-original-title="" title="" aria-describedby="tooltip353064"/>
+                    <div class="s_features_grid_content">
+                      <h4>Tournois officiels<br/></h4>
+                      <p>Tout au long de la saison, des tournois officiels&amp;nbsp;sont organisés dans la province et le pays.</p>
+                      <p>Voici la <a href="https://www.lfbb.be/calendrier" target="_blank">liste des tournois pour cette saison</a>.<br/></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pt16 pb16 o_colored_level" data-name="Box">
+                    <span class="fa fa-2x rounded bg-secondary s_features_grid_icon fa-check"/>
+                    <div class="s_features_grid_content">
+                      <h4>Interclubs amicaux / officiels<br/></h4>
+                      <p>Si un nombre suffisant de joueurs au sein du club le permet, la LFBB organise des championnats d'interclubs amicaux et officiels.<br/></p>
+                      <p>Voici la <a href="https://lfbb.tournamentsoftware.com/sport/league/draw?id=7D86522D-ED69-4994-A7E2-3EDF0024B5E1&amp;draw=33" target="_blank" data-original-title="" title="" aria-describedby="tooltip778260">liste des rencontres de notre équipe pour cette saison</a>.<br/></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 o_colored_level pb16 pt16" data-name="Box" style="">
+                    <div class="s_features_grid_content">
+                      <p>Plus d'infos concernant les affiliations sur le <a href="https://www.lfbb.be/page/affiliation" target="_blank">site de la LFBB</a>.<br/></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_masonry_block o_colored_level undefined o_cc o_cc2" data-vcss="001" data-snippet="s_masonry_block" data-name="Masonry" style="">
+          <div class="container">
+            <div class="row">
+              <div class="text-center o_colored_level col-lg-6 undefined rounded pt16 pb256 oe_img_bg" data-name="Block" style="border-radius: 40px !important; background-position: 100% 58.2485%; background-image: url('/profile_bcsaintleger/static/img/racket_shuttlecock_triple.jpg');">
+                <h3>
+                  <font style="background-color: rgba(4, 99, 128, 0.5);" class="text-o-color-3">Prix des cotisations pour la saison 2020/2021</font>
+                  <br/>
+                </h3>
+              </div>
+              <div class="o_colored_level col-lg-6">
+                <div class="row h-100">
+                  <div class="col-lg-6 text-center o_cc o_cc3 o_colored_level rounded" data-name="Block" style="border-radius: 40px !important;">
+                    <h3>Récréant<br/></h3>
+                    <h6>adulte<br/></h6>
+                    <p>90 € / saison<br/></p>
+                  </div>
+                  <div class="col-lg-6 text-center bg-200 o_colored_level rounded" data-name="Block" style="border-radius: 40px !important;">
+                    <h3>Compétiteur</h3>
+                    <h6>adulte<br/></h6>
+                    <p>100 € / saison<br/></p>
+                  </div>
+                  <div class="col-lg-6 text-center bg-200 o_colored_level rounded" data-name="Block" style="border-radius: 40px !important;">
+                    <h3>Récréant<br/></h3>
+                    <h6>moins de 18 ans<br/></h6>
+                    <p>70 € / saison<br/></p>
+                  </div>
+                  <div class="col-lg-6 text-center o_cc o_cc4 o_colored_level rounded" data-name="Block" style="border-radius: 40px !important;">
+                    <h3>Compétiteur</h3>
+                    <h6>moins de 18 ans<br/></h6>
+                    <p>80 € / saison<br/></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_showcase pt48 pb48 o_colored_level undefined o_cc o_cc2" data-vcss="002" data-snippet="s_showcase" data-name="Showcase">
+          <div class="container">
+            <div class="no-gutters row s_col_no_bgcolor s_col_no_resize s_nb_column_fixed">
+              <div class="col-lg text-lg-right">
+                <div class="row">
+                  <div class="col-lg-12 o_colored_level pb24 pt24" data-name="Block">
+                    <div class="d-flex flex-lg-row-reverse mb-2 s_showcase_title">
+                      <span class="fa fa-2x fa-euro ml-3 mr-3 mr-lg-0 s_showcase_icon text-secondary"/>
+                      <h3>Paiement
+                    </h3>
+                    </div>
+                    <p>Les cotisations doivent être payées sur le compte<br/>
+                      <i><b>BE68 0682 2806 7134</b></i> (BIC: <i>GKCCBEBB</i>)
+                    </p>
+                    <p class="alert alert-danger">
+                      En communication: <u><b><i>nom</i> + <i>prénom</i> de l'affilié</b></u>
+                    </p>
+                  </div>
+                  <div class="col-lg-12 o_colored_level pb24 pt24" data-name="Block">
+                    <div class="d-flex flex-lg-row-reverse mb-2 s_showcase_title">
+                      <span class="fa fa-2x fa-medkit ml-3 mr-3 mr-lg-0 s_showcase_icon text-secondary"/>
+                      <h3>Mutuelle
+                    </h3>
+                    </div>
+                    <p>Vous pouvez nous transmettre le formulaire de votre mutuelle afin de bénéficier d'une intervention dans le paiement de la cotisation. N'attendez pas le mois de juin!
+                    </p>
+                  </div>
+                  <div id="essai" class="col-lg-12 o_colored_level pb24 pt24" data-name="Block">
+                    <div class="d-flex flex-lg-row-reverse mb-2 s_showcase_title">
+                      <span class="fa fa-2x ml-3 mr-3 mr-lg-0 s_showcase_icon text-secondary fa-sign-in" data-original-title="" title="" aria-describedby="tooltip914225"/>
+                      <h3>À l'essai<br/></h3>
+                    </div>
+                    <p>Si vous n'êtes pas (encore) membre mais que vous souhaitez essayer, vous pouvez venir à deux séances et ensuite décider si vous poursuivez l'aventure avec nous!<br/>Si vous n'avez pas encore de matériel, aucun problème, le club prête raquette et volants.<br/></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1">
+                <div class="border-right h-100 w-50"/>
+              </div>
+              <div class="col-lg">
+                <div class="row">
+                  <div class="col-lg-12 o_colored_level pb24 pt24" data-name="Block" style="">
+                    <div class="d-flex mb-2 s_showcase_title">
+                      <span class="fa fa-2x fa-group mr-3 s_showcase_icon text-secondary"/>
+                      <h3>Familles nombreuses<br/>
+                    </h3>
+                    </div>
+                    <p>À partir du troisième membre, une réduction de 10€ sera accordée.<br/>Par exemple, un adulte compétiteur et ses deux enfants récréants paieront 100€ + 2x70€ - 10€
+                  </p>
+                  </div>
+                  <div class="col-lg-12 o_colored_level pb24 pt24" data-name="Block">
+                    <div class="d-flex mb-2 s_showcase_title">
+                      <span class="fa fa-2x mr-3 s_showcase_icon text-secondary fa-user-plus"/>
+                      <h3>Joueurs externes<br/></h3>
+                    </div>
+                    <p>Pour les joueurs déjà affiliés dans un autre club, le montant de la cotisation s'élève à 40€, toute catégorie confondue.<br/>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container text-lg-center">
+          </div>
+        </section>
+      </div>
+    </t>
+  </template>
+</odoo>
