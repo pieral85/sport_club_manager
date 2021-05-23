@@ -31,5 +31,10 @@
         <field name="parent_id" ref="website.main_menu"/>
         <field name="sequence" type="int">10</field>
     </record>
+
+    <!-- Hide Copyright below website footer -->
+    <record id="website.footer_no_copyright" model="ir.ui.view">
+        <field name="active">True</field>
+    </record>
 </data>
 </odoo>
