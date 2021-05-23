@@ -24,6 +24,7 @@ Following features are included in this module:
     'data': [
         # views - website templates
         'views/templates/website_templates.xml',
+        'views/templates/website_homepage.xml',
         # data
         'data/partner_data.xml',
         'data/website_data.xml',

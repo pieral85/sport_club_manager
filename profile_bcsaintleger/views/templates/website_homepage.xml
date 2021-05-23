@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <!-- Homepage -->
+  <template id="homepage_bcsaintleger" inherit_id="website.homepage" name="BC Saint-Léger Homepage">
+    <xpath expr="//div[@id='wrap']" position="inside">
+      <section class="s_picture o_colored_level undefined bg-200 pb0 pt0 oe_img_bg" data-snippet="s_picture" data-name="Picture" style="position: relative; background-image: url('/profile_bcsaintleger/static/img/plastic_shuttlecock_white.jpg');" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Origins/14&quot;,&quot;colors&quot;:{&quot;c4&quot;:&quot;#046380&quot;},&quot;flip&quot;:[]}">
+        <div class="o_we_shape o_web_editor_Origins_14" style="background-color: rgba(255, 0, 0, 0) !important; background-image: url(&quot;/web_editor/shape/web_editor/Origins/14.svg?c4=%23046380&quot;);"/>
+        <div class="container">
+          <h2 style="text-align: center;">
+            <font style="font-size: 62px;" class="text-900">Bienvenue</font>
+          </h2>
+          <div class="row s_nb_column_fixed">
+            <div class="col-lg-10 offset-lg-1 o_colored_level pt0 pb0" style="text-align: center;">
+              <figure class="figure">
+                <img src="/profile_bcsaintleger/static/img/bc_saint_leger_logo.png" class="figure-img padding-large" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip629104" data-mimetype="image/png" data-resize-width="240" data-quality="100"/>
+                <figcaption class="figure-caption text-muted py-3">&amp;nbsp;</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <a class="o_scroll_button rounded-circle align-items-center justify-content-center mx-auto bg-o-color-5 text-o-color-2" href="#" title="Scroll down to next section" style="">
+          <i class="fa fa-angle-down fa-3x"/>
+        </a>
+      </section>
+      <section class="s_parallax parallax o_colored_level undefined s_parallax_is_fixed s_parallax_no_overflow_hidden o_half_screen_height d-none d-md-block" data-scroll-background-ratio="1" data-snippet="s_parallax" data-name="Parallax" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Origins/15&quot;,&quot;colors&quot;:{&quot;c4&quot;:&quot;#046380&quot;},&quot;flip&quot;:[]}">
+        <span class="s_parallax_bg oe_img_bg" style="background-image: url('/profile_bcsaintleger/static/img/playing_badminton.jpg')" data-mimetype="image/jpeg"/>
+        <div class="o_we_shape o_web_editor_Origins_15" style="background-image: url(&quot;/web_editor/shape/web_editor/Origins/15.svg?c4=%23046380&quot;);"/>
+        <div class="oe_structure oe_empty" data-editor-message="DRAG BUILDING BLOCKS HERE"/>
+      </section>
+      <section class="s_three_columns pt80 pb80 o_colored_level undefined o_cc o_cc4" data-vcss="001" data-snippet="s_three_columns" data-name="Columns" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/21&quot;,&quot;flip&quot;:[&quot;y&quot;,&quot;x&quot;]}">
+        <div class="o_we_shape o_web_editor_Wavy_21 o_we_flip_y o_we_flip_x" style=""/>
+        <div class="container">
+          <div class="row d-flex align-items-stretch">
+            <div class="s_col_no_bgcolor pt16 pb16 col-lg-3">
+              <div class="card bg-white h-100" style="">
+                <img class="card-img-top" src="/profile_bcsaintleger/static/img/news.jpg" alt="" loading="lazy" title="" aria-describedby="tooltip502702"/>
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align: center;">Actualités</h4>
+                  <p class="card-text" style="text-align: center;">Quelles sont les dernières nouvelles du club?<br/></p>
+                  <p class="card-text" style="text-align: center;">
+                    <a href="/blog" class="btn btn-secondary btn-sm">Go!</a>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="s_col_no_bgcolor pt16 pb16 col-lg-3">
+              <div class="card bg-white h-100">
+                <img class="card-img-top" src="/profile_bcsaintleger/static/img/welcome.jpg" alt="" loading="lazy" title="" aria-describedby="tooltip873201"/>
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align: center;">Affiliations</h4>
+                  <p class="card-text" style="text-align: center;">Prix des cotisations et infos liées aux affiliations.</p>
+                  <p class="card-text" style="text-align: center;">
+                    <a href="/affiliation" class="btn btn-secondary btn-sm">Go!</a>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="s_col_no_bgcolor pt16 pb16 col-lg-3">
+              <div class="card bg-white h-100" style="">
+                <img class="card-img-top" src="/profile_bcsaintleger/static/img/infos.jpg" alt="blue and white 2 signage" loading="lazy" title="" aria-describedby="tooltip335938"/>
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align: center;">Infos pratiques<br/></h4>
+                  <p class="card-text" style="text-align: center;">Pour tout savoir sur la vie quotidienne du club!<br/></p>
+                  <p class="card-text" style="text-align: center;">
+                    <a href="/infos-pratiques" class="btn btn-secondary btn-sm" data-original-title="" title="" aria-describedby="tooltip198688">Go!</a>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="s_col_no_bgcolor pt16 pb16 col-lg-3">
+              <div class="card bg-white h-100" style="">
+                <img class="card-img-top" src="/profile_bcsaintleger/static/img/interclub_men_team.jpg" alt="" loading="lazy" title="" aria-describedby="tooltip335938"/>
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align: center;">Interclubs<br/></h4>
+                  <p class="card-text" style="text-align: center;">Suivez l'actualité de notre équipe messieurs.<br/></p>
+                  <div class="s_progress_bar" data-display="inline" data-snippet="s_progress_bar" data-name="Progress Bar">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-striped bg-o-color-2" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%; min-width: 3%;">
+                        <span class="s_progress_bar_text">60% Development</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-text" style="text-align: center;">
+                    <br/>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_cover o_colored_level undefined bg-black-50 parallax pb80 pt88" data-scroll-background-ratio="2.4" data-snippet="s_cover" data-name="Cover" style="position: relative;" data-oe-shape-data="{&quot;shape&quot;:&quot;web_editor/Wavy/20&quot;,&quot;flip&quot;:[&quot;y&quot;,&quot;x&quot;]}">
+        <span class="s_parallax_bg oe_img_bg" style="top: -299.28px; bottom: -299.28px; transform: translateY(-125px); background-image: url('/profile_bcsaintleger/static/img/badminton_racket_shuttlecock.jpg');"/>
+        <div class="o_we_shape o_web_editor_Wavy_20 o_we_flip_y o_we_flip_x"/>
+        <div class="s_allow_columns container">
+          <h1 style="text-align: center;">
+            </h1>
+          <h1 style="text-align: center;">
+            <font style="font-size: 62px;">
+              <b>Quoi de neuf sur facebook ?</b>
+            </font>
+          </h1>
+          <h1 style="text-align: center;">
+          </h1>
+          <div class="o_facebook_page" data-snippet="s_facebook_page" data-name="Facebook" data-href="https://www.facebook.com/Badminton-Club-Saint-Léger-523719094305111" data-height="500" data-width="350" data-tabs="timeline,events,messages" data-small_header="" data-hide_cover="true" data-show_facepile="true" style="text-align: center;">
+            <br/>
+          </div>
+        </div>
+      </section>
+    </xpath>
+  </template>
+</odoo>
