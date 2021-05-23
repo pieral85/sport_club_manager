@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <!-- Practical information website page-->
+  <template id="website_practical_information" name="Practical Information">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <section class="s_table_of_content pt24 pb24 o_anim_fade_in o_colored_level undefined oe_img_bg" data-name="Table of Content" style="background-position: 72.6139% 0%; background-image: url('/profile_bcsaintleger/static/img/badminton_player_polygonal.jpg');">
+          <div class="container">
+            <div class="row s_nb_column_fixed">
+              <div class="s_table_of_content_main oe_structure oe_empty o_colored_level undefined bg-black-75 col-lg-9 rounded" data-name="Content" data-editor-message="DRAG BUILDING BLOCKS HERE" style="border-radius: 10px !important;">
+                <section class="pb16 o_colored_level undefined" style="">
+                  <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1601684331561_236">
+                    <font style="" class="text-o-color-5">Complexe sportif</font>
+                    <br/>
+                  </h1>
+                  <p class="text-center">
+                    <img class="img-fluid o_we_custom_image" src="profile_bcsaintleger/static/img/sports_complex.jpg" data-original-title="" title="" aria-describedby="tooltip551624" style="" loading="lazy"/>
+                    <br/>
+                  </p>
+                  <p class="o_default_snippet_text text-center">
+                    Lien vers le <a href="https://www.saint-leger.be/loisirs/sports/complexe-sportif" class="btn btn-outline-primary btn-sm" target="_blank" data-original-title="" title="" aria-describedby="tooltip275159">site du complexe sportif</a>
+                  </p>
+                  <div class="o_colored_level pb16 text-center mx-auto undefined">
+                    <div class="container">
+                      <div class="d-inline-flex align-items-baseline">
+                        <i class="fa fa-map-marker fa-fw" role="img" aria-label="Address" title="Address"/>
+                        <span class="w-100 o_force_ltr d-block o_default_snippet_text" itemprop="streetAddress">Rue du Stade, 1<br/>6747 Saint-Léger<br/>Belgium</span>
+                      </div>
+                      <div>
+                        <i class="fa fa-phone fa-fw" role="img" aria-label="Phone" title="Phone"/>
+                        <span class="o_force_ltr o_default_snippet_text" itemprop="telephone">0032 (0)63 21 89 70</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pb16 s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel" style="">
+                  <div id="myCarousel1601625744793" class="s_carousel carousel slide s_carousel_rounded" data-interval="10000">
+                    <ol class="carousel-indicators o_we_no_overlay">
+                      <li data-target="#myCarousel1601625744793" data-slide-to="0" class="active">
+                        <br/>
+                      </li>
+                      <li data-target="#myCarousel1601625744793" data-slide-to="1">
+                        <br/>
+                      </li>
+                      <li data-target="#myCarousel1601625744793" data-slide-to="2">
+                        <br/>
+                      </li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item o_colored_level active" style="" data-name="Slide">
+                        <div class="container">
+                          <div class="row content">
+                            <div class="carousel-content col-lg-12 text-center o_colored_level undefined" style="">
+                              <div class="pb8">
+                                <h2 data-anchor="true">Localisation</h2>
+                                Calcul d'itinéraire via <a href="https://www.google.fr/maps/dir//complexe+sportive+de+Saint-leger,+Rue+du+Vieux+Moulin,+6747+Saint-L%C3%A9ger/@49.6485848,5.6578323,11.5z/data=!4m8!4m7!1m0!1m5!1m1!1s0x47eabec2a74188ad:0xfa324b09d65a0c26!2m2!1d5.6514657!2d49.6052181" class="btn btn-outline-primary btn-sm" target="_blank">Google Maps</a>
+                              </div>
+
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1569.973636255107!2d5.651363358796059!3d49.60614100215705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47eabec2a74188ad%3A0xfa324b09d65a0c26!2scomplexe%20sportive%20de%20Saint-leger!5e1!3m2!1sfr!2sbe!4v1585562815554!5m2!1sfr!2sbe" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" width="100%" height="400" frameborder="0"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item pb152 o_colored_level pt16 oe_img_bg" style="background-image: url('/profile_bcsaintleger/static/img/complexe_sportif_saint_leger_salle.jpg');" data-name="Slide">
+                        <div class="container">
+                          <div class="row content">
+                            <div class="carousel-content o_colored_level pb0 undefined offset-lg-3 col-lg-6 bg-black-25" style="">
+                              <h2 data-anchor="true" style="text-align: center;">
+                                Terrains
+                              </h2>
+                              <p class="lead" style="text-align: center;">La salle dispose de 5 terrains de double.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item pb128 o_colored_level pt32 undefined oe_img_bg" style="background-image: url('/profile_bcsaintleger/static/img/complexe_sportif_cafetaria.jpg');" data-name="Slide">
+                        <div class="container">
+                          <div class="row content">
+                            <div class="carousel-content o_colored_level pb0 pt0 undefined bg-black-25 offset-lg-3 col-lg-6" style="">
+                              <h2 data-anchor="true" style="text-align: center;">
+                                <font style="background-color: rgba(0, 0, 0, 0);" class="text-white">Cafétéria</font>
+                              </h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev o_we_no_overlay" href="#myCarousel1601625744793" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                      <span class="carousel-control-prev-icon" data-original-title="" title="" aria-describedby="tooltip733287"/>
+                      <span class="o_default_snippet_text sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next o_we_no_overlay" href="#myCarousel1601625744793" data-slide="next" role="img" aria-label="Next" title="Next">
+                      <span class="carousel-control-next-icon" data-original-title="" title="" aria-describedby="tooltip931787"/>
+                      <span class="sr-only o_default_snippet_text">Next</span>
+                    </a>
+                  </div>
+                </section>
+                <section class="pb16 o_colored_level undefined">
+                  <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1601684331561_240">
+                    <font style="" class="text-o-color-5">Horaires</font>
+                  </h1>
+                  <p>
+                        </p>
+                  <table class="table table-bordered table-dark table-striped text-center table-hover" style="table-layout: fixed;">
+                    <thead style="display: table-row-group">
+                      <tr>
+                        <th style="width: 15%" scope="col">Jour</th>
+                        <th style="width: 25%" scope="col">Heure</th>
+                        <th style="width: 50%" scope="col">Type</th>
+                        <th style="width: 10%" scope="col">Terrains</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="align-middle">Lundi</td>
+                        <td class="align-middle">20h00 - 22h30</td>
+                        <td class="align-middle">Entraînement dirigé (débutants)<br/>àpd. 21h15: jeu libre</td>
+                        <td class="align-middle">5</td>
+                      </tr>
+                      <tr>
+                        <td>Mardi</td>
+                        <td>20h00 - 23h00</td>
+                        <td>Jeu libre</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>Jeudi</td>
+                        <td>20h00 - 22h00</td>
+                        <td>Jeu libre</td>
+                        <td>5 *</td>
+                      </tr>
+                      <tr>
+                        <td rowspan="4" class="align-middle">Samedi</td>
+                        <td>03h00 - 10h00</td>
+                        <td>Entraînement jeunes (niveau 1)</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>10h00 - 11h00</td>
+                        <td>Entraînement jeunes (niveau 2)</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>11h00 - 12h00</td>
+                        <td>Entraînement jeunes (niveau 3)</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>12h00 - 13h00</td>
+                        <td>Entraînement jeunes (niveau 4)</td>
+                        <td>5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p/>
+                  <p>
+                    * Il faut compter deux terrains en moins en cas d'interclub (environ sept fois sur la saison).<br/>
+                    A ces dates cependant, la salle est ouverte jusque 23h00.
+                  </p>
+                </section>
+                <section class="pb16 o_colored_level" style="">
+                  <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1601684331561_241">
+                    <font style="" class="text-o-color-5">F.A.Q.</font>
+                  </h1>
+                </section>
+                <section class="s_faq_collapse pb32 o_colored_level pt0" data-snippet="s_faq_collapse" data-name="Accordion">
+                  <div class="container">
+                    <div id="myCollapse" class="accordion" role="tablist">
+                      <div class="card bg-white" data-name="Item">
+                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1601645987592" data-original-title="" title="" aria-describedby="tooltip33846">Quand la salle est-elle ouverte?</a>
+                        <div class="collapse" role="tabpanel" id="myCollapseTab1601645987592" style="">
+                          <div class="card-body">
+                            <p class="card-text">La salle est ouverte de septembre à juin et ce, plusieurs jours par semaine (voir <a href="/infos-pratiques#table_of_content_heading_1601684331561_240" data-original-title="" title="" aria-describedby="tooltip447551">section horaires</a> ci-dessus).</p>
+                            <p class="card-text">Pour avoir une vue complète des locations du complexe sportif et des jours de fermeture (congés scolaires), vous pouvez consulter le <a href="https://www.saint-leger.be/loisirs/sports/complexe-sportif/documents-divers/saison-2020-2021-1.pdf" target="_blank" data-original-title="" title="" aria-describedby="tooltip402091">planning des réservations des salles de sport - 2020-2021</a>.<br/></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card bg-white" data-name="Item">
+                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip33846" data-target="#myCollapseTab1602706162689">Y a-t-il moyen d'acheter des volants via le club?</a>
+                        <div class="collapse" role="tabpanel" style="" id="myCollapseTab1602706162689">
+                          <div class="card-body">
+                            <p class="card-text">Oui, le club propose à ses membres d'acheter des volants à prix réduit:</p>
+                            <ul>
+                              <li>
+                                <p class="card-text">Aéroclub TR: 12 €</p>
+                              </li>
+                              <li>
+                                <p class="card-text">Wilson: 16 €</p>
+                              </li>
+                              <li>
+                                <p class="card-text">Yonex AS-10: 16 €</p>
+                              </li>
+                              <li>
+                                <p class="card-text">Yonex AS-20: 20 €</p>
+                              </li>
+                            </ul>
+                            <p>Attention, les volants ne seront fournis qu'une fois le paiement effectué (en main propre).<br/></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card bg-white" data-name="Item">
+                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip884622" data-target="#myCollapseTab1602533595615">Sur quel numéro de compte faut-il effectuer les virements?</a>
+                        <div class="collapse" role="tabpanel" style="" id="myCollapseTab1602533595615">
+                          <div class="card-body">
+                            <p class="card-text">Pour tout paiement nécessitant un virement (principalement les affiliations), un seul numéro de compte:</p>
+                            <p class="card-text"><b>BE68 0682 2806 7134</b> (BIC: GKCCBEBB)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pb16 o_colored_level">
+                  <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1601684331561_243">
+                    <font style="" class="text-o-color-5">Documents</font>
+                  </h1>
+                </section>
+                <section class="s_tabs o_colored_level undefined pt0 pb0" data-vcss="001" data-snippet="s_tabs" data-name="Tabs" style="">
+                  <div class="container">
+                    <div class="s_tabs_main">
+                      <div class="s_tabs_nav mb-3">
+                        <ul class="nav nav-pills justify-content-center" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="nav_tabs_link_1601750546646_37" data-toggle="tab" href="#nav_tabs_content_1601750546646_37" role="tab" aria-controls="nav_tabs_content_1601750546646_37" aria-selected="true" data-original-title="" title="" aria-describedby="tooltip244787">Affiliation</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="nav_tabs_link_1601750546646_38" data-toggle="tab" href="#nav_tabs_content_1601750546646_38" role="tab" aria-controls="nav_tabs_content_1601750546646_38" aria-selected="false" data-original-title="" title="" aria-describedby="tooltip915194">Interclubs</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="nav_tabs_link_1601750546646_39" data-toggle="tab" href="#nav_tabs_content_1601750546646_39" role="tab" aria-controls="nav_tabs_content_1601750546646_39" aria-selected="false" data-original-title="" title="" aria-describedby="tooltip359338">Divers</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="s_tabs_content tab-content">
+                        <div class="tab-pane fade active show" id="nav_tabs_content_1601750546646_37" role="tabpanel" aria-labelledby="nav_tabs_link_1601750546646_37">
+                          <div class="oe_structure oe_empty" data-editor-message="DRAG BUILDING BLOCKS HERE">
+                            <section class="s_product_list" data-snippet="s_product_list" data-name="Items">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-md-4 col-6 o_colored_level col-lg-3">
+                                    <a href="profile_bcsaintleger/static/pdf/lettre_reprise_2020-2021.pdf?download=true" target="_blank">
+                                      <img src="/profile_bcsaintleger/static/img/letter.jpe" alt="black and silver fountain pen" class="img img-fluid" loading="lazy" data-original-title="" title="" aria-describedby="tooltip502399" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                    </a>
+                                    <div class="s_product_list_item_link">
+                                      <a href="profile_bcsaintleger/static/pdf/lettre_reprise_2020-2021.pdf?download=true" class="btn btn-fill-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip350925" target="_blank">Lettre de rentrée</a>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4 col-6 o_colored_level col-lg-3">
+                                    <a href="profile_bcsaintleger/static/pdf/inscription_lfbb_fr.pdf?download=true" target="_blank">
+                                      <img src="/profile_bcsaintleger/static/img/inscription_lfbb_fr_overview.jpg" alt="" class="img img-fluid" loading="lazy" data-original-title="" title="" aria-describedby="tooltip403918" data-mimetype="image/jpeg" data-resize-width="623"/>
+                                    </a>
+                                    <div class="s_product_list_item_link">
+                                      <a href="profile_bcsaintleger/static/pdf/inscription_lfbb_fr.pdf?download=true" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip807156" target="_blank">Inscription joueur</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav_tabs_content_1601750546646_38" role="tabpanel" aria-labelledby="nav_tabs_link_1601750546646_38">
+                          <div class="oe_structure oe_empty" data-editor-message="DRAG BUILDING BLOCKS HERE">
+                            <section class="s_product_list" data-snippet="s_product_list" data-name="Items" style="">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-md-4 col-6 o_colored_level col-lg-4" style="">
+                                    <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_2015-16.pdf" data-original-title="" title="" aria-describedby="tooltip173549" target="_blank">
+                                      <img src="/profile_bcsaintleger/static/img/feuille_match_messieurs_overview.jpg" alt="" class="img img-fluid" loading="lazy" data-original-title="" title="" aria-describedby="tooltip566165" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                    </a>
+                                    <div class="s_product_list_item_link">
+                                      <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_2015-16.pdf" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip751840" target="_blank">Feuille de match - Messieurs (pdf)</a>
+                                      <br/>
+                                      <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_2015-16.xls" target="_blank">Format Excel</a>
+                                      <br/>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4 col-6 o_colored_level col-lg-4" style="">
+                                    <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_composition.pdf" data-original-title="" title="" aria-describedby="tooltip173549" target="_blank">
+                                      <img src="/profile_bcsaintleger/static/img/composition_equipe_messieurs_overview.jpg" alt="" class="img img-fluid" loading="lazy" data-original-title="" title="" aria-describedby="tooltip943198" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                    </a>
+                                    <div class="s_product_list_item_link">
+                                      <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_composition.pdf" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip751840" target="_blank">Composition d'équipe - Messieurs (pdf)</a>
+                                      <br/>
+                                      <a href="https://www.lfbb.be/sites/default/files/ic_messieurs_feuille_composition.xls" target="_blank">Format Excel</a>
+                                      <br/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav_tabs_content_1601750546646_39" role="tabpanel" aria-labelledby="nav_tabs_link_1601750546646_39">
+                          <div class="oe_structure oe_empty" data-editor-message="DRAG BUILDING BLOCKS HERE">
+                            <section class="s_product_list" data-snippet="s_product_list" data-name="Items" style="">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-md-4 col-6 o_colored_level col-lg-4" style="">
+                                    <a href="https://www.lfbb.be/sites/default/files/ethias_da_lfbb_fr_2020.pdf" data-original-title="" title="" aria-describedby="tooltip58614" target="_blank">
+                                      <img src="/profile_bcsaintleger/static/img/accident_glace.jpe" alt="brown ice cream cone" class="img img-fluid" loading="lazy" data-original-title="" title="" aria-describedby="tooltip723070" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                    </a>
+                                    <div class="s_product_list_item_link">
+                                      <a href="https://www.lfbb.be/sites/default/files/ethias_da_lfbb_fr_2020.pdf" data-original-title="" title="" aria-describedby="tooltip250268" target="_blank" class="btn btn-fill-primary btn-sm">Déclaration d'accident</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="pb16 o_colored_level" style="">
+                  <h1 class="text-secondary" data-anchor="true" id="table_of_content_heading_1601684331561_242">
+                    <font style="" class="text-o-color-5">Liens utiles</font>
+                  </h1>
+                </section>
+                <section class="s_references pb32 o_colored_level pt0" data-snippet="s_references" data-name="References" style="">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-2 pt16 pb16 o_colored_level">
+                        <a href="https://www.lfbb.be/" target="_blank">
+                          <img src="/profile_bcsaintleger/static/img/lfbb_logo.png" class="img img-fluid" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip776817" data-mimetype="image/png" data-resize-width="512"/>
+                        </a>
+                      </div>
+                      <div class="col-lg-2 o_colored_level pb16 pt56">
+                        <a href="https://lfbb.tournamentsoftware.com/" target="_blank" data-original-title="" title="" aria-describedby="tooltip933234">
+                          <img src="/profile_bcsaintleger/static/img/tournament_software_logo.jpg" class="img img-fluid" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip614835" data-mimetype="image/jpeg" data-resize-width="173"/>
+                        </a>
+                      </div>
+                      <div class="col-lg-2 pb16 o_colored_level pt56" style="">
+                        <a href="https://www.saint-leger.be/" target="_blank">
+                          <img src="/profile_bcsaintleger/static/img/commune_saintleger_logo.jpg" class="img-fluid" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip663973" data-mimetype="image/jpeg" data-resize-width="234"/>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="s_table_of_content_navbar_wrap d-print-none d-none d-lg-block o_not_editable o_colored_level undefined bg-black-50 rounded s_table_of_content_vertical_navbar col-lg-3" data-name="Navbar" style="border-radius: 10px !important;">
+                <div class="s_table_of_content_navbar list-group" style="top: 20px;">
+                  <a href="#table_of_content_heading_1601684331561_236" class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0 active">
+                    Complexe sportif
+                  </a>
+                  <a href="#table_of_content_heading_1601684331561_240" class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0">
+                    Horaires
+                  </a>
+                  <a href="#table_of_content_heading_1601684331561_241" class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0">
+                    F.A.Q.
+                  </a>
+                  <a href="#table_of_content_heading_1601684331561_243" class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0">
+                    Documents
+                  </a>
+                  <a href="#table_of_content_heading_1601684331561_242" class="table_of_content_link list-group-item list-group-item-action py-2 border-0 rounded-0">
+                    Liens utiles
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </t>
+  </template>
+</odoo>
