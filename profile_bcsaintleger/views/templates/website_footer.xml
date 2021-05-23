@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <!-- Footer -->
+  <template id="template_footer_headline_bcsaintleger" inherit_id="website.layout" name="BC Saint-Léger Headline" priority="20">
+    <xpath expr="//div[@id='footer']" position="replace">
+      <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer" style="">
+        <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-3 pb24">
+                <ul class="pl-3 mb-0">
+                  <li>
+                    <a href="/">Accueil</a>
+                  </li>
+                  <li>
+                    <a href="/contactus">Contactez-nous</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6 pb0 o_colored_level">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <i class="fa fa-phone fa-fw mr-2"/>
+                    <span class="o_force_ltr">
+                      <a href="tel:+32 (0)486 61 61 50">+32 (0)486 61 61 50</a>
+                    </span>
+                  </li>
+                  <li>
+                    <i class="fa fa-envelope fa-fw mr-2"/>
+                    <span>
+                      <a href="mailto:badsl@live.be" data-original-title="" title="" aria-describedby="tooltip280020">badsl@live.be</a>
+                    </span>
+                  </li>
+                  <li>
+                    <i class="fa fa-euro fa-fw mr-2"/>
+                    <span>
+                      BE68 0682 2806 7134
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-3 pb24 o_colored_level">
+                <div class="s_share text-right" data-name="Social Media">
+                  <h5 class="s_share_title d-none">Partager</h5>
+                  <a href="/website/social/facebook" class="s_share_facebook" target="_blank">
+                    <i class="fa fa-1x fa-facebook rounded-circle shadow-sm"/>
+                  </a>
+                  <a href="/website/social/github" class="s_share_github" target="_blank">
+                    <i class="fa fa-1x fa-github rounded-circle shadow-sm"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </xpath>
+  </template>
+</odoo>

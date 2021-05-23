@@ -23,6 +23,7 @@ Following features are included in this module:
     ],
     'data': [
         # views - website templates
+        'views/templates/website_footer.xml',
         'views/templates/website_homepage.xml',
         'views/templates/website_membership_information.xml',
         'views/templates/website_practical_information.xml',
