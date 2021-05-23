@@ -56,4 +56,11 @@
       </div>
     </xpath>
   </template>
+
+  <!-- Move scroll up button on top of footer -->
+  <template id="option_footer_scrolltop_bcsaintleger" inherit_id="website.option_footer_scrolltop" name="BC Saint-Léger Footer Scroll Top" active="True">
+    <xpath expr="//div[@id='footer']" position="before">
+        <xpath expr="//div[@id='o_footer_scrolltop_wrapper']" position="move"/>
+    </xpath>
+  </template>
 </odoo>
