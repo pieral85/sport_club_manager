@@ -16,5 +16,20 @@
         <field name="parent_id" ref="website.main_menu"/>
         <field name="sequence" type="int">25</field>
     </record>
+
+    <record id="page_membership_info" model="website.page">
+        <field name="name">Membership</field>
+        <field name="is_published">True</field>
+        <field name="url">/affiliation</field>
+        <field name="view_id" ref="website_membership_information"/>
+        <field name="track">True</field>
+    </record>
+    <record id="menu_membership_info" model="website.menu">
+        <field name="name">Membership</field>
+        <field name="page_id" ref="page_membership_info"/>
+        <field name="website_id" ref="website.default_website"/>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">10</field>
+    </record>
 </data>
 </odoo>
