@@ -32,6 +32,16 @@
                       </div>
                     </div>
                   </div>
+                  <!--
+                  <p class="lead o_default_snippet_text">
+                    <address>
+                      <div t-field="partner.self" t-options='{
+                        "widget": "contact",
+                        "fields": ["address", "website", "phone"]
+                      }'/>
+                    </address>
+                  </p>
+                  -->
                 </section>
                 <section class="pb16 s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel" style="">
                   <div id="myCarousel1601625744793" class="s_carousel carousel slide s_carousel_rounded" data-interval="10000">
