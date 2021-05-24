@@ -20,6 +20,7 @@ Following features are included in this module:
         'interclubs',
         'badminton_be',
         'theme_treehouse',
+        'website_blog',
     ],
     'data': [
         # views - website templates
