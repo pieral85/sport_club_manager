@@ -15,6 +15,8 @@
 
 <data noupdate="1">
     <!-- Add membership in the website menu -->
+    <!--TODO no need of menu_membership anymore;
+    both children menus should be moved
     <record id="menu_membership" model="website.menu">
         <field name="name">Membership</field>
         <field name="website_id" ref="website.default_website"/>
@@ -34,7 +36,7 @@
         <field name="url">club/my/membership/historical</field>
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">20</field>
-    </record>
+    </record>-->
 
     <!-- Add club information in the website menu -->
     <record id="menu_club_info" model="website.menu">

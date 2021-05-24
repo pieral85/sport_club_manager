@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- TODO Does this template still make sense? (is it useful to show periods information?) -->
     <!-- TODO '/club/' url should be dynamic (as it is in the controller) -->
     <!-- Web Page showing info on the active periods -->
     <template id="website_period">

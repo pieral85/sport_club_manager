@@ -18,17 +18,17 @@ class Club(AuthSignupHome):
             'periods': periods,
         })
 
-    @route('%s/membership/request' % _URL_ROOT, auth='user', website=True)
-    def request_membership(self):
-        consumed_period_ids = request.env['membership'].search([('member_id', '=', request.env.user.partner_id.id),]).mapped('period_id').ids  # TODO Test 'request.env.user.partner_id.id'
-        period_category_ids = request.env['period.category'].search([
-            ('period_id.active', '=', True),
-            ('period_id.id', 'not in', consumed_period_ids),
-            ]
-        )
-        return request.render('club.website_membership_request', {
-            'period_categories': period_category_ids,
-        })
+    # @route('%s/membership/request' % _URL_ROOT, auth='user', website=True)
+    # def request_membership(self):
+    #     consumed_period_ids = request.env['membership'].search([('member_id', '=', request.env.user.partner_id.id),]).mapped('period_id').ids  # TODO Test 'request.env.user.partner_id.id'
+    #     period_category_ids = request.env['period.category'].search([
+    #         ('period_id.active', '=', True),
+    #         ('period_id.id', 'not in', consumed_period_ids),
+    #         ]
+    #     )
+    #     return request.render('club.website_membership_request', {
+    #         'period_categories': period_category_ids,
+    #     })
 
     # @route('%s/members/<model("res.partner"):member>/' % _URL_ROOT, auth='public', website=True)
     # def member(self, member):
