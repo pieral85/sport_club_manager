@@ -1,0 +1,870 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* profile_bcsaintleger
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-11 23:38+0000\n"
+"PO-Revision-Date: 2020-10-11 21:40+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: lang_iso_code\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "(Pour cela, un compte doit avoir été créé)<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"* Il faut compter deux terrains en moins en cas d'interclub (environ sept fois sur la saison).<br/>\n"
+"                  A ces dates cependant, la salle est ouverte jusque 23h00."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "03h00 - 10h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "100 € / saison<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "10h00 - 11h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "11h00 - 12h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "12h00 - 13h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "20h00 - 22h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "20h00 - 22h30"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "20h00 - 23h00"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "70 € / saison<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "80 € / saison<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "90 € / saison<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<font style=\"\" class=\"text-o-color-5\">Complexe sportif</font>\n"
+"                  <br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "<font style=\"\" class=\"text-o-color-5\">Documents</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "<font style=\"\" class=\"text-o-color-5\">F.A.Q.</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "<font style=\"\" class=\"text-o-color-5\">Horaires</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "<font style=\"\" class=\"text-o-color-5\">Liens utiles</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "<font style=\"background-color: rgba(0, 0, 0, 0);\" class=\"text-white\">Cafétéria</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid ""
+"<font style=\"background-color: rgba(4, 99, 128, 0.5);\" class=\"text-o-color-3\">Prix des cotisations pour la saison 2020/2021</font>\n"
+"                <br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "<font style=\"font-size: 62px;\" class=\"text-900\">Bienvenue</font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid ""
+"<font style=\"font-size: 62px;\">\n"
+"            <b>Quoi de neuf sur facebook ?</b>\n"
+"          </font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "<font style=\"font-size: 62px;\">Envie de jouer?<br/></font>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<i class=\"fa fa-envelope fa-fw\" role=\"img\" aria-label=\"Email\" title=\"Email\"/>\n"
+"                      <span itemprop=\"email\" class=\"o_default_snippet_text\">sports.complex@test.com</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<i class=\"fa fa-map-marker fa-fw\" role=\"img\" aria-label=\"Address\" title=\"Address\"/>\n"
+"                      <span class=\"w-100 o_force_ltr d-block o_default_snippet_text\" itemprop=\"streetAddress\">Rue du Stade, 1<br/>6747 Saint-Léger<br/>Belgium</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<i class=\"fa fa-phone fa-fw\" role=\"img\" aria-label=\"Phone\" title=\"Phone\"/>\n"
+"                      <span class=\"o_force_ltr o_default_snippet_text\" itemprop=\"telephone\">0032 (0)63 21 89 70</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<span class=\"carousel-control-next-icon\" data-original-title=\"\" title=\"\" aria-describedby=\"tooltip931787\"/>\n"
+"                    <span class=\"sr-only o_default_snippet_text\">Next</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid ""
+"<span class=\"carousel-control-prev-icon\" data-original-title=\"\" title=\"\" aria-describedby=\"tooltip733287\"/>\n"
+"                    <span class=\"o_default_snippet_text sr-only\">Previous</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "<span class=\"s_progress_bar_text\">50%</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "<span class=\"s_progress_bar_text\">60% Development</span>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Actualités"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Affiliation"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Affiliations"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Assurance"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Attention, les volants ne seront fournis qu'une fois le paiement effectué en main propre.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Aéroclub TR: 16 €"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Calcul d'itinéraire via"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Cette fonctionnalité est en cours de réalisation et sera bientôt disponible!<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Comme pour l'inscription via le formulaire,<br/>la demande sera traitée par un des membres du comité."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Complexe sportif"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Composition d'équipe - Messieurs (pdf)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Compétiteur"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Cotisation <i>compétiteur</i><br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Cotisation <i>récréant</i><br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Divers"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Documents"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Déclaration d'accident"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "En envoyant un email à l'adresse"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "En plus des services liés à la cotisation récréant, vous aurez droit à:<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "En remplissant le&amp;nbsp;"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "En savoir plus"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Entraînement dirigé (débutants)<br/>àpd. 21h15: jeu libre"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Entraînement jeunes (niveau 1)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Entraînement jeunes (niveau 2)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Entraînement jeunes (niveau 3)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Entraînement jeunes (niveau 4)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Entraînements<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "F.A.Q."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Familles nombreuses<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Feuille de match - Messieurs (pdf)"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Format Excel"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Go!"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Google Maps"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Heure"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Horaires"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Il suffit ensuite de le donner&amp;nbsp;à l'un des membres du comité,<br/>par exemple lors d'une séance d'entraînement."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Infos pratiques<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Inscription joueur"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Interclubs"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Interclubs amicaux / officiels<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Interclubs<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Jeu libre"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Jeudi"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Joueurs externes<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Jour"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "La salle dispose de 5 terrains de double."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Le club organise chaque année un tournoi amical pour des joueurs de tout niveau. Convivialité et amusement garantis!<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Les cotisations doivent être payées<br/>sur le compte <i><b>BE68 0682 2806 7134</b></i><br/>BIC: <i>GKCCBEBB</i><br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Les entraînements sont libres et dirigés."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Lettre de rentrée"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Lien vers le"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Liens utiles"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Localisation"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Lorsque vous payez la cotisation récréant, voici ce à quoi vous avez droit:<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Lundi"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Mardi"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Mavis 300: x €<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:website.menu,name:profile_bcsaintleger.menu_membership_info
+msgid "Membership"
+msgstr "Affiliation"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Mutuelle"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "N'hésitez pas et rejoignez-nous&amp;nbsp;sur un terrain!"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Next"
+msgstr "Suivant"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Oui, le club propose à ses membres d'acheter des volants à prix réduit.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Paiement"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Plus d'infos"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Plus d'infos concernant les affiliations sur le"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Plus de détails sur le"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Plusieurs solutions s'offrent à vous:"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Pour les joueurs déjà affiliés dans un autre club, le montant de la cotisation s'élève à 40€, toute catégorie confondue.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Pour tout savoir sur la vie quotidienne du club!<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:website.menu,name:profile_bcsaintleger.menu_practical_information
+msgid "Practical Information"
+msgstr "Infos pratiques"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Previous"
+msgstr "Précédent"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Prix des cotisations et infos liées aux affiliations."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Quelles sont les dernières nouvelles du club?<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Récréant<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Samedi"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Scroll down to next section"
+msgstr "Descendre jusqu'à la section suivante"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.sport_complex_detail_TEST
+msgid "Short Description for List View"
+msgstr "Description courte pour la vue liste"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Si un nombre suffisant de joueurs au sein du club le permet, la LFBB organise des championnats d'interclubs amicaux et officiels.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Si vous n'êtes pas (encore) membre mais que vous souhaitez essayer, vous pouvez venir à deux séances et ensuite décider si vous payez la cotisation!<br/>Il faudra alors compléter le formulaire papier ou s'inscrire via le site.<br/>Si vous n'avez pas encore de matériel, aucun problème, le club prête raquette et volants.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "Suivez l'actualité de notre équipe messieurs.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Terrains"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Tournois amicaux<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Tournois officiels<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Tout au long de la saison, des tournois officiels&amp;nbsp;sont organisés dans la province et le pays."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Type"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Une assurance couvre (entre autre) les dommages corporels pouvant subvenir lors d'un entraînement / tournoi.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Via le&amp;nbsp;"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Voici la"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Volant plumes:"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Volants plastiques:"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Votre demande sera ensuite traitée par un des membres du comité."
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Vous pouvez nous transmettre le formulaire de votre mutuelle afin de bénéficier d'une intervention dans le paiement de la cotisation. N'attendez pas le mois de juin!"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Vous pouvez venir à deux séances d'essai gratuites et ensuite décider si vous vous affiliez.<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "Vous souhaitez vous affilier?<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Y a-t-il moyen d'acheter des volants via le club?"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "Yonex AS 20: 20 €"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "adulte<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "badsl@live.be"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "black and silver fountain pen"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+msgid "blue and white 2 signage"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "brown ice cream cone"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "formulaire en ligne"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "formulaire papier<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "ici"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "liste des rencontres de notre équipe pour cette saison"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "liste des tournois pour cette saison"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "moins de 18 ans<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "site de la LFBB"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "site du complexe sportif"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "À l'essai<br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
+msgid "À partir du troisième membre, une réduction de 10€ sera accordée.<br/>Par exemple, un adulte compétiteur et ses deux enfants récréants paieront 100€ + 2x70€ - 10€"
+msgstr ""
