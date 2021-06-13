@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "badminton_club_manager_be",
+    'name': "badminton_club_manager",
 
     'summary': """
         Manage players for ...""",  # TODO
@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['badminton'],#, 'board', 'website', 'website_sale'],
+    'depends': ['club'],#, 'board', 'website', 'website_sale'],
 
     # always loaded
     'data': [
