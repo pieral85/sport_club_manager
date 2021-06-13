@@ -18,7 +18,7 @@ Following features are included in this module:
     'version': '0.1',
     'depends': [
         'interclubs',
-        # 'badminton_be',  # Commented because this module is still under development
+        'badminton_be',
         'theme_treehouse',
     ],
     'data': [
@@ -28,6 +28,8 @@ Following features are included in this module:
         'views/templates/website_homepage.xml',
         'views/templates/website_membership_information.xml',
         'views/templates/website_practical_information.xml',
+        # menus
+        'views/menus.xml',
         # data
         'data/partner_data.xml',
         'data/website_data.xml',

@@ -23,6 +23,8 @@
 
     # always loaded
     'data': [
+        # menus
+        'views/menus.xml',
     ],
     'qweb': [
         # 'static/src/xml/*.xml',
