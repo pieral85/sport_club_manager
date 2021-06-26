@@ -124,15 +124,20 @@ class Membership(models.Model):
     category_id = fields.Many2one(
         comodel_name='category',
         related='period_category_id.category_id',
+        required=True,
         store=False,
         readonly=False,
+        domain="[('period_category_ids.period_id', '=?', period_id)]",
     )
+
     period_id = fields.Many2one(
         comodel_name='period',
         related='period_category_id.period_id',
+        required=True,
         store=True,
         ondelete='cascade',
         readonly=False,
+        domain="[('period_category_ids.category_id', '=?', category_id)]",
         # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
 
@@ -154,17 +159,14 @@ class Membership(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.setdefault('period_category_id', self.env['period.category'].search([
-            ('period_id.current', '=', True),
-            ('default', '=', True),
-            ]
-        ).id)  # TODO Tester quand il n'existe pas de periode courante
-        vals.setdefault('state', 'unknown')
+        self._modify_period_category_vals(vals)
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
         return res
 
     def write(self, vals):
+        self._modify_period_category_vals(vals)
+
         if vals.get('state') == 'member':
             vals['token_validity'] = None
             if not self.member_id.parent_id:
@@ -337,6 +339,29 @@ class Membership(models.Model):
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
 
+    def _modify_period_category_vals(self, vals):
+        """ Modifies the dictionary `vals` regarding its values related to "period", "category" and "period category".
+        DISCLAIMER: This method modifies the object (dictionary) passed as the argument `vals`!
+        If you do not want the dictionary passed as argument to be altered, copy it before calling!
+
+        Note: This method raise a `ValidationError` if both period and category are not consistent together (both should be in a `period.category` existing record).
+
+        :return: None
+        """
+        if vals.get('period_category_id'):
+            # "period category" value takes precedence over values period and category.
+            # It also avoids to modify the period_category_id record w/ fields period/category
+            vals.pop('period_id', None)
+            vals.pop('category_id', None)
+        else:
+            period_category = self.env['period.category'].search([
+                ('period_id.id', '=', vals.get('period_id', self.period_id.id)),
+                ('category_id.id', '=', vals.get('category_id', self.category_id.id)),
+            ], limit=1)
+            if not period_category:
+                raise ValidationError(_('Fields "Period" and "Category" cannot be set together with such values.'))
+            vals['period_category_id'] = period_category.id
+
     @api.onchange('token')
     def _onchange_token(self):
         for record in self:
@@ -390,34 +415,6 @@ class Membership(models.Model):
     def _compute_price_due(self):
         for record in self:
             record.price_due = record.period_category_id.price_due if record.period_category_id else 0
-
-    @api.onchange('category_id')
-    def _onchange_category_id(self):
-        for record in self:
-            if record.category_id and record.period_id:
-                period_category_id = self.env['period.category'].search([
-                    ('period_id.id','=',record.period_id.id),
-                    ('category_id.id','=',record.category_id.id),
-                    ],
-                    limit=1,)
-                backup_category_id = record.category_id
-                record.period_id = None
-                record.period_category_id = period_category_id
-                record.category_id = backup_category_id
-
-    @api.onchange('period_id')
-    def _onchange_period_id(self):
-        for record in self:
-            if record.period_id and record.category_id:
-                period_category_id = self.env['period.category'].search([
-                    ('period_id.id','=',record.period_id.id),
-                    ('category_id.id','=',record.category_id.id),
-                    ],
-                    limit=1,)
-                backup_period_id = record.period_id
-                record.category_id = None
-                record.period_category_id = period_category_id
-                record.period_id = backup_period_id
 
     @api.constrains('member_id', 'period_id')
     def _check_user_period(self):
