@@ -85,7 +85,7 @@ class Club(AuthSignupHome):
                     messages['info'] = 'Your membership request is going to be examined by the committee. \
                         Please ensure to pay the amount due first.'
 
-            response_content = env['ir.ui.view'].render_template(
+            response_content = env['ir.ui.view']._render_template(
                 'club.membership_affiliation_page_anonymous', {
                     'membership': membership,
                     'messages': messages,
