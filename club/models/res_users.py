@@ -5,7 +5,8 @@ from re import match
 
 # from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, exceptions, _
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError, Warning
 
 
 class ResUsers(models.Model):
@@ -49,7 +50,7 @@ class ResUsers(models.Model):
         role_name, action = self._context['role_name'], self._context['action']
         current_role = self.role_ids.filtered(lambda r: r.current and r.name == role_name)
         if (action == 'stop' and not current_role) or (action == 'start' and current_role):
-            raise exceptions.Warning(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
+            raise Warning(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
 
         if action == 'start':
             self.role_ids.create({
@@ -69,9 +70,9 @@ class ResUsers(models.Model):
             return
         # TODO Do we really need to check email at onchange of login (can't a user login with sth != email?)
         # if not match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", self.login):
-        #     raise exceptions.ValidationError(_('Invalid email address. Please enter a valid one.'))
+        #     raise ValidationError(_('Invalid email address. Please enter a valid one.'))
         if self.search_count([('login', '=', self.login), ]):  # TODO Mettre ça une fois qu'on sauve?
-            raise exceptions.ValidationError(_('This email already exists. Please enter another one.'))
+            raise ValidationError(_('This email already exists. Please enter another one.'))
 
     def _get_group_vals(self, vals):
         """ Updates user's groups if one of the following attributes has been changed: 'president', 'secretary' or 'treasurer'.

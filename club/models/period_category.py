@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, _
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class PeriodCategory(models.Model):
@@ -103,9 +104,9 @@ class PeriodCategory(models.Model):
         """
         for pc in self:
             if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.category_id.id == pc.category_id.id)) > 1:
-                raise exceptions.ValidationError(_("For the period '%s', the category '%s' must be unique. Please change it accordingly.") % (pc.period_id.name, pc.category_id.name))
+                raise ValidationError(_("For the period '%s', the category '%s' must be unique. Please change it accordingly.") % (pc.period_id.name, pc.category_id.name))
             if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.default)) > 1:
-                raise exceptions.ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (pc.period_id.name))
+                raise ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (pc.period_id.name))
 
     @api.depends('period_id', 'category_id')
     def name_get(self):

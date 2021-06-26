@@ -4,6 +4,7 @@
 # from re import match
 
 from odoo import api, fields, models, exceptions, _
+from odoo.exceptions import ValidationError
 
 
 # TODO Add a daily CRON which computes 'current' field (use '_compute_current' fonction?)
@@ -77,6 +78,6 @@ class Role(models.Model):
             count_common_roles = role.env['role'].search_count(_domain) - 1
             if count_common_roles:
                 # TODO As role.name is a selection field, it should display its "correct" value (eg 'President' instead of 'president')
-                raise exceptions.ValidationError(_("The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly.") % (role.name, role.user_id.name))
+                raise ValidationError(_("The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly.") % (role.name, role.user_id.name))
             if role.end_date and (not role.start_date or role.start_date >= role.end_date):
-                raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+                raise ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))

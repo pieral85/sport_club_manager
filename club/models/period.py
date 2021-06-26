@@ -4,7 +4,8 @@
 import ast
 from datetime import date
 
-from odoo import models, fields, api, exceptions, _
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class Period(models.Model):
@@ -265,7 +266,7 @@ class Period(models.Model):
         """
         for period in self:
             if not period.start_date or not period.end_date or period.start_date > period.end_date:
-                raise exceptions.ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
+                raise ValidationError(_('The end date should be higher than the start date. Please change it accordingly.'))
 
     @api.constrains('name')
     def _check_name_unique(self):
@@ -275,4 +276,4 @@ class Period(models.Model):
         """
         for period in self:
             if self.search_count([('name', '=', period.name)]) > 1:
-                raise exceptions.ValidationError(_('The name of the period must be unique! Please change it accordingly.'))
+                raise ValidationError(_('The name of the period must be unique! Please change it accordingly.'))

@@ -4,14 +4,15 @@
 import uuid
 from datetime import datetime, timedelta
 
-from odoo import api, fields, models, exceptions, tools, _
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 
 
 class Membership(models.Model):
     _name = 'membership'
     _inherit = 'mail.thread'
     _description = 'Membership'
-    _order = "period_id asc, member_id asc"
+    _order = 'period_id asc, member_id asc'
 
     @api.model
     def _get_token(self):
@@ -428,7 +429,7 @@ class Membership(models.Model):
         for membership in self:
             if Membership.search_count([('member_id.id', '=', membership.member_id.id),
                                         ('period_id.id', '=', membership.period_id.id),]) > 1:
-                raise exceptions.ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (membership.member_id.name, membership.period_id.name))
+                raise ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (membership.member_id.name, membership.period_id.name))
 
     @api.constrains('price_paid', 'price_due')
     def _check_price(self):
@@ -438,7 +439,7 @@ class Membership(models.Model):
         """
         for membership in self:
             if membership.price_paid < 0 or membership.price_due < 0:
-                raise exceptions.ValidationError(_("Prices should be positive."))
+                raise ValidationError(_("Prices should be positive."))
 
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]
