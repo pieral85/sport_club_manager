@@ -181,6 +181,9 @@ class Period(models.Model):
         #  * Créer le template d'email qui doit contenir deux boutons: un pour accepter et un pour refuser
         pass
 
+    def regenerate_alias_name(self):
+        self.alias_name = self._get_alias_name()
+
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         # TODO It would be great if this search method would be invoked from the membership views
@@ -196,13 +199,13 @@ class Period(models.Model):
 
     @api.model
     def create(self, vals):
-        vals.update(self._get_alias_name(vals, force_get=True))
+        vals.update(self._get_alias_name_dict(vals, force_get=True))
         res = super(Period, self).create(vals)
         res.update_periods()
         return res
 
     def write(self, vals):
-        vals.update(self._get_alias_name(vals))
+        vals.update(self._get_alias_name_dict(vals))
         res = super(Period, self).write(vals)
         if 'start_date' in vals or 'end_date' in vals:
             self.update_periods()
@@ -250,13 +253,16 @@ class Period(models.Model):
         except ValueError:
             return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
 
-    def _get_alias_name(self, vals, force_get=False):
+    def _get_alias_name(self, name=''):
+        if not name:
+            name = self.name
+        local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
+        return f'{local_part}{"+" if local_part else ""}{name}'
+
+    def _get_alias_name_dict(self, vals, force_get=False):
         if 'name' not in vals or 'alias_name' in vals and not force_get:
             return {}
-        local_part = self.env['ir.config_parameter'].sudo().get_param('mail_local_part') or ''
-        if local_part:
-            local_part += '+'
-        return {'alias_name': '{}{}'.format(local_part, vals['name'])}
+        return {'alias_name': self._get_alias_name(vals['name'])}
 
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):

@@ -83,7 +83,7 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Emails">
+                        <page string="Emails" groups="base.group_no_one">
                             <group>
                                 <label for="alias_name" string="Email Alias"/>
                                 <div name="alias_def">
@@ -93,6 +93,7 @@
                                         @
                                         <field name="alias_domain" class="oe_inline" readonly="1"/>
                                     </div>
+                                    <button name="regenerate_alias_name" type="object" string="Regenerate" class="oe_link" icon="fa-arrow-right" confirm="You are going to regenerate the default Email Alias. Are you sure? (The current one will be overwritten.)"/>
                                 </div>
                                 <field name="alias_contact" class="oe_inline" string="Accept Emails From"/>
                             </group>
