@@ -25,6 +25,7 @@ class Category(models.Model):
         default=lambda self: self.env.company.currency_id,
         store=False,
     )
+    active = fields.Boolean('Active', default=True)
     member_ids = fields.Many2many('res.partner', string='Members',
         compute='_compute_membership_ids')
     membership_ids = fields.Many2many(

@@ -12,6 +12,7 @@
                 <field name="total_price_due" sum="Total"/>
                 <field name="total_price_paid" sum="Total"/>
                 <field name="total_remaining_price_due" sum="Total"/>
+                <field name="active" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -22,7 +23,11 @@
         <field name="model">category</field>
         <field name="arch" type="xml">
             <form>
-                 <sheet>
+                <header>
+                    <field name="active" invisible="1"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <group>
                         <h1>
                             <field name="name" placeholder="Name..."/>
@@ -67,6 +72,20 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- search view(s) -->
+    <record id="category_search" model="ir.ui.view">
+        <field name="name">category.inactive.search</field>
+        <field name="model">category</field>
+        <field name="arch" type="xml">
+            <search string="Categories">
+                <field name="name" string="Category Name" filter_domain="[('name', 'ilike', self)]"/>
+                <separator/>
+                <filter name="active_search" string="Active" domain="[('active', '=',  True)]" help="Only active categories."/>
+                <filter name="inactive_search" string="Archived" domain="[('active', '=', False)]" help="Only inactive categories."/>
+            </search>
         </field>
     </record>
 </data>

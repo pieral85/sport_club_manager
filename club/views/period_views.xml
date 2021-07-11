@@ -16,6 +16,7 @@
                 <field name="total_price_due" sum="Total"/>
                 <field name="total_price_paid" sum="Total"/>
                 <field name="total_remaining_price_due" sum="Total"/>
+                <field name="active" optional="hide"/>
             </tree>
         </field>
     </record>
