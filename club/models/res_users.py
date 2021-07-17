@@ -17,14 +17,6 @@ class ResUsers(models.Model):
         ('partner_uniq', 'unique(partner_id)', 'The partner should be unique!'),
     ]
 
-    # action_id = fields.Many2one('ir.actions.actions', string='Home Action', help="If specified, this action will be opened at log on for this user, in addition to the standard menu.")
-    action_id = fields.Many2one(
-        comodel_name='ir.actions.actions',
-        string='Home Action',
-        compute='_get_action_id',
-        store=True,
-        help="If specified, this action will be opened at log on for this user, in addition to the standard menu."
-    )
     role_ids = fields.One2many(
         comodel_name='role',
         inverse_name='user_id',
@@ -137,20 +129,6 @@ class ResUsers(models.Model):
             user.president = user.role_ids.filtered(lambda r: r.current and r.name == 'president')
             user.secretary = user.role_ids.filtered(lambda r: r.current and r.name == 'secretary')
             user.treasurer = user.role_ids.filtered(lambda r: r.current and r.name == 'treasurer')
-
-    @api.depends('groups_id')
-    def _get_action_id(self):
-        """ Calculates the action that will be opened at log on for current user, based on his groups.
-
-        :return: None
-        """
-        # TODO This method is called multiple times when a group is changed on the user (should be 1x)
-        for record in self:
-            if self.env.ref('base.group_system') in record.groups_id or \
-               self.env.ref('club.group_club_committee_user') in record.groups_id:
-                record.action_id = self.env.ref('club.action_membership').id
-            else:
-                record.action_id = None
 
     @api.model
     def _update_record(self, values):
