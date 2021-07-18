@@ -18,6 +18,8 @@ class Category(models.Model):
         inverse_name='category_id',
         string='Period Categories',
     )
+    period_ids = fields.Many2many('period', string='Periods',
+        compute='_compute_period_ids')
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         string='Currency',
@@ -52,6 +54,11 @@ class Category(models.Model):
         currency_field='currency_id',
         compute='_compute_prices',
     )
+
+    @api.depends('period_category_ids', 'period_category_ids.period_id')
+    def _compute_period_ids(self):
+        for record in self:
+            record.period_ids = record.period_category_ids.mapped('period_id')
 
     def _compute_membership_ids(self):
         for record in self:

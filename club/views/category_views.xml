@@ -25,6 +25,7 @@
             <form>
                 <header>
                     <field name="active" invisible="1"/>
+                    <field name="period_ids" invisible="1"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -40,7 +41,7 @@
                         <page string="Periods">
                             <field name="period_category_ids">
                                 <tree editable="bottom">
-                                    <field name="period_id"/>
+                                    <field name="period_id" domain="[('id', 'not in', parent.period_ids)]"/>
                                     <field name="price_due" widget="monetary"/>
                                     <field name="count_members" sum="Total"/>
                                     <field name="total_price_due" sum="Total"/>

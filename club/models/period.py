@@ -61,6 +61,8 @@ class Period(models.Model):
         inverse_name='period_id',
         string='Period Categories',
     )
+    category_ids = fields.Many2many('category', string='Categories',
+        compute='_compute_category_ids')
     member_ids = fields.Many2many('res.partner', string='Members',
         compute='_compute_membership_ids')
     membership_ids = fields.Many2many(
@@ -210,6 +212,11 @@ class Period(models.Model):
         if 'start_date' in vals or 'end_date' in vals:
             self.update_periods()
         return res
+
+    @api.depends('period_category_ids', 'period_category_ids.category_id')
+    def _compute_category_ids(self):
+        for record in self:
+            record.category_ids = record.period_category_ids.mapped('category_id')
 
     def _compute_membership_ids(self):
         for record in self:
