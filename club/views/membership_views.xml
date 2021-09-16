@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="member_id"/>
-                <field name="period_id"/>
+                <field name="period_id" required="1"/>
                 <field name="category_id"/>
                 <field name="state"/>
                 <field name="price_due" sum="Total"/>
@@ -50,7 +50,7 @@
                         <group>
                             <field name="member_id"/>
                             <field name="contact_person_id"/>
-                            <field name="period_id" class="o_task_user_field"/>
+                            <field name="period_id" class="o_task_user_field" required="1"/>
                             <field name="category_id"/>
                         </group>
                         <group>

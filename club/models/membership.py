@@ -133,7 +133,7 @@ class Membership(models.Model):
     period_id = fields.Many2one(
         comodel_name='period',
         related='period_category_id.period_id',
-        required=True,
+        required=False,
         store=True,
         ondelete='cascade',
         readonly=False,
