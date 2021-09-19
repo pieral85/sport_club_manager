@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="period_category_view_form_account" model="ir.ui.view">
+        <field name="name">period category form account</field>
+        <field name="model">period.category</field>
+        <field name="inherit_id" ref="club.period_category_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Misc" groups="base.group_no_one">
+                    <group>
+                        <field name="product_id" attrs="{'invisible': [('id', '=', False)]}" required="0" groups="account.group_account_invoice"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

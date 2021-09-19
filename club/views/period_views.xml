@@ -17,6 +17,7 @@
                 <field name="total_price_paid" sum="Total"/>
                 <field name="total_remaining_price_due" sum="Total"/>
                 <field name="active" optional="hide"/>
+                <field name="currency_id" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -62,6 +63,7 @@
                                     <field name="total_price_due" sum="Total"/>
                                     <field name="total_price_paid" sum="Total"/>
                                     <field name="total_remaining_price_due" sum="Total"/>
+                                    <field name="currency_id" invisible="1"/>
                                 </tree>
                             </field>
                         </page>
@@ -82,11 +84,12 @@
                                     <field name="price_due" sum="Total"/>
                                     <field name="price_paid" sum="Total"/>
                                     <field name="price_remaining" sum="Total"/>
+                                    <field name="currency_id" invisible="1"/>
                                 </tree>
                             </field>
                         </page>
-                        <page string="Emails" groups="base.group_no_one">
-                            <group>
+                        <page string="Misc" groups="base.group_no_one">
+                            <group name="emails" string="Emails">
                                 <label for="alias_name" string="Email Alias"/>
                                 <div name="alias_def">
                                     <field name="alias_id" class="oe_read_only oe_inline" string="Email Alias" required="0"/>

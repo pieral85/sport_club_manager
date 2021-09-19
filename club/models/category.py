@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class Category(models.Model):
     _name = 'category'
     _description = 'Category'
+    _sql_constraints = [
+       ('name_uniq', 'unique(name)', 'The name of the category must be unique!'),
+    ]
 
     name = fields.Char(
         string='Category',
@@ -78,3 +82,13 @@ class Category(models.Model):
             record.total_price_paid = paid
             record.total_price_due = due
             record.total_remaining_price_due = remaining
+
+    @api.constrains('name')
+    def _check_name_unique(self):
+        """ Checks that the name of the category is unique.
+
+        :return: None
+        """
+        for category in self:
+            if self.search_count([('name', '=', category.name)]) > 1:
+                raise ValidationError(_('The name of the category must be unique! Please change it accordingly.'))

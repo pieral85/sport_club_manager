@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- tree view(s) -->
+    <record id="period_category_view_list" model="ir.ui.view">
+        <field name="name">period category list</field>
+        <field name="model">period.category</field>
+        <field name="arch" type="xml">
+            <tree default_order="period_id desc" expand="1">
+                <field name="period_id"/>
+                <field name="category_id"/>
+                <field name="default"/>
+                <field name="price_due" widget="monetary"/>
+                <field name="count_members" sum="Total"/>
+                <field name="total_price_due" sum="Total"/>
+                <field name="total_price_paid" sum="Total"/>
+                <field name="total_remaining_price_due" sum="Total"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view(s) -->
+    <record id="period_category_view_form" model="ir.ui.view">
+        <field name="name">period category form</field>
+        <field name="model">period.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="currency_id" invisible="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="period_id"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="price_due"/>
+                            <field name="default"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Memberships">
+
+                            <group>
+                                <field name="count_members"/>
+                            </group>
+                            <group col="6">
+                                <field name="total_price_due"/>
+                                <field name="total_price_paid"/>
+                                <field name="total_remaining_price_due"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- search view(s) -->
+    <record id="period_category_search" model="ir.ui.view">
+        <field name="name">period.category.search</field>
+        <field name="model">period.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Period Categories">
+                <field name="period_id" string="Period" filter_domain="[('period_id', 'ilike', self)]"/>
+                <field name="category_id" string="Category" filter_domain="[('category_id', 'ilike', self)]"/>
+                <group string="Group By">
+                    <filter name="period_groupby" string="Period" context="{'group_by':'period_id'}"/>
+                    <filter name="category_groupby" string="Category" context="{'group_by':'category_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

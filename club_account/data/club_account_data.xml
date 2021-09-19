@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<record id="product_category_membership" model="product.category">
+        <field name="name">Memberships</field>
+        <field name="parent_id" ref="product.product_category_3"/>
+        <!~~ TODO Define account properties ? ~~>
+    </record>-->
+
+    <record id="product_attribute_membership_category" model="product.attribute">
+        <field name="name">Membership Category</field>
+        <field name="display_type">radio</field>
+        <field name="create_variant">always</field>
+    </record>
+</odoo>

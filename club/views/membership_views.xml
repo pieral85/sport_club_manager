@@ -15,6 +15,7 @@
                 <field name="price_paid" sum="Total"/>
                 <field name="price_remaining" sum="Total"/>
                 <field name="price_paid_percentage" widget="progressbar"/>
+                <field name="currency_id" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -31,6 +32,7 @@
                 <field name="confirmation_mail_sent" invisible="1"/>
                 <field name="invitation_mail_sent" invisible="1"/>
                 <field name="user_state" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
                 <header>
                     <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate Affiliation" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
@@ -137,6 +139,7 @@
                 <field name="color"/>
                 <field name="member_parent_id"/>
                 <field name="price_paid_percentage"/>
+                <field name="currency_id" invisible="1"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} o_kanban_record_has_image_fill o_res_partner_kanban oe_kanban_global_click

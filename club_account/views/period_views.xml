@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="period_view_form_account" model="ir.ui.view">
+        <field name="name">period form account</field>
+        <field name="model">period</field>
+        <field name="inherit_id" ref="club.period_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='emails']" position="after">
+                <group>
+                    <field name="product_tmpl_id" attrs="{'invisible': [('id', '=', False)]}" required="0" groups="account.group_account_invoice"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

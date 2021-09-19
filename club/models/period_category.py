@@ -31,7 +31,7 @@ class PeriodCategory(models.Model):
     price_due = fields.Monetary(
         string='Due Price',
         currency_field='currency_id',
-        help="Expected price to pay for the member.",
+        help='Expected price to pay for the member.',
     )
     default = fields.Boolean(
         string='Default',
@@ -108,7 +108,6 @@ class PeriodCategory(models.Model):
             if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.default)) > 1:
                 raise ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (pc.period_id.name))
 
-    @api.depends('period_id', 'category_id')
     def name_get(self):
         result = []
         for record in self:

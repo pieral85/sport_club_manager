@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="membership_view_form_club_account" model="ir.ui.view">
+        <field name="name">membership form club account</field>
+        <field name="model">membership</field>
+        <field name="inherit_id" ref="club.membership_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="before">
+                <field name="invoice_other_membership_ids" invisible="1"/>
+                <field name="payment_state" invisible="1"/>
+                <field name="move_type" invisible="1"/>
+                <!-- Payment status for invoices / receipts
+                     (extract from `account.view_move_form`) -->
+                <widget name="web_ribbon" title="Paid"
+                        attrs="{'invisible': ['|', ('payment_state', '!=', 'paid'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+                <widget name="web_ribbon" title="In Payment"
+                        attrs="{'invisible': ['|', ('payment_state', '!=', 'in_payment'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+                <widget name="web_ribbon" title="Partial"
+                        attrs="{'invisible': ['|', ('payment_state', '!=', 'partial'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+                <widget name="web_ribbon" title="Reversed"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('payment_state', '!=', 'reversed')]}"/>
+                <widget name="web_ribbon" text="Invoicing App Legacy"
+                        bg_color="bg-info"
+                        attrs="{'invisible': [('payment_state', '!=', 'invoicing_legacy')]}"
+                        tooltip="This entry has been generated through the Invoicing app, before installing Accounting. It has been disabled by the 'Invoicing Switch Threshold Date' setting so that it does not impact your accounting."/>
+            </xpath>
+            <xpath expr="//button[@name='validate_membership_payment']" position="attributes">
+                <attribute name="string">Validate Invoice</attribute>
+                <attribute name="attrs">{'invisible': ['|', '|', ('state', 'not in', ('requested', 'member')), ('payment_state', 'in', ('in_payment', 'paid')), ('invoice_other_membership_ids', '!=', [])]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='validate_membership_payment']" position="after">
+                <button name="validate_membership_payment" type="object" string="Validate Invoice" class="btn-primary" attrs="{'invisible': ['|', '|', ('state', 'not in', ('requested', 'member')), ('payment_state', 'in', ('in_payment', 'paid')), ('invoice_other_membership_ids', '=', [])]}" confirm="Other memberships are linked to the same invoice. Doing a payment receipt will also pay these memberships."/>
+            </xpath>
+            <xpath expr="//field[@name='price_paid']" position="after">
+                <div attrs="{'invisible': ['|', ('payment_state', '!=', 'partial'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}" class="alert alert-info o_form_label" colspan="2"><strong>Price Paid:</strong> refer to the invoice</div>
+            </xpath>
+            <xpath expr="//field[@name='price_paid']" position="attributes">
+                <attribute name="attrs">{'invisible': [('payment_state', '=', 'partial'), ('move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_due']" position="after">
+                <field name="invoice_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

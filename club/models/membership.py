@@ -10,6 +10,11 @@ from odoo.exceptions import ValidationError
 
 class Membership(models.Model):
     _name = 'membership'
+    # _inherits = {
+    #     'account.move': 'move_id',
+    # }  # TODO move me in a seperated module
+    # TODO Pas sûr que l'inherits soit nécessaire...
+    # TODO Ne faudrait il pas plutot etre lié à l'aml? (afin qu'un facture puisse etre liée à plusieurs membership...)
     _inherit = 'mail.thread'
     _description = 'Membership'
     _order = 'period_id asc, member_id asc'
@@ -53,21 +58,25 @@ class Membership(models.Model):
     )
     price_due = fields.Monetary(
         string='Price Due',
-        compute='_compute_price_due',
+        # compute='_compute_price_due',
+        # inverse='_inverse_price_due',
         tracking=True,
         store=True,
-    )
+    )  # --> move_id.amount_total?
     price_paid_percentage = fields.Float(
         string='Percentage Paid',
         compute='_compute_payment',
         store=True,
     )
+
+# record.price_remaining = record.price_due - record.price_paid
+
     price_remaining = fields.Monetary(
         string='Price Remaining',
         currency_field='currency_id',
         compute='_compute_payment',
         store=True,
-    )
+    )  # --> move_id.amount_residual? ou amount_residual_signed?
     paid = fields.Boolean(
         string='Paid',
         compute='_compute_payment',
@@ -141,7 +150,6 @@ class Membership(models.Model):
         # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
     )
 
-    @api.depends('period_id', 'member_id')
     def name_get(self):
         """ name_get() -> [(id, name), ...]
 
@@ -348,12 +356,7 @@ class Membership(models.Model):
 
         :return: None
         """
-        if vals.get('period_category_id'):
-            # "period category" value takes precedence over values period and category.
-            # It also avoids to modify the period_category_id record w/ fields period/category
-            vals.pop('period_id', None)
-            vals.pop('category_id', None)
-        else:
+        if not vals.get('period_category_id') and ('period_id' in vals or 'category_id' in vals):
             period_category = self.env['period.category'].search([
                 ('period_id.id', '=', vals.get('period_id', self.period_id.id)),
                 ('category_id.id', '=', vals.get('category_id', self.category_id.id)),
@@ -361,6 +364,20 @@ class Membership(models.Model):
             if not period_category:
                 raise ValidationError(_('Fields "Period" and "Category" cannot be set together with such values.'))
             vals['period_category_id'] = period_category.id
+        # avoids to modify the period_category_id record w/ period and category fields
+        vals.pop('period_id', None)
+        vals.pop('category_id', None)
+
+    @api.onchange('period_id', 'category_id')
+    def _onchange_period_or_category(self):
+        PeriodCategory = self.env['period.category']
+        for rec in self:
+            period_cat = PeriodCategory.search([
+                ('period_id', '=', rec.period_id.id),
+                ('category_id', '=', rec.category_id.id),
+            ], limit=1)
+            if period_cat:
+                rec.price_due = period_cat.price_due
 
     @api.onchange('token')
     def _onchange_token(self):
@@ -411,10 +428,17 @@ class Membership(models.Model):
             # TODO 30 should be in club parameters
             record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
 
-    @api.depends('period_category_id')
-    def _compute_price_due(self):
-        for record in self:
-            record.price_due = record.period_category_id.price_due if record.period_category_id else 0
+    # @api.depends('period_category_id')
+    # def _compute_price_due(self):
+    #     print('\n_compute_price_due')
+    #     for record in self:
+    #         record.price_due = record.period_category_id.price_due if record.period_category_id else 0
+
+    # def _inverse_price_due(self):
+    #     """ empty inverse method in order to have `price_due` field editable
+    #     and not overrriden if a period_category is set after a manual
+    #     modification of the price """
+    #     pass
 
     @api.constrains('member_id', 'period_id')
     def _check_user_period(self):

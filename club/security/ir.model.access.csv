@@ -25,3 +25,5 @@ access_club_portal_period,access_club_portal_period,model_period,base.group_port
 access_club_portal_period_category,access_club_portal_period_category,model_period_category,base.group_portal,1,0,0,0
 access_club_portal_category,access_club_portal_category,model_category,base.group_portal,1,0,0,0
 access_club_portal_membership,access_club_portal_membership,model_membership,base.group_portal,1,0,0,0
+
+access_club_public_period_category,access_club_public_period_category,model_period_category,base.group_public,1,0,0,0

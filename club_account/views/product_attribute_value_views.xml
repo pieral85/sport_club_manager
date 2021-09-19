@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="product_attribute_value_view_form" model="ir.ui.view">
+        <field name="name">product attribute value form</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <form string="Product Attribute Value">
+            <sheet>
+                <group>
+                    <field name="attribute_id"/>
+                    <field name="name"/>
+                    <field name="display_type" invisible="1"/>
+                    <field name="is_custom" groups="product.group_product_variant"/>
+                    <field name="html_color" attrs="{'invisible': [('display_type', '!=', 'color')]}" widget="color"/>
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
