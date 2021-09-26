@@ -14,7 +14,7 @@
         <field name="state">code</field>
         <field name="code">
             if records:
-                records.update_periods()
+                records._update_periods()
         </field>
     </record>
 </data>

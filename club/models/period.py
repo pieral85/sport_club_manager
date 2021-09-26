@@ -2,10 +2,13 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import ast
+import logging
 from datetime import date
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class Period(models.Model):
@@ -112,7 +115,8 @@ class Period(models.Model):
             defaults['period_id'] = self.id
         return values
 
-    def update_periods(self):
+    @api.autovacuum
+    def _update_periods(self):
         """ Updates 'active', 'current' and 'incoming' attributes of self, based on their 'start_date' and 'end_date' attributes.
 
         :return: None
@@ -125,6 +129,8 @@ class Period(models.Model):
             order='start_date asc', limit=1).id
         upcoming_period_ids = Period.search([('start_date', '>', today)], order='start_date asc').ids
         upcoming_period_id = upcoming_period_ids[0] if upcoming_period_ids else []
+        _logger.info("Update periods: current is #%d; upcoming are #%s",
+            current_period_id, ','.join(str(p_id) for p_id in upcoming_period_ids))
 
         for period in Period.search([]):
             period.write({
@@ -173,7 +179,7 @@ class Period(models.Model):
                 'period_id': new_period.id,
             }
             period_category_id.copy(default)
-        self.update_periods()
+        self._update_periods()
         return new_period
 
     def send_email_invitations(self):
@@ -203,14 +209,14 @@ class Period(models.Model):
     def create(self, vals):
         vals.update(self._get_alias_name_dict(vals, force_get=True))
         res = super(Period, self).create(vals)
-        res.update_periods()
+        res._update_periods()
         return res
 
     def write(self, vals):
         vals.update(self._get_alias_name_dict(vals))
         res = super(Period, self).write(vals)
         if 'start_date' in vals or 'end_date' in vals:
-            self.update_periods()
+            self._update_periods()
         return res
 
     @api.depends('period_category_ids', 'period_category_ids.category_id')
