@@ -93,10 +93,6 @@ class Period(models.Model):
         compute='_compute_prices',
     )
 
-    def toggle_active(self):
-        for template in self:
-            template.active = not template.active
-
     # TODO This is a test function ==> delete me if not needed
     # @api.model_cr
     # def _register_hook(self):

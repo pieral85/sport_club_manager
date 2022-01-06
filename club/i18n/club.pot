@@ -1194,13 +1194,6 @@ msgid "Upcoming Period"
 msgstr ""
 
 #. module: club
-#: model:ir.actions.server,name:club.cron_period_update_ir_actions_server
-#: model:ir.cron,cron_name:club.cron_period_update
-#: model:ir.cron,name:club.cron_period_update
-msgid "Update Active Periods"
-msgstr ""
-
-#. module: club
 #: model:ir.model.fields,field_description:club.field_membership_user_id
 #: model:ir.model.fields,field_description:club.field_role_user_id
 msgid "User"
