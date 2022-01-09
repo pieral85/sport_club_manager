@@ -378,6 +378,9 @@ class Membership(models.Model):
             ], limit=1)
             if period_cat:
                 rec.price_due = period_cat.price_due
+        return {
+            'warning': {'title': _("Message"), 'message': _("Price Due has changed"), 'type': 'notification'},
+        }
 
     @api.onchange('token')
     def _onchange_token(self):
