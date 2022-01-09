@@ -17,6 +17,7 @@ Following features are included in this module:
     'category': 'Club Sport Badminton',
     'version': '0.1',
     'depends': [
+        'club_account',
         'l10n_be',  # Belgium accounting (depends on `account`)
         'interclubs',
         'badminton_be',

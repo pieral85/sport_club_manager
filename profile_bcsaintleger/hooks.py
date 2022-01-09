@@ -26,3 +26,6 @@ def post_init_hook(cr, registry):
         'email': 'badsl@live.be',
         'image_1920': get_binary('bc_saint_leger_logo.png'),
     })
+    env.ref('base.main_company').write({
+        'account_sale_tax_id': False,
+    })
