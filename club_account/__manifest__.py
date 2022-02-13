@@ -2,14 +2,12 @@
 {
 # TODO Review this file
     'name': "Accounting for Club Membership Manager",
-
-    'summary': """
-        Add invoicing mechanism for the club management.""",
-
+    'summary': "Add invoicing mechanism for the club management.",
     'description': """
-        This module adds the accounting for the management of members.
+This module adds the accounting for the management of members.
+
 Following features are included in this module:
- * invoicing: an invoice is created every time a membership is also created and lives alongside
+- invoicing: an invoice is created every time a membership is also created and lives alongside
     """,
     'author': "pal@odoo.com",
     'category': 'Club Membership Accounting/Accounting',

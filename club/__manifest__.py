@@ -2,17 +2,15 @@
 {
 # TODO Review this file
     'name': "Club Membership Manager",
-
-    'summary': """
-        Manage memberships for any kind of club.""",
-
+    'summary': "Manage memberships for any kind of club.",
     'description': """
-        This module allows management of members.
+This module allows management of members.
+
 Following features are included in this module:
- * periods: range of dates during which membership occurs
- * categories: allows to assign multiple categories
- * prices: allows to defines prices for members in each category and period
- * memberships: allows to manage members lifecycle, regarding the period, category and price defined
+- periods: range of dates during which membership occurs
+- categories: allows to assign multiple categories
+- prices: allows to defines prices for members in each category and period
+- memberships: allows to manage members lifecycle, regarding the period, category and price defined
     """,
     'author': "pal@odoo.com",
     # Categories can be used to filter modules in modules listing

@@ -1,30 +1,23 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Interclubs",
-
-    'summary': """
-        TODO""",
-
+    'summary': "TODO",
     'description': """
-        TODO
+TODO
     """,
-
     'author': "Odoo",
     'website': "http://www.odoo.com",
-
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Sport',
     'version': '0.1',
-
     # any module necessary for this one to work correctly
     'depends': [
         'calendar',
         'club',
         'project',  # Used for some scss styling (see https://github.com/odoo/odoo/blob/13.0/addons/project/static/src/scss/project_dashboard.scss#L18)
     ],
-
     # always loaded
     'data': [
         # security
