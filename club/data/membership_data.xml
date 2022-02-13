@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-<data>
-    <!-- Enable a flag on the model -->
-    <record id="club.model_membership" model="ir.model">
-        <field name="website_form_access">True</field>
-    </record>
-
-    <!-- Allows membership to be able to be used by forms (whitelist the field(s) that can be used) -->
-    <function model="ir.model.fields" name="formbuilder_whitelist">
-        <value>club.membership</value>
-        <value eval="['period_category_id']"/>
-    </function>
-</data>
-
-<data noupdate="1">
+<odoo noupdate="1">
     <!-- Add membership in the website menu -->
     <record id="menu_membership" model="website.menu">
         <field name="name">Membership</field>
@@ -201,5 +187,4 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
             </div>
         </t>
     </template>
-</data>
 </odoo>

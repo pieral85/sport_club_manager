@@ -35,7 +35,6 @@
         'views/calendar_views.xml',
         'views/interclub_views.xml',
         'views/interclub_event_views.xml',
-        'views/interclub_event_templates.xml',
         'views/res_config_settings_views.xml',
         # wizards
         'wizards/interclub_event_mail_wizard_views.xml',
@@ -50,6 +49,12 @@
         'data/res_users_data.xml',
         'data/interclub_event_data.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'interclubs/static/src/js/interclub_event_calendar.js',  # TODO Check if taken into account
+            'interclubs/static/src/js/interclub.js',  # TODO Check if taken into account
+        ],
+    },
     'qweb': [
     ],
     # only loaded in demonstration mode

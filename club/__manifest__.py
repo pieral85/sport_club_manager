@@ -22,7 +22,7 @@ Following features are included in this module:
     'version': '0.2',
     'depends': [
         'base',
-        'website_form',
+        'website',
         'auth_signup',
         'mail',
     ],
@@ -61,6 +61,11 @@ Following features are included in this module:
         'data/res_users_data.xml',
         'data/membership_data.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'club/static/src/less/membership.less',
+        ],
+    },
     'qweb': [
     ],
     'demo': [

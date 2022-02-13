@@ -25,7 +25,6 @@ Following features are included in this module:
     ],
     'data': [
         # views - website templates
-        'views/assets.xml',
         'views/templates/website_footer.xml',
         'views/templates/website_homepage.xml',
         'views/templates/website_membership_information.xml',
@@ -36,6 +35,11 @@ Following features are included in this module:
         'data/partner_data.xml',
         'data/website_data.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'profile_bcsaintleger/static/scss/website.scss',
+        ],
+    },
     'qweb': [
     ],
     'installable': True,
