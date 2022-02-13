@@ -17,7 +17,7 @@ Following features are included in this module:
         'club_account',
         'l10n_be',  # Belgium accounting (depends on `account`)
         'interclubs',
-        'badminton_be',
+        # 'badminton_be',
         'theme_treehouse',
     ],
     'data': [
