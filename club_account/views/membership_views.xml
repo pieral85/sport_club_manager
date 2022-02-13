@@ -34,7 +34,7 @@
                 <button name="validate_membership_payment" type="object" string="Validate Invoice" class="btn-primary" attrs="{'invisible': ['|', '|', ('state', 'not in', ('requested', 'member')), ('payment_state', 'in', ('in_payment', 'paid')), ('invoice_other_membership_ids', '=', [])]}" confirm="Other memberships are linked to the same invoice. Doing a payment receipt will also pay these memberships."/>
             </xpath>
             <xpath expr="//field[@name='price_paid']" position="after">
-                <div attrs="{'invisible': ['|', ('payment_state', '!=', 'partial'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}" class="alert alert-info o_form_label" colspan="2"><strong>Price Paid:</strong> refer to the invoice</div>
+                <div attrs="{'invisible': ['|', ('payment_state', '!=', 'partial'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}" class="alert alert-info o_form_label" role="alert" colspan="2"><strong>Price Paid:</strong> refer to the invoice</div>
             </xpath>
             <xpath expr="//field[@name='price_paid']" position="attributes">
                 <attribute name="attrs">{'invisible': [('payment_state', '=', 'partial'), ('move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}</attribute>
