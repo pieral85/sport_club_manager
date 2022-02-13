@@ -13,7 +13,7 @@ class PeriodCategory(models.Model):
         ('product_id_uniq', 'unique(product_id)', _('The product must be unique!')),
     ]
 
-    product_id = fields.Many2one('product.product', string='Product',
+    product_id = fields.Many2one('product.product', string='Product Variant',
         required=True, readonly=True, ondelete='restrict')
 
     def _create_product_product(self, period=None, category=None):
