@@ -79,4 +79,5 @@ Following features are included in this module:
     'images': ['static/description/icon.png'],
     'installable': True,
     'application': True,
+    'license': 'LGPL-3',
 }

@@ -41,4 +41,5 @@ Following features are included in this module:
     'auto_install': True,
     'post_init_hook': 'post_init_hook',
     'uninstall_hook': 'uninstall_hook',
+    'license': 'LGPL-3',
 }
