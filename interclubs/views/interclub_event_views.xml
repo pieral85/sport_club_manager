@@ -199,7 +199,7 @@
                 <attribute name="form_view_id">%(interclubs.interclub_event_view_form_quick_create)s</attribute>
             </xpath>
             <xpath expr="//field[@name='partner_ids']" position="before">
-                <field name="interclub_id" filters="1" write_model="calendar.interclubs" write_field="interclub_id" filter_field="interclub_checked"/>
+                <field name="interclub_id" filters="1" write_model="calendar.interclubs" write_field="interclub_id" filter_field="interclub_checked" all_records="1"/>
                 <field name="opponent_id"/>
             </xpath>
             <xpath expr="//field[@name='description']" position="replace">
