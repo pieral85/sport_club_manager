@@ -138,11 +138,22 @@ class Membership(models.Model):
 
     def validate_membership_payment(self):
         self.ensure_one()
+        if not self.invoice_id:
+            self.update_invoicing()
         invoice = self.invoice_id
         if invoice.state == 'draft' and not invoice.auto_post and invoice.move_type != 'entry':
             invoice.action_post()
         if invoice.state == 'posted' and invoice.payment_state in ('not_paid', 'partial') and \
            invoice.move_type in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'):
             return invoice.action_register_payment()
+        elif invoice.state == 'posted' and invoice.payment_state == 'paid':
+            return {
+                'name': _('Invoice'),
+                'type': 'ir.actions.act_window',
+                'res_model': 'account.move',
+                'view_mode': 'form',
+                'context': {'create': False},
+                'res_id': invoice.id,
+            }
         raise ValidationError(_("The invoice '%s' has been posted but it seems you cannot register a payment.\nPlease contact your administrator.") % \
             invoice.name_get()[0][1])
