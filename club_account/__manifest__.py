@@ -19,6 +19,7 @@ Following features are included in this module:
     'data': [
         # security
         'security/ir.model.access.csv',
+        'security/security.xml',
         # views
         'views/account_move_views.xml',
         'views/category_views.xml',
