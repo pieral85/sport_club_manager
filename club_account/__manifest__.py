@@ -17,6 +17,8 @@ Following features are included in this module:
         'club',
     ],
     'data': [
+        # security
+        'security/ir.model.access.csv',
         # views
         'views/account_move_views.xml',
         'views/category_views.xml',
