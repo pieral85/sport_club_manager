@@ -33,8 +33,6 @@ class CustomerPortal(CustomerPortal):
             sortby = 'date'
         order = searchbar_sortings[sortby]['order']
 
-        # archive groups - Default Group By 'create_date'
-        archive_groups = self._get_archive_groups('membership', domain, ['create_date'])
         if date_begin and date_end:
             domain += [('create_date', '>', date_begin), ('create_date', '<=', date_end)]
 
@@ -57,7 +55,6 @@ class CustomerPortal(CustomerPortal):
             'date_end': date_end,
             'memberships': memberships,
             'page_name': 'membership',
-            'archive_groups': archive_groups,
             'default_url': '/my/memberships',
             'pager': pager,
             'searchbar_sortings': searchbar_sortings,
