@@ -79,7 +79,7 @@
         <field name="name">interclub kanban</field>
         <field name="model">interclub</field>
         <field name="arch" type="xml">
-            <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors" on_create="project.open_create_project">
+            <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors">
                 <field name="name"/>
                 <field name="responsible_id"/>
                 <field name="location_id"/>
