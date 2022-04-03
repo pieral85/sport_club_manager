@@ -90,6 +90,7 @@ class Interclub(models.Model):
             self.name = ' - '.join(vals)
 
     def action_view_events(self):
-        action = self.with_context(active_id=self.id, active_ids=self.ids).env.ref('interclubs.action_interclub_event_active_interclub').read()[0]
+        sudo_self = self.with_context(active_id=self.id, active_ids=self.ids).sudo()
+        action = sudo_self.env.ref('interclubs.action_interclub_event_active_interclub').read()[0]
         action['display_name'] = self.name
         return action

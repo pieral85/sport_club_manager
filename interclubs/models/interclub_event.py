@@ -109,7 +109,7 @@ class InterclubEvent(models.Model):
         ret = super(InterclubEvent, self.with_context(no_mail_to_attendees=True)).create(values)
         if 'res_model_id' not in values and 'res_id' not in values:
             ret.write({
-                'res_model_id': self.env['ir.model'].search([('model', '=', 'interclub.event')], limit=1).id,
+                'res_model_id': self.env['ir.model'].sudo().search([('model', '=', 'interclub.event')], limit=1).id,
                 'res_id': ret.id,
             })
         ret.event_id.write({'item_color': interclub.event_items_color})
