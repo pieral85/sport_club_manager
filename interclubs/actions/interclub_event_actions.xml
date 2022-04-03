@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
     <record id="action_interclub_event" model="ir.actions.act_window">
         <field name="name">All Interclub Events</field>
         <field name="res_model">interclub.event</field>
@@ -22,7 +21,9 @@
         <field name="name">Interclub Events - Active Interclub</field>
         <field name="res_model">interclub.event</field>
         <field name="view_mode">tree,calendar,form</field><!-- TODO Add custom kanban view (grouped by state)? -->
-        <field name="context">{'search_default_interclub_id': [active_id]}</field>
+        <field name="context">{
+            'default_interclub_id': active_id,
+            'search_default_interclub_id': [active_id],
+        }</field>
     </record>
-</data>
 </odoo>

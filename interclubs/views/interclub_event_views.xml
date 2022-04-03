@@ -6,8 +6,7 @@
         <field name="name">interclub event list</field>
         <field name="model">interclub.event</field>
         <field name="arch" type="xml">
-            <tree create="false"
-                decoration-muted="action_required=='nothing_cancelled'"
+            <tree decoration-muted="action_required=='nothing_cancelled'"
                 decoration-warning="action_required in ('need_confirmation', 'need_opening')"
                 decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
                 decoration-info="action_required=='need_close'"
@@ -113,7 +112,7 @@
                         </page>
                         <page string="Options">
                             <group>
-                                <field name="event_id"/>
+                                <field name="event_id" attrs="{'invisible': [('id', '=', False)]}" required="0"/>
                                 <field name="item_color" widget="color" options="{'readonly_mode': 'color'}"/>
                             </group>
                         </page>

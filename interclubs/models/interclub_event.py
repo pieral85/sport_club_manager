@@ -299,3 +299,8 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
         if self.start:
             event_duration = int(self.env['ir.config_parameter'].sudo().get_param('interclub.event.duration', default=3))
             self.stop = self.start + timedelta(hours=event_duration)
+
+    @api.onchange('interclub_player_ids')
+    def _onchange_partner_ids(self):
+        for ic_event in self:
+            ic_event.partner_ids = ic_event.interclub_player_ids
