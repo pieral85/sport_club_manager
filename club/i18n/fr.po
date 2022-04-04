@@ -388,8 +388,8 @@ msgstr "Club"
 
 #. module: club
 #: model:ir.ui.menu,name:club.menu_root
-msgid "Club Membership Manager"
-msgstr "Gestionnaire des Affiliations de Club"
+msgid "Club"
+msgstr "Club"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__color
@@ -408,13 +408,13 @@ msgstr "Comité"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_committee_manager
-msgid "Committee managers for the module Club Membership Manager. On top of the committee users, managers can usually create/modify/delete records."
-msgstr "Responsables du comité pour le module Gestionnaire des Affiliations de Club. Au-dessus des utilisateurs du comité, les responsables peuvent généralement créer/modifier/supprimer des enregistrements."
+msgid "Committee managers for the module Club. On top of the committee users, managers can usually create/modify/delete records."
+msgstr "Responsables du comité pour le module \"Club\". Au-dessus des utilisateurs du comité, les responsables peuvent généralement créer/modifier/supprimer des enregistrements."
 
 #. module: club
 #: model:res.groups,comment:club.group_club_committee_user
-msgid "Committee users for the module Club Membership Manager. They usually have only a read access to the application."
-msgstr "Utilisateurs du comité pour le module Gestionnaire des Affiliations de Club. Ils n'ont en général qu'un accès en lecture simple à l'application."
+msgid "Committee users for the module Club. They usually have only a read access to the application."
+msgstr "Utilisateurs du comité pour le module \"Club\". Ils n'ont en général qu'un accès en lecture simple à l'application."
 
 #. module: club
 #: model:ir.model,name:club.model_res_company
@@ -723,15 +723,15 @@ msgstr "Si actif, certains messages ont une erreur de livraison."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_res_users__committee_user
-msgid "If checked, the user will have a read access to the application Club Membership Manager."
-msgstr "Si actif, l'utilisateur aura un accès en lecture à l'application \"Gestionnaire des Affiliations de Club\"."
+msgid "If checked, the user will have a read access to the application Club."
+msgstr "Si actif, l'utilisateur aura un accès en lecture à l'application \"Club\"."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_res_users__committee_manager
 msgid ""
-"If checked, the user will have a write access to the application Club Membership Manager.\n"
+"If checked, the user will have a write access to the application Club.\n"
 "        This will allow the user to manage the application."
-msgstr "Si actif, l'utilisateur aura un accès en écriture à l'application \"Gestionnaire des Affiliations de Club\"."
+msgstr "Si actif, l'utilisateur aura un accès en écriture à l'application \"Club\"."
 "        Cela lui permettra de gérer l'application."
 
 #. module: club
@@ -1711,18 +1711,18 @@ msgstr "Utilisateurs"
 
 #. module: club
 #: model:res.groups,comment:club.group_club_president
-msgid "Users with attribute 'president' set to True for the module Club Membership Manager."
-msgstr "Les utilisateurs avec l'attribut 'président' activé pour le module Gestionnaire des Affiliations de Club"
+msgid "Users with attribute 'president' set to True for the module Club."
+msgstr "Les utilisateurs avec l'attribut 'président' activé pour le module \"Club\"."
 
 #. module: club
 #: model:res.groups,comment:club.group_club_secretary
-msgid "Users with attribute 'secretary' set to True for the module Club Membership Manager."
-msgstr "Les utilisateurs avec l'attribut 'secrétaire' activé pour le module Gestionnaire des Affiliations de Club"
+msgid "Users with attribute 'secretary' set to True for the module Club."
+msgstr "Les utilisateurs avec l'attribut 'secrétaire' activé pour le module \"Club\"."
 
 #. module: club
 #: model:res.groups,comment:club.group_club_treasurer
-msgid "Users with attribute 'treasurer' set to True for the module Club Membership Manager."
-msgstr "Les utilisateurs avec l'attribut 'trésorier' activé pour le module Gestionnaire des Affiliations de Club"
+msgid "Users with attribute 'treasurer' set to True for the module Club."
+msgstr "Les utilisateurs avec l'attribut 'trésorier' activé pour le module \"Club\"."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form

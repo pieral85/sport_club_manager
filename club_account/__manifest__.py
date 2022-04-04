@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 # TODO Review this file
-    'name': "Accounting for Club Membership Manager",
+    'name': "Accounting for Club",
     'summary': "Add invoicing mechanism for the club management.",
     'description': """
 This module adds the accounting for the management of members.

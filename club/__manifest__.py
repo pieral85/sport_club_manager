@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 # TODO Review this file
-    'name': "Club Membership Manager",
+    'name': "Club",
     'summary': "Manage memberships for any kind of club.",
     'description': """
 This module allows management of members.

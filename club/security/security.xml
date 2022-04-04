@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- TODO Add a field name 'category_id' = 'Club Membership Manager' for all groups of this module -->
+<!-- TODO Add a field name 'category_id' = 'Club' for all groups of this module -->
 <data>
     <!-- Categories -->
     <record id="module_category_committee" model="ir.module.category">
@@ -12,13 +12,13 @@
     <!-- Groups -->
     <record id="group_club_committee_user" model="res.groups">
         <field name="name">User</field>
-        <field name="comment">Committee users for the module Club Membership Manager. They usually have only a read access to the application.</field>
+        <field name="comment">Committee users for the module Club. They usually have only a read access to the application.</field>
         <field name="category_id" ref="module_category_committee"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     <record id="group_club_committee_manager" model="res.groups">
         <field name="name">Manager</field>
-        <field name="comment">Committee managers for the module Club Membership Manager. On top of the committee users, managers can usually create/modify/delete records.</field>
+        <field name="comment">Committee managers for the module Club. On top of the committee users, managers can usually create/modify/delete records.</field>
         <field name="category_id" ref="module_category_committee"/>
         <field name="implied_ids" eval="[
             (4, ref('group_club_committee_user')),
@@ -28,17 +28,17 @@
     <record id="group_club_president" model="res.groups">
         <field name="name">President</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
-        <field name="comment">Users with attribute 'president' set to True for the module Club Membership Manager.</field>
+        <field name="comment">Users with attribute 'president' set to True for the module Club.</field>
     </record>
     <record id="group_club_secretary" model="res.groups">
         <field name="name">Secretary</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
-        <field name="comment">Users with attribute 'secretary' set to True for the module Club Membership Manager.</field>
+        <field name="comment">Users with attribute 'secretary' set to True for the module Club.</field>
     </record>
     <record id="group_club_treasurer" model="res.groups">
         <field name="name">Treasurer</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
-        <field name="comment">Users with attribute 'treasurer' set to True for the module Club Membership Manager.</field>
+        <field name="comment">Users with attribute 'treasurer' set to True for the module Club.</field>
     </record>
 
     <!-- Set the "Internal User" group as the only group for the user "Default User Template" -->
