@@ -69,7 +69,7 @@ We hope you will enjoy this new season with us!
 Best regards,
 </p>
 <p>
-${user.name}, for the ${user.company_id.name|safe} comittee members
+${user.name}, for the ${user.company_id.name|safe} committee members
 </p>
 ]]>
         </field>
@@ -103,7 +103,7 @@ ${user.name}, for the ${user.company_id.name|safe} comittee members
         Best regards,
     </p>
     <p>
-        The ${user.company_id.name|safe} comittee members
+        The ${user.company_id.name|safe} committee members
     </p>
     <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
 

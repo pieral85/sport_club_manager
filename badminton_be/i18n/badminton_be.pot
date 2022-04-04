@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* badminton_be
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-04 11:12+0000\n"
+"PO-Revision-Date: 2022-04-04 11:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: badminton_be
+#: model:ir.model.fields.selection,name:badminton_be.selection__ranking__ranking__b1
+msgid "B1"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields.selection,name:badminton_be.selection__ranking__ranking__b2
+msgid "B2"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields.selection,name:badminton_be.selection__ranking__ranking__c1
+msgid "C1"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields.selection,name:badminton_be.selection__ranking__ranking__c2
+msgid "C2"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_res_users__current_ranking
+msgid "Current Ranking"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__id
+msgid "ID"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__member_id
+msgid "Member"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__ranking
+msgid "Ranking"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_res_users__current_ranking
+msgid "Ranking (as of today) of the player."
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_ranking__ranking
+msgid "Ranking of the player."
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_res_users__ranking_ids
+msgid "Rankings History"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_ranking__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model,name:badminton_be.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: badminton_be
+#: model:ir.model,name:badminton_be.model_ranking
+msgid "ranking"
+msgstr ""

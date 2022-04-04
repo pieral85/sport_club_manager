@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 01:10+0000\n"
+"POT-Creation-Date: 2022-04-04 15:29+0000\n"
 "PO-Revision-Date: 2020-02-23 01:08+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -465,21 +465,13 @@ msgstr ""
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
-msgid ""
-"<b>One action is overdue!</b><br/>Please do not forget to <b>confirm</b> "
-"this interclub event (or cancel it)."
-msgstr ""
-"<b>Une action est passée!</b><br/>N'oubliez pas de <b>confirmer</b> "
-"cette rencontre d'interclub (ou de l'annuler)."
+msgid "<b>One action is overdue!</b><br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it)."
+msgstr "<b>Une action est passée!</b><br/>N'oubliez pas de <b>confirmer</b> cette rencontre d'interclub (ou de l'annuler)."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
-msgid ""
-"<b>One action is overdue!</b><br/>Please do not forget to <b>open</b> this "
-"interclub event (or cancel it)."
-msgstr ""
-"<b>Une action est passée!</b><br/>N'oubliez pas d'<b>ouvrir</b> cette "
-"rencontre d'interclub (ou de l'annuler)."
+msgid "<b>One action is overdue!</b><br/>Please do not forget to <b>open</b> this interclub event (or cancel it)."
+msgstr "<b>Une action est passée!</b><br/>N'oubliez pas d'<b>ouvrir</b> cette rencontre d'interclub (ou de l'annuler)."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
@@ -499,6 +491,11 @@ msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Gérer\" title=\
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
 msgid "<span class=\"fa fa-user\" title=\"User\"/>"
 msgstr "<span class=\"fa fa-user\" title=\"Utilisateur\"/>"
+
+#. module: interclubs
+#: model:ir.model.constraint,message:interclubs.constraint_calendar_interclubs_user_id_interclub_id_unique
+msgid "A user cannot have the same interclub twice."
+msgstr "Un utilisateur ne peut pas avoir le même interclub deux fois."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
@@ -548,11 +545,6 @@ msgid "All Interclub Events"
 msgstr "Toutes les rencontres d'interclub"
 
 #. module: interclubs
-#: model:ir.model.constraint,message:interclubs.constraint_calendar_interclubs_user_id_interclub_id_unique
-msgid "An user cannot have twice the same interclub."
-msgstr "Un utilisateur ne peut pas avoir deux fois le même interclub."
-
-#. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
 msgid "Are you sure to cancel this event?"
 msgstr "Etes-vous sûr d'annuler cette rencontre?"
@@ -564,22 +556,14 @@ msgstr "Etes-vous sûr de fermer cette rencontre?"
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_mail_followers__mirror_follower_id
-msgid ""
-"As followers are replicated between \"Event\" and \"Interclub Event\" "
-"models, a reference must be kept between those 2 records."
-msgstr ""
-"Comme les abonnés sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" "
-", une référence doit être gardée entre ces 2 enregistrements."
+msgid "As followers are replicated between \"Event\" and \"Interclub Event\" models, a reference must be kept between those 2 records."
+msgstr "Comme les abonnés sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" , une référence doit être gardée entre ces 2 enregistrements."
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_mail_mail__mirror_message_id
 #: model:ir.model.fields,help:interclubs.field_mail_message__mirror_message_id
-msgid ""
-"As messages are replicated between \"Event\" and \"Interclub Event\" models,"
-" a reference must be kept between those 2 records."
-msgstr ""
-"Comme les messages sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" "
-", une référence doit être gardée entre ces 2 enregistrements."
+msgid "As messages are replicated between \"Event\" and \"Interclub Event\" models, a reference must be kept between those 2 records."
+msgstr "Comme les messages sont répliqués entre les modèles \"Évènement\" et \"Rencontre Interclub\" , une référence doit être gardée entre ces 2 enregistrements."
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__at_home
@@ -591,11 +575,6 @@ msgstr "A domicile"
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_attachment_count
 msgid "Attachment Count"
 msgstr "Compte des pièces jointes"
-
-#. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__is_attendee
-msgid "Attendee"
-msgstr "Participant"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__attendee_status
@@ -624,7 +603,7 @@ msgstr "Corps (joueurs)"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__byday
-msgid "By day"
+msgid "Byday"
 msgstr "Par jour"
 
 #. module: interclubs
@@ -659,6 +638,24 @@ msgstr "Annulation de la rencontre d'interclub \"${object.name}\""
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Cancelled"
 msgstr "Annulé"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__is_organizer_alone
+msgid ""
+"Check if the organizer is alone in the event, i.e. if the organizer is the only one that hasn't declined\n"
+"        the event (only if the organizer is not the only attendee)"
+msgstr "Vérifie si l'organisateur est seul dans l'événement. ex: si l'organisateur est le seul qui n'a pas décliné\n"
+"        l'événement (seulement s'il n'est pas le seul participant)"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__interclub_checked
+msgid "Checked"
+msgstr "Coché"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__recurrence_update
+msgid "Choose what to do with other events in the recurrence. Updating All Events is not allowed when dates or time is modified"
+msgstr "Choisi quoi faire avec les autre événements dans la récurrence. Mettre à jour tous les événements n'est pas autorisé lorsque les dates ou l'heure est modifié."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
@@ -759,7 +756,6 @@ msgid "Current Season"
 msgstr "Saison actuelle"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__display_start
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Date"
 msgstr "Date"
@@ -785,8 +781,8 @@ msgid "Default Players"
 msgstr "Joueurs par défaut"
 
 #. module: interclubs
-#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 #: model:ir.model.fields,help:interclubs.field_res_config_settings__interclub_event_duration
+#: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 msgid "Default duration for an interclub event (in hours)."
 msgstr "Durée par défaut d'une rencontre d'interclub (en heures)."
 
@@ -794,6 +790,11 @@ msgstr "Durée par défaut d'une rencontre d'interclub (en heures)."
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__description
 msgid "Description"
 msgstr "Description"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__display_description
+msgid "Display Description"
+msgstr "Afficher la description"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__display_name
@@ -851,11 +852,6 @@ msgid "End Date"
 msgstr "Date de fin"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop_datetime
-msgid "End Datetime"
-msgstr "Date de fin"
-
-#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_res_config_settings__event_auto_close
 msgid "Event Automatic Closing"
 msgstr "Fermeture automatique de l'événement"
@@ -901,14 +897,14 @@ msgid "Favorite Users"
 msgstr "Utilisateurs Favoris"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__follow_recurrence
+msgid "Follow Recurrence"
+msgstr "Suivre la récurrence"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_follower_ids
 msgid "Followers"
 msgstr "Abonnés"
-
-#. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Abonnés (Canaux)"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_partner_ids
@@ -916,7 +912,7 @@ msgid "Followers (Partners)"
 msgstr "Abonnés (Partenaires)"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__fr
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__fri
 msgid "Fri"
 msgstr "Ven."
 
@@ -924,6 +920,11 @@ msgstr "Ven."
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Group by"
 msgstr "Regrouper par"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__has_message
+msgid "Has Message"
+msgstr "A un message"
 
 #. module: interclubs
 #: model:ir.module.category,description:interclubs.module_category_interclub
@@ -952,27 +953,29 @@ msgstr "Si actif, certains messages ont une erreur de livraison."
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__active
+msgid "If the active field is set to false, it will allow you to hide the event alarm information without removing it."
+msgstr "Si le champ actif est mis à 'Faux', cela autorisera de cacher l'alerte de l'événement sans la supprimer."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__show_as
 msgid ""
-"If the active field is set to false, it will allow you to hide the event "
-"alarm information without removing it."
-msgstr "Si le champ actif est mis à 'Faux', cela autorisera de cacher "
-"l'alerte de l'événement sans la supprimer."
+"If the time is shown as 'busy', this event will be visible to other people with either the full         information or simply 'busy' written depending on its privacy. Use this option to let other people know         that you are unavailable during that period of time. \n"
+" If the time is shown as 'free', this event won't         be visible to other people at all. Use this option to let other people know that you are available during         that period of time."
+msgstr ""
+"Si l'heure est affichée comme « occupé », cet événement sera visible par d'autres personnes avec les informations complètes ou simplement « occupé » écrit en fonction de sa confidentialité. Utilisez cette option pour informer les autres personnes que vous n'êtes pas disponible pendant cette période. \n"
+" Si l'heure est affichée comme « libre », cet événement ne sera pas du tout visible pour les autres personnes. Utilisez cette option pour informer les autres personnes que vous êtes disponible pendant cette période."
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_res_config_settings__event_auto_close
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
-msgid ""
-"If true, the event is automatically closed once its end date is reached."
+msgid "If true, the event is automatically closed once its end date is reached."
 msgstr "Si coché, l'événement est automatiquement fermé une fois que la date de fin est atteinte."
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_res_config_settings__event_auto_open
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
-msgid ""
-"If true, the event is automatically opened when today is X days before the "
-"event starts (\"X\" is defined by the \"Event Opening Days\" parameter)."
-msgstr "Si coché, l'événement est automatiquement ouvert quand aujourd'hui est X jours avant "
-"que l'événement ne démarre (\"X\" est défini par le paramètre \"Jours d'ouverture de l'événement\")."
+msgid "If true, the event is automatically opened when today is X days before the event starts (\"X\" is defined by the \"Event Opening Days\" parameter)."
+msgstr "Si coché, l'événement est automatiquement ouvert quand aujourd'hui est X jours avant que l'événement ne démarre (\"X\" est défini par le paramètre \"Jours d'ouverture de l'événement\")."
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__responsible_id
@@ -995,6 +998,16 @@ msgid "Interclub Event"
 msgstr "Rencontre d'interclub"
 
 #. module: interclubs
+#: model:mail.template,name:interclubs.email_template_interclub_event_cancellation
+msgid "Interclub Event Cancellation"
+msgstr "Annulation de rencontre"
+
+#. module: interclubs
+#: model:mail.template,name:interclubs.email_template_interclub_event_confirmation
+msgid "Interclub Event Confirmation"
+msgstr "Confirmation de rencontre"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_res_config_settings__interclub_event_duration
 msgid "Interclub Event Duration"
 msgstr "Durée de la rencontre d'interclub"
@@ -1005,6 +1018,11 @@ msgstr "Durée de la rencontre d'interclub"
 #, python-format
 msgid "Interclub Event Mail Wizard"
 msgstr "Assistant de mail pour rencontre d'interclub"
+
+#. module: interclubs
+#: model:mail.template,name:interclubs.email_template_interclub_event_opening
+msgid "Interclub Event Opening"
+msgstr "Ouverture de rencontre"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__event_ids
@@ -1073,19 +1091,13 @@ msgstr "Rencontres d'interclub dans un état ouvert."
 
 #. module: interclubs
 #: model:res.groups,comment:interclubs.group_interclubs_interclub_manager
-msgid ""
-"Interclub managers for the module Interclubs. On top of the interclub users,"
-" managers can usually create/modify/delete records."
-msgstr "Gestionnaires d'interclub pour le module Interclubs. En plus des utilisateurs d'interclubs,"
-" les gestionnaires peuvent habituellement créer/modifier/suprrimer des enregistrements."
+msgid "Interclub managers for the module Interclubs. On top of the interclub users, managers can usually create/modify/delete records."
+msgstr "Gestionnaires d'interclub pour le module Interclubs. En plus des utilisateurs d'interclubs, les gestionnaires peuvent habituellement créer/modifier/suprrimer des enregistrements."
 
 #. module: interclubs
 #: model:res.groups,comment:interclubs.group_interclubs_interclub_user
-msgid ""
-"Interclub users for the module Interclubs. They usually have only a read "
-"access to the application."
-msgstr "Utilisateurs d'interclub pour le module Interclubs. Ils ont habituellement un accès "
-"en lecture seule à l'application."
+msgid "Interclub users for the module Interclubs. They usually have only a read access to the application."
+msgstr "Utilisateurs d'interclub pour le module Interclubs. Ils ont habituellement un accès en lecture seule à l'application."
 
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_interclubs
@@ -1123,6 +1135,11 @@ msgstr "Est abonné"
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__is_highlighted
 msgid "Is the Event Highlighted"
 msgstr "L'évènement est-il mis en avant"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__is_organizer_alone
+msgid "Is the Organizer Alone"
+msgstr "Est le seul organisateur"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_calendar_event__item_color
@@ -1208,6 +1225,11 @@ msgid "Meeting Subject"
 msgstr "Titre de l'évènement"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__videocall_location
+msgid "Meeting URL"
+msgstr "URL de la réunion"
+
+#. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub__kind__men
 msgid "Men"
 msgstr "Hommes"
@@ -1244,7 +1266,7 @@ msgid "Mixed"
 msgstr "Mixtes"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__mo
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__mon
 msgid "Mon"
 msgstr "Lun."
 
@@ -1322,6 +1344,11 @@ msgid "Nothing"
 msgstr "Rien"
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__alarm_ids
+msgid "Notifications sent to all attendees to remind of the meeting."
+msgstr "Notifications envoyées à tous les participants pour rappeler la réunion."
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Nombre d'actions"
@@ -1360,40 +1387,24 @@ msgstr "Nombre de messages non lus"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
-msgid ""
-"One action is pending:<br/>Please do not forget to <b>close</b> this "
-"interclub event."
-msgstr ""
-"Une action est en cours:<br/>N'oubliez pas de <b>fermer</b> cette "
-"rencontre d'interclub."
+msgid "One action is pending:<br/>Please do not forget to <b>close</b> this interclub event."
+msgstr "Une action est en cours:<br/>N'oubliez pas de <b>fermer</b> cette rencontre d'interclub."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
-msgid ""
-"One action is pending:<br/>Please do not forget to <b>confirm</b> this "
-"interclub event (or cancel it)."
-msgstr ""
-"Une action est en cours:<br/>N'oubliez pas de <b>confirmer</b> cette "
-"rencontre d'interclub (ou de l'annuler)."
+msgid "One action is pending:<br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it)."
+msgstr "Une action est en cours:<br/>N'oubliez pas de <b>confirmer</b> cette rencontre d'interclub (ou de l'annuler)."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
-msgid ""
-"One action is pending:<br/>Please do not forget to <b>open</b> this "
-"interclub event (or cancel it)."
-msgstr ""
-"Une action est en cours:<br/>N'oubliez pas d'<b>ouvrir</b> cette "
-"rencontre d'interclub (ou de l'annuler)."
+msgid "One action is pending:<br/>Please do not forget to <b>open</b> this interclub event (or cancel it)."
+msgstr "Une action est en cours:<br/>N'oubliez pas d'<b>ouvrir</b> cette rencontre d'interclub (ou de l'annuler)."
 
 #. module: interclubs
 #: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
 #, python-format
-msgid ""
-"Only the model \"interclub.event\" is supported for this mail wizard. "
-"Current model: \"{}\"."
-msgstr ""
-"Seul le modèle \"interclub.event\" est supporté pour cet assistant de mail. "
-"Modèle actuel: \"{}\"."
+msgid "Only the model \"interclub.event\" is supported for this mail wizard. Current model: \"{}\"."
+msgstr "Seul le modèle \"interclub.event\" est supporté pour cet assistant de mail. Modèle actuel: \"{}\"."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
@@ -1430,8 +1441,8 @@ msgstr "Options"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__user_id
-msgid "Owner"
-msgstr "Propriétaire"
+msgid "Organizer"
+msgstr "Organisé par"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__attendee_ids
@@ -1442,6 +1453,11 @@ msgstr "Participant"
 #: model:ir.model.fields,help:interclubs.field_interclub_event__partner_id
 msgid "Partner-related data of the user"
 msgstr "Données du partenaire lié à l'utilisateur"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub_event__privacy
+msgid "People to whom this event will be visible."
+msgstr "Personnes pour qui cet événement sera visible."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
@@ -1469,29 +1485,24 @@ msgid "Recurrence"
 msgstr "Récurrence"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrence_id
+msgid "Recurrence Rule"
+msgstr "Règle de la récurrence"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__end_type
 msgid "Recurrence Termination"
 msgstr "Fin de la récurrence"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrence_update
+msgid "Recurrence Update"
+msgstr "Mise à jour de la récurrence"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrency
 msgid "Recurrent"
 msgstr "Récurrent"
-
-#. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrent_id
-msgid "Recurrent ID"
-msgstr "ID récurrent"
-
-#. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__recurrent_id_date
-msgid "Recurrent ID date"
-msgstr "Id. de la date récurrente"
-
-#. module: interclubs
-#: model:ir.model.fields,help:interclubs.field_interclub_event__recurrency
-msgid "Recurrent Meeting"
-msgstr "Rendez-vous récurrents"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__rrule
@@ -1531,11 +1542,6 @@ msgid "Repeat Every"
 msgstr "Répéter tous les"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__final_date
-msgid "Repeat Until"
-msgstr "Répéter jusqu'au"
-
-#. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__interval
 msgid "Repeat every (Days/Week/Month/Year)"
 msgstr "Répéter chaque (Jour/Semaine/Mois/Année)"
@@ -1547,7 +1553,6 @@ msgstr "Répéter x fois"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__responsible_id
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__partner_id
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_calendar
 msgid "Responsible"
 msgstr "Responsable"
@@ -1558,9 +1563,14 @@ msgid "SMS Delivery error"
 msgstr "Erreur d'envoi SMS"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__sa
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__sat
 msgid "Sat"
 msgstr "Sam."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__partner_id
+msgid "Scheduled by"
+msgstr "Programmé par"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
@@ -1608,8 +1618,8 @@ msgstr "Montrer l'interclub dans le tableau de bord"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__show_as
-msgid "Show Time as"
-msgstr "Afficher l'heure comme"
+msgid "Show as"
+msgstr "Montrer comme"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__start
@@ -1622,16 +1632,9 @@ msgid "Start Date"
 msgstr "Date de début"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__start_datetime
-msgid "Start DateTime"
-msgstr "Date de début"
-
-#. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__start
 msgid "Start date of an event, without time for full days events"
-msgstr ""
-"Date de début d'événement, sans heure pour les événements durant toute la "
-"journée"
+msgstr "Date de début d'événement, sans heure pour les événements durant toute la journée"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__state
@@ -1647,9 +1650,7 @@ msgstr "Arrêter"
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__stop
 msgid "Stop date of an event, without time for full days events"
-msgstr ""
-"Date de fin d'événement, sans heure pour les événements durant toute la "
-"journée"
+msgstr "Date de fin d'événement, sans heure pour les événements durant toute la journée"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
@@ -1667,7 +1668,7 @@ msgid "Subject (Players)"
 msgstr "Sujet (joueurs)"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__su
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__sun
 msgid "Sun"
 msgstr "Dim."
 
@@ -1679,32 +1680,28 @@ msgstr "Étiquettes"
 #. module: interclubs
 #: code:addons/interclubs/models/res_config_settings.py:0
 #, python-format
-msgid ""
-"The \"Event Confirmation Days\" must be positive. Please change it "
-"accordingly."
-msgstr ""
-"Le nombre de \"Jours de confirmation de l'événement\" doit être positif. Modifiez-le "
-"en tant que tel."
+msgid "The \"Event Confirmation Days\" must be positive. Please change it accordingly."
+msgstr "Le nombre de \"Jours de confirmation de l'événement\" doit être positif. Modifiez-le en tant que tel."
 
 #. module: interclubs
 #: code:addons/interclubs/models/res_config_settings.py:0
 #, python-format
-msgid ""
-"The \"Event Opening Days\" must be higher than the \"Event Confirmation "
-"Days\". Please change them accordingly."
-msgstr ""
-"Le nombre de \"Jours d'ouverture de l'événement\" doit être plus grand que "
-"le nombre de \"Jours de confirmation\". Modifiez-le en tant que tel."
+msgid "The \"Event Opening Days\" must be higher than the \"Event Confirmation Days\". Please change them accordingly."
+msgstr "Le nombre de \"Jours d'ouverture de l'événement\" doit être plus grand que le nombre de \"Jours de confirmation\". Modifiez-le en tant que tel."
 
 #. module: interclubs
 #: code:addons/interclubs/models/res_config_settings.py:0
 #, python-format
 msgid "The \"Event Opening Days\" must be positive. Please change it accordingly."
-"Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Modifiez-le "
-"en tant que tel."
+msgstr "Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Veuillez le changer en conséquence."
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__th
+#: model:ir.model.fields,help:interclubs.field_calendar_interclubs__interclub_checked
+msgid "This field is used to know if the interclub is checked in the filter of the calendar view for the interclub_id."
+msgstr "Ce champ est utilisé pour savoir si l'interclub est coché dans le filtre de la vue calendrirer l'\"interclub_id\""
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__thu
 msgid "Thu"
 msgstr "Jeu."
 
@@ -1714,7 +1711,7 @@ msgid "Timezone"
 msgstr "Fuseau horaire"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__tu
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__tue
 msgid "Tue"
 msgstr "Mar."
 
@@ -1732,6 +1729,11 @@ msgstr "Messages non lus"
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Compteur de messages non lus"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__until
+msgid "Until"
+msgstr "Jusqu'à"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
@@ -1762,12 +1764,12 @@ msgid "Website communication history"
 msgstr "Historique de communication du site web"
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__we
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__wed
 msgid "Wed"
 msgstr "Mer."
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event__week_list
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__weekday
 msgid "Weekday"
 msgstr "Jour de la semaine"
 
@@ -1791,3 +1793,42 @@ msgstr "Vous ne pouvez pas créer un évnement sans être lié à un interclub."
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
 msgid "event(s)"
 msgstr "événement(s)"
+
+#~ msgid "An user cannot have twice the same interclub."
+#~ msgstr "Un utilisateur ne peut pas avoir deux fois le même interclub."
+
+#~ msgid "Attendee"
+#~ msgstr "Participant"
+
+#~ msgid "By day"
+#~ msgstr "Par jour"
+
+#~ msgid "End Datetime"
+#~ msgstr "Date de fin"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Abonnés (Canaux)"
+
+#~ msgid "Owner"
+#~ msgstr "Propriétaire"
+
+#~ msgid "Recurrent ID"
+#~ msgstr "ID récurrent"
+
+#~ msgid "Recurrent ID date"
+#~ msgstr "Id. de la date récurrente"
+
+#~ msgid "Recurrent Meeting"
+#~ msgstr "Rendez-vous récurrents"
+
+#~ msgid "Repeat Until"
+#~ msgstr "Répéter jusqu'au"
+
+#~ msgid "Show Time as"
+#~ msgstr "Afficher l'heure comme"
+
+#~ msgid "Start DateTime"
+#~ msgstr "Date de début"
+
+#~ msgid "The \"Event Opening Days\" must be positive. Please change it accordingly.Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Modifiez-le en tant que tel."
+#~ msgstr "Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Veuillez la changer en conséquence."

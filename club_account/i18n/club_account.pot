@@ -1,0 +1,1095 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* club_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-04 19:18+0000\n"
+"PO-Revision-Date: 2022-04-04 19:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__product_variant_count
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_variant_count
+msgid "# Product Variants"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.product_normal_form_view_club_account
+msgid "(computed from"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.move_form_view_club_account
+msgid ""
+"<span attrs=\"{'invisible': [('membership_count','&gt;', 1)]}\">Membership</span>\n"
+"                    <span attrs=\"{'invisible': [('membership_count','&lt;=', 1)]}\">Memberships</span>"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "<strong>Price Paid:</strong> refer to the invoice"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__description_sale
+#: model:ir.model.fields,help:club_account.field_period_category__description_sale
+msgid ""
+"A description of the Product that you want to communicate to your customers."
+" This description will be copied to every Sales Order, Delivery Order and "
+"Customer Invoice/Credit Note"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__detailed_type
+#: model:ir.model.fields,help:club_account.field_period_category__detailed_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__account_tag_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__account_tag_ids
+msgid "Account Tags"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__active
+msgid "Active"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_exception_decoration
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_state
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_type_icon
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_category__is_custom
+msgid "Allow users to input custom values for this attribute value"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__attribute_id
+msgid "Attribute"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_template_attribute_value_ids
+msgid "Attribute Values"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__barcode
+#: model:ir.model.fields,field_description:club_account.field_period_category__barcode
+msgid "Barcode"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__can_image_1024_be_zoomed
+#: model:ir.model.fields,field_description:club_account.field_period_category__can_image_1024_be_zoomed
+msgid "Can Image 1024 be zoomed"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__can_image_variant_1024_be_zoomed
+msgid "Can Variant Image 1024 be zoomed"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__purchase_ok
+#: model:ir.model.fields,field_description:club_account.field_period_category__purchase_ok
+msgid "Can be Purchased"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__sale_ok
+#: model:ir.model.fields,field_description:club_account.field_period_category__sale_ok
+msgid "Can be Sold"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_category
+msgid "Category"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__html_color
+msgid "Color"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__color
+#: model:ir.model.fields,field_description:club_account.field_period__color
+#: model:ir.model.fields,field_description:club_account.field_period_category__color
+msgid "Color Index"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__combination_indices
+msgid "Combination Indices"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__company_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__company_id
+msgid "Company"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__standard_price
+#: model:ir.model.fields,field_description:club_account.field_period_category__standard_price
+msgid "Cost"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__cost_currency_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__cost_currency_id
+msgid "Cost Currency"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_account_bank_statement_line__membership_count
+#: model:ir.model.fields,field_description:club_account.field_account_move__membership_count
+#: model:ir.model.fields,field_description:club_account.field_account_payment__membership_count
+msgid "Count Memberships"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__partner_ref
+msgid "Customer Ref"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__taxes_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__taxes_id
+msgid "Customer Taxes"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__supplier_taxes_id
+#: model:ir.model.fields,help:club_account.field_period_category__supplier_taxes_id
+msgid "Default taxes used when buying the product."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__taxes_id
+#: model:ir.model.fields,help:club_account.field_period_category__taxes_id
+msgid "Default taxes used when selling the product."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__uom_id
+#: model:ir.model.fields,help:club_account.field_period_category__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__uom_po_id
+#: model:ir.model.fields,help:club_account.field_period_category__uom_po_id
+msgid ""
+"Default unit of measure used for purchase orders. It must be in the same "
+"category as the default unit of measure."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__seller_ids
+#: model:ir.model.fields,help:club_account.field_period_category__seller_ids
+msgid "Define vendor pricelists."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__description
+#: model:ir.model.fields,field_description:club_account.field_period_category__description
+msgid "Description"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_category__sequence
+msgid "Determine the display order"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__display_type
+msgid "Display Type"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__property_account_expense_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__property_account_expense_id
+msgid "Expense Account"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__priority
+#: model:ir.model.fields,field_description:club_account.field_period_category__priority
+msgid "Favorite"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__period_category_ids
+#: model:ir.model.fields,help:club_account.field_product_product__period_category_ids
+msgid ""
+"Field only existing to allow the compute of the period category field "
+"(many2one)."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__activity_type_icon
+#: model:ir.model.fields,help:club_account.field_period_category__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/product.py:0
+#, python-format
+msgid ""
+"For 'membership' products, the name must be unique! Please change it "
+"accordingly."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/product.py:0
+#, python-format
+msgid "For 'membership' products, the only valid attribute is '{}'."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__membership_ok
+#: model:ir.model.fields,field_description:club_account.field_period_category__membership_ok
+#: model:ir.model.fields,field_description:club_account.field_product_product__membership_ok
+#: model:ir.model.fields,field_description:club_account.field_product_template__membership_ok
+msgid "For Membership"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__packaging_ids
+#: model:ir.model.fields,help:club_account.field_period_category__packaging_ids
+msgid "Gives the different ways to package the same product."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__sequence
+#: model:ir.model.fields,help:club_account.field_period_category__sequence
+msgid "Gives the sequence order when displaying a product list"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_category__html_color
+msgid ""
+"Here you can set a specific HTML color index (e.g. #ff0000) to display the "
+"color if the attribute type is 'Color'."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_exception_icon
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__activity_exception_icon
+#: model:ir.model.fields,help:club_account.field_period_category__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__message_needaction
+#: model:ir.model.fields,help:club_account.field_period_category__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__message_has_error
+#: model:ir.model.fields,help:club_account.field_period_category__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__active
+msgid ""
+"If unchecked, it will allow you to hide the product without removing it."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__image_1920
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_1920
+msgid "Image"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__image_1024
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__image_128
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__image_256
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__image_512
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_512
+msgid "Image 512"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "In Payment"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__standard_price
+#: model:ir.model.fields,help:club_account.field_period_category__standard_price
+msgid ""
+"In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__property_account_income_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__property_account_income_id
+msgid "Income Account"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__default_code
+#: model:ir.model.fields,field_description:club_account.field_period_category__default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__barcode
+msgid "International Article Number used for product identification."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/membership.py:0
+#: model:ir.model.fields,field_description:club_account.field_membership__invoice_id
+#, python-format
+msgid "Invoice"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__invoice_line_id
+msgid "Invoice Line"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__invoice_other_membership_ids
+msgid "Invoice Other Membership"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__is_product_variant
+msgid "Is Product Variant"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__has_configurable_attributes
+#: model:ir.model.fields,field_description:club_account.field_period_category__has_configurable_attributes
+msgid "Is a configurable product"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__is_product_variant
+msgid "Is a product variant"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__is_custom
+msgid "Is custom value"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__property_account_income_id
+#: model:ir.model.fields,help:club_account.field_period_category__property_account_income_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__property_account_expense_id
+#: model:ir.model.fields,help:club_account.field_period_category__property_account_expense_id
+msgid ""
+"Keep this field empty to use the default value from the product category. If"
+" anglo-saxon accounting with automated valuation method is configured, the "
+"expense account on the product category will be used."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__pav_attribute_line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_membership
+msgid "Membership"
+msgstr ""
+
+#. module: club_account
+#: model:product.attribute,name:club_account.product_attribute_membership_category
+msgid "Membership Category"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/period.py:0
+#, python-format
+msgid "Membership Product"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/membership.py:0
+#, python-format
+msgid "Membership due price does is not equal to invoice unit price."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/account_move.py:0
+#: model:ir.model.fields,field_description:club_account.field_account_bank_statement_line__membership_ids
+#: model:ir.model.fields,field_description:club_account.field_account_move__membership_ids
+#: model:ir.model.fields,field_description:club_account.field_account_move_line__membership_ids
+#: model:ir.model.fields,field_description:club_account.field_account_payment__membership_ids
+#, python-format
+msgid "Memberships"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.category_view_form_account
+#: model_terms:ir.ui.view,arch_db:club_account.period_category_view_form_account
+msgid "Misc"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__my_activity_date_deadline
+#: model:ir.model.fields,field_description:club_account.field_period_category__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__name
+msgid "Name"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_date_deadline
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_summary
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_type_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__pricelist_item_count
+#: model:ir.model.fields,field_description:club_account.field_period_category__pricelist_item_count
+msgid "Number of price rules"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/account_move_line.py:0
+#, python-format
+msgid ""
+"On the invoice line, the quantity does not match the number of '"
+"                        'memberships. Please change it accordingly."
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid ""
+"Other memberships are linked to the same invoice. Doing a payment receipt "
+"will also pay these memberships."
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "Paid"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "Partial"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__payment_state
+msgid "Payment Status"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_period
+msgid "Period"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__period_category_ids
+#: model:ir.model.fields,field_description:club_account.field_product_product__period_category_ids
+msgid "Period Categories"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_period_category
+#: model:ir.model.fields,field_description:club_account.field_period_category__period_category_id
+#: model:ir.model.fields,field_description:club_account.field_product_product__period_category_id
+msgid "Period Category"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__price
+#: model:ir.model.fields,field_description:club_account.field_period_category__price
+msgid "Price"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__price_due
+msgid "Price Due"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__price_paid
+msgid "Price Paid"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__list_price
+#: model:ir.model.fields,help:club_account.field_period_category__list_price
+msgid "Price at which the product is sold to customers."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__pricelist_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__pricelist_id
+msgid "Pricelist"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_product_product
+#: model:ir.model.fields,field_description:club_account.field_period__product_variant_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_variant_id
+msgid "Product"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__product_attribute_value_id
+#: model_terms:ir.ui.view,arch_db:club_account.product_attribute_value_view_form
+msgid "Product Attribute Value"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__attribute_line_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__attribute_line_ids
+msgid "Product Attributes"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__categ_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__categ_id
+msgid "Product Category"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__packaging_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__packaging_ids
+msgid "Product Packages"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model,name:club_account.model_product_template
+#: model:ir.model.fields,field_description:club_account.field_period__product_tmpl_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__product_tooltip
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_tooltip
+msgid "Product Tooltip"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__detailed_type
+#: model:ir.model.fields,field_description:club_account.field_period_category__detailed_type
+msgid "Product Type"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_id
+msgid "Product Variant"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/period_category.py:0
+#, python-format
+msgid ""
+"Product template must have only 1 attribute line assigned (currently: '%s')."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__product_variant_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_variant_ids
+msgid "Products"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__description_purchase
+#: model:ir.model.fields,field_description:club_account.field_period_category__description_purchase
+msgid "Purchase Description"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__uom_po_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__uom_po_id
+msgid "Purchase UoM"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__code
+msgid "Reference"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__activity_user_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "Reversed"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__description_sale
+#: model:ir.model.fields,field_description:club_account.field_period_category__description_sale
+msgid "Sales Description"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__list_price
+#: model:ir.model.fields,field_description:club_account.field_period_category__list_price
+msgid "Sales Price"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__lst_price
+msgid "Sales Price"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__categ_id
+#: model:ir.model.fields,help:club_account.field_period_category__categ_id
+msgid "Select category for the current product"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__sequence
+#: model:ir.model.fields,field_description:club_account.field_period__sequence
+#: model:ir.model.fields,field_description:club_account.field_period_category__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__activity_state
+#: model:ir.model.fields,help:club_account.field_period_category__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__account_tag_ids
+#: model:ir.model.fields,help:club_account.field_period_category__account_tag_ids
+msgid ""
+"Tags to be set on the base and tax journal items created for this product."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__tax_string
+#: model:ir.model.fields,field_description:club_account.field_period_category__tax_string
+msgid "Tax String"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__valid_product_template_attribute_line_ids
+#: model:ir.model.fields,help:club_account.field_period_category__valid_product_template_attribute_line_ids
+msgid "Technical compute"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__pricelist_id
+#: model:ir.model.fields,help:club_account.field_period_category__pricelist_id
+msgid ""
+"Technical field. Used for searching on pricelists, not stored in database."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_category__attribute_id
+msgid ""
+"The attribute cannot be changed once the value is used on at least one "
+"product."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_category__display_type
+msgid "The display type used in the Product Configurator."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/period_category.py:0
+#, python-format
+msgid ""
+"The expected product of the period category does not match the assigned one."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/membership.py:0
+#, python-format
+msgid ""
+"The invoice '%s' has been posted but it seems you cannot register a payment.\n"
+"Please contact your administrator."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_membership__invoice_id
+msgid "The move of this entry line."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/period_category.py:0
+#: model:ir.model.constraint,message:club_account.constraint_period_category_product_id_uniq
+#, python-format
+msgid "The product must be unique!"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/period_category.py:0
+#, python-format
+msgid ""
+"The product of the period category must be unique! Please change it "
+"accordingly."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__lst_price
+msgid ""
+"The sale price is managed from the product template. Click on the 'Configure"
+" Variants' button to set the extra attribute prices."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__price_extra
+msgid "This is the sum of the extra price of all attributes"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_membership__move_type
+#: model:ir.model.fields,field_description:club_account.field_period__type
+#: model:ir.model.fields,field_description:club_account.field_period_category__type
+msgid "Type"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period__activity_exception_decoration
+#: model:ir.model.fields,help:club_account.field_period_category__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__uom_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__uom_name
+#: model:ir.model.fields,field_description:club_account.field_period_category__uom_name
+msgid "Unit of Measure Name"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_category__is_used_on_products
+msgid "Used on Products"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__valid_product_template_attribute_line_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__valid_product_template_attribute_line_ids
+msgid "Valid Product Attribute Lines"
+msgstr ""
+
+#. module: club_account
+#: model_terms:ir.ui.view,arch_db:club_account.membership_view_form_club_account
+msgid "Validate Invoice"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_variant_1920
+msgid "Variant Image"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_variant_1024
+msgid "Variant Image 1024"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_variant_128
+msgid "Variant Image 128"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_variant_256
+msgid "Variant Image 256"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__image_variant_512
+msgid "Variant Image 512"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__price_extra
+msgid "Variant Price Extra"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__variant_seller_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__variant_seller_ids
+msgid "Variant Seller"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__product_template_variant_value_ids
+msgid "Variant Values"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__supplier_taxes_id
+#: model:ir.model.fields,field_description:club_account.field_period_category__supplier_taxes_id
+msgid "Vendor Taxes"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__seller_ids
+#: model:ir.model.fields,field_description:club_account.field_period_category__seller_ids
+msgid "Vendors"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__volume
+#: model:ir.model.fields,field_description:club_account.field_period_category__volume
+msgid "Volume"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__volume_uom_name
+#: model:ir.model.fields,field_description:club_account.field_period_category__volume_uom_name
+msgid "Volume unit of measure label"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period_category__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,help:club_account.field_period_category__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__weight
+#: model:ir.model.fields,field_description:club_account.field_period_category__weight
+msgid "Weight"
+msgstr ""
+
+#. module: club_account
+#: model:ir.model.fields,field_description:club_account.field_period__weight_uom_name
+#: model:ir.model.fields,field_description:club_account.field_period_category__weight_uom_name
+msgid "Weight unit of measure label"
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/membership.py:0
+#, python-format
+msgid ""
+"You cannot change the due price because an invoice is already attached to this membership.\n"
+"Please change the price on the invoice line instead."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/membership.py:0
+#, python-format
+msgid ""
+"You cannot change the due price because other memberships are linked to the same invoice.\n"
+"Please set the status back to 'Unknown' in order to be able to change the price."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/product.py:0
+#, python-format
+msgid "You cannot have multiple period categories for this product."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/product.py:0
+#, python-format
+msgid "You cannot have period categories for a non 'membership' product."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/account_move_line.py:0
+#, python-format
+msgid ""
+"You cannot remove membership(s) because the invoice '%s' has been posted. "
+"Please reset it to draft first."
+msgstr ""
+
+#. module: club_account
+#: code:addons/club_account/models/product.py:0
+#, python-format
+msgid "You cannot use attribute '{}' for this product."
+msgstr ""

@@ -54,7 +54,7 @@
                 <div class="oe_structure">
                     <section class="s_title bg-black-50 pt24 pb24 o_colored_level s_parallax_no_overflow_hidden oe_img_bg" data-vcss="001" data-snippet="s_title" data-scroll-background-ratio="0" data-name="Title" style="background-image: url(&quot;/web/image/1513-9a776de4/rendered.jpg&quot;); background-position: 0% 40.2211%;">
                         <div class="container">
-                            <h1><font style="" class="text-o-color-2">Comittee Info</font></h1>
+                            <h1><font style="" class="text-o-color-2">Committee Info</font></h1>
                         </div>
                     </section>
                 </div>
@@ -67,7 +67,7 @@
                                     <div class="col-lg-6 pt24 pb24 o_colored_level">
                                         <div class="row s_col_no_resize s_col_no_bgcolor">
                                             <div class="col-lg-4 pb16">
-                                                <img t-if="member.image_128" class="img-fluid rounded-circle d-block mx-auto shadow o_portal_committee_img" t-att-src="image_data_uri(member.image_128)" alt="Comittee"/>
+                                                <img t-if="member.image_128" class="img-fluid rounded-circle d-block mx-auto shadow o_portal_committee_img" t-att-src="image_data_uri(member.image_128)" alt="Committee"/>
                                             </div>
                                             <div class="col-lg-8">
                                                 <h3><p t-field="member.name"/></h3>

@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* club
+# 	* club
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-02 23:03+0000\n"
-"PO-Revision-Date: 2018-07-02 23:03+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-04-04 11:13+0000\n"
+"PO-Revision-Date: 2022-04-04 11:13+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,11 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: club
-#: model:mail.template,body_html:club.email_template_membership_affiliation_request
-msgid "\n"
+#: model:mail.template,body_html:club.email_template_membership_affiliation_invitation
+msgid ""
+"\n"
 "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
 "    <p>\n"
-"        Dear ${(object.user_id.name or 'player')|safe},\n"
+"        Dear ${(object.member_id.name or 'member')|safe},\n"
 "    </p>\n"
 "    <p>\n"
 "        An affiliation request has been done for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>.\n"
@@ -28,36 +29,42 @@ msgid "\n"
 "        Could you please let us know your answer by clicking on the button of your choice?\n"
 "    </p>\n"
 "    <p>\n"
-"        <a href=\"/club/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accept</a>\n"
-"        <a href=\"/club/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Decline</a>\n"
-"        <a href=\"/club/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.id}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">View</a>\n"
+"        <a href=\"/club/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accept</a>\n"
+"        <a href=\"/club/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Decline</a>\n"
+"        <a href=\"/club/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">View</a>\n"
 "    </p>\n"
 "    <p>\n"
 "        Best regards,\n"
 "    </p>\n"
 "    <p>\n"
-"        The ${ctx['company_id'].name|safe} comittee members\n"
+"        The ${user.company_id.name|safe} committee members\n"
 "    </p>\n"
 "    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${user.company_id.name}\">\n"
 "\n"
 "</div>\n"
-""
+"\n"
+"        "
 msgstr ""
 
 #. module: club
 #: model:mail.template,body_html:club.email_template_membership_affiliation_confirmation
-msgid "\n"
+msgid ""
+"\n"
 "<p>\n"
-"    Dear ${(object.user_id.name or 'player')|safe},\n"
+"    Dear ${(object.member_id.name or 'member')|safe},\n"
 "</p>\n"
 "<p>\n"
 "We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>!\n"
 "</p>\n"
 "<p>\n"
 "% if object.price_remaining:\n"
-"Please note that you will have to pay ${object.price_remaining} on the account ${object.account_no}.\n"
+"    Please note that you will have to pay ${format_amount(object.price_remaining, object.currency_id)} \n"
+"    % if user.company_id.account_no:\n"
+"        on the account ${user.company_id.account_no}\n"
+"    % endif\n"
+"    .\n"
 "%else:\n"
-"Please note that for this season, no price is due anymore.\n"
+"    Please note that for this season, no price is due anymore.\n"
 "% endif\n"
 "</p>\n"
 "<p>\n"
@@ -70,40 +77,76 @@ msgid "\n"
 "Best regards,\n"
 "</p>\n"
 "<p>\n"
-"${user.name}, for the ${ctx['company_id'].name|safe} comittee members\n"
+"${user.name}, for the ${user.company_id.name|safe} committee members\n"
 "</p>\n"
 "\n"
-"            "
+"        "
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
-msgid "<span class=\"btn btn-success\">Payment OK</span>"
+#: model:ir.actions.server,name:club.action_send_email_membership_confirmation
+msgid "(Re)Send Membership Confirmation Email"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
-msgid "<span class=\"pull-left\">You don't have any membership recorded.</span>"
+#: model:ir.actions.server,name:club.action_send_email_membership_invitation
+msgid "(Re)Send Membership Invitation Email"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_membership_request
-msgid "<span class=\"pull-left\">You have already subscribed to all available seasons.</span>"
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "(account:"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_kanban
+#: model_terms:ir.ui.view,arch_db:club.website_info_club
+msgid "<font style=\"\" class=\"text-o-color-2\">Committee Info</font>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"<span class=\"alert alert-warning\">This user must be an internal user in "
+"order to assign him a role in the club.</span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
+msgid "<span class=\"badge badge-success\">Payment OK</span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.website_membership_request
+msgid ""
+"<span class=\"pull-left\">You have already subscribed to all available "
+"seasons.</span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
 msgid "<span>Price Due: </span>"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_kanban
+#: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
 msgid "<span>Price Paid: </span>"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_defaults
-msgid "A Python dictionary that will be evaluated to provide default values when creating new records for this alias."
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "<span>Your invitation response: </span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "<span>still to pay</span><br/>"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_period__alias_defaults
+msgid ""
+"A Python dictionary that will be evaluated to provide default values when "
+"creating new records for this alias."
 msgstr ""
 
 #. module: club
@@ -112,184 +155,296 @@ msgid "About us"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Accept Emails From"
 msgstr ""
 
 #. module: club
-#: selection:membership,user_response:0
+#: model:ir.model.fields.selection,name:club.selection__membership__user_response__accepted
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 msgid "Accepted"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_search
+#: model:ir.model.fields,field_description:club.field_res_company__account_no
+msgid "Account No."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__message_needaction
+#: model:ir.model.fields,field_description:club.field_period__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_category__active
+#: model_terms:ir.ui.view,arch_db:club.category_search
+#: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Active"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_count_members
-#: model:ir.model.fields,field_description:club.field_period_category_count_members
-#: model:ir.model.fields,field_description:club.field_period_count_members
+#: model:ir.model.fields,field_description:club.field_category__count_members
+#: model:ir.model.fields,field_description:club.field_period__count_members
+#: model:ir.model.fields,field_description:club.field_period_category__count_members
 msgid "Active Members"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_active
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model:ir.model.fields,field_description:club.field_period__active
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Active Period(s)"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Add"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Address"
 msgstr ""
 
 #. module: club
-#: model:mail.template,subject:club.email_template_membership_affiliation_request
-msgid "Affiliation request for ${(object.period_id.name or 'new season')|safe}"
+#: model:mail.template,subject:club.email_template_membership_affiliation_invitation
+msgid ""
+"Affiliation request for ${(object.period_id.name or 'new season')|safe}"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Affiliations"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_contact
+#: model:ir.model.fields,field_description:club.field_period__alias_id
+msgid "Alias"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_period__alias_contact
 msgid "Alias Contact Security"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_name
+#: model:ir.model.fields,field_description:club.field_period__alias_name
 msgid "Alias Name"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_domain
+#: model:ir.model.fields,field_description:club.field_period__alias_domain
 msgid "Alias domain"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_model_id
+#: model:ir.model.fields,field_description:club.field_period__alias_model_id
 msgid "Aliased Model"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "An email for this membership has already been sent. Do you want to send it again?"
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "Amount Due"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.category_search
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Archived"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Archived Period(s)"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to start president role as of today? You can still modify it by changing the related record in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to start president role as of today? You can still modify it by"
+" changing the related record in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to start secretary role as of today? You can still modify it by changing the related record in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to start secretary role as of today? You can still modify it by"
+" changing the related record in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to start treasurer role as of today? You can still modify it by changing the related record in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to start treasurer role as of today? You can still modify it by"
+" changing the related record in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to stop current president role? You can still reactivate it by removing the related end date in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to stop current president role? You can still reactivate it by "
+"removing the related end date in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to stop current secretary role? You can still reactivate it by removing the related end date in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to stop current secretary role? You can still reactivate it by "
+"removing the related end date in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Are you sure to stop current treasurer role? You can still reactivate it by removing the related end date in the historical below."
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid ""
+"Are you sure to stop current treasurer role? You can still reactivate it by "
+"removing the related end date in the historical below."
 msgstr ""
 
 #. module: club
-#: model:ir.actions.server,name:club.action_calculate_membership_price_due
-msgid "Calculate Memberships Price Due"
+#: model:ir.model.fields,field_description:club.field_membership__message_attachment_count
+#: model:ir.model.fields,field_description:club.field_period__message_attachment_count
+msgid "Attachment Count"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Cancel"
 msgstr ""
 
 #. module: club
 #: model:ir.actions.act_window,name:club.action_settings_category
+#: model:ir.model.fields,field_description:club.field_period__category_ids
 #: model:ir.ui.menu,name:club.menu_sub_settings_category
-#: model:ir.ui.view,arch_db:club.period_view_form
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.category_search
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Categories"
 msgstr ""
 
 #. module: club
 #: model:ir.model,name:club.model_category
-#: model:ir.model.fields,field_description:club.field_category_name
-#: model:ir.model.fields,field_description:club.field_membership_category_id
-#: model:ir.model.fields,field_description:club.field_period_category_category_id
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model:ir.model.fields,field_description:club.field_category__name
+#: model:ir.model.fields,field_description:club.field_membership__category_id
+#: model:ir.model.fields,field_description:club.field_period_category__category_id
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.period_category_search
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Category"
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.category_search
+msgid "Category Name"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__res_partner__company_type__company
 #: model:ir.ui.menu,name:club.menu_sub_settings_club
 msgid "Club"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_info_club
-msgid "Club Info"
+#: model:ir.ui.menu,name:club.menu_root
+msgid "Club Membership Manager"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_color
+#: model:ir.model.fields,field_description:club.field_membership__color
 msgid "Color Index"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_membership_color
+#: model:ir.model.fields,help:club.field_membership__color
 msgid "Color to be displayed in the kanban view."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_info_club
-msgid "Comittee Info"
+#: model:ir.module.category,name:club.module_category_committee
+msgid "Committee"
+msgstr ""
+
+#. module: club
+#: model:res.groups,comment:club.group_club_committee_manager
+msgid ""
+"Committee managers for the module Club Membership Manager. On top of the "
+"committee users, managers can usually create/modify/delete records."
 msgstr ""
 
 #. module: club
 #: model:res.groups,comment:club.group_club_committee_user
-msgid "Committee members for the module Club Membership Manager."
+msgid ""
+"Committee users for the module Club Membership Manager. They usually have "
+"only a read access to the application."
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__company_id
+msgid "Company"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__company_type
+#: model:ir.model.fields,field_description:club.field_res_users__company_type
+msgid "Company Type"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Compose Email - Membership Affiliation Confirmation"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Compose Email - Membership Invitation"
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: club
+#: model:ir.ui.menu,name:club.menu_top_settings
+msgid "Configuration"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__confirmation_mail_sent
+msgid "Confirmation Mail Sent"
 msgstr ""
 
 #. module: club
 #: model:mail.template,subject:club.email_template_membership_affiliation_confirmation
-msgid "Confirmation of your affiliation for period ${object.period_category_id.period_id.name}"
+msgid ""
+"Confirmation of your affiliation for period "
+"${object.period_category_id.period_id.name}"
 msgstr ""
 
 #. module: club
 #: model:ir.model,name:club.model_res_partner
 msgid "Contact"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__contact_person_id
+msgid "Contact Person"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__contact_person_id
+msgid ""
+"Contact with which all communication will happen. This is usually useful "
+"when member is a minor child."
 msgstr ""
 
 #. module: club
@@ -299,268 +454,376 @@ msgid "Contacts"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Create New Period Based on Current"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_create_uid
-#: model:ir.model.fields,field_description:club.field_membership_create_uid
-#: model:ir.model.fields,field_description:club.field_period_category_create_uid
-#: model:ir.model.fields,field_description:club.field_period_create_uid
-#: model:ir.model.fields,field_description:club.field_period_wizard_create_uid
-#: model:ir.model.fields,field_description:club.field_role_create_uid
+#: model:ir.model.fields,field_description:club.field_category__create_uid
+#: model:ir.model.fields,field_description:club.field_membership__create_uid
+#: model:ir.model.fields,field_description:club.field_period__create_uid
+#: model:ir.model.fields,field_description:club.field_period_category__create_uid
+#: model:ir.model.fields,field_description:club.field_period_wizard__create_uid
+#: model:ir.model.fields,field_description:club.field_role__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_create_date
-#: model:ir.model.fields,field_description:club.field_membership_create_date
-#: model:ir.model.fields,field_description:club.field_period_category_create_date
-#: model:ir.model.fields,field_description:club.field_period_create_date
-#: model:ir.model.fields,field_description:club.field_period_wizard_create_date
-#: model:ir.model.fields,field_description:club.field_role_create_date
+#: model:ir.model.fields,field_description:club.field_category__create_date
+#: model:ir.model.fields,field_description:club.field_membership__create_date
+#: model:ir.model.fields,field_description:club.field_period__create_date
+#: model:ir.model.fields,field_description:club.field_period_category__create_date
+#: model:ir.model.fields,field_description:club.field_period_wizard__create_date
+#: model:ir.model.fields,field_description:club.field_role__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_currency_id
-#: model:ir.model.fields,field_description:club.field_membership_currency_id
-#: model:ir.model.fields,field_description:club.field_period_category_currency_id
-#: model:ir.model.fields,field_description:club.field_period_currency_id
+#: model:ir.model.fields,field_description:club.field_category__currency_id
+#: model:ir.model.fields,field_description:club.field_membership__currency_id
+#: model:ir.model.fields,field_description:club.field_period__currency_id
+#: model:ir.model.fields,field_description:club.field_period_category__currency_id
 msgid "Currency"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_current
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model:ir.model.fields,field_description:club.field_period__current
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Current Period"
 msgstr ""
 
 #. module: club
-#: selection:membership,user_response:0
+#: model:ir.model.fields,field_description:club.field_period__alias_bounced_content
+msgid "Custom Bounced Message"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__membership__user_response__declined
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 msgid "Declined"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_category_default
+#: model:ir.model.fields,field_description:club.field_period_category__default
 msgid "Default"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_defaults
+#: model:ir.model.fields,field_description:club.field_period__alias_defaults
 msgid "Default Values"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_display_name
-#: model:ir.model.fields,field_description:club.field_membership_display_name
-#: model:ir.model.fields,field_description:club.field_period_category_display_name
-#: model:ir.model.fields,field_description:club.field_period_display_name
-#: model:ir.model.fields,field_description:club.field_period_wizard_display_name
-#: model:ir.model.fields,field_description:club.field_role_display_name
+#: model:ir.model.fields,field_description:club.field_category__description
+msgid "Description"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Details"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_category__display_name
+#: model:ir.model.fields,field_description:club.field_membership__display_name
+#: model:ir.model.fields,field_description:club.field_period__display_name
+#: model:ir.model.fields,field_description:club.field_period_category__display_name
+#: model:ir.model.fields,field_description:club.field_period_wizard__display_name
+#: model:ir.model.fields,field_description:club.field_role__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Do you want to send again an email to the user to invite him for his membership validation?"
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"Do you want to send an email to the user to let him sign up to the "
+"application?"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Do you want to send an email to the user to advise him of his membership?"
-msgstr ""
-
-#. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Do you want to send an email to the user to invite him for his membership validation?"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_period_category_price_due
+#: model:ir.model.fields,field_description:club.field_period_category__price_due
 msgid "Due Price"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Duplicate Period"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_wizard_form_view
-msgid "Period Duplication"
-msgstr ""
-
-#. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_kanban
-msgid "Edit Membership"
-msgstr ""
-
-#. module: club
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Email Alias"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model:ir.model,name:club.model_mail_template
+msgid "Email Templates"
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Emails"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_end_date
-#: model:ir.model.fields,field_description:club.field_period_wizard_end_date
-#: model:ir.model.fields,field_description:club.field_role_end_date
+#: model:ir.model.fields,field_description:club.field_period__end_date
+#: model:ir.model.fields,field_description:club.field_period_wizard__end_date
+#: model:ir.model.fields,field_description:club.field_role__end_date
 msgid "End Date"
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/res_users.py:66
+#: code:addons/club/models/res_users.py:0
 #, python-format
-msgid "Error while trying to %s role '%s': maybe no current role has been found!"
+msgid ""
+"Error while trying to %s role '%s': maybe no current role has been found!"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_category_price_due
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "Everything is paid!"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_period_category__price_due
 msgid "Expected price to pay for the member."
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/period_category.py:106
+#: code:addons/club/models/membership.py:0
 #, python-format
-msgid "For the period '%s', the category '%s' must be unique. Please change it accordingly."
+msgid "Fields \"Period\" and \"Category\" cannot be set together with such values."
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/period_category.py:108
-#, python-format
-msgid "For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly."
+#: model:ir.model.fields,field_description:club.field_membership__message_follower_ids
+#: model:ir.model.fields,field_description:club.field_period__message_follower_ids
+msgid "Followers"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-#: model:ir.ui.view,arch_db:club.website_period
+#: model:ir.model.fields,field_description:club.field_membership__message_partner_ids
+#: model:ir.model.fields,field_description:club.field_period__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/period_category.py:0
+#, python-format
+msgid ""
+"For the period '%s', the category '%s' must be unique. Please change it "
+"accordingly."
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/period_category.py:0
+#, python-format
+msgid ""
+"For the period '%s', you cannot have multiple period categories with the "
+"attribute 'default' set to true. Please change it accordingly."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "From"
 msgstr ""
 
 #. module: club
-#: model:res.groups,name:club.group_club_committee_user
-msgid "Group - Committee"
+#: model_terms:ir.ui.view,arch_db:club.period_category_search
+msgid "Group By"
 msgstr ""
 
 #. module: club
-#: model:res.groups,name:club.group_club_committee_manager
-msgid "Group - Manager"
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid "Groups"
 msgstr ""
 
 #. module: club
-#: model:res.groups,name:club.group_club_president
-msgid "Group - President"
+#: model:ir.model.fields,field_description:club.field_membership__has_message
+#: model:ir.model.fields,field_description:club.field_period__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: club
-#: model:res.groups,name:club.group_club_secretary
-msgid "Group - Secretary"
+#: model:ir.module.category,description:club.module_category_committee
+msgid "Helps you to manage club groups."
 msgstr ""
 
 #. module: club
-#: model:res.groups,name:club.group_club_treasurer
-msgid "Group - Treasurer"
-msgstr ""
-
-#. module: club
-#: model:res.groups,name:club.group_user
-msgid "Group - User"
-msgstr ""
-
-#. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "Historical"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_category_id
-#: model:ir.model.fields,field_description:club.field_membership_id
-#: model:ir.model.fields,field_description:club.field_period_category_id
-#: model:ir.model.fields,field_description:club.field_period_id
-#: model:ir.model.fields,field_description:club.field_period_wizard_id
-#: model:ir.model.fields,field_description:club.field_role_id
+#: model:ir.model.fields,field_description:club.field_category__id
+#: model:ir.model.fields,field_description:club.field_membership__id
+#: model:ir.model.fields,field_description:club.field_period__id
+#: model:ir.model.fields,field_description:club.field_period_category__id
+#: model:ir.model.fields,field_description:club.field_period_wizard__id
+#: model:ir.model.fields,field_description:club.field_role__id
 msgid "ID"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_parent_thread_id
-msgid "ID of the parent record holding the alias (example: project holding the task creation alias)"
+#: model:ir.model.fields,help:club.field_period__alias_parent_thread_id
+msgid ""
+"ID of the parent record holding the alias (example: project holding the task"
+" creation alias)"
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/res_users.py:85
-#, python-format
-msgid "Invalid email address. Please enter a valid one."
+#: model:ir.model.fields,help:club.field_mail_template__is_membership_confirmation_mail
+msgid ""
+"If True, memberships sent with this email template will be marked with a "
+"confirmation mail as sent."
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_invitation_mail_sent
+#: model:ir.model.fields,help:club.field_mail_template__is_membership_invitation_mail
+msgid ""
+"If True, memberships sent with this email template will be marked with an "
+"invitation mail as sent."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__message_needaction
+#: model:ir.model.fields,help:club.field_membership__message_unread
+#: model:ir.model.fields,help:club.field_period__message_needaction
+#: model:ir.model.fields,help:club.field_period__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__message_has_error
+#: model:ir.model.fields,help:club.field_membership__message_has_sms_error
+#: model:ir.model.fields,help:club.field_period__message_has_error
+#: model:ir.model.fields,help:club.field_period__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_res_users__committee_user
+msgid ""
+"If checked, the user will have a read access to the application Club "
+"Membership Manager."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_res_users__committee_manager
+msgid ""
+"If checked, the user will have a write access to the application Club Membership Manager.\n"
+"        This will allow the user to manage the application."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_period__alias_bounced_content
+msgid ""
+"If set, this content will automatically be sent out to unauthorized users "
+"instead of the default message."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_res_config_settings__mail_local_part
+msgid ""
+"If you are using an email address as mail server, enter the local part of the email.\n"
+"        i.e. If you use 'my_club@gmail.com' as mail server, 'my_club' should be the mail local part.\n"
+"        "
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__res_partner__company_type__person
+msgid "Individual"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__invitation_mail_sent
 msgid "Invitation Mail Sent"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_token
+#: model:ir.model.fields,field_description:club.field_membership__token
 msgid "Invitation Token"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_role_current
+#: model:ir.model.fields,field_description:club.field_mail_template__is_membership_confirmation_mail
+msgid "Is A Membership Confirmation Mail"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_mail_template__is_membership_invitation_mail
+msgid "Is A Membership Invitation Mail"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_users__committee_manager
+msgid "Is Committee Manager"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_users__committee_user
+msgid "Is Committee User"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_role__current
 msgid "Is Current"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_res_users_manager
-msgid "Is Manager"
+#: model:ir.model.fields,field_description:club.field_membership__message_is_follower
+#: model:ir.model.fields,field_description:club.field_period__message_is_follower
+msgid "Is Follower"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_res_users_president
+#: model:ir.model.fields,field_description:club.field_res_users__is_internal
+msgid "Is Internal"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_users__president
 msgid "Is President"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_res_users_secretary
+#: model:ir.model.fields,field_description:club.field_res_users__secretary
 msgid "Is Secretary"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_res_users_treasurer
+#: model:ir.model.fields,field_description:club.field_res_users__treasurer
 msgid "Is Treasurer"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category___last_update
-#: model:ir.model.fields,field_description:club.field_membership___last_update
-#: model:ir.model.fields,field_description:club.field_period___last_update
-#: model:ir.model.fields,field_description:club.field_period_category___last_update
-#: model:ir.model.fields,field_description:club.field_period_wizard___last_update
-#: model:ir.model.fields,field_description:club.field_role___last_update
+#: model:ir.model.fields,field_description:club.field_category____last_update
+#: model:ir.model.fields,field_description:club.field_membership____last_update
+#: model:ir.model.fields,field_description:club.field_period____last_update
+#: model:ir.model.fields,field_description:club.field_period_category____last_update
+#: model:ir.model.fields,field_description:club.field_period_wizard____last_update
+#: model:ir.model.fields,field_description:club.field_role____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_write_uid
-#: model:ir.model.fields,field_description:club.field_membership_write_uid
-#: model:ir.model.fields,field_description:club.field_period_category_write_uid
-#: model:ir.model.fields,field_description:club.field_period_wizard_write_uid
-#: model:ir.model.fields,field_description:club.field_period_write_uid
-#: model:ir.model.fields,field_description:club.field_role_write_uid
+#: model:ir.model.fields,field_description:club.field_category__write_uid
+#: model:ir.model.fields,field_description:club.field_membership__write_uid
+#: model:ir.model.fields,field_description:club.field_period__write_uid
+#: model:ir.model.fields,field_description:club.field_period_category__write_uid
+#: model:ir.model.fields,field_description:club.field_period_wizard__write_uid
+#: model:ir.model.fields,field_description:club.field_role__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_write_date
-#: model:ir.model.fields,field_description:club.field_membership_write_date
-#: model:ir.model.fields,field_description:club.field_period_category_write_date
-#: model:ir.model.fields,field_description:club.field_period_wizard_write_date
-#: model:ir.model.fields,field_description:club.field_period_write_date
-#: model:ir.model.fields,field_description:club.field_role_write_date
+#: model:ir.model.fields,field_description:club.field_category__write_date
+#: model:ir.model.fields,field_description:club.field_membership__write_date
+#: model:ir.model.fields,field_description:club.field_period__write_date
+#: model:ir.model.fields,field_description:club.field_period_category__write_date
+#: model:ir.model.fields,field_description:club.field_period_wizard__write_date
+#: model:ir.model.fields,field_description:club.field_role__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -571,8 +834,8 @@ msgid "Locations"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_mail_sent
-msgid "Mail Sent"
+#: model:ir.model.fields,field_description:club.field_res_config_settings__mail_local_part
+msgid "Mail Local Part"
 msgstr ""
 
 #. module: club
@@ -581,42 +844,57 @@ msgid "Mail Templates"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__message_main_attachment_id
+#: model:ir.model.fields,field_description:club.field_period__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: club
 #: model:website.menu,name:club.menu_membership_request
 msgid "Make a request"
 msgstr ""
 
 #. module: club
-#: model:res.groups,comment:club.group_club_committee_manager
-msgid "Manager of the module Club Membership Manager."
+#: model:res.groups,name:club.group_club_committee_manager
+msgid "Manager"
 msgstr ""
 
 #. module: club
-#: selection:membership,state:0
+#: model:ir.model.fields,field_description:club.field_membership__member_id
+#: model:ir.model.fields.selection,name:club.selection__membership__state__member
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Member"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 msgid "Member Status"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_user_ids
-#: model:ir.model.fields,field_description:club.field_period_user_ids
+#: model:ir.model.fields,field_description:club.field_membership__member_user_id
+msgid "Member User"
+msgstr ""
+
+#. module: club
+#: model:ir.actions.act_window,name:club.action_member
+#: model:ir.model.fields,field_description:club.field_category__member_ids
+#: model:ir.model.fields,field_description:club.field_period__member_ids
 #: model:ir.ui.menu,name:club.menu_sub_members
-#: model:ir.ui.view,arch_db:club.category_view_form
-#: model:ir.ui.view,arch_db:club.membership_search
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Members"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Members for the previous season."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Members only."
 msgstr ""
 
@@ -627,70 +905,109 @@ msgid "Membership"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_membership_user_response
+#: model:mail.template,name:club.email_template_membership_affiliation_confirmation
+msgid "Membership Affiliation Confirmation"
+msgstr ""
+
+#. module: club
+#: model:mail.template,name:club.email_template_membership_affiliation_invitation
+msgid "Membership Affiliation Invitation"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__user_response
 msgid "Membership status for user's response."
 msgstr ""
 
 #. module: club
 #: model:ir.actions.act_window,name:club.action_membership
-#: model:ir.model.fields,field_description:club.field_category_membership_ids
-#: model:ir.model.fields,field_description:club.field_period_category_membership_ids
-#: model:ir.model.fields,field_description:club.field_period_membership_ids
-#: model:ir.model.fields,field_description:club.field_res_users_membership_ids
+#: model:ir.model.fields,field_description:club.field_category__membership_ids
+#: model:ir.model.fields,field_description:club.field_period__membership_ids
+#: model:ir.model.fields,field_description:club.field_period_category__membership_ids
+#: model:ir.model.fields,field_description:club.field_res_partner__membership_ids
+#: model:ir.model.fields,field_description:club.field_res_users__membership_ids
 #: model:ir.ui.menu,name:club.menu_sub_memberships
 #: model:ir.ui.menu,name:club.menu_top_memberships
-#: model:ir.ui.view,arch_db:club.category_view_form
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_category_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.portal_my_home_membership
+#: model_terms:ir.ui.view,arch_db:club.portal_my_home_menu_membership
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Memberships"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships of active period(s)."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships of archived period(s)."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships of current period."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships of upcoming period."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: code:addons/club/models/mail.py:0
+#, python-format
+msgid "Memberships with Mail Sent"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships with a payment due."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships with a rejected status."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships with a requested status."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships with an unknown status."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
-msgid "My Historical"
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Message"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.my_settings_link
+#: model:ir.model.fields,field_description:club.field_membership__message_has_error
+#: model:ir.model.fields,field_description:club.field_period__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__message_ids
+#: model:ir.model.fields,field_description:club.field_period__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+msgid "Misc"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.my_settings_link
 msgid "My Settings"
 msgstr ""
 
@@ -700,261 +1017,325 @@ msgid "My historical"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_wizard_name
+#: model:ir.model.fields,field_description:club.field_period_wizard__name
 msgid "Name"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.category_view_form
-#: model:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Name..."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Name:"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "New Name"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-msgid "No, I have declined."
+#: model:ir.model.fields,field_description:club.field_membership__message_needaction_counter
+#: model:ir.model.fields,field_description:club.field_period__message_needaction_counter
+msgid "Number of Actions"
 msgstr ""
 
 #. module: club
-#: selection:membership,state:0
+#: model:ir.model.fields,field_description:club.field_membership__message_has_error_counter
+#: model:ir.model.fields,field_description:club.field_period__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__message_needaction_counter
+#: model:ir.model.fields,help:club.field_period__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__message_has_error_counter
+#: model:ir.model.fields,help:club.field_period__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__message_unread_counter
+#: model:ir.model.fields,help:club.field_period__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__membership__state__old_member
 msgid "Old Member"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Old Members"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.category_search
+msgid "Only active categories."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Only active period."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.category_search
+msgid "Only inactive categories."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Only inactive periods."
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_force_thread_id
-msgid "Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely."
+#: model:ir.model.fields,help:club.field_period__alias_force_thread_id
+msgid ""
+"Optional ID of a thread (record) to which all incoming messages will be "
+"attached, even if they did not reply to it. If set, this will disable the "
+"creation of new records completely."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.menu,name:club.menu_top_settings
-msgid "Other Settings"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_user_id
+#: model:ir.model.fields,field_description:club.field_period__alias_user_id
 msgid "Owner"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_paid
+#: model:ir.model.fields,field_description:club.field_membership__paid
 msgid "Paid"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_parent_model_id
+#: model:ir.model.fields,field_description:club.field_period__alias_parent_model_id
 msgid "Parent Model"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_parent_thread_id
+#: model:ir.model.fields,field_description:club.field_period__alias_parent_thread_id
 msgid "Parent Record Thread ID"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_parent_model_id
-msgid "Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model))"
+#: model:ir.model.fields,help:club.field_period__alias_parent_model_id
+msgid ""
+"Parent model holding the alias. The model holding the alias reference is not"
+" necessarily the model given by alias_model_id (example: project "
+"(parent_model) and task (model))"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_membership_partner_id
-msgid "Partner-related data of the user"
-msgstr ""
-
-#. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Payment Due"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Payment Receipt"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: code:addons/club/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
+#, python-format
 msgid "Payment Status"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Payment due:"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_price_paid_percentage
+#: model:ir.model.fields,field_description:club.field_membership__price_paid_percentage
 msgid "Percentage Paid"
 msgstr ""
 
 #. module: club
 #: model:ir.model,name:club.model_period
-#: model:ir.model.fields,field_description:club.field_membership_period_id
-#: model:ir.model.fields,field_description:club.field_period_category_period_id
-#: model:ir.model.fields,field_description:club.field_period_name
-#: model:ir.model.fields,field_description:club.field_period_wizard_period_id
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model:ir.model.fields,field_description:club.field_membership__period_id
+#: model:ir.model.fields,field_description:club.field_period__name
+#: model:ir.model.fields,field_description:club.field_period_category__period_id
+#: model:ir.model.fields,field_description:club.field_period_wizard__period_id
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.period_category_search
 msgid "Period"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_period_category_ids
-#: model:ir.model.fields,field_description:club.field_period_period_category_ids
+#: model:ir.actions.act_window,name:club.action_settings_period_category
+#: model:ir.model.fields,field_description:club.field_category__period_category_ids
+#: model:ir.model.fields,field_description:club.field_period__period_category_ids
+#: model:ir.ui.menu,name:club.menu_sub_settings_period_category
 msgid "Period Categories"
 msgstr ""
 
 #. module: club
 #: model:ir.model,name:club.model_period_category
-#: model:ir.model.fields,field_description:club.field_membership_period_category_id
+#: model:ir.model.fields,field_description:club.field_membership__period_category_id
 msgid "Period Category"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
+msgid "Period Duplication"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Period Including Date"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_wizard_form_view
+#: model_terms:ir.ui.view,arch_db:club.period_search
+msgid "Period Name"
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_period_wizard
+msgid "Period Wizard"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Period to Duplicate"
 msgstr ""
 
 #. module: club
 #: model:ir.actions.act_window,name:club.action_settings_period
+#: model:ir.model.fields,field_description:club.field_category__period_ids
 #: model:ir.ui.menu,name:club.menu_sub_settings_period
-#: model:ir.ui.view,arch_db:club.category_view_form
-#: model:ir.ui.view,arch_db:club.membership_search
-#: model:ir.ui.view,arch_db:club.period_search
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.period_search
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Periods"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-msgid "Player"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields,help:club.field_period_alias_contact
-msgid "Policy to post a message on the document using the mailgateway.\n"
+#: model:ir.model.fields,help:club.field_period__alias_contact
+msgid ""
+"Policy to post a message on the document using the mailgateway.\n"
 "- everyone: everyone can post\n"
 "- partners: only authenticated partners\n"
 "- followers: only followers of the related document or members of following channels\n"
-""
 msgstr ""
 
 #. module: club
-#: selection:role,name:0
+#: model:ir.model.fields.selection,name:club.selection__role__name__president
+#: model:res.groups,name:club.group_club_president
 msgid "President"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_previous_period
+#: model:ir.model.fields,field_description:club.field_period__previous_period
 msgid "Previous Period"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_price_due
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model:ir.model.fields,field_description:club.field_membership__price_due
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Price Due"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_period
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Price Due has changed"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Price Due:"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_price_paid
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model:ir.model.fields,field_description:club.field_membership__price_paid
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Price Paid"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_price_remaining
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model:ir.model.fields,field_description:club.field_membership__price_remaining
 msgid "Price Remaining"
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_graph_members
+msgid "Prices per Member"
+msgstr ""
+
+#. module: club
+#: model:ir.actions.act_window,name:club.action_report_prices_per_member
+msgid "Prices per Member (validated only)"
+msgstr ""
+
+#. module: club
 #: model:ir.ui.menu,name:club.menu_sub_reports_prices_period
-#: model:ir.ui.view,arch_db:club.membership_view_graph_periods
+#: model_terms:ir.ui.view,arch_db:club.membership_view_graph_periods
 msgid "Prices per Period"
 msgstr ""
 
 #. module: club
 #: model:ir.actions.act_window,name:club.action_report_prices_per_period
-msgid "Prices per Period (members only)"
+msgid "Prices per Period (validated members only)"
 msgstr ""
 
 #. module: club
 #: model:ir.ui.menu,name:club.menu_sub_reports_prices_user
-#: model:ir.ui.view,arch_db:club.membership_view_graph_users
 msgid "Prices per User"
 msgstr ""
 
 #. module: club
-#: model:ir.actions.act_window,name:club.action_report_prices_per_user
-msgid "Prices per User (members only)"
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Prices should be positive."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "ReSend Confirmation Email"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "ReSend Invitation Email"
+#: model:ir.actions.server,name:club.action_update_active_periods
+msgid "Recalculate Active Period(s)"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.period_view_form
-msgid "Recalculate Active Periods"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_period_alias_force_thread_id
+#: model:ir.model.fields,field_description:club.field_period__alias_force_thread_id
 msgid "Record Thread ID"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Reject Affiliation"
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+msgid "Regenerate"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
-#: selection:membership,state:0
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Reject"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__membership__state__rejected
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Rejected"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_partner_id
-msgid "Related Partner"
+#: model:ir.model.fields,field_description:club.field_membership__member_parent_id
+msgid "Related Company"
 msgstr ""
 
 #. module: club
@@ -963,23 +1344,22 @@ msgid "Reports"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_membership_request
+#: model_terms:ir.ui.view,arch_db:club.website_membership_request
 msgid "Request an Affiliation"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Request an affiliation for this period"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_membership_request
+#: model_terms:ir.ui.view,arch_db:club.website_membership_request
 msgid "Request this membership"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
-#: selection:membership,state:0
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Requested"
 msgstr ""
 
@@ -989,263 +1369,401 @@ msgid "Resources"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_role_name
+#: model:ir.model,name:club.model_role
+#: model:ir.model.fields,field_description:club.field_role__name
 msgid "Role"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_res_users_role_ids
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model:ir.model.fields,field_description:club.field_res_users__role_ids
 msgid "Roles"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid "Roles & Groups"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
+msgid "Roles Historical"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__message_has_sms_error
+#: model:ir.model.fields,field_description:club.field_period__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_category_search
+msgid "Search Period Categories"
+msgstr ""
+
+#. module: club
+#: code:addons/club/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
+#, python-format
 msgid "Season"
 msgstr ""
 
 #. module: club
-#: selection:role,name:0
+#: model:ir.model.fields.selection,name:club.selection__role__name__secretary
+#: model:res.groups,name:club.group_club_secretary
 msgid "Secretary"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_membership_request
+#: model_terms:ir.ui.view,arch_db:club.website_membership_request
 msgid "Select Period and Category (work in progress)"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Send Confirmation Email"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Send Invitation Email"
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Send Connection Invitation Email"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Sends an email to the user to let him know of his membership."
+#: model:ir.actions.server,name:club.action_send_email_connection_invitation
+msgid ""
+"Send Connection Invitation Email (for users who have never been connected)"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.menu,name:club.menu_root
-msgid "Club Membership Manager"
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Send Invitation"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_start_date
-#: model:ir.model.fields,field_description:club.field_period_wizard_start_date
-#: model:ir.model.fields,field_description:club.field_role_start_date
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Sends an email to the user to invite him to validate his membership."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"Sends an email to the user to let him know that his membership has been "
+"validated."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"Sends an email to the user to let him sign up to the application. Once the "
+"invitation accepted, he will be prompted to enter a new password."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_period__start_date
+#: model:ir.model.fields,field_description:club.field_period_wizard__start_date
+#: model:ir.model.fields,field_description:club.field_role__start_date
 msgid "Start Date"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start President Role"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Secretary Role"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Treasurer Role"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_state
+#: model:ir.model.fields,field_description:club.field_membership__state
 msgid "State"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.website_my_historical
+#: code:addons/club/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
+#, python-format
 msgid "Status"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop President Role"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop Secretary Role"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop Treasurer Role"
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/period.py:272
-#: code:addons/club/models/role.py:83
-#: sql_constraint:period:0
-#: sql_constraint:role:0
+#: code:addons/club/models/period.py:0 code:addons/club/models/role.py:0
+#: model:ir.model.constraint,message:club.constraint_period_dates_check
+#: model:ir.model.constraint,message:club.constraint_role_dates_check
 #, python-format
-msgid "The end date should be higher than the start date. Please change it accordingly."
+msgid ""
+"The end date should be higher than the start date. Please change it "
+"accordingly."
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_model_id
-msgid "The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task)"
+#: model:ir.model.fields,help:club.field_period__alias_model_id
+msgid ""
+"The model (Odoo Document Kind) to which this alias corresponds. Any incoming"
+" email that does not reply to an existing record will cause the creation of "
+"a new record of this model (e.g. a Project Task)"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_name
-msgid "The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>"
+#: model:ir.model.constraint,message:club.constraint_category_name_uniq
+msgid "The name of the category must be unique!"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_alias_user_id
-msgid "The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address."
-msgstr ""
-
-#. module: club
-#: code:addons/club/models/period.py:270
+#: code:addons/club/models/category.py:0
 #, python-format
-msgid "The period from %s to %s has at least one day in common with %d other period(s) already defined. Please change it accordingly."
+msgid "The name of the category must be unique! Please change it accordingly."
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/role.py:81
+#: model:ir.model.fields,help:club.field_period__alias_name
+msgid ""
+"The name of the email alias, e.g. 'jobs' if you want to catch emails for "
+"<jobs@example.odoo.com>"
+msgstr ""
+
+#. module: club
+#: model:ir.model.constraint,message:club.constraint_period_name_uniq
+msgid "The name of the period must be unique!"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/period.py:0
 #, python-format
-msgid "The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly."
+msgid "The name of the period must be unique! Please change it accordingly."
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/membership.py:325
+#: model:ir.model.fields,help:club.field_period__alias_user_id
+msgid ""
+"The owner of records created upon receiving emails on this alias. If this "
+"field is not set the system will attempt to find the right owner based on "
+"the sender (From) address, or will use the Administrator account if no "
+"system user is found for that address."
+msgstr ""
+
+#. module: club
+#: model:ir.model.constraint,message:club.constraint_res_users_partner_uniq
+msgid "The partner should be unique!"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/role.py:0
 #, python-format
-msgid "The user '%s' has already a membership for this period (%s). Please change accordingly."
+msgid ""
+"The role '%s' you are trying to assign to user '%s' has already been defined"
+" within this period. Please change it accordingly."
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/res_users.py:87
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid ""
+"The user '%s' has already a membership for this period (%s). Please change "
+"accordingly."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
+msgid "There are no memberships."
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/res_users.py:0
 #, python-format
 msgid "This email already exists. Please enter another one."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-#: model:ir.ui.view,arch_db:club.website_period
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "To"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.category_view_form
-#: model:ir.ui.view,arch_db:club.category_view_list
-#: model:ir.ui.view,arch_db:club.membership_view_list
-#: model:ir.ui.view,arch_db:club.period_view_form
-#: model:ir.ui.view,arch_db:club.period_view_list
-#: model:ir.ui.view,arch_db:club.view_users_simple_form_club
+#: model:ir.model.fields.selection,name:club.selection__membership__state__requested
+msgid "To Be Validated"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__token_is_valid
+msgid "Token Is Valid"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__token_validity
+msgid "Token Validity"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.category_view_list
+#: model_terms:ir.ui.view,arch_db:club.membership_view_list
+#: model_terms:ir.ui.view,arch_db:club.period_category_view_list
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+#: model_terms:ir.ui.view,arch_db:club.period_view_list
+#: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Total"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_total_price_due
-#: model:ir.model.fields,field_description:club.field_period_category_total_price_due
-#: model:ir.model.fields,field_description:club.field_period_total_price_due
+#: model:ir.model.fields,field_description:club.field_category__total_price_due
+#: model:ir.model.fields,field_description:club.field_period__total_price_due
+#: model:ir.model.fields,field_description:club.field_period_category__total_price_due
 msgid "Total Members Due Price"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_total_price_paid
-#: model:ir.model.fields,field_description:club.field_period_category_total_price_paid
-#: model:ir.model.fields,field_description:club.field_period_total_price_paid
+#: model:ir.model.fields,field_description:club.field_category__total_price_paid
+#: model:ir.model.fields,field_description:club.field_period__total_price_paid
+#: model:ir.model.fields,field_description:club.field_period_category__total_price_paid
 msgid "Total Members Price Paid"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_category_total_remaining_price_due
-#: model:ir.model.fields,field_description:club.field_period_category_total_remaining_price_due
-#: model:ir.model.fields,field_description:club.field_period_total_remaining_price_due
+#: model:ir.model.fields,field_description:club.field_category__total_remaining_price_due
+#: model:ir.model.fields,field_description:club.field_period__total_remaining_price_due
+#: model:ir.model.fields,field_description:club.field_period_category__total_remaining_price_due
 msgid "Total Remaining Members Due Price"
 msgstr ""
 
 #. module: club
-#: selection:role,name:0
+#: model:ir.model.fields.selection,name:club.selection__role__name__treasurer
+#: model:res.groups,name:club.group_club_treasurer
 msgid "Treasurer"
 msgstr ""
 
 #. module: club
-#: selection:membership,user_response:0
+#: model:ir.model.fields.selection,name:club.selection__membership__user_response__undefined
 msgid "Undefined"
 msgstr ""
 
 #. module: club
-#: selection:membership,state:0
+#: model:ir.model.fields.selection,name:club.selection__membership__state__unknown
 msgid "Unknown"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Unknown Status"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_period_upcoming
-#: model:ir.ui.view,arch_db:club.membership_search
+#: model:ir.model.fields,field_description:club.field_membership__message_unread
+#: model:ir.model.fields,field_description:club.field_period__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__message_unread_counter
+#: model:ir.model.fields,field_description:club.field_period__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_period__upcoming
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Upcoming Period"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_user_id
-#: model:ir.model.fields,field_description:club.field_role_user_id
+#: model:ir.model.fields,field_description:club.field_role__user_id
+#: model:res.groups,name:club.group_club_committee_user
 msgid "User"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership_user_response
+#: model:ir.model.fields,field_description:club.field_membership__user_response
 msgid "User Response"
 msgstr ""
 
 #. module: club
-#: model:ir.actions.act_window,name:club.action_member
+#: model:ir.model.fields,field_description:club.field_membership__user_state
+msgid "User Status"
+msgstr ""
+
+#. module: club
+#: model:ir.actions.act_window,name:club.action_user
 #: model:ir.model,name:club.model_res_users
+#: model:ir.ui.menu,name:club.menu_sub_users
 msgid "Users"
 msgstr ""
 
 #. module: club
 #: model:res.groups,comment:club.group_club_president
-msgid "Users with attribute 'president' set to True for the module Club Membership Manager."
+msgid ""
+"Users with attribute 'president' set to True for the module Club Membership "
+"Manager."
 msgstr ""
 
 #. module: club
 #: model:res.groups,comment:club.group_club_secretary
-msgid "Users with attribute 'secretary' set to True for the module Club Membership Manager."
+msgid ""
+"Users with attribute 'secretary' set to True for the module Club Membership "
+"Manager."
 msgstr ""
 
 #. module: club
 #: model:res.groups,comment:club.group_club_treasurer
-msgid "Users with attribute 'treasurer' set to True for the module Club Membership Manager."
+msgid ""
+"Users with attribute 'treasurer' set to True for the module Club Membership "
+"Manager."
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_view_form
-msgid "Validate Affiliation"
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Validate"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,help:club.field_period_category_default
-msgid "When a request is done on a given period without knowing the category, the default category is set. Per period, only one default Category can be set."
+#: model:ir.model,name:club.model_website_menu
+msgid "Website Menu"
 msgstr ""
 
 #. module: club
-#: model:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-msgid "Yes, I have accepted!"
+#: model:ir.model.fields,field_description:club.field_membership__website_message_ids
+#: model:ir.model.fields,field_description:club.field_period__website_message_ids
+msgid "Website Messages"
 msgstr ""
 
 #. module: club
-#: model:ir.model,name:club.model_period_wizard
-msgid "period_wizard"
+#: model:ir.model.fields,help:club.field_membership__website_message_ids
+#: model:ir.model.fields,help:club.field_period__website_message_ids
+msgid "Website communication history"
 msgstr ""
 
 #. module: club
-#: model:ir.model,name:club.model_role
-msgid "role"
+#: model:ir.model.fields,help:club.field_period_category__default
+msgid ""
+"When a request is done on a given period without knowing the category, the "
+"default category is set. Per period, only one default Category can be set."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+msgid ""
+"You are going to regenerate the default Email Alias. Are you sure? (The "
+"current one will be overwritten.)"
 msgstr ""
