@@ -20,7 +20,7 @@ class InterclubEventMailWizard(models.TransientModel):
     composer_id = fields.Many2one('mail.compose.message', string='Composer (Players)', ondelete='cascade')
     # composer related fields
     template_id = fields.Many2one('mail.template', string='Mail Template',
-        related='composer_id.template_id', readonly=False, domain=[('model', '=', 'calendar.attendee')])
+        related='composer_id.template_id', readonly=False, domain=[('model', '=', 'interclub.event')])
     subject = fields.Char(related='composer_id.subject', string='Subject (Players)', readonly=False)
     body = fields.Html(related='composer_id.body', string='Body (Players)', readonly=False)
 
@@ -45,9 +45,11 @@ class InterclubEventMailWizard(models.TransientModel):
             raise NotImplementedError(_('Only the model "interclub.event" is supported for this mail wizard. '\
                 'Current model: "{}".').format(self.env.context.get('active_model', '')))
 
+        template_id = self.env.context.get('template_id',
+            self.env.ref('interclubs.email_template_interclub_event_opening').id)
         composer = self.env['mail.compose.message'].create({
             'composition_mode': 'mass_mail',
-            'template_id': self.env.ref('calendar.calendar_template_meeting_invitation').id,
+            'template_id': template_id,
         })
         # For some unknown reason, writing the 'model' in the 'create' method may lead to a create access error.
         # Thus, it has been moved to the 'write' method below
@@ -59,8 +61,7 @@ class InterclubEventMailWizard(models.TransientModel):
             'composition_mode': 'comment',
             'res_id': self.env.context['active_id'],
             'model': self.env.context['active_model'],
-            'template_id': self.env.context.get('template_id',
-                self.env.ref('interclubs.email_template_interclub_event_opening').id),
+            'template_id': template_id,
         })
         res.update({
             'interclub_event_id': ic_event.id,
