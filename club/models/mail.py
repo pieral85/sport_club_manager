@@ -20,14 +20,14 @@ class MailComposer(models.TransientModel):
 
         return {'domain': {'template_id': domain}}
 
-    def send_mail(self, auto_commit=False):
+    def action_send_mail(self):
         self.ensure_one()
         model = self.env.context.get('default_model')
 
         if model == 'membership':
             self.env[model].browse(self.env.context['active_ids']).reset_token()
 
-        res = super(MailComposer, self).send_mail(auto_commit)
+        res = super(MailComposer, self).action_send_mail()
 
         if model == 'membership' and self.env.context.get('active_ids'):
             vals = {}

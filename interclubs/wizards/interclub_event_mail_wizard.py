@@ -113,7 +113,7 @@ class InterclubEventMailWizard(models.TransientModel):
                 'dbname': self._cr.dbname,
                 'active_ids': self.attendee_ids.ids,
             }
-            self.with_context(**ctx).composer_id.send_mail()
+            self.with_context(**ctx).composer_id.action_send_mail()
 
         if self.others_send_to_partners:
             subject = self.others_subject
@@ -123,6 +123,6 @@ class InterclubEventMailWizard(models.TransientModel):
             # we need need to keep the original subject/body of the wizard (which could have been modified by the user)
             self.others_subject = subject
             self.others_body = body
-            self.others_composer_id.send_mail()
+            self.others_composer_id.action_send_mail()
 
         return {'type': 'ir.actions.act_window_close'}
