@@ -153,7 +153,6 @@ class InterclubEvent(models.Model):
             'name': _('Interclub Event Mail Wizard'),
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
-            'src_model': 'interclub.event',
             'res_model': 'interclub.event.mail.wizard',
             'view_id': self.env.ref('interclubs.interclub_event_mail_wizard_form_view').id,
             'context': ctx,
