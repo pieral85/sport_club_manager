@@ -76,7 +76,7 @@ class InterclubEventMailWizard(models.TransientModel):
         self.ensure_one()
         if self.composer_id:
             self.composer_id.template_id = self.template_id
-            self.composer_id.onchange_template_id_wrapper()
+            self.composer_id._onchange_template_id_wrapper()
             self.subject = self.composer_id.subject if self.template_id else ''
             self.body = self.composer_id.body
 
@@ -90,7 +90,7 @@ class InterclubEventMailWizard(models.TransientModel):
                 self.others_partner_ids = self.interclub_event_id.referee_id \
                     | self.interclub_event_id.interclub_id.responsible_id | players
             self.others_composer_id.template_id = self.others_template_id
-            self.others_composer_id.onchange_template_id_wrapper()
+            self.others_composer_id._onchange_template_id_wrapper()
             self.others_subject = self.others_composer_id.subject if self.others_template_id else ''
             self.others_body = self.others_composer_id.body
 
@@ -118,8 +118,8 @@ class InterclubEventMailWizard(models.TransientModel):
         if self.others_send_to_partners:
             subject = self.others_subject
             body = self.others_body
-            self.others_composer_id.onchange_template_id_wrapper()
-            # As method 'onchange_template_id_wrapper' overrided wizard's subject/body with template's subject/body,
+            self.others_composer_id._onchange_template_id_wrapper()
+            # As method '_onchange_template_id_wrapper' overrided wizard's subject/body with template's subject/body,
             # we need need to keep the original subject/body of the wizard (which could have been modified by the user)
             self.others_subject = subject
             self.others_body = body
