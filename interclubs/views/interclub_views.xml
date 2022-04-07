@@ -40,8 +40,7 @@
                     <notebook>
                         <page string="Events">
                             <field name="event_ids" context="{'default_partner_ids': player_ids}">
-                                <!-- <tree editable="bottom"> -->
-                                <tree create="false" editable="bottom"
+                                <tree editable="bottom"
                                     decoration-muted="action_required=='nothing_cancelled'"
                                     decoration-warning="action_required in ('need_confirmation', 'need_opening')"
                                     decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
@@ -49,22 +48,22 @@
                                     decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
                                     <field name="opponent_id"/>
                                     <field name="at_home"/>
-                                    <field name="referee_id"
-        domain="[('id', 'in', parent.referee_ids)]"
-                                options="{'no_create': True}"/>
                                     <field name="start"/>
                                     <field name="stop" invisible="1"/>
-                                    <!-- <field name="partner_ids" widget="many2manyattendee"/> NOT WORKING-->
                                     <field name="partner_ids" widget="many2many_tags"
-        domain="[('id', 'in', parent.player_ids)]"
-            options="{'no_create': True}"/>
+                                        domain="[('id', 'in', parent.player_ids)]" options="{'no_create': True}"/>
                                     <field name="state"/>
                                     <field name="action_required"/>
+                                    <field name="referee_id" domain="[('id', 'in', parent.referee_ids)]"
+                                        options="{'no_create': True}" optional="hide"/>
+                                    <field name="company_id" optional="hide"/>
                                 </tree>
                             </field>
                         </page>
                         <page string="Options">
                             <group>
+                                <field name="lang"/>
+                                <field name="company_id"/>
                                 <field name="event_items_color" widget="color" options="{'readonly_mode': 'color'}"/>
                             </group>
                         </page>

@@ -34,6 +34,10 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
 WRITABLE_STATES = dict(readonly=True, states={'draft': [('readonly', False)], 'opened': [('readonly', False)]})
 
+@api.model
+def _lang_get(self):
+    return self.env['res.lang'].get_installed()
+
 class InterclubEvent(models.Model):
     _name = 'interclub.event'
     _inherits = {'calendar.event': 'event_id'}
@@ -63,6 +67,10 @@ class InterclubEvent(models.Model):
         required=True, ondelete='restrict', readonly=True)
     opponent_id = fields.Many2one('res.partner', string='Opponent', required=True,
         domain=lambda self: [('is_company', '=', True), ('id', '!=', self.env.user.company_id.partner_id.id)], **WRITABLE_STATES)
+    allowed_location_ids = fields.One2many('res.partner', compute='_compute_allowed_location_ids')
+    location_id = fields.Many2one('res.partner', string='Location (Contact)',
+        domain="[('id', 'in', allowed_location_ids)]", inverse='_inverse_location_id')
+
     action_required = fields.Selection([
         ('nothing', 'Nothing'),
         ('nothing_cancelled', 'Nothing'),
@@ -78,6 +86,9 @@ class InterclubEvent(models.Model):
     interclub_referee_ids = fields.Many2many('res.partner', related='interclub_id.referee_ids', readonly=True)
     responsible_id = fields.Many2one('res.partner', related='interclub_id.responsible_id', string='Inteclub Responsible', readonly=True)
     season_id = fields.Many2one('period', related='interclub_id.season_id', readonly=True, store=True)
+    lang = fields.Selection(_lang_get, string='Language', compute='_compute_lang', store=True, readonly=False,
+        help="All the emails sent for this record will be translated in this language.")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
     # Calendar Event related fields
     # As writing '**WRITABLE_STATES' on a related field is not working, the equivalent domain must be written
@@ -259,6 +270,11 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
         for ic_event in self:
             ic_event.item_color = ic_event.interclub_id.event_items_color
 
+    @api.depends('interclub_id.lang')
+    def _compute_lang(self):
+        for ic_event in self:
+            ic_event.lang = ic_event.interclub_id.lang
+
     def _compute_action_required(self):
         today = datetime.today()
         opening_days = int(self.env['ir.config_parameter'].sudo().get_param('event.opening.days', default=10))
@@ -292,6 +308,19 @@ default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
                 ic_event.action_required = 'nothing_cancelled'
             else:
                 ic_event.action_required = 'nothing'
+
+    @api.depends('at_home', 'opponent_id')
+    def _compute_allowed_location_ids(self):
+        for rec in self:
+            club = rec.company_id.partner_id if rec.at_home else rec.opponent_id
+            addresses = club.child_ids.filtered(lambda p: p.type == 'other')
+            if any(club[field] for field in club._address_fields()):
+                addresses |= club
+            rec.allowed_location_ids = addresses
+
+    def _inverse_location_id(self):
+        for ic_event in self:
+            ic_event.location = ic_event.location_id.with_context(show_address_only=1, address_inline=1)._get_name()
 
     @api.onchange('start')
     def _onchange_start(self):

@@ -87,6 +87,9 @@
                         </group>
                         <group>
                             <field name="at_home"/>
+                            <field name="allowed_location_ids" invisible="1"/>
+                            <field name="location_id" string="Location" options="{'no_create': True}"/>
+                            <field name="location" string="Address"/>
                             <field name="referee_id"
                                 domain="[('id', 'in', interclub_referee_ids)]"
                                 options="{'no_create': True, 'always_reload': True}"
@@ -113,6 +116,8 @@
                         <page string="Options">
                             <group>
                                 <field name="event_id" attrs="{'invisible': [('id', '=', False)]}" required="0"/>
+                                <field name="lang"/>
+                                <field name="company_id"/>
                                 <field name="item_color" widget="color" options="{'readonly_mode': 'color'}"/>
                             </group>
                         </page>

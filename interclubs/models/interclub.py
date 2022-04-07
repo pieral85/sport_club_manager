@@ -9,6 +9,10 @@ CONTACT_DOMAIN = lambda self: [
     ('type', '=', 'contact')
 ]
 
+@api.model
+def _lang_get(self):
+    return self.env['res.lang'].get_installed()
+
 class Interclub(models.Model):
     _name = 'interclub'
     _description = 'Interclub'
@@ -58,6 +62,9 @@ class Interclub(models.Model):
     event_items_color = fields.Char('Event Items Color',
         help='Color of the interclub event items in the calendar view')  # TODO Rename with events_color?
     events_count = fields.Integer(compute='_compute_events_count', string='Events Count')
+    lang = fields.Selection(_lang_get, string='Language', default=lambda self: self.env.company.partner_id.lang,
+        help="All the emails sent for this record will be translated in this language.")
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
     favorite_user_ids = fields.Many2many(
         'res.users', 'interclub_favorite_user_rel', 'interclub_id', 'user_id',
