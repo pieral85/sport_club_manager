@@ -35,29 +35,30 @@
     <record id="email_template_membership_affiliation_confirmation" model="mail.template">
         <field name="name">Membership Affiliation Confirmation</field>
         <field name="model_id" ref="model_membership"/>
-        <field name="email_from">"${user.company_id.name|safe}" &lt;${(user.company_id.email or user.email)|safe}&gt;</field>
-        <field name="subject">Confirmation of your affiliation for period ${object.period_category_id.period_id.name}</field>
-        <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
+        <field name="email_from">{{ user.company_id.email_formatted }}</field>
+        <field name="subject">Confirmation of your affiliation for period {{ object.period_category_id.period_id.name }}</field>
+        <field name="partner_to">{{ object.contact_person_id.id if object.contact_person_id.email else object.member_id.id }}</field>
         <field name="auto_delete" eval="False"/>
         <field name="is_membership_confirmation_mail" eval="True"/>
-        <field name="lang">${object.member_id.lang}</field>
-        <field name="body_html"><![CDATA[
+        <field name="lang">{{ object.member_id.lang }}</field>
+        <field name="body_html" type="html">
 <p>
-    Dear ${(object.member_id.name or 'member')|safe},
+    Dear <t t-out="object.member_id.name or 'member'">member</t>,
 </p>
 <p>
-We are pleased to let you know that you have been successfully affiliated for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>!
+We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out="object.period_category_id.period_id.name or ''">2022-2023</i></u>!
 </p>
 <p>
-% if object.price_remaining:
-    Please note that you will have to pay ${format_amount(object.price_remaining, object.currency_id)} 
-    % if user.company_id.account_no:
-        on the account ${user.company_id.account_no}
-    % endif
+<t t-if="object.price_remaining">
+    Please note that you will have to pay <strong t-out="format_amount(object.price_remaining, object.currency_id) or ''">120 €</strong> 
+    <t t-if="user.company_id.account_no">
+        on the account <strong t-out="user.company_id.account_no">BE12 3456 7890 1234</strong>
+    </t>
     .
-%else:
+</t>
+<t t-else="">
     Please note that for this season, no price is due anymore.
-% endif
+</t>
 </p>
 <p>
 If you have any question, do not hesitate to reply to this email.
@@ -69,9 +70,8 @@ We hope you will enjoy this new season with us!
 Best regards,
 </p>
 <p>
-${user.name}, for the ${user.company_id.name|safe} committee members
+<t t-out="user.name or ''">Mitchell Admin</t>, for the <t t-out="user.company_id.name or ''">YourCompany</t> committee members
 </p>
-]]>
         </field>
     </record>
 
@@ -79,36 +79,36 @@ ${user.name}, for the ${user.company_id.name|safe} committee members
     <record id="email_template_membership_affiliation_invitation" model="mail.template">
         <field name="name">Membership Affiliation Invitation</field>
         <field name="model_id" ref="model_membership"/>
-        <field name="email_from">"${user.company_id.name|safe}" &lt;${(user.company_id.email or '')|safe}&gt;</field>
-        <field name="subject"><![CDATA[Affiliation request for ${(object.period_id.name or 'new season')|safe}]]></field>
-        <field name="partner_to">${object.contact_person_id and object.contact_person_id.email and object.contact_person_id.id or object.member_id and object.member_id.email and object.member_id.id}</field>
+        <field name="email_from">{{ user.company_id.email_formatted }}</field>
+        <field name="subject">Affiliation request for {{ object.period_id.name or 'new season' }}</field>
+        <field name="partner_to">{{ object.contact_person_id.id if object.contact_person_id.email else object.member_id.id }}</field>
         <field name="auto_delete" eval="False"/>
         <field name="is_membership_invitation_mail" eval="True"/>
-        <field name="body_html"><![CDATA[
+        <field name="lang">{{ object.member_id.lang }}</field>
+        <field name="body_html" type="html">
 <div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
     <p>
-        Dear ${(object.member_id.name or 'member')|safe},
+        Dear <t t-out="object.member_id.name or 'member'">member</t>,
     </p>
     <p>
-        An affiliation request has been done for the season <u><i>${object.period_category_id.period_id.name|safe}</i></u>.
+        An affiliation request has been done for the season <u><i t-out="object.period_category_id.period_id.name or ''">2022-2023</i></u>.
         <br/>
         Could you please let us know your answer by clicking on the button of your choice?
     </p>
     <p>
-        <a href="/club/my/membership/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
-        <a href="/club/my/membership/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
-        <a href="/club/my/membership/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.token}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
+        <a t-attf-href="/club/my/membership/accept?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
+        <a t-attf-href="/club/my/membership/decline?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
+        <a t-attf-href="/club/my/membership/view?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
     </p>
     <p>
         Best regards,
     </p>
     <p>
-        The ${user.company_id.name|safe} committee members
+        The <t t-out="user.company_id.name or ''">YourCompany</t> committee members
     </p>
-    <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}">
+    <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="{{ user.company_id.name }}"/>
 
 </div>
-]]>
         </field>
     </record>
 
