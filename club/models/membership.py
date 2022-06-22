@@ -208,7 +208,6 @@ class Membership(models.Model):
         if memberships:
             compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
             ctx = dict(
-                dbname=self._cr.dbname,
                 only_invitation_emails=True,
                 default_model='membership',
                 active_ids=memberships.ids,

@@ -60,34 +60,31 @@ class Club(AuthSignupHome):
     #     })
 
     @route('%s/my/membership/<string:action>' % _URL_ROOT, type='http', auth='public', website=True)
-    def membership_invitation_response(self, action, db, token):
-        registry = registry_get(db)
+    def membership_invitation_response(self, action, token):
         messages = {}
-        with registry.cursor() as cr:
-            env = Environment(cr, SUPERUSER_ID, {})
-            membership = env['membership'].search([('token', '=', token)])
-            if not token or not membership or len(membership) > 1:
-                return request.render('website.404')
+        membership = request.env['membership'].sudo().search([('token', '=', token)])
+        if not token or not membership or len(membership) > 1:
+            return request.render('website.404')
 
-            if not membership.token_is_valid and action != 'view':
-                messages['warning'] = 'You cannot perform this action because the token has expired.'
+        if not membership.token_is_valid and action != 'view':
+            messages['warning'] = 'You cannot perform this action because the token has expired.'
 
-            if membership.state == 'member':
-                messages['info'] = 'Congratulations, your membership has already been approved by the committee.'
-            elif membership.token_is_valid:
-                if action == 'accept':
-                    membership.do_accept()
-                    messages['success'] = 'You have accepted the invitation. Your membership must now be approved by the committee.'
-                elif action == 'decline':
-                    membership.do_decline()
-                    messages['success'] = 'You have declined the invitation.'
-                elif action == 'view' and membership.state == 'requested':
-                    messages['info'] = 'Your membership request is going to be examined by the committee. \
-                        Please ensure to pay the amount due first.'
+        if membership.state == 'member':
+            messages['info'] = 'Congratulations, your membership has already been approved by the committee.'
+        elif membership.token_is_valid:
+            if action == 'accept':
+                membership.do_accept()
+                messages['success'] = 'You have accepted the invitation. Your membership must now be approved by the committee.'
+            elif action == 'decline':
+                membership.do_decline()
+                messages['success'] = 'You have declined the invitation.'
+            elif action == 'view' and membership.state == 'requested':
+                messages['info'] = 'Your membership request is going to be examined by the committee. \
+                    Please ensure to pay the amount due first.'
 
-            response_content = env['ir.ui.view']._render_template(
-                'club.membership_affiliation_page_anonymous', {
-                    'membership': membership,
-                    'messages': messages,
-                })
+        response_content = request.env['ir.ui.view']._render_template(
+            'club.membership_affiliation_page_anonymous', {
+                'membership': membership,
+                'messages': messages,
+            })
         return request.make_response(response_content, headers=[('Content-Type', 'text/html')])
