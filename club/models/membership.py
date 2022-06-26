@@ -15,7 +15,7 @@ class Membership(models.Model):
     # }  # TODO move me in a seperated module
     # TODO Pas sûr que l'inherits soit nécessaire...
     # TODO Ne faudrait il pas plutot etre lié à l'aml? (afin qu'un facture puisse etre liée à plusieurs membership...)
-    _inherit = 'mail.thread'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Membership'
     _order = 'period_id asc, member_id asc'
 

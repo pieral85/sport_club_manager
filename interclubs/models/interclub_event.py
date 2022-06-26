@@ -41,7 +41,7 @@ def _lang_get(self):
 class InterclubEvent(models.Model):
     _name = 'interclub.event'
     _inherits = {'calendar.event': 'event_id'}
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Interclub Event'
     _order = 'start asc, id asc'
 

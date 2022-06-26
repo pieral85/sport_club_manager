@@ -15,6 +15,7 @@ def _lang_get(self):
 
 class Interclub(models.Model):
     _name = 'interclub'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Interclub'
     _order = 'season_id asc, kind asc'
 
