@@ -29,8 +29,6 @@
                 <field name="price_remaining" invisible="1"/>
                 <field name="period_category_id" invisible="1"/>
                 <field name="paid" invisible="1"/>
-                <field name="confirmation_mail_sent" invisible="1"/>
-                <field name="invitation_mail_sent" invisible="1"/>
                 <field name="user_state" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <header>
@@ -66,10 +64,12 @@
                                 <group>
                                     <field name="token"/>
                                     <field name="token_validity"/>
+                                    <field name="token_is_valid"/>
                                 </group>
                                 <group>
-                                    <field name="token_is_valid"/>
                                     <field name="company_id"/>
+                                    <field name="invitation_mail_sent"/>
+                                    <field name="confirmation_mail_sent"/>
                                 </group>
                             </group>
                         </page>
