@@ -194,8 +194,8 @@
         <field name="model">membership</field>
         <field name="arch" type="xml">
             <search string="Periods">
-                <field name="period_id" string="Period" filter_domain="[('period_id','ilike',self)]"/>
                 <field name="member_id" string="Member"/>
+                <field name="period_id" string="Period" filter_domain="[('period_id','ilike',self)]"/>
                 <filter string="Current Period" name="current_period_search" domain="[('period_id.current', '=', True)]" help="Memberships of current period."/>
                 <filter string="Upcoming Period" name="upcoming_period_search" domain="[('period_id.upcoming', '=', True)]" help="Memberships of upcoming period."/>
                 <separator/>
