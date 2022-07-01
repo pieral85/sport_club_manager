@@ -65,7 +65,7 @@ records.mapped('member_user_id').filtered(lambda u: u.state == 'new').with_conte
         <field name="binding_model_id" ref="model_membership"/>
         <field name="state">code</field>
         <field name="code">
-action = records.send_email_invitation()
+action = records.with_context(see_records_view=True).send_email_invitation()
         </field>
     </record>
 
@@ -75,7 +75,7 @@ action = records.send_email_invitation()
         <field name="binding_model_id" ref="model_membership"/>
         <field name="state">code</field>
         <field name="code">
-action = records.send_email_confirmation()
+action = records.with_context(see_records_view=True).send_email_confirmation()
         </field>
     </record>
 </data>

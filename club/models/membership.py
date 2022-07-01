@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from odoo import api, fields, models, tools, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class Membership(models.Model):
@@ -202,53 +202,71 @@ class Membership(models.Model):
                 'user_response': 'undefined',
             })
 
-    def send_email_invitation(self):
-        template = self.env.ref('club.email_template_membership_affiliation_invitation')
-        memberships = self.filtered(lambda m: m.state not in ('requested', 'member', 'rejected'))
-        if memberships:
-            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-            ctx = dict(
-                only_invitation_emails=True,
-                default_model='membership',
-                active_ids=memberships.ids,
-                default_use_template=bool(template),
-                default_template_id=template and template.id or False,
-                default_composition_mode='mass_mail',
-                force_email=True,
-            )
-            return {
-                'name': _('Compose Email - Membership Invitation'),
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'mail.compose.message',
-                'views': [(compose_form.id, 'form')],
-                'target': 'new',
-                'context': ctx,
+    def _send_email(self, template_xmlid, composer_title, **composer_ctx):
+        template = self.env.ref(template_xmlid)
+        composer_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+        langs = self.mapped('member_id.lang')
+        company_lang = self.env.company.partner_id.lang
+        # consider membership partner lang, closest(*) to user company lang
+        # (*) i.e. consider company lang is 'fr_FR': closest lang would be 'fr_FR' > 'fr_BE' > 'en_US'
+        langs.sort(key=lambda l: (l == company_lang) + (l[:2] == company_lang[:2]), reverse=True)
+        ctx = dict(
+            # need to propagate this context key to the composer record
+            open_records_view= self._context.get('see_records_view', False),
+            default_model='membership',
+            active_ids=self.ids,
+            default_use_template=bool(template),
+            default_template_id=template.id if template else False,
+            default_composition_mode='mass_mail',
+            forced_lang=langs[0] if langs else 'en_US',
+            force_email=True,
+        )
+        ctx.update(composer_ctx)
+
+        action = {
+            'name': composer_title,
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(composer_form.id, 'form')],
+            'target': 'new',
+            'context': ctx,
+        }
+        if len(langs) <= 1:
+            return action
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'type': 'warning',
+                'title': _("Multiple languages detected!"),
+                'message': _("Only '%s' will be used for emails.", langs[0]),
+                'sticky': False,
+                'next': action,
             }
+        }
+
+    def send_email_invitation(self):
+        memberships = self.filtered(lambda m: m.state in ('unknown', 'old_member'))
+        if not memberships:
+            raise UserError(_("The membership(s) must have state 'Unknown' or 'Old Member' in order " \
+                "to send an invitation email."))
+        return memberships._send_email(
+            template_xmlid='club.email_template_membership_affiliation_invitation',
+            composer_title=_('Compose Email - Membership Invitation'),
+            only_invitation_emails=True,
+        )
 
     def send_email_confirmation(self):
-        template = self.env.ref('club.email_template_membership_affiliation_confirmation')
         memberships = self.filtered(lambda m: m.state == 'member')
-        if memberships:
-            compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-            ctx = dict(
-                only_confirmation_emails=True,
-                default_model='membership',
-                active_ids=memberships.ids,
-                default_use_template=bool(template),
-                default_template_id=template and template.id or False,
-                default_composition_mode='mass_mail',
-                force_email=True,
-            )
-            return {
-                'name': _('Compose Email - Membership Affiliation Confirmation'),
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'mail.compose.message',
-                'views': [(compose_form.id, 'form')],
-                'target': 'new',
-                'context': ctx,
-            }
+        if not memberships:
+            raise UserError(_("The membership(s) must have state 'Member' in order " \
+                "to send a confirmation email."))
+        return memberships._send_email(
+            template_xmlid='club.email_template_membership_affiliation_confirmation',
+            composer_title=_('Compose Email - Membership Affiliation Confirmation'),
+            only_confirmation_emails=True,
+        )
 
     def validate_membership_payment(self):
         for record in self:

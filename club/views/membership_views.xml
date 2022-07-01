@@ -36,7 +36,7 @@
                     <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
                     <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
 
-                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ['requested', 'member', 'rejected'])]}" help="Sends an email to the user to invite him to validate his membership."/>
+                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ['requested', 'member', 'rejected'])]}" context="{'see_records_view': False}" help="Sends an email to the user to invite him to validate his membership."/>
 
                     <button name="send_email_confirmation" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
                     <button name="send_email_confirmation" type="object" string="ReSend Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', False)]}" class="" help="Sends an email to the user to let him know that his membership has been validated."/>

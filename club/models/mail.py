@@ -30,6 +30,13 @@ class MailComposer(models.TransientModel):
             else:
                 rec.allowed_template_ids = False
 
+    def _onchange_template_id(self, template_id, composition_mode, model, res_id):
+        # force default lang of subject/body mail composer
+        lang = self._context.get('forced_lang', 'en_US')
+        if lang:
+            self = self.with_context(lang=lang)
+        return super(MailComposer, self)._onchange_template_id(template_id, composition_mode, model, res_id)
+
     def action_send_mail(self):
         self.ensure_one()
         model = self.env.context.get('default_model')
@@ -41,18 +48,30 @@ class MailComposer(models.TransientModel):
 
         if model == 'membership' and self.env.context.get('active_ids'):
             vals = {}
-            if self.template_id.kind == 'membership_invitation':  # TODO Test me
+            if self.template_id.kind == 'membership_invitation':
                 vals['invitation_mail_sent'] = True
             if self.template_id.kind == 'membership_confirmation':
                 vals['confirmation_mail_sent'] = True
             self.env['membership'].browse(self.env.context['active_ids']).write(vals)
-            return {
+
+        if self.env.context.get('open_records_view'):
+            ids = self.env.context['active_ids']
+            action = {
                 'name': _('Memberships with Mail Sent'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'membership',
-                'view_mode': 'tree,form',
-                'domain': [('id', 'in', self.env.context['active_ids'])],
             }
+            if len(ids) == 1:
+                action.update({
+                    'view_mode': 'form',
+                    'res_id': ids[0],
+                })
+            else:
+                action.update({
+                    'view_mode': 'tree,form',
+                    'domain': [('id', 'in', ids)],
+                })
+            return action
         return res
 
     def save_as_template(self):
