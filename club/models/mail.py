@@ -10,18 +10,25 @@ from odoo.addons.mail.wizard.mail_compose_message import _reopen
 class MailComposer(models.TransientModel):
     _inherit = 'mail.compose.message'
 
-    @api.onchange('model')
-    def _onchange_model(self):
-        domain = [('model', '=', self.model)]
+    template_id = fields.Many2one('mail.template', domain="[('id', 'in', allowed_template_ids)]")
+    allowed_template_ids = fields.One2many('mail.template', compute='_compute_allowed_template_ids')
+
+    @api.depends('model')
+    def _compute_allowed_template_ids(self):
+        MailTemplate = self.env['mail.template']
         kinds = []
         if self.env.context.get('only_invitation_emails'):
             kinds.append('membership_invitation')
         if self.env.context.get('only_confirmation_emails'):
             kinds.append('membership_confirmation')
-        domain.append(('kind', 'in', kinds if kinds else ['standard']))
+        base_domain = [('kind', 'in', kinds if kinds else ['standard'])]
 
-        return {'domain': {'template_id': domain}}
-        # TODO log send a wrning: WARNING scm15 odoo.models: onchange method MailComposer._onchange_model returned a domain, this is deprecated
+        for rec in self:
+            allowed_templates = MailTemplate.search_read([('model', '=', rec.model)] + base_domain, ['id'])
+            if allowed_templates:
+                rec.allowed_template_ids = [mtpl['id'] for mtpl in allowed_templates]
+            else:
+                rec.allowed_template_ids = False
 
     def action_send_mail(self):
         self.ensure_one()

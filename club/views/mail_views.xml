@@ -13,4 +13,14 @@
             </xpath>
         </field>
     </record>
+    <record id="view_email_compose_message_wizard_form_club" model="ir.ui.view">
+        <field name="name">email.compose.message.wizard_form.inherit.club</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active_domain']" position="after">
+                <field name="allowed_template_ids" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
