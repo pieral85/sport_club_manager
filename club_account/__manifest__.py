@@ -9,7 +9,8 @@ This module adds the accounting for the management of members.
 Following features are included in this module:
 - invoicing: an invoice is created every time a membership is also created and lives alongside
     """,
-    'author': "pal@odoo.com",
+    'author': "pieral85@hotmail.com",
+    'website': "https://www.bcsaintleger.be",
     'category': 'Club Membership Accounting/Accounting',
     'version': '0.2',
     'depends': [

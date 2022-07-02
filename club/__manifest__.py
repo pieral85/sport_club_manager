@@ -12,7 +12,7 @@ Following features are included in this module:
 - prices: allows to defines prices for members in each category and period
 - memberships: allows to manage members lifecycle, regarding the period, category and price defined
     """,
-    'author': "pal@odoo.com",
+    'author': "pieral85@hotmail.com",
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list

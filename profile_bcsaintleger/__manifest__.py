@@ -10,15 +10,19 @@ Following features are included in this module:
 - website pages
 - misc static data
     """,
-    'author': "pal@odoo.com",
+    'author': "pieral85@hotmail.com",
     'category': 'Club Sport Badminton',
     'version': '0.1',
     'depends': [
-        'club_account',
-        'l10n_be',  # Belgium accounting (depends on `account`)
-        'interclubs',
+        # Custom dependencies:
         # 'badminton_be',
+        'club_account',
+        'interclubs',
+        # Standard dependencies:
+        'contacts',
+        'l10n_be',  # Belgium accounting (depends on `account`)
         'theme_treehouse',
+        'website_event',
     ],
     'data': [
         # views - website templates
