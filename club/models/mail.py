@@ -91,7 +91,6 @@ class MailComposer(models.TransientModel):
             return _reopen(self, record.id, record.model, context=self._context)
 
 
-
 class MailTemplate(models.Model):
     _inherit = 'mail.template'
 
@@ -102,7 +101,7 @@ class MailTemplate(models.Model):
             ('other', 'Other'),
         ], default='standard', required=True, string="Kind",
         help="Allows to classify and filter emails, mainly in the email wizards."
-        " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role\n"
+        " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
         " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
         " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
         " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"

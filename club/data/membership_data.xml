@@ -46,7 +46,7 @@
     Dear <t t-out="object.member_id.name or 'member'">member</t>,
 </p>
 <p>
-We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out="object.period_category_id.period_id.name or ''">2022-2023</i></u>!
+We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>!
 </p>
 <p>
 <t t-if="object.price_remaining">
@@ -91,7 +91,7 @@ Best regards,
         Dear <t t-out="object.member_id.name or 'member'">member</t>,
     </p>
     <p>
-        An affiliation request has been done for the season <u><i t-out="object.period_category_id.period_id.name or ''">2022-2023</i></u>.
+        An affiliation request has been done for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>.
         <br/>
         Could you please let us know your answer by clicking on the button of your choice?
     </p>
