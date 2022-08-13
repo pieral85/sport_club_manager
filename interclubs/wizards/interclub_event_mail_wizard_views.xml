@@ -20,14 +20,26 @@
                     </group>
                 </group>
                 <group invisible="not context.get('show_mail_to_others', False)">
-                    <group class="oe_title"><field name="others_send_to_partners"/></group>
+                    <group class="oe_title">
+                        <field name="others_send_to_partners" string="Send Mail" invisible="context.get('show_mail_to_players', True)"/>
+                        <field name="others_send_to_partners" invisible="not context.get('show_mail_to_players', True)"/>
+                    </group>
                     <group attrs="{'invisible': [('others_send_to_partners', '=', False)]}" colspan="4">
                         <field name="others_composer_id" invisible="1"/>
-                        <!-- TODO Here we should add label "Followers of the document and" as in Odoo standard -->
-                        <field name="others_partner_ids" widget="many2many_tags"/>
-                        <field name="others_template_id" string="Mail Template"/>
-                        <field name="others_subject" string="Subject"/>
-                        <field name="others_body" string="Body"/>
+                        <group col="12" colspan="4">
+                            <group colspan="8">
+                                <field name="others_partner_ids" widget="many2many_tags"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="others_include_players"/>
+                                <field name="others_include_followers"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="others_template_id" string="Mail Template"/>
+                            <field name="others_subject" string="Subject"/>
+                            <field name="others_body" string="Body"/>
+                        </group>
                     </group>
                 </group>
                 <footer>

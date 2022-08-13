@@ -29,6 +29,8 @@ class InterclubEventMailWizard(models.TransientModel):
     others_send_to_partners = fields.Boolean('Send to Others', default=False)
     others_composer_id = fields.Many2one('mail.compose.message', string='Composer (Others)',
         ondelete='cascade')
+    others_include_followers = fields.Boolean('Include Followers', default=False)
+    others_include_players = fields.Boolean('Include Players', default=False)
     # composer related fields
     others_partner_ids = fields.Many2many('res.partner', related='others_composer_id.partner_ids', readonly=False)
     others_subject = fields.Char(related='others_composer_id.subject', string='Subject (Others)',
@@ -47,36 +49,35 @@ class InterclubEventMailWizard(models.TransientModel):
             raise NotImplementedError(_('Only the model "interclub.event" is supported for this mail wizard. '\
                 'Current model: "{}".').format(self.env.context.get('active_model', '')))
 
-        template_id = self.env.context.get('template_id',
-            self.env.ref('interclubs.email_template_interclub_event_opening').id)
         composer = self.env['mail.compose.message'].create({
             'composition_mode': 'mass_mail',
-            'template_id': template_id,
+            'template_id': self.env.context.get('template_id', False),
         })
-        # For some unknown reason, writing the 'model' in the 'create' method may lead to a create access error.
-        # Thus, it has been moved to the 'write' method below
-        composer.write({
-            'model': 'calendar.attendee',
-        })
-        # TODO Add notif_layout for composition_mode=='comment'?
+        # - For some unknown reason, writing the 'model' in the 'create' method may lead to a create access error.
+        #   Thus, it has been moved to the 'write' method below
+        # - Must be `calendar.attendee` model, because we set the `self.attendee_ids` as `active_ids` (in method
+        #   `change_event_state`)
+        composer.write({'model': 'calendar.attendee'})
         others_composer = self.env['mail.compose.message'].create({
             'composition_mode': 'comment',
-            'res_id': self.env.context['active_id'],
-            'model': self.env.context['active_model'],
-            'template_id': template_id,
+            'template_id': self.env.ref('interclubs.email_template_interclub_event_viewer').id,
             'subtype_id': self.env.ref('interclubs.mt_interclub_event_communication').id,
         })
+
+        # by default, others_composer.model == 'interclub.event'
         res.update({
             'interclub_event_id': ic_event.id,
             'composer_id': composer.id,
             'others_composer_id': others_composer.id,
             'send_to_players': self.env.context.get('send_mail_to_players', False),
             'others_send_to_partners': self.env.context.get('send_mail_to_others', False),
+            'others_partner_ids': ic_event.referee_id | ic_event.interclub_id.responsible_id,
+            'others_include_players': not self.env.context.get('show_mail_to_players', True),
         })
         return res
 
     @api.onchange('template_id')
-    def onchange_template_id(self):
+    def _onchange_template_id(self):
         self.ensure_one()
         if self.composer_id:
             self.composer_id.template_id = self.template_id
@@ -85,18 +86,31 @@ class InterclubEventMailWizard(models.TransientModel):
             self.body = self.composer_id.body
 
     @api.onchange('others_template_id')
-    def onchange_others_template_id(self):
+    def _onchange_others_template_id(self):
         self.ensure_one()
         if self.others_composer_id:
-            if not self.others_partner_ids:
-                players = self.default_attendee_ids.filtered(lambda a: a.state not in ('needsAction', 'tentative'))\
-                    .mapped('partner_id')
-                self.others_partner_ids = self.interclub_event_id.referee_id \
-                    | self.interclub_event_id.interclub_id.responsible_id | players
             self.others_composer_id.template_id = self.others_template_id
             self.others_composer_id._onchange_template_id_wrapper()
             self.others_subject = self.others_composer_id.subject if self.others_template_id else ''
             self.others_body = self.others_composer_id.body
+
+    @api.onchange('others_include_followers')
+    def _onchange_others_include_followers(self):
+        self.ensure_one()
+        followers = self.interclub_event_id.message_follower_ids.partner_id
+        if self.others_include_followers:
+            self.others_partner_ids += followers
+        else:
+            self.others_partner_ids = self.others_partner_ids._origin - followers
+
+    @api.onchange('others_include_players')
+    def _onchange_others_include_players(self):
+        self.ensure_one()
+        players = self.default_attendee_ids.partner_id
+        if self.others_include_players:
+            self.others_partner_ids += players
+        else:
+            self.others_partner_ids = self.others_partner_ids._origin - players
 
     @api.onchange('interclub_event_id')
     def _onchange_interclub_event_id(self):
@@ -112,14 +126,19 @@ class InterclubEventMailWizard(models.TransientModel):
         elif role == 'to_cancel':
             self.interclub_event_id.action_cancel()
 
+        msgs = []
         if self.send_to_players:
             ctx = {
-                'dbname': self._cr.dbname,
                 'active_ids': self.attendee_ids.ids,
             }
             self.with_context(**ctx).composer_id.action_send_mail()
+            msgs.append(self._get_sent_mail_message(self.attendee_ids.partner_id, self.template_id))
 
         if self.others_send_to_partners:
+            other_ctx = {
+                'active_ids': self.others_partner_ids.ids,  # TODO 2022-07-02 a l'air sans effet
+                'mail_create_nosubscribe': True,  # do not add author as follower
+            }
             subject = self.others_subject
             body = self.others_body
             self.others_composer_id._onchange_template_id_wrapper()
@@ -127,6 +146,22 @@ class InterclubEventMailWizard(models.TransientModel):
             # we need need to keep the original subject/body of the wizard (which could have been modified by the user)
             self.others_subject = subject
             self.others_body = body
-            self.others_composer_id.action_send_mail()
+            self.with_context(**other_ctx).others_composer_id.action_send_mail()
+            msgs.append(self._get_sent_mail_message(self.others_partner_ids, self.others_template_id))
+
+        if msgs:
+            ic_event = self.env['interclub.event'].browse(self.env.context['active_id'])
+            ic_event.message_post(body='</br>'.join(msgs))
 
         return {'type': 'ir.actions.act_window_close'}
+
+    @api.model
+    def _get_sent_mail_message(self, contacts, mail_template):
+        def record_link(rec):
+            s = "<a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>"
+            return s.format(r_model=rec._name, r_id=rec.id, r_name=rec.name)
+
+        contacts_link = ''.join("<li>{}</li>".format(record_link(c)) for c in contacts)
+        mail_link = record_link(mail_template)
+        return _("Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>" \
+            "and to subscribers of 'Interclub Event Communication'", template=mail_link, contacts=contacts_link)
