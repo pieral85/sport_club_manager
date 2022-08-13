@@ -288,8 +288,9 @@ class InterclubEvent(models.Model):
             rec.allowed_location_ids = addresses
 
     def _inverse_location_id(self):
+        ctx = {'show_address_only': True, 'address_inline': True}
         for ic_event in self:
-            ic_event.location = ic_event.location_id.with_context(show_address_only=1, address_inline=1)._get_name()
+            ic_event.location = ic_event.location_id.with_context(**ctx).name_get()[0][1]
 
     @api.onchange('start')
     def _onchange_start(self):
