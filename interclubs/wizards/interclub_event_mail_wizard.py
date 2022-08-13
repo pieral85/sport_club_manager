@@ -12,7 +12,7 @@ class InterclubEventMailWizard(models.TransientModel):
         required=True, ondelete='cascade')
 
     # === fields related to 1st email, for players ===
-    send_to_players = fields.Boolean('Send Email to Players', default=True)
+    send_to_players = fields.Boolean('Send to Players', default=True)
     default_attendee_ids = fields.One2many('calendar.attendee', related='interclub_event_id.attendee_ids',
         string='Default Players')
     attendee_ids = fields.Many2many('calendar.attendee', 'interclub_event_mail_wizard_attendee_rel',
@@ -26,7 +26,7 @@ class InterclubEventMailWizard(models.TransientModel):
     body = fields.Html(related='composer_id.body', string='Body (Players)', readonly=False)
 
     # === fields related to 2nd email, for partners other than players (referee and responsible by default) ===
-    others_send_to_partners = fields.Boolean('Send to Other Partners', default=False)
+    others_send_to_partners = fields.Boolean('Send to Others', default=False)
     others_composer_id = fields.Many2one('mail.compose.message', string='Composer (Others)',
         ondelete='cascade')
     # composer related fields

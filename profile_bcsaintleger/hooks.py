@@ -23,7 +23,7 @@ def post_init_hook(cr, registry):
     # TODO Fill other useful fields for this record (+ <res.config.settings>.favicon)
     env.ref('base.main_partner').write({
         'name': 'BC Saint-Léger',
-        'email': 'badsl@live.be',
+        'email': 'bcsaintleger@gmail.com',
         'image_1920': get_binary('bc_saint_leger_logo.png'),
     })
     env.ref('base.main_company').write({
