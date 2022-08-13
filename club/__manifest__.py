@@ -57,6 +57,7 @@ Following features are included in this module:
         'views/menus.xml',
         # data
         'data/res_users_data.xml',
+        'data/mail_template_data.xml',
         'data/membership_data.xml',
     ],
     'assets': {

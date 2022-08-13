@@ -144,21 +144,21 @@ class InterclubEvent(models.Model):
 
         ctx.update(show_mail_to_players=True, show_mail_to_others=True,
             active_model='interclub.event', active_id=self.id, active_ids=[self.id])
+        # import ipdb; ipdb.set_trace()
         if role == 'to_open':
             ctx['send_mail_to_players'] = True
             ctx['send_mail_to_others'] = False
             ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_opening').id
-        elif role == 'to_confirm':
-            ctx['send_mail_to_players'] = False
-            ctx['send_mail_to_others'] = True
-            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_confirmation').id
-        elif role == 'to_cancel':
+            ctx['new_state'] = _('opened')
+        else:
             ctx['show_mail_to_players'] = False
             ctx['send_mail_to_players'] = False
             ctx['send_mail_to_others'] = True
-            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_cancellation').id
-        else:
-            return
+            ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_viewer').id
+            ctx['new_state'] = _({
+                'to_confirm': 'confirmed',
+                'to_cancel': 'cancelled',
+            }.get(role, False))
 
         return {
             'name': _('Interclub Event Mail Wizard'),
