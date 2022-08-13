@@ -20,7 +20,8 @@ class InterclubEventMailWizard(models.TransientModel):
     composer_id = fields.Many2one('mail.compose.message', string='Composer (Players)', ondelete='cascade')
     # composer related fields
     template_id = fields.Many2one('mail.template', string='Mail Template',
-        related='composer_id.template_id', readonly=False, domain=[('model', '=', 'interclub.event')])
+        related='composer_id.template_id', readonly=False,
+        domain=[('model', '=', 'calendar.attendee'), ('kind', '=', 'interclub')])
     subject = fields.Char(related='composer_id.subject', string='Subject (Players)', readonly=False)
     body = fields.Html(related='composer_id.body', string='Body (Players)', readonly=False)
 
@@ -34,7 +35,8 @@ class InterclubEventMailWizard(models.TransientModel):
         readonly=False)
     others_body = fields.Html(related='others_composer_id.body', string='Body (Others)', readonly=False)
     others_template_id = fields.Many2one('mail.template', string='Mail Template (Others)',
-        related='others_composer_id.template_id', readonly=False, domain=[('model', '=', 'interclub.event')])
+        related='others_composer_id.template_id', readonly=False,
+        domain=[('model', '=', 'interclub.event'), ('kind', '=', 'interclub')])
 
     @api.model
     def default_get(self, fields):

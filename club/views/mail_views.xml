@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
     <!-- form view(s) -->
     <record id="view_email_template_form_club" model="ir.ui.view">
         <field name="name">email.template.form.inherit.club</field>
@@ -9,11 +8,9 @@
         <field name="arch" type="xml">
             <xpath expr="//page[3]/group" position="after">
                 <group>
-                    <field name="is_membership_invitation_mail"/>
-                    <field name="is_membership_confirmation_mail"/>
+                    <field name="kind"/>
                 </group>
             </xpath>
         </field>
     </record>
-</data>
 </odoo>

@@ -13,12 +13,15 @@ class MailComposer(models.TransientModel):
     @api.onchange('model')
     def _onchange_model(self):
         domain = [('model', '=', self.model)]
+        kinds = []
         if self.env.context.get('only_invitation_emails'):
-            domain.append(('is_membership_invitation_mail', '=', True))
+            kinds.append('membership_invitation')
         if self.env.context.get('only_confirmation_emails'):
-            domain.append(('is_membership_confirmation_mail', '=', True))
+            kinds.append('membership_confirmation')
+        domain.append(('kind', 'in', kinds if kinds else ['standard']))
 
         return {'domain': {'template_id': domain}}
+        # TODO log send a wrning: WARNING scm15 odoo.models: onchange method MailComposer._onchange_model returned a domain, this is deprecated
 
     def action_send_mail(self):
         self.ensure_one()
@@ -31,9 +34,9 @@ class MailComposer(models.TransientModel):
 
         if model == 'membership' and self.env.context.get('active_ids'):
             vals = {}
-            if self.template_id.is_membership_invitation_mail:
+            if self.template_id.kind == 'membership_invitation':  # TODO Test me
                 vals['invitation_mail_sent'] = True
-            if self.template_id.is_membership_confirmation_mail:
+            if self.template_id.kind == 'membership_confirmation':
                 vals['confirmation_mail_sent'] = True
             self.env['membership'].browse(self.env.context['active_ids']).write(vals)
             return {
@@ -64,9 +67,17 @@ class MailComposer(models.TransientModel):
 
 
 class MailTemplate(models.Model):
-    _inherit = "mail.template"
+    _inherit = 'mail.template'
 
-    is_membership_invitation_mail = fields.Boolean('Is A Membership Invitation Mail',
-        help='If True, memberships sent with this email template will be marked with an invitation mail as sent.')
-    is_membership_confirmation_mail = fields.Boolean('Is A Membership Confirmation Mail',
-        help='If True, memberships sent with this email template will be marked with a confirmation mail as sent.')
+    kind = fields.Selection([
+            ('standard', 'Standard'),
+            ('membership_invitation', 'Membership Invitation'),
+            ('membership_confirmation', 'Membership Confirmation'),
+            ('other', 'Other'),
+        ], default='standard', required=True, string="Kind",
+        help="Allows to classify and filter emails, mainly in the email wizards."
+        " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role\n"
+        " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
+        " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+        " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
+        " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role.")
