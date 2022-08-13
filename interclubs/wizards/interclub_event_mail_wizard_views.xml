@@ -34,7 +34,8 @@
                     <button name="change_event_state" string="Open Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_open'"/>
                     <button name="change_event_state" string="Confirm Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_confirm'"/>
                     <button name="change_event_state" string="Cancel Event" type="object" class="btn-primary" invisible="context.get('role') != 'to_cancel'"/>
-                    <button string="Cancel" special="cancel"  class="btn-secondary"/>
+                    <button name="change_event_state" string="Send" type="object" class="btn-primary" invisible="not context.get('role') is None"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
                 </footer>
             </form>
         </field>

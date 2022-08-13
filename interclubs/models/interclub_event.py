@@ -144,7 +144,6 @@ class InterclubEvent(models.Model):
 
         ctx.update(show_mail_to_players=True, show_mail_to_others=True,
             active_model='interclub.event', active_id=self.id, active_ids=[self.id])
-        # import ipdb; ipdb.set_trace()
         if role == 'to_open':
             ctx['send_mail_to_players'] = True
             ctx['send_mail_to_others'] = False
@@ -233,37 +232,7 @@ class InterclubEvent(models.Model):
     #     return super(InterclubEvent, self).search(new_domain, offset, limit, order, count=count)
 
     def action_sendmail(self):
-        self.ensure_one()
-        # TODO Investigate why the layout of the generated email is different than the one following line (looking at 'custom_layout' could help)
-        # return self.event_id.action_sendmail()
-        template = self.env.ref('calendar.calendar_template_meeting_invitation')
-        attendees = self.attendee_ids
-        compose_form = self.env.ref('mail.email_compose_message_wizard_form')
-
-        if attendees and compose_form:
-            ctx = dict(
-custom_layout='mail.mail_notification_light',  # @pal
-                dbname=self._cr.dbname,
-# @pal only_invitation_emails=True,
-            default_res_id=attendees.ids[0],  # USEFULL
-            # @pal default_partner_ids=attendees.mapped('partner_id').ids,  # mail recipients  # USEFULL
-                default_model='calendar.attendee',
-                active_ids=attendees.ids,
-default_no_auto_thread=False,  # @pal to avoid required field 'reply_to'
-                default_use_template=bool(template),
-                default_template_id=template and template.id or False,
-                default_composition_mode='comment',
-                force_email=True,
-            )
-            return {
-                'name': _('Compose Email - Interclub Event Invitation'),
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'mail.compose.message',
-                'views': [(compose_form.id, 'form')],
-                'target': 'new',
-                'context': ctx,
-            }
+        return self.prepare_interclub_event_wizard()
 
     @api.depends('interclub_id.event_items_color')
     def _compute_item_color(self):
