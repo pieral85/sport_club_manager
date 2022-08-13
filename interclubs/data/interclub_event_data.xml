@@ -13,6 +13,14 @@
         <field name="nextcall" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 01:30:00')"/>
     </record>
 
+    <record id="mt_interclub_event_communication" model="mail.message.subtype">
+        <field name="name">Interclub Event Communication</field>
+        <field name="sequence">10</field>
+        <field name="res_model">interclub.event</field>
+        <field name="default" eval="False"/>
+        <field name="hidden" eval="False"/>
+    </record>
+
     <!-- Email template for interclub event opening -->
     <!-- the body_payload is inspired by `calendar.calendar_template_meeting_invitation` -->
     <record id="email_template_interclub_event_opening" model="mail.template">

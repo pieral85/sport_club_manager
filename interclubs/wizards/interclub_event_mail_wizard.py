@@ -64,6 +64,7 @@ class InterclubEventMailWizard(models.TransientModel):
             'res_id': self.env.context['active_id'],
             'model': self.env.context['active_model'],
             'template_id': template_id,
+            'subtype_id': self.env.ref('interclubs.mt_interclub_event_communication').id,
         })
         res.update({
             'interclub_event_id': ic_event.id,
