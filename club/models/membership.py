@@ -36,6 +36,7 @@ class Membership(models.Model):
     member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id',
         domain=[('is_company', '=', False)])
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
+        compute='_compute_contact_person_id', inverse='_inverse_contact_person_id', store=True,
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
@@ -417,6 +418,13 @@ class Membership(models.Model):
         for record in self:
             record.member_user_id = ResUsers.search([('partner_id', '=', record.member_id.id)],
                 limit=1)
+
+    @api.depends('member_id')
+    def _compute_contact_person_id(self):
+        for record in self:
+            record.contact_person_id = record.member_id.responsible_id
+    def _inverse_contact_person_id(self):
+        pass
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):

@@ -9,4 +9,7 @@ class ResPartner(models.Model):
 
     company_type = fields.Selection(string='Company Type',
         selection=[('person', 'Individual'), ('company', 'Club')])
+    responsible_id = fields.Many2one('res.partner', string='Responsible',
+        help='Contact responsible of current contact. Usually, all communication will happen with the responsible. \
+        This is usually useful for a minor child.')
     membership_ids = fields.One2many('membership', 'member_id', string='Memberships')
