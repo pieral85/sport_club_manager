@@ -278,6 +278,15 @@ class InterclubEvent(models.Model):
             else:
                 ic_event.action_required = 'nothing'
 
+    def _notify_get_reply_to(self, default=None, records=None, company=None, doc_names=None):
+        """ Override to set alias of tasks to their project if any. """
+        res = super(InterclubEvent, self)._notify_get_reply_to(default=default, records=records, company=company, doc_names=doc_names)
+        print(res)
+        import ipdb; ipdb.set_trace()
+        if len(res) > 68:
+            pass
+        return res
+
     @api.depends('at_home', 'opponent_id')
     def _compute_allowed_location_ids(self):
         for rec in self:

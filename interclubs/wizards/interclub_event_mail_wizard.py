@@ -63,6 +63,10 @@ class InterclubEventMailWizard(models.TransientModel):
             'template_id': self.env.ref('interclubs.email_template_interclub_event_viewer').id,
             'subtype_id': self.env.ref('interclubs.mt_interclub_event_communication').id,
         })
+        # print('others_composer.reply_to_force_new', others_composer.reply_to_force_new)
+        # print('others_composer.reply_to_mode', others_composer.reply_to_mode)
+        # print('others_composer.reply_to', others_composer.reply_to)
+        # import ipdb; ipdb.set_trace()  # also check 'default_no_auto_thread'
 
         # by default, others_composer.model == 'interclub.event'
         res.update({
