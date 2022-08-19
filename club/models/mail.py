@@ -37,6 +37,11 @@ class MailComposer(models.TransientModel):
             self = self.with_context(lang=lang)
         return super(MailComposer, self)._onchange_template_id(template_id, composition_mode, model, res_id)
 
+    def _action_send_mail(self, auto_commit=False):
+        if self.model == 'res.partner':
+            self = self.with_context(mailing_document_based=True)
+        return super(MailComposer, self)._action_send_mail(auto_commit=auto_commit)
+
     def action_send_mail(self):
         self.ensure_one()
         model = self.env.context.get('default_model')
