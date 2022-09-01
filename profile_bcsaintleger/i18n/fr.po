@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 15:54+0000\n"
+"POT-Creation-Date: 2022-09-01 20:06+0000\n"
 "PO-Revision-Date: 2020-10-11 21:40+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -851,10 +851,14 @@ msgid "adulte<br/>"
 msgstr ""
 
 #. module: profile_bcsaintleger
-#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.template_footer_headline_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
-msgid "badsl@live.be"
+msgid "bcsaintleger+2022-2023@gmail.com"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.template_footer_headline_bcsaintleger
+msgid "bcsaintleger@gmail.com"
 msgstr ""
 
 #. module: profile_bcsaintleger

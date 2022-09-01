@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 11:12+0000\n"
+"POT-Creation-Date: 2022-09-01 10:04+0000\n"
 "PO-Revision-Date: 2022-04-04 11:12+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
+"Language: lang_iso_code\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: lang_iso_code\n"
 
 #. module: badminton_be
 #: model:ir.model.fields.selection,name:badminton_be.selection__ranking__ranking__b1
@@ -59,7 +59,7 @@ msgstr "Nom affiché"
 #. module: badminton_be
 #: model:ir.model.fields,field_description:badminton_be.field_ranking__end_date
 msgid "End Date"
-msgstr "Date de fin""
+msgstr "Date de fin"
 
 #. module: badminton_be
 #: model:ir.model.fields,field_description:badminton_be.field_ranking__id

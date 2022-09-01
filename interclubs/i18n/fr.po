@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 15:29+0000\n"
+"POT-Creation-Date: 2022-09-07 19:29+0000\n"
 "PO-Revision-Date: 2020-02-23 01:08+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -14,439 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-
-#. module: interclubs
-#: model:mail.template,body_html:interclubs.email_template_interclub_event_cancellation
-msgid ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Hello,<br/><br/>\n"
-"        The interclub event \"${object.name}\" has just been <b>cancelled</b>!<br/>\n"
-"        Here are all the useful information :\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Details of the event</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Location: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Attendees\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">You</span>\n"
-"                        % endif\n"
-"                        <!-- TODO Add status for each player in each template -->\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Referee: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Thank you,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
-msgstr ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Bonjour,<br/><br/>\n"
-"        La rencontre d'interclub \"${object.name}\" vient d'être <b>annulé</b>!<br/>\n"
-"        Voici toutes les informations utiles :\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Détails de l'événement</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Lieu: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Participants\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">Vous</span>\n"
-"                        % endif\n"
-"                        <!-- TODO Add status for each player in each template -->\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Merci,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
-
-#. module: interclubs
-#: model:mail.template,body_html:interclubs.email_template_interclub_event_confirmation
-msgid ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Hello,<br/><br/>\n"
-"        The interclub event \"${object.name}\" has just been confirmed.<br/>\n"
-"        Here are all the useful information :\n"
-"<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Details of the event</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Location: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Attendees\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">You</span>\n"
-"                        % endif\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Referee: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Thank you,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
-msgstr ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Bonjour,<br/><br/>\n"
-"        L'interclub \"${object.name}\" vient d'être confirmé.<br/>\n"
-"        Voici toutes les informations utiles :\n"
-"<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Détails de l'événement</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Lieu: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Participants\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">Vous</span>\n"
-"                        % endif\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Merci,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
-
-#. module: interclubs
-#: model:mail.template,body_html:interclubs.email_template_interclub_event_opening
-msgid ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Hello,<br/><br/>\n"
-"        This is a reminder for the below event :\n"
-"<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Details of the event</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Location: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Attendees\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">You</span>\n"
-"                        % endif\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Referee: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Thank you,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
-msgstr ""
-"\n"
-"<div>\n"
-"    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
-"    <p>\n"
-"        Bonjour,<br/><br/>\n"
-"        Ceci est un rappel pour l'événement ci-dessous :\n"
-"<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
-"    </p>\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
-"        <td width=\"130px;\">\n"
-"            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
-"                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
-"                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
-"            </div>\n"
-"            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
-"                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
-"            </div>\n"
-"        </td>\n"
-"        <td width=\"20px;\"/>\n"
-"        <td style=\"padding-top: 5px;\">\n"
-"            <p><strong>Détails de l'événement</strong></p>\n"
-"            <ul>\n"
-"                % if object.event_id.location:\n"
-"                    <li>Lieu: ${object.event_id.location}\n"
-"                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
-"                    </li>\n"
-"                % endif\n"
-"                % if object.event_id.description :\n"
-"                    <li>Description: ${object.event_id.description}</li>\n"
-"                % endif\n"
-"                % if not object.event_id.allday and object.event_id.duration\n"
-"                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
-"                % endif\n"
-"                <li>Participants\n"
-"                <ul>\n"
-"                % for attendee in object.event_id.attendee_ids:\n"
-"                    <li>\n"
-"                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
-"                        % if attendee.common_name != object.common_name:\n"
-"                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
-"                        % else:\n"
-"                            <span style=\"margin-left:5px\">Vous</span>\n"
-"                        % endif\n"
-"                    </li>\n"
-"                % endfor\n"
-"                </ul></li>\n"
-"                % if object.referee_id :\n"
-"                    <li>Arbitre: ${object.referee_id.name}</li>\n"
-"                % endif\n"
-"                % if object.interclub_id.responsible_id :\n"
-"                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
-"                % endif\n"
-"            </ul>\n"
-"        </td>\n"
-"    </tr></table>\n"
-"    <br/>\n"
-"    Merci,\n"
-"    <br/>\n"
-"    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
-"        ${object.event_id.user_id.signature | safe}\n"
-"    % endif\n"
-"</div>\n"
-"\n"
-"        "
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__state
@@ -493,6 +60,338 @@ msgid "<span class=\"fa fa-user\" title=\"User\"/>"
 msgstr "<span class=\"fa fa-user\" title=\"Utilisateur\"/>"
 
 #. module: interclubs
+#: model:mail.template,body_html:interclubs.email_template_interclub_event_viewer
+msgid ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_o\" t-value=\"object.env['interclub.event'].search([('event_id', '=', object.event_id.id)], limit=1) or False\"/>\n"
+"    <t t-set=\"sender\" t-value=\"object.event_id.user_id\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Interclub'\"/>\n"
+"    <t t-set=\"_no_record_found_msg\" t-value=\"('No interclub event found for %s' % object.event_id.name) if not _o else ''\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"_o.name if _o else _no_record_found_msg\"/>\n"
+"    <t t-set=\"_new_state\" t-value=\"ctx.get('new_state')\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <t t-set=\"colors\" t-value=\"{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}\"/>\n"
+"            <t t-set=\"customer\" t-value=\" object.event_id.find_partner_customer()\"/>\n"
+"            <t t-set=\"target_customer\" t-value=\"object.partner_id == customer\"/>\n"
+"            <t t-set=\"tz\" t-value=\"object.company_id.partner_id.tz\"/>\n"
+"            <p>\n"
+"                Hello,<br/><br/>\n"
+"                <t t-if=\"_new_state\">\n"
+"                    The interclub event <strong t-out=\"object.event_id.name or ''\">xxx</strong> has been <strong><t t-out=\"_new_state\"/></strong>.\n"
+"                </t>\n"
+"            </p>\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"                <td width=\"130px;\">\n"
+"                    <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=tz if not object.event_id.allday else None, dt_format='EEEE', lang_code=object.env.lang) or ''\">Tuesday</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"str(object.event_id.start.day) or ''\">3</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=tz if not object.event_id.allday else None, dt_format='MMMM y', lang_code=object.env.lang) or ''\">May 2022</t>\n"
+"                    </div>\n"
+"                    <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                        <t t-if=\"not object.event_id.allday\">\n"
+"                            <div>\n"
+"                                <t t-out=\"format_time(time=object.event_id.start, tz=tz, time_format='short', lang_code=object.env.lang) or ''\">08:00 PM</t>\n"
+"                            </div>\n"
+"                            <t t-if=\"tz\">\n"
+"                                <div style=\"font-size: 10px; font-weight: normal\">\n"
+"                                    (<t t-out=\"tz or ''\">Europe/Brussels</t>)\n"
+"                                </div>\n"
+"                            </t>\n"
+"                        </t>\n"
+"                    </div>\n"
+"                </td>\n"
+"                <td width=\"20px;\"/>\n"
+"                <td style=\"padding-top: 5px;\">\n"
+"                    <p><strong>Details of the event</strong></p>\n"
+"                    <ul>\n"
+"                        <t t-if=\"object.event_id.location\">\n"
+"                            <li>Location: <t t-out=\"object.event_id.location or ''\">Bruxelles</t>\n"
+"                                (<a target=\"_blank\" t-attf-href=\"http://maps.google.com/maps?oi=map&amp;q={{object.event_id.location}}\">View Map</a>)\n"
+"                            </li>\n"
+"                        </t>\n"
+"                        <li>Attendees\n"
+"                        <ul>\n"
+"                            <li t-foreach=\"object.event_id.attendee_ids\" t-as=\"attendee\">\n"
+"                                <div t-attf-style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};\"> </div>\n"
+"                                <span style=\"margin-left:5px\" t-out=\"attendee.common_name or ''\">Mitchell Admin</span>\n"
+"                            </li>\n"
+"                        </ul></li>\n"
+"                        <t t-if=\"not is_html_empty(object.event_id.description)\">\n"
+"                            <li>Description of the event:\n"
+"                            <t t-out=\"object.event_id.description\">Description of the interclub event.</t></li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                </td>\n"
+"            </tr></table>\n"
+"            <br/>\n"
+"            Thank you,\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+msgstr ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_o\" t-value=\"object.env['interclub.event'].search([('event_id', '=', object.event_id.id)], limit=1) or False\"/>\n"
+"    <t t-set=\"sender\" t-value=\"object.event_id.user_id\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Interclub'\"/>\n"
+"    <t t-set=\"_no_record_found_msg\" t-value=\"('Pas d''interclub trouvé pour %s' % object.event_id.name) if not _o else ''\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"_o.name if _o else _no_record_found_msg\"/>\n"
+"    <t t-set=\"_new_state\" t-value=\"ctx.get('new_state')\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <t t-set=\"colors\" t-value=\"{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}\"/>\n"
+"            <t t-set=\"customer\" t-value=\" object.event_id.find_partner_customer()\"/>\n"
+"            <t t-set=\"target_customer\" t-value=\"object.partner_id == customer\"/>\n"
+"            <t t-set=\"tz\" t-value=\"object.company_id.partner_id.tz\"/>\n"
+"            <p>\n"
+"                Bonjour,<br/><br/>\n"
+"                <t t-if=\"_new_state\">\n"
+"                    L'interclub <strong t-out=\"object.event_id.name or ''\">xxx</strong> a été <strong><t t-out=\"_new_state\"/></strong>.\n"
+"                </t>\n"
+"            </p>\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"                <td width=\"130px;\">\n"
+"                    <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=tz if not object.event_id.allday else None, dt_format='EEEE', lang_code=object.env.lang) or ''\">mardi</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"str(object.event_id.start.day) or ''\">3</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=tz if not object.event_id.allday else None, dt_format='MMMM y', lang_code=object.env.lang) or ''\">mai 2022</t>\n"
+"                    </div>\n"
+"                    <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                        <t t-if=\"not object.event_id.allday\">\n"
+"                            <div>\n"
+"                                <t t-out=\"format_time(time=object.event_id.start, tz=tz, time_format='short', lang_code=object.env.lang) or ''\">20:00</t>\n"
+"                            </div>\n"
+"                            <t t-if=\"tz\">\n"
+"                                <div style=\"font-size: 10px; font-weight: normal\">\n"
+"                                    (<t t-out=\"tz or ''\">Europe/Bruxelles</t>)\n"
+"                                </div>\n"
+"                            </t>\n"
+"                        </t>\n"
+"                    </div>\n"
+"                </td>\n"
+"                <td width=\"20px;\"/>\n"
+"                <td style=\"padding-top: 5px;\">\n"
+"                    <p><strong>Détails de la rencontre</strong></p>\n"
+"                    <ul>\n"
+"                        <t t-if=\"object.event_id.location\">\n"
+"                            <li>Lieu: <t t-out=\"object.event_id.location or ''\">Bruxelles</t>\n"
+"                                (<a target=\"_blank\" t-attf-href=\"http://maps.google.com/maps?oi=map&amp;q={{object.event_id.location}}\">Voir carte</a>)\n"
+"                            </li>\n"
+"                        </t>\n"
+"                        <li>Invités\n"
+"                        <ul>\n"
+"                            <li t-foreach=\"object.event_id.attendee_ids\" t-as=\"attendee\">\n"
+"                                <div t-attf-style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};\"> </div>\n"
+"                                <span style=\"margin-left:5px\" t-out=\"attendee.common_name or ''\">Mitchell Admin</span>\n"
+"                            </li>\n"
+"                        </ul></li>\n"
+"                        <t t-if=\"not is_html_empty(object.event_id.description)\">\n"
+"                            <li>Description de la rencontre:\n"
+"                            <t t-out=\"object.event_id.description\">Description de l'interclub.</t></li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                </td>\n"
+"            </tr></table>\n"
+"            <br/>\n"
+"            Merci,\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+
+#. module: interclubs
+#: model:mail.template,body_html:interclubs.email_template_interclub_event_opening
+msgid ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_o\" t-value=\"object.env['interclub.event'].search([('event_id', '=', object.event_id.id)], limit=1) or False\"/>\n"
+"    <t t-set=\"sender\" t-value=\"object.event_id.user_id\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Interclub'\"/>\n"
+"    <t t-set=\"_no_record_found_msg\" t-value=\"('No interclub event found for %s' % object.event_id.name) if not _o else ''\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"_o.name if _o else _no_record_found_msg\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <t t-set=\"colors\" t-value=\"{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}\"/>\n"
+"            <t t-set=\"customer\" t-value=\" object.event_id.find_partner_customer()\"/>\n"
+"            <t t-set=\"target_responsible\" t-value=\"object.partner_id == object.event_id.partner_id\"/>\n"
+"            <t t-set=\"target_customer\" t-value=\"object.partner_id == customer\"/>\n"
+"            <p>\n"
+"                Hello <t t-out=\"object.common_name or ''\">Wood Corner</t>,<br/><br/>\n"
+"                <t t-if=\"not target_responsible\">\n"
+"                    <t t-out=\"object.event_id.user_id.partner_id.name or ''\">Colleen Diaz</t> invited you for the <strong t-out=\"object.event_id.name or ''\">xxx</strong> interclub event.\n"
+"                </t>\n"
+"                <t t-else=\"\">\n"
+"                    The interclub event <strong t-out=\"object.event_id.name or ''\">xxx</strong> has been opened.\n"
+"                </t>\n"
+"\n"
+"            </p>\n"
+"            <div style=\"text-align: center; padding: 16px 0px 16px 0px;\">\n"
+"                <a t-attf-href=\"/calendar/meeting/accept?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
+"                    Accept</a>\n"
+"                <a t-attf-href=\"/calendar/meeting/decline?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
+"                    Decline</a>\n"
+"                <a t-attf-href=\"/calendar/meeting/view?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">View</a>\n"
+"            </div>\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"                <td width=\"130px;\">\n"
+"                    <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format='EEEE', lang_code=object.env.lang) or ''\">Tuesday</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"str(object.event_id.start.day) or ''\">3</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format='MMMM y', lang_code=object.env.lang) or ''\">May 2022</t>\n"
+"                    </div>\n"
+"                    <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                        <t t-if=\"not object.event_id.allday\">\n"
+"                            <div>\n"
+"                                <t t-out=\"format_time(time=object.event_id.start, tz=object.mail_tz, time_format='short', lang_code=object.env.lang) or ''\">08:00 PM</t>\n"
+"                            </div>\n"
+"                            <t t-if=\"object.mail_tz\">\n"
+"                                <div style=\"font-size: 10px; font-weight: normal\">\n"
+"                                    (<t t-out=\"object.mail_tz or ''\">Europe/Brussels</t>)\n"
+"                                </div>\n"
+"                            </t>\n"
+"                        </t>\n"
+"                    </div>\n"
+"                </td>\n"
+"                <td width=\"20px;\"/>\n"
+"                <td style=\"padding-top: 5px;\">\n"
+"                    <p><strong>Details of the event</strong></p>\n"
+"                    <ul>\n"
+"                        <t t-if=\"object.event_id.location\">\n"
+"                            <li>Location: <t t-out=\"object.event_id.location or ''\">Bruxelles</t>\n"
+"                                (<a target=\"_blank\" t-attf-href=\"http://maps.google.com/maps?oi=map&amp;q={{object.event_id.location}}\">View Map</a>)\n"
+"                            </li>\n"
+"                        </t>\n"
+"                        <li>Attendees\n"
+"                        <ul>\n"
+"                            <li t-foreach=\"object.event_id.attendee_ids\" t-as=\"attendee\">\n"
+"                                <div t-attf-style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};\"> </div>\n"
+"                                <t t-if=\"attendee.common_name != object.common_name\">\n"
+"                                    <span style=\"margin-left:5px\" t-out=\"attendee.common_name or ''\">Mitchell Admin</span>\n"
+"                                </t>\n"
+"                                <t t-else=\"\">\n"
+"                                    <span style=\"margin-left:5px\">You</span>\n"
+"                                </t>\n"
+"                            </li>\n"
+"                        </ul></li>\n"
+"                        <t t-if=\"not is_html_empty(object.event_id.description)\">\n"
+"                            <li>Description of the event:\n"
+"                            <t t-out=\"object.event_id.description\">Description of the interclub event.</t></li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                </td>\n"
+"            </tr></table>\n"
+"            <br/>\n"
+"            Thank you,\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+msgstr ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_o\" t-value=\"object.env['interclub.event'].search([('event_id', '=', object.event_id.id)], limit=1) or False\"/>\n"
+"    <t t-set=\"sender\" t-value=\"object.event_id.user_id\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Interclub'\"/>\n"
+"    <t t-set=\"_no_record_found_msg\" t-value=\"('Aucun interclub n'a été trouvé pour %s' % object.event_id.name) if not _o else ''\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"_o.name if _o else _no_record_found_msg\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <t t-set=\"colors\" t-value=\"{'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00', 'declined': 'red'}\"/>\n"
+"            <t t-set=\"customer\" t-value=\" object.event_id.find_partner_customer()\"/>\n"
+"            <t t-set=\"target_responsible\" t-value=\"object.partner_id == object.event_id.partner_id\"/>\n"
+"            <t t-set=\"target_customer\" t-value=\"object.partner_id == customer\"/>\n"
+"            <p>\n"
+"                Bonjour <t t-out=\"object.common_name or ''\">Wood Corner</t>,<br/><br/>\n"
+"                <t t-if=\"not target_responsible\">\n"
+"                    <t t-out=\"object.event_id.user_id.partner_id.name or ''\">Colleen Diaz</t> vous a invité pour la rencontre <strong t-out=\"object.event_id.name or ''\">xxx</strong>.\n"
+"                </t>\n"
+"                <t t-else=\"\">\n"
+"                    L'interclub <strong t-out=\"object.event_id.name or ''\">xxx</strong> a été ouvert.\n"
+"                </t>\n"
+"\n"
+"            </p>\n"
+"            <div style=\"text-align: center; padding: 16px 0px 16px 0px;\">\n"
+"                <a t-attf-href=\"/calendar/meeting/accept?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
+"                    Accepter</a>\n"
+"                <a t-attf-href=\"/calendar/meeting/decline?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
+"                    Décliner</a>\n"
+"                <a t-attf-href=\"/calendar/meeting/view?token={{object.access_token}}&amp;id={{object.event_id.id}}\" style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">Voir</a>\n"
+"            </div>\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+"                <td width=\"130px;\">\n"
+"                    <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format='EEEE', lang_code=object.env.lang) or ''\">Mardi</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+"                        <t t-out=\"str(object.event_id.start.day) or ''\">3</t>\n"
+"                    </div>\n"
+"                    <div style=\"font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;\">\n"
+"                        <t t-out=\"format_datetime(dt=object.event_id.start, tz=object.mail_tz if not object.event_id.allday else None, dt_format='MMMM y', lang_code=object.env.lang) or ''\">mai 2022</t>\n"
+"                    </div>\n"
+"                    <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold ; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+"                        <t t-if=\"not object.event_id.allday\">\n"
+"                            <div>\n"
+"                                <t t-out=\"format_time(time=object.event_id.start, tz=object.mail_tz, time_format='short', lang_code=object.env.lang) or ''\">20:00</t>\n"
+"                            </div>\n"
+"                            <t t-if=\"object.mail_tz\">\n"
+"                                <div style=\"font-size: 10px; font-weight: normal\">\n"
+"                                    (<t t-out=\"object.mail_tz or ''\">Europe/Bruxelles</t>)\n"
+"                                </div>\n"
+"                            </t>\n"
+"                        </t>\n"
+"                    </div>\n"
+"                </td>\n"
+"                <td width=\"20px;\"/>\n"
+"                <td style=\"padding-top: 5px;\">\n"
+"                    <p><strong>Détails de la rencontre</strong></p>\n"
+"                    <ul>\n"
+"                        <t t-if=\"object.event_id.location\">\n"
+"                            <li>Lieu: <t t-out=\"object.event_id.location or ''\">Bruxelles</t>\n"
+"                                (<a target=\"_blank\" t-attf-href=\"http://maps.google.com/maps?oi=map&amp;q={{object.event_id.location}}\">Voir carte</a>)\n"
+"                            </li>\n"
+"                        </t>\n"
+"                        <li>Invités\n"
+"                        <ul>\n"
+"                            <li t-foreach=\"object.event_id.attendee_ids\" t-as=\"attendee\">\n"
+"                                <div t-attf-style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:{{ colors.get(attendee.state) or 'white' }};\"> </div>\n"
+"                                <t t-if=\"attendee.common_name != object.common_name\">\n"
+"                                    <span style=\"margin-left:5px\" t-out=\"attendee.common_name or ''\">Mitchell Admin</span>\n"
+"                                </t>\n"
+"                                <t t-else=\"\">\n"
+"                                    <span style=\"margin-left:5px\">Vous</span>\n"
+"                                </t>\n"
+"                            </li>\n"
+"                        </ul></li>\n"
+"                        <t t-if=\"not is_html_empty(object.event_id.description)\">\n"
+"                            <li>Description de la rencontre:\n"
+"                            <t t-out=\"object.event_id.description\">Description de l'interclub.</t></li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                </td>\n"
+"            </tr></table>\n"
+"            <br/>\n"
+"            Merci,\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+
+#. module: interclubs
 #: model:ir.model.constraint,message:interclubs.constraint_calendar_interclubs_user_id_interclub_id_unique
 msgid "A user cannot have the same interclub twice."
 msgstr "Un utilisateur ne peut pas avoir le même interclub deux fois."
@@ -503,6 +402,7 @@ msgid "Accept"
 msgstr "Accepter"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_needaction
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_needaction
 msgid "Action Needed"
 msgstr "Action demandée"
@@ -519,9 +419,28 @@ msgid "Active"
 msgstr "Actif"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_ids
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_ids
 msgid "Activities"
 msgstr "Activités"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_exception_decoration
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité d'exception de décoration"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_state
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_state
+msgid "Activity State"
+msgstr "Status de l'activité"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_type_icon
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
@@ -534,6 +453,11 @@ msgid "Additional Contacts"
 msgstr "Contacts additionnels"
 
 #. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
+msgid "Address"
+msgstr "Adresse"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__allday
 msgid "All Day"
 msgstr "Toute la journée"
@@ -542,7 +466,35 @@ msgstr "Toute la journée"
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event
 #: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events
 msgid "All Interclub Events"
-msgstr "Toutes les rencontres d'interclub"
+msgstr "Toutes les rencontres"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__lang
+#: model:ir.model.fields,help:interclubs.field_interclub_event__lang
+msgid "All the emails sent for this record will be translated in this language."
+msgstr "Tous les mails envoyés pour cet enregistrement seront traduits dans cette langue."
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__allowed_location_ids
+msgid "Allowed Location"
+msgstr "Lieu autorisé"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_mail_template__kind
+msgid ""
+"Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
+" * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
+" * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+" * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
+" * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
+" * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
+msgstr ""
+"Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
+" * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
+" * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliation: la confirmation.\n"
+" * 'Nouvelle saison': mails envoyés en début de saison, à partir de la vue d'un contact.\n"
+" * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
+" * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
@@ -572,6 +524,7 @@ msgid "At Home"
 msgstr "A domicile"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_attachment_count
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_attachment_count
 msgid "Attachment Count"
 msgstr "Compte des pièces jointes"
@@ -629,11 +582,6 @@ msgid "Cancel Event"
 msgstr "Annuler l'événement"
 
 #. module: interclubs
-#: model:mail.template,subject:interclubs.email_template_interclub_event_cancellation
-msgid "Cancellation of the interclub event \"${object.name}\""
-msgstr "Annulation de la rencontre d'interclub \"${object.name}\""
-
-#. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__cancelled
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Cancelled"
@@ -644,7 +592,8 @@ msgstr "Annulé"
 msgid ""
 "Check if the organizer is alone in the event, i.e. if the organizer is the only one that hasn't declined\n"
 "        the event (only if the organizer is not the only attendee)"
-msgstr "Vérifie si l'organisateur est seul dans l'événement. ex: si l'organisateur est le seul qui n'a pas décliné\n"
+msgstr ""
+"Vérifie si l'organisateur est seul dans l'événement. ex: si l'organisateur est le seul qui n'a pas décliné\n"
 "        l'événement (seulement s'il n'est pas le seul participant)"
 
 #. module: interclubs
@@ -674,18 +623,18 @@ msgid "Color of the item in the calendar view"
 msgstr "Couleur d'un item dans la vue Calendrier"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__company_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_competition_configuration
 #: model:ir.ui.menu,name:interclubs.menu_sub_competition_settings
 #: model:ir.ui.menu,name:interclubs.menu_top_competition
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 msgid "Competition"
 msgstr "Compétition"
-
-#. module: interclubs
-#: code:addons/interclubs/models/interclub_event.py:0
-#, python-format
-msgid "Compose Email - Interclub Event Invitation"
-msgstr "Rédiger un email - Invitation à une rencontre d'interclub"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
@@ -716,11 +665,6 @@ msgstr "Confirmer"
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
 msgid "Confirm Event"
 msgstr "Confirmer l'événement"
-
-#. module: interclubs
-#: model:mail.template,subject:interclubs.email_template_interclub_event_confirmation
-msgid "Confirmation of the interclub event \"${object.name}\""
-msgstr "Confirmation de la rencontre d'interclub \"${object.name}\""
 
 #. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__state__confirmed
@@ -847,6 +791,17 @@ msgid "Edit"
 msgstr "Editer"
 
 #. module: interclubs
+#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
+#, python-format
+msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>and to subscribers of 'Interclub Event Communication'"
+msgstr "Le mail <i>%(template)s</i> a été envoyé aux contacts suivants:<ul>%(contacts)s</ul>et aux abonnés de 'Communication d'interclub'"
+
+#. module: interclubs
+#: model:ir.model,name:interclubs.model_mail_template
+msgid "Email Templates"
+msgstr "Modèles d'emails"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop_date
 msgid "End Date"
 msgstr "Date de fin"
@@ -902,14 +857,22 @@ msgid "Follow Recurrence"
 msgstr "Suivre la récurrence"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_follower_ids
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_follower_ids
 msgid "Followers"
 msgstr "Abonnés"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_partner_ids
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Abonnés (Partenaires)"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__activity_type_icon
+#: model:ir.model.fields,help:interclubs.field_interclub_event__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome e.g. fa-tasks"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__fri
@@ -922,6 +885,7 @@ msgid "Group by"
 msgstr "Regrouper par"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__has_message
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__has_message
 msgid "Has Message"
 msgstr "A un message"
@@ -940,12 +904,28 @@ msgid "ID"
 msgstr "ID"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_exception_icon
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__activity_exception_icon
+#: model:ir.model.fields,help:interclubs.field_interclub_event__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__message_needaction
+#: model:ir.model.fields,help:interclubs.field_interclub__message_unread
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_needaction
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages demandent votre attention."
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__message_has_error
+#: model:ir.model.fields,help:interclubs.field_interclub__message_has_sms_error
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_error
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
@@ -978,6 +958,16 @@ msgid "If true, the event is automatically opened when today is X days before th
 msgstr "Si coché, l'événement est automatiquement ouvert quand aujourd'hui est X jours avant que l'événement ne démarre (\"X\" est défini par le paramètre \"Jours d'ouverture de l'événement\")."
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_include_followers
+msgid "Include Followers"
+msgstr "Inclure abonnés"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_include_players
+msgid "Include Players"
+msgstr "Inclure joueurs"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__responsible_id
 msgid "Inteclub Responsible"
 msgstr "Responsable d'interclub"
@@ -986,6 +976,7 @@ msgstr "Responsable d'interclub"
 #: model:ir.model,name:interclubs.model_interclub
 #: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs__interclub_id
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__interclub_id
+#: model:ir.model.fields.selection,name:interclubs.selection__mail_template__kind__interclub
 #: model:ir.module.category,name:interclubs.module_category_interclub
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub"
@@ -998,14 +989,9 @@ msgid "Interclub Event"
 msgstr "Rencontre d'interclub"
 
 #. module: interclubs
-#: model:mail.template,name:interclubs.email_template_interclub_event_cancellation
-msgid "Interclub Event Cancellation"
-msgstr "Annulation de rencontre"
-
-#. module: interclubs
-#: model:mail.template,name:interclubs.email_template_interclub_event_confirmation
-msgid "Interclub Event Confirmation"
-msgstr "Confirmation de rencontre"
+#: model:mail.message.subtype,name:interclubs.mt_interclub_event_communication
+msgid "Interclub Event Communication"
+msgstr "Communication d'interclub"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_res_config_settings__interclub_event_duration
@@ -1025,6 +1011,11 @@ msgid "Interclub Event Opening"
 msgstr "Ouverture de rencontre"
 
 #. module: interclubs
+#: model:mail.template,name:interclubs.email_template_interclub_event_viewer
+msgid "Interclub Event Viewer"
+msgstr "Visionneuse d'interclub"
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__event_ids
 msgid "Interclub Events"
 msgstr "Rencontres d'interclub"
@@ -1033,6 +1024,11 @@ msgstr "Rencontres d'interclub"
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event_active_interclub
 msgid "Interclub Events - Active Interclub"
 msgstr "Rencontres d'interclub - Interclub actif"
+
+#. module: interclubs
+#: model:mail.template,subject:interclubs.email_template_interclub_event_viewer
+msgid "Interclub event {{ object.name_get()[0][1] + (' has been %s' % ctx['new_state'] if 'new_state' in ctx else '') }}"
+msgstr "L'interclub {{ object.name_get()[0][1] + (' a été %s' % ctx['new_state'] if 'new_state' in ctx else '') }}"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
@@ -1127,6 +1123,7 @@ msgid "Invitation details"
 msgstr "Détails de l'invitation"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_is_follower
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_is_follower
 msgid "Is Follower"
 msgstr "Est abonné"
@@ -1149,9 +1146,16 @@ msgstr "Couleur de l'item"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__kind
+#: model:ir.model.fields,field_description:interclubs.field_mail_template__kind
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
 msgid "Kind"
 msgstr "Genre"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__lang
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__lang
+msgid "Language"
+msgstr "Langue"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_calendar_interclubs____last_update
@@ -1185,8 +1189,14 @@ msgstr "Laisser l'événement se répéter automatiquement à chaque intervalle"
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__location_id
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__location
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
 msgid "Location"
 msgstr "Lieu"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__location_id
+msgid "Location (Contact)"
+msgstr "Lieu (contact)"
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__location
@@ -1205,6 +1215,7 @@ msgid "Mail Template (Others)"
 msgstr "Modèles de courriels (autres)"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_main_attachment_id
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Attachement principal"
@@ -1240,11 +1251,13 @@ msgid "Message"
 msgstr "Message"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_has_error
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_error
 msgid "Message Delivery error"
 msgstr "Erreur d'envoi du message"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_ids
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_ids
 msgid "Messages"
 msgstr "Messages"
@@ -1271,6 +1284,12 @@ msgid "Mon"
 msgstr "Lun."
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__my_activity_date_deadline
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Échéance de mon activité"
+
+#. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "My Events"
 msgstr "Mes rencontres"
@@ -1288,7 +1307,7 @@ msgstr "Mes rencontres (comme arbitre)"
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "My Events (as responsible)"
-msgstr "Mes rencontres (comme responsable"
+msgstr "Mes rencontres (comme responsable)"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
@@ -1299,7 +1318,7 @@ msgstr "Mes favorits"
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event_my
 #: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events_my
 msgid "My Interclub Events"
-msgstr "Mes rencontres d'interclub"
+msgstr "Mes rencontres"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_search
@@ -1338,6 +1357,30 @@ msgid "Need to Close"
 msgstr "En attente de fermeture"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_calendar_event_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Activité suivante de l'événement du calendrier"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_date_deadline
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de l'activité à venir"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_summary
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé d'activité suivant"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_type_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'activités à venir"
+
+#. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
 msgid "Nothing"
@@ -1349,6 +1392,7 @@ msgid "Notifications sent to all attendees to remind of the meeting."
 msgstr "Notifications envoyées à tous les participants pour rappeler la réunion."
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_needaction_counter
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Nombre d'actions"
@@ -1366,21 +1410,25 @@ msgid "Number of days before the event from which it must be opened."
 msgstr "Nombre de jours avant que l'événement ne doive être ouvert.'"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_has_error_counter
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_error_counter
 msgid "Number of errors"
 msgstr "Nombre d'erreurs"
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__message_needaction_counter
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Nombre de messages exigeant une action"
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__message_has_error_counter
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Nombre de messages avec des erreurs d'envoi"
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__message_unread_counter
 #: model:ir.model.fields,help:interclubs.field_interclub_event__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Nombre de messages non lus"
@@ -1523,8 +1571,8 @@ msgstr "Arbitres"
 
 #. module: interclubs
 #: model:mail.template,subject:interclubs.email_template_interclub_event_opening
-msgid "Registrations opening for interclub event \"${object.name}\""
-msgstr "Inscriptions ouvertes pour la rencontre d'interclub \"${object.name}\""
+msgid "Registrations opening of the interclub event {{ object.event_id.name }}"
+msgstr "Ouverture des inscriptions pour l'interclub {{ object.event_id.name }}"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__alarm_ids
@@ -1558,6 +1606,13 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__activity_user_id
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_has_sms_error
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Erreur d'envoi SMS"
@@ -1592,19 +1647,29 @@ msgid "Select players..."
 msgstr "Sélectionner des joueurs..."
 
 #. module: interclubs
-#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__send_to_players
-msgid "Send Email to Players"
-msgstr "Encoyer un email aux joueurs"
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Send"
+msgstr "Envoyé"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_mail_wizard_form_view
+msgid "Send Mail"
+msgstr "Envoyer le courriel"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
 msgid "Send mail"
-msgstr "Envoyer mail"
+msgstr "Envoyer le courriel"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__others_send_to_partners
-msgid "Send to Other Partners"
-msgstr "Envoyer à d'autres contacts"
+msgid "Send to Others"
+msgstr "Envoyer aux autres"
+
+#. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub_event_mail_wizard__send_to_players
+msgid "Send to Players"
+msgstr "Envoyer aux joueurs"
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
@@ -1641,6 +1706,20 @@ msgstr "Date de début d'événement, sans heure pour les événements durant to
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "State"
 msgstr "Etat"
+
+#. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__activity_state
+#: model:ir.model.fields,help:interclubs.field_interclub_event__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : la date d'échéance est déjà dépassée\n"
+"Aujourd'hui : la date d'activité est aujourd'hui\n"
+"Planifiée : activités futures"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__stop
@@ -1716,16 +1795,24 @@ msgid "Tue"
 msgstr "Mar."
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__activity_exception_decoration
+#: model:ir.model.fields,help:interclubs.field_interclub_event__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée"
+
+#. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_view_form
 msgid "Uncertain"
 msgstr "Incertain"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_unread
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_unread
 msgid "Unread Messages"
 msgstr "Messages non lus"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__message_unread_counter
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Compteur de messages non lus"
@@ -1754,11 +1841,13 @@ msgid "User"
 msgstr "Utilisateur"
 
 #. module: interclubs
+#: model:ir.model.fields,field_description:interclubs.field_interclub__website_message_ids
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__website_message_ids
 msgid "Website Messages"
 msgstr "Messages du site web"
 
 #. module: interclubs
+#: model:ir.model.fields,help:interclubs.field_interclub__website_message_ids
 #: model:ir.model.fields,help:interclubs.field_interclub_event__website_message_ids
 msgid "Website communication history"
 msgstr "Historique de communication du site web"
@@ -1790,9 +1879,491 @@ msgid "You cannot create an event without being attached to an interclub."
 msgstr "Vous ne pouvez pas créer un évnement sans être lié à un interclub."
 
 #. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "cancelled"
+msgstr "annulé"
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "confirmed"
+msgstr "confirmé"
+
+#. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
 msgid "event(s)"
 msgstr "événement(s)"
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "opened"
+msgstr "ouvert"
+
+#~ msgid ""
+#~ "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
+#~ " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
+#~ " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+#~ " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
+#~ " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
+#~ msgstr ""
+#~ "Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
+#~ " * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
+#~ " * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliatione: la confirmation.\n"
+#~ " * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
+#~ " * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
+
+#~ msgid ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Hello,<br/><br/>\n"
+#~ "        The interclub event \"${object.name}\" has just been <b>cancelled</b>!<br/>\n"
+#~ "        Here are all the useful information :\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Details of the event</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Location: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Attendees\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">You</span>\n"
+#~ "                        % endif\n"
+#~ "                        <!-- TODO Add status for each player in each template -->\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Referee: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Thank you,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Bonjour,<br/><br/>\n"
+#~ "        La rencontre d'interclub \"${object.name}\" vient d'être <b>annulé</b>!<br/>\n"
+#~ "        Voici toutes les informations utiles :\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Détails de l'événement</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Lieu: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Participants\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">Vous</span>\n"
+#~ "                        % endif\n"
+#~ "                        <!-- TODO Add status for each player in each template -->\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Merci,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Hello,<br/><br/>\n"
+#~ "        The interclub event \"${object.name}\" has just been confirmed.<br/>\n"
+#~ "        Here are all the useful information :\n"
+#~ "<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Details of the event</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Location: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Attendees\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">You</span>\n"
+#~ "                        % endif\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Referee: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Thank you,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Bonjour,<br/><br/>\n"
+#~ "        L'interclub \"${object.name}\" vient d'être confirmé.<br/>\n"
+#~ "        Voici toutes les informations utiles :\n"
+#~ "<!-- TODO Add a reminder here for the IC responsible (he needs to close as of ...(after IC happened)) -->\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Détails de l'événement</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Lieu: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Participants\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">Vous</span>\n"
+#~ "                        % endif\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Merci,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Hello,<br/><br/>\n"
+#~ "        This is a reminder for the below event :\n"
+#~ "<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Details of the event</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Location: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">View Map</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Attendees\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">You</span>\n"
+#~ "                        % endif\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Referee: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsible: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Thank you,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "<div>\n"
+#~ "    % set colors = {'needsAction': 'grey', 'accepted': 'green', 'tentative': '#FFFF00',  'declined': 'red'}\n"
+#~ "    <p>\n"
+#~ "        Bonjour,<br/><br/>\n"
+#~ "        Ceci est un rappel pour l'événement ci-dessous :\n"
+#~ "<!-- TODO Add a reminder here for the IC responsible (he needs to confirm as of ...) -->\n"
+#~ "    </p>\n"
+#~ "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"><tr>\n"
+#~ "        <td width=\"130px;\">\n"
+#~ "            <div style=\"border-top-left-radius: 3px; border-top-right-radius: 3px; font-size: 12px; border-collapse: separate; text-align: center; font-weight: bold; color: #ffffff; min-height: 18px; background-color: #875A7B; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('dayname', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"font-size: 48px; min-height: auto; font-weight: bold; text-align: center; color: #5F5F5F; background-color: #F8F8F8; border: 1px solid #875A7B;\">\n"
+#~ "                ${object.event_id.get_interval('day', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style='font-size: 12px; text-align: center; font-weight: bold; color: #ffffff; background-color: #875A7B;'>\n"
+#~ "                ${object.event_id.get_interval('month', tz=object.partner_id.tz if not object.event_id.allday else None)}\n"
+#~ "            </div>\n"
+#~ "            <div style=\"border-collapse: separate; color: #5F5F5F; text-align: center; font-size: 12px; border-bottom-right-radius: 3px; font-weight: bold; border: 1px solid #875A7B; border-bottom-left-radius: 3px;\">\n"
+#~ "                ${not object.event_id.allday and object.event_id.get_interval('time', tz=object.partner_id.tz) or ''}\n"
+#~ "            </div>\n"
+#~ "        </td>\n"
+#~ "        <td width=\"20px;\"/>\n"
+#~ "        <td style=\"padding-top: 5px;\">\n"
+#~ "            <p><strong>Détails de l'événement</strong></p>\n"
+#~ "            <ul>\n"
+#~ "                % if object.event_id.location:\n"
+#~ "                    <li>Lieu: ${object.event_id.location}\n"
+#~ "                        (<a target=\"_blank\" href=\"http://maps.google.com/maps?oi=map&amp;q=${object.event_id.location}\">Voir sur la carte</a>)\n"
+#~ "                    </li>\n"
+#~ "                % endif\n"
+#~ "                % if object.event_id.description :\n"
+#~ "                    <li>Description: ${object.event_id.description}</li>\n"
+#~ "                % endif\n"
+#~ "                % if not object.event_id.allday and object.event_id.duration\n"
+#~ "                    <li>Durée: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>\n"
+#~ "                % endif\n"
+#~ "                <li>Participants\n"
+#~ "                <ul>\n"
+#~ "                % for attendee in object.event_id.attendee_ids:\n"
+#~ "                    <li>\n"
+#~ "                        <div style=\"display: inline-block; border-radius: 50%; width: 10px; height: 10px; background:${colors[attendee.state] or 'white'};\"> </div>\n"
+#~ "                        % if attendee.common_name != object.common_name:\n"
+#~ "                            <span style=\"margin-left:5px\">${attendee.common_name}</span>\n"
+#~ "                        % else:\n"
+#~ "                            <span style=\"margin-left:5px\">Vous</span>\n"
+#~ "                        % endif\n"
+#~ "                    </li>\n"
+#~ "                % endfor\n"
+#~ "                </ul></li>\n"
+#~ "                % if object.referee_id :\n"
+#~ "                    <li>Arbitre: ${object.referee_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "                % if object.interclub_id.responsible_id :\n"
+#~ "                    <li>Responsable: ${object.interclub_id.responsible_id.name}</li>\n"
+#~ "                % endif\n"
+#~ "            </ul>\n"
+#~ "        </td>\n"
+#~ "    </tr></table>\n"
+#~ "    <br/>\n"
+#~ "    Merci,\n"
+#~ "    <br/>\n"
+#~ "    % if object.event_id.user_id and object.event_id.user_id.signature:\n"
+#~ "        ${object.event_id.user_id.signature | safe}\n"
+#~ "    % endif\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+
+#~ msgid "Cancellation of the interclub event \"${object.name}\""
+#~ msgstr "Annulation de la rencontre d'interclub \"${object.name}\""
+
+#~ msgid "Compose Email - Interclub Event Invitation"
+#~ msgstr "Rédiger un email - Invitation à une rencontre d'interclub"
+
+#~ msgid "Confirmation of the interclub event \"${object.name}\""
+#~ msgstr "Confirmation de la rencontre d'interclub \"${object.name}\""
+
+#~ msgid "Interclub Event Cancellation"
+#~ msgstr "Annulation de rencontre"
+
+#~ msgid "Interclub Event Confirmation"
+#~ msgstr "Confirmation de rencontre"
+
+#~ msgid "Registrations opening for interclub event \"${object.name}\""
+#~ msgstr "Inscriptions ouvertes pour la rencontre d'interclub \"${object.name}\""
+
+#~ msgid "Send Email to Players"
+#~ msgstr "Encoyer un email aux joueurs"
+
+#~ msgid "Send to Other Partners"
+#~ msgstr "Envoyer à d'autres contacts"
 
 #~ msgid "An user cannot have twice the same interclub."
 #~ msgstr "Un utilisateur ne peut pas avoir deux fois le même interclub."

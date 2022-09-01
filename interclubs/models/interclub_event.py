@@ -154,10 +154,10 @@ class InterclubEvent(models.Model):
             ctx['send_mail_to_players'] = False
             ctx['send_mail_to_others'] = True
             ctx['template_id'] = self.env.ref('interclubs.email_template_interclub_event_viewer').id
-            ctx['new_state'] = _({
-                'to_confirm': 'confirmed',
-                'to_cancel': 'cancelled',
-            }.get(role, False))
+            ctx['new_state'] = {
+                'to_confirm': _('confirmed'),
+                'to_cancel': _('cancelled'),
+            }.get(role, False)
 
         return {
             'name': _('Interclub Event Mail Wizard'),

@@ -20,8 +20,8 @@ class AccountMoveLine(models.Model):
         """
         for move_line in self:
             if move_line.product_id.membership_ok and len(move_line.membership_ids) != move_line.quantity:
-                    raise ValidationError(_("On the invoice line, the quantity does not match the number of ' \
-                        'memberships. Please change it accordingly."))
+                    raise ValidationError(_("On the invoice line, the quantity does not match the number of " \
+                        "memberships. Please change it accordingly."))
 
     def remove_memberships(self, memberships=None):
         """ Remove membership(s) of current account move line.

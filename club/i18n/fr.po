@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-04 11:13+0000\n"
+"POT-Creation-Date: 2022-09-01 10:07+0000\n"
 "PO-Revision-Date: 2018-07-03 01:13+0200\n"
 "Last-Translator: Pierre <pieral85@hotmail.com>\n"
 "Language-Team: French\n"
@@ -17,15 +17,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: club
+#: model:ir.actions.server,name:club.action_send_email_membership_confirmation
+msgid "(Re)Send Membership Confirmation Email"
+msgstr "(R)envoyer le mail de confirmation"
+
+#. module: club
+#: model:ir.actions.server,name:club.action_send_email_membership_invitation
+msgid "(Re)Send Membership Invitation Email"
+msgstr "(R)envoyer le mail d'invitation"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+msgid "(account:"
+msgstr "(compte:"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "<br/>Signature"
+msgstr "<br/>Signature"
+
+#. module: club
 #: model:mail.template,body_html:club.email_template_membership_affiliation_invitation
 msgid ""
-"\n"
 "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
 "    <p>\n"
 "        Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
 "    </p>\n"
 "    <p>\n"
-"        An affiliation request has been done for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>.\n"
+"        An affiliation request has been done for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
 "        <br/>\n"
 "        Could you please let us know your answer by clicking on the button of your choice?\n"
 "    </p>\n"
@@ -40,48 +59,49 @@ msgid ""
 "    <p>\n"
 "        The <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
 "    </p>\n"
-"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\">\n"
+"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
 "\n"
 "</div>\n"
-"\n"
 "        "
 msgstr ""
-"\n"
 "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
 "    <p>\n"
-"        Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,,\n"
+"        Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,\n"
 "    </p>\n"
 "    <p>\n"
-"        Une demande d'affiliation a été faite pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>.\n"
+"        Une demande d'affiliation a été faite pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
 "        <br/>\n"
 "        Pourriez-vous nous communiquer votre réponse en cliquant sur le bouton de votre choix?\n"
 "    </p>\n"
 "    <p>\n"
 "        <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accepter</a>\n"
-"        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Décliner</a>\n"
-"        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Voir l'affiliation</a>\n"
+"        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Refuser</a>\n"
+"        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Voir</a>\n"
 "    </p>\n"
 "    <p>\n"
-"        Sportivement,\n"
+"        Bien à vous,\n"
 "    </p>\n"
 "    <p>\n"
 "        Les membres du comité du <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
 "    </p>\n"
-"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\">\n"
+"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
 "\n"
 "</div>\n"
-"\n"
 "        "
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.website_info_club
+msgid "<font style=\"\" class=\"text-o-color-2\">Committee Info</font>"
+msgstr "<font style=\"\" class=\"text-o-color-2\">Infos Comité</font>"
 
 #. module: club
 #: model:mail.template,body_html:club.email_template_membership_affiliation_confirmation
 msgid ""
-"\n"
 "<p>\n"
 "    Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
 "</p>\n"
 "<p>\n"
-"We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>!\n"
+"We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>!\n"
 "</p>\n"
 "<p>\n"
 "<t t-if=\"object.price_remaining\">\n"
@@ -107,62 +127,39 @@ msgid ""
 "<p>\n"
 "<t t-out=\"user.name or ''\">Mitchell Admin</t>, for the <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
 "</p>\n"
-"\n"
 "        "
 msgstr ""
-"\n"
 "<p>\n"
-"    Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,,\n"
+"    Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,\n"
 "</p>\n"
 "<p>\n"
-"Nous sommes heureux de vous communiquer que votre affiliation pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u> a été faite avec succès!\n"
+"Nous sommes heureux de vous annoncer que votre affiliation a été confirmée pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>!\n"
 "</p>\n"
 "<p>\n"
 "<t t-if=\"object.price_remaining\">\n"
-"    Veuillez noter qu'il reste un montant dû de <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
+"    Merci d'effectuer un virement de <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
 "    <t t-if=\"user.company_id.account_no\">\n"
-"        (à payer sur le compte <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>)\n"
+"        sur le compte <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
 "    </t>\n"
 "    .\n"
 "</t>\n"
 "<t t-else=\"\">\n"
-"    Veuillez noter que pour cette saison, il ne reste aucun montant à payer.\n"
+"    Pour information, aucun paiement n'est dû.\n"
 "</t>\n"
 "</p>\n"
 "<p>\n"
-"Si vous avez des questions, n'hésitez pas en répondant à cet email.\n"
+"Si vous avez des questions, n'hésitez à les poser en répondant à ce mail.\n"
 "</p>\n"
 "<p>\n"
-"Nous espérons que vous passerez très bonne saison!\n"
+"Nous espérons que vous passerez une agréable saison!\n"
 "</p>\n"
 "<p>\n"
-"Sportivement,\n"
+"Bien à vous,\n"
 "</p>\n"
 "<p>\n"
-"<t t-out=\"user.name or ''\">Mitchell Admin</t>, pour les membres du comité du <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
+"<t t-out=\"user.name or ''\">Mitchell Admin</t>, pour le <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
 "</p>\n"
-"\n"
 "        "
-
-#. module: club
-#: model:ir.actions.server,name:club.action_send_email_membership_confirmation
-msgid "(Re)Send Membership Confirmation Email"
-msgstr "(R)envoyer le mail de confirmation"
-
-#. module: club
-#: model:ir.actions.server,name:club.action_send_email_membership_invitation
-msgid "(Re)Send Membership Invitation Email"
-msgstr "(R)envoyer le mail d'invitation"
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
-msgid "(account:"
-msgstr "(compte:"
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.website_info_club
-msgid "<font style=\"\" class=\"text-o-color-2\">Committee Info</font>"
-msgstr "<font style=\"\" class=\"text-o-color-2\">Infos Comité</font>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
@@ -252,6 +249,26 @@ msgid "Active Period(s)"
 msgstr "Saison(s) active(s)"
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Activité d'exception de décoration"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_state
+msgid "Activity State"
+msgstr "Status de l'activité"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Add"
 msgstr "Ajouter"
@@ -295,6 +312,26 @@ msgstr "Domaine d'alias"
 #: model:ir.model.fields,field_description:club.field_period__alias_model_id
 msgid "Aliased Model"
 msgstr "Modèle concerné"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_mail_compose_message__allowed_template_ids
+msgid "Allowed Template"
+msgstr "Template autorisé"
+
+#. module: club
+#: model:ir.model.fields,help:club.field_mail_template__kind
+msgid ""
+"Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
+" * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
+" * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+" * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
+" * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
+msgstr ""
+"Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
+" * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
+" * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliatione: la confirmation.\n"
+" * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
+" * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
@@ -352,6 +389,11 @@ msgid "Attachment Count"
 msgstr "Compte des pièces jointes"
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Body"
+msgstr "Corps"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Cancel"
 msgstr "Annuler"
@@ -384,12 +426,8 @@ msgstr "Nom de catégorie"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__res_partner__company_type__company
-#: model:ir.ui.menu,name:club.menu_sub_settings_club
-msgid "Club"
-msgstr "Club"
-
-#. module: club
 #: model:ir.ui.menu,name:club.menu_root
+#: model:ir.ui.menu,name:club.menu_sub_settings_club
 msgid "Club"
 msgstr "Club"
 
@@ -405,6 +443,7 @@ msgstr "Couleur à afficher dans la vue kanban."
 
 #. module: club
 #: model:ir.module.category,name:club.module_category_committee
+#: model_terms:ir.ui.view,arch_db:club.website_info_club
 msgid "Committee"
 msgstr "Comité"
 
@@ -425,14 +464,25 @@ msgstr "Sociétés"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__company_id
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
 msgid "Company"
 msgstr "Société"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Company Email"
+msgstr "Mail de la société"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_res_partner__company_type
 #: model:ir.model.fields,field_description:club.field_res_users__company_type
 msgid "Company Type"
 msgstr "Type de société"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Company Website"
+msgstr "Site web de la société"
 
 #. module: club
 #: code:addons/club/models/membership.py:0
@@ -475,6 +525,12 @@ msgstr "Contact"
 #: model:ir.model.fields,field_description:club.field_membership__contact_person_id
 msgid "Contact Person"
 msgstr "Personne de contact"
+
+#. module: club
+#: model:ir.model.fields,help:club.field_res_partner__responsible_id
+#: model:ir.model.fields,help:club.field_res_users__responsible_id
+msgid "Contact responsible of current contact. Usually, all communication will happen with the responsible.         This is usually useful for a minor child."
+msgstr "Contact responsable du contact courant. En général, toutes les communications passeront par le responsable.         C'est notamment utile pour un enfant mineur."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__contact_person_id
@@ -644,6 +700,11 @@ msgid "Followers (Partners)"
 msgstr "Abonnés (Partenaires)"
 
 #. module: club
+#: model:ir.model.fields,help:club.field_membership__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome e.g. fa-tasks"
+
+#. module: club
 #: code:addons/club/models/period_category.py:0
 #, python-format
 msgid "For the period '%s', the category '%s' must be unique. Please change it accordingly."
@@ -698,14 +759,14 @@ msgid "ID of the parent record holding the alias (example: project holding the t
 msgstr "Identifiant de l'enregistrement parent détenant l'alias (par exemple: le projet détenant la tâche création d'alias)"
 
 #. module: club
-#: model:ir.model.fields,help:club.field_mail_template__is_membership_confirmation_mail
-msgid "If True, memberships sent with this email template will be marked with a confirmation mail as sent."
-msgstr "Si Vrai, les affiliations envoyées avec ce modèles de courriel seront considérés comme ayant reçu le courriel de confirmation."
+#: model:ir.model.fields,field_description:club.field_membership__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
 
 #. module: club
-#: model:ir.model.fields,help:club.field_mail_template__is_membership_invitation_mail
-msgid "If True, memberships sent with this email template will be marked with an invitation mail as sent."
-msgstr "Si Vrai, les affiliations envoyées avec ce modèles de courriel seront considérés comme ayant reçu le courriel d'invitation'."
+#: model:ir.model.fields,help:club.field_membership__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité d'exception."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__message_needaction
@@ -725,15 +786,16 @@ msgstr "Si actif, certains messages ont une erreur de livraison."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_res_users__committee_user
-msgid "If checked, the user will have a read access to the application Club."
-msgstr "Si actif, l'utilisateur aura un accès en lecture à l'application \"Club\"."
+msgid "If checked, the user will have a read access to the application \"Club\"."
+msgstr "Si coché, l'utilisateur aura un accès en lecture à l'application \"Club\"."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_res_users__committee_manager
 msgid ""
-"If checked, the user will have a write access to the application Club.\n"
+"If checked, the user will have a write access to the application \"Club\".\n"
 "        This will allow the user to manage the application."
-msgstr "Si actif, l'utilisateur aura un accès en écriture à l'application \"Club\"."
+msgstr ""
+"Si coché, l'utilisateur aura un accès en écriture à l'application \"Club\".\n"
 "        Cela lui permettra de gérer l'application."
 
 #. module: club
@@ -766,16 +828,6 @@ msgstr "Invitation par email envoyée"
 #: model:ir.model.fields,field_description:club.field_membership__token
 msgid "Invitation Token"
 msgstr "Token d'identification"
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_mail_template__is_membership_confirmation_mail
-msgid "Is A Membership Confirmation Mail"
-msgstr "Est un courriel de confirmation d'affiliation"
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_mail_template__is_membership_invitation_mail
-msgid "Is A Membership Invitation Mail"
-msgstr "Est un courriel d'invitation d'affiliation"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_res_users__committee_manager
@@ -817,6 +869,11 @@ msgstr "Est secrétaire"
 #: model:ir.model.fields,field_description:club.field_res_users__treasurer
 msgid "Is Treasurer"
 msgstr "Est trésorier"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_mail_template__kind
+msgid "Kind"
+msgstr "Type"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category____last_update
@@ -869,6 +926,11 @@ msgstr "Templates de mail"
 #: model:ir.model.fields,field_description:club.field_period__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Pièce jointe principale"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Main Title"
+msgstr "Titre principal"
 
 #. module: club
 #: model:website.menu,name:club.menu_membership_request
@@ -933,6 +995,16 @@ msgstr "Confirmation d'affiliation"
 #. module: club
 #: model:mail.template,name:club.email_template_membership_affiliation_invitation
 msgid "Membership Affiliation Invitation"
+msgstr "Invitation d'affiliation"
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_confirmation
+msgid "Membership Confirmation"
+msgstr "Confirmation d'affiliation"
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_invitation
+msgid "Membership Invitation"
 msgstr "Invitation d'affiliation"
 
 #. module: club
@@ -1028,6 +1100,17 @@ msgid "Misc"
 msgstr "Divers"
 
 #. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Multiple languages detected!"
+msgstr "Multiples langues détectées!"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Échéance de mon activité"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.my_settings_link
 msgid "My Settings"
 msgstr "Mes paramètres"
@@ -1057,6 +1140,21 @@ msgstr "Nom:"
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "New Name"
 msgstr "Nouveau nom"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de l'activité à venir"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé d'activité suivante"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'activités à venir"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__message_needaction_counter
@@ -1099,6 +1197,12 @@ msgid "Old Members"
 msgstr "Anciens membres"
 
 #. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Only '%s' will be used for emails."
+msgstr "Seul '%s' sera utilisé pour les mails."
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.category_search
 msgid "Only active categories."
 msgstr "Catégories actives seulement."
@@ -1122,6 +1226,11 @@ msgstr "Seulement les saisons inactives."
 #: model:ir.model.fields,help:club.field_period__alias_force_thread_id
 msgid "Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely."
 msgstr "ID optionnel d'un fil (enregistrement) auquel tout message entrant sera rattaché, même si il ne s'agissait pas d'une réponse à ce fil. Si renseigné, la création de nouveaux enregistrements sera complètement désactivée."
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__other
+msgid "Other"
+msgstr "Autre"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_period__alias_user_id
@@ -1236,6 +1345,11 @@ msgstr "Saison à dupliquer"
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Periods"
 msgstr "Saisons"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
 
 #. module: club
 #: model:ir.model.fields,help:club.field_period__alias_contact
@@ -1388,6 +1502,17 @@ msgid "Resources"
 msgstr "Ressources"
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__responsible_id
+#: model:ir.model.fields,field_description:club.field_res_users__responsible_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: club
 #: model:ir.model,name:club.model_role
 #: model:ir.model.fields,field_description:club.field_role__name
 msgid "Role"
@@ -1474,6 +1599,11 @@ msgid "Sends an email to the user to let him sign up to the application. Once th
 msgstr "Envoie un courriel à l'utilisateur pour qu'il puisse se connecter à l'application. Une fois l'invitation acceptée, il lui sera demandé d'entrer un nouveau mot de passe."
 
 #. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__standard
+msgid "Standard"
+msgstr "Standard"
+
+#. module: club
 #: model:ir.model.fields,field_description:club.field_period__start_date
 #: model:ir.model.fields,field_description:club.field_period_wizard__start_date
 #: model:ir.model.fields,field_description:club.field_role__start_date
@@ -1508,6 +1638,19 @@ msgid "Status"
 msgstr "Etat"
 
 #. module: club
+#: model:ir.model.fields,help:club.field_membership__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : la date d'échéance est déjà dépassée\n"
+"Aujourd'hui : la date d'activité est aujourd'hui\n"
+"Planifiée : activités futures"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Stop President Role"
 msgstr "Arrêter le rôle de président"
@@ -1523,12 +1666,29 @@ msgid "Stop Treasurer Role"
 msgstr "Arrêter le rôle de trésorier"
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.email_default_layout
+msgid "Sub Title"
+msgstr "Sous-titre"
+
+#. module: club
 #: code:addons/club/models/period.py:0 code:addons/club/models/role.py:0
 #: model:ir.model.constraint,message:club.constraint_period_dates_check
 #: model:ir.model.constraint,message:club.constraint_role_dates_check
 #, python-format
 msgid "The end date should be higher than the start date. Please change it accordingly."
 msgstr "La date de fin devrait être supérieur à la date de début. Veuillez modifier en conséquence."
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "The membership(s) must have state 'Member' in order to send a confirmation email."
+msgstr "Le(s) membre(s) doi(ven)t avoir le statut 'Membre' pour pouvoir envoyer un mail de confirmation."
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "The membership(s) must have state 'Unknown' or 'Old Member' in order to send an invitation email."
+msgstr "Le(s) membre(s) doi(ven)t avoir le statut 'Inconnu' ou 'Ancien membre' pour pouvoir envoyer un mail d'invitation'."
 
 #. module: club
 #: model:ir.model.fields,help:club.field_period__alias_model_id
@@ -1565,8 +1725,7 @@ msgstr "Le nom de la saison doit être unique! Veuillez le changer en conséquen
 #. module: club
 #: model:ir.model.fields,help:club.field_period__alias_user_id
 msgid "The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address."
-msgstr ""
-"Le propriétaire d'enregistrements créés lors de la réception de courriel sur cet alias. Si ce champ n'est pas renseigné, le système essaiera de trouver le propriétaire approprié à partir de l'adresse de l'expéditeur (De) ou utilisera le compte Administrateur si aucun utilisateur du système n'est trouvé pour cette adresse."
+msgstr "Le propriétaire d'enregistrements créés lors de la réception de courriel sur cet alias. Si ce champ n'est pas renseigné, le système essaiera de trouver le propriétaire approprié à partir de l'adresse de l'expéditeur (De) ou utilisera le compte Administrateur si aucun utilisateur du système n'est trouvé pour cette adresse."
 
 #. module: club
 #: model:ir.model.constraint,message:club.constraint_res_users_partner_uniq
@@ -1656,6 +1815,11 @@ msgid "Treasurer"
 msgstr "Trésorier"
 
 #. module: club
+#: model:ir.model.fields,help:club.field_membership__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité d'exception enregistrée"
+
+#. module: club
 #: model:ir.model.fields.selection,name:club.selection__membership__user_response__undefined
 msgid "Undefined"
 msgstr "Non défini"
@@ -1687,6 +1851,11 @@ msgstr "Compteur de messages non lus"
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Upcoming Period"
 msgstr "Saison à venir"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_mail_compose_message__template_id
+msgid "Use template"
+msgstr "Utiliser un modèle"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_role__user_id
@@ -1757,3 +1926,147 @@ msgstr "Quand une demande est faite pour une saison donnée sans connaître la c
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "You are going to regenerate the default Email Alias. Are you sure? (The current one will be overwritten.)"
 msgstr "Vous êtes sur le point de régénérer l'alias de mail par défaut. Êtes-vous sûr? (L'alias actuel sera écrasé.)"
+
+#~ msgid ""
+#~ "\n"
+#~ "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+#~ "    <p>\n"
+#~ "        Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        An affiliation request has been done for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>.\n"
+#~ "        <br/>\n"
+#~ "        Could you please let us know your answer by clicking on the button of your choice?\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accept</a>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Decline</a>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">View</a>\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        Best regards,\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        The <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
+#~ "    </p>\n"
+#~ "    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\">\n"
+#~ "\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
+#~ "    <p>\n"
+#~ "        Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,,\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        Une demande d'affiliation a été faite pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>.\n"
+#~ "        <br/>\n"
+#~ "        Pourriez-vous nous communiquer votre réponse en cliquant sur le bouton de votre choix?\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accepter</a>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Décliner</a>\n"
+#~ "        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Voir l'affiliation</a>\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        Sportivement,\n"
+#~ "    </p>\n"
+#~ "    <p>\n"
+#~ "        Les membres du comité du <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
+#~ "    </p>\n"
+#~ "    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\">\n"
+#~ "\n"
+#~ "</div>\n"
+#~ "\n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "<p>\n"
+#~ "    Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u>!\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "<t t-if=\"object.price_remaining\">\n"
+#~ "    Please note that you will have to pay <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
+#~ "    <t t-if=\"user.company_id.account_no\">\n"
+#~ "        on the account <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
+#~ "    </t>\n"
+#~ "    .\n"
+#~ "</t>\n"
+#~ "<t t-else=\"\">\n"
+#~ "    Please note that for this season, no price is due anymore.\n"
+#~ "</t>\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "If you have any question, do not hesitate to reply to this email.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "We hope you will enjoy this new season with us!\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "Best regards,\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "<t t-out=\"user.name or ''\">Mitchell Admin</t>, for the <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
+#~ "</p>\n"
+#~ "\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "<p>\n"
+#~ "    Chèr(e) <t t-out=\"object.member_id.name or 'membre'\">membre</t>,,\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "Nous sommes heureux de vous communiquer que votre affiliation pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">2022-2023</i></u> a été faite avec succès!\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "<t t-if=\"object.price_remaining\">\n"
+#~ "    Veuillez noter qu'il reste un montant dû de <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
+#~ "    <t t-if=\"user.company_id.account_no\">\n"
+#~ "        (à payer sur le compte <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>)\n"
+#~ "    </t>\n"
+#~ "    .\n"
+#~ "</t>\n"
+#~ "<t t-else=\"\">\n"
+#~ "    Veuillez noter que pour cette saison, il ne reste aucun montant à payer.\n"
+#~ "</t>\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "Si vous avez des questions, n'hésitez pas en répondant à cet email.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "Nous espérons que vous passerez très bonne saison!\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "Sportivement,\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "<t t-out=\"user.name or ''\">Mitchell Admin</t>, pour les membres du comité du <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
+#~ "</p>\n"
+#~ "\n"
+#~ "        "
+
+#~ msgid "If True, memberships sent with this email template will be marked with a confirmation mail as sent."
+#~ msgstr "Si Vrai, les affiliations envoyées avec ce modèles de courriel seront considérés comme ayant reçu le courriel de confirmation."
+
+#~ msgid "If True, memberships sent with this email template will be marked with an invitation mail as sent."
+#~ msgstr "Si Vrai, les affiliations envoyées avec ce modèles de courriel seront considérés comme ayant reçu le courriel d'invitation'."
+
+#~ msgid "If checked, the user will have a read access to the application Club."
+#~ msgstr "Si actif, l'utilisateur aura un accès en lecture à l'application \"Club\"."
+
+#~ msgid ""
+#~ "If checked, the user will have a write access to the application Club.\n"
+#~ "        This will allow the user to manage the application."
+#~ msgstr "Si actif, l'utilisateur aura un accès en écriture à l'application \"Club\".        Cela lui permettra de gérer l'application."
+
+#~ msgid "Is A Membership Confirmation Mail"
+#~ msgstr "Est un courriel de confirmation d'affiliation"
+
+#~ msgid "Is A Membership Invitation Mail"
+#~ msgstr "Est un courriel d'invitation d'affiliation"
