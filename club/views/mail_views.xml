@@ -21,6 +21,12 @@
             <xpath expr="//field[@name='active_domain']" position="after">
                 <field name="allowed_template_ids" invisible="1"/>
             </xpath>
+            <xpath expr="//field[@name='email_from']" position="before">
+                <field name="season_id" invisible="not context.get('for_new_season_mail', False)" options="{'no_create': True}"/>
+            </xpath>
+            <field name="reply_to_mode" position="attributes">
+                <attribute name="invisible">context.get('for_new_season_mail', False)</attribute>
+            </field>
         </field>
     </record>
 </odoo>

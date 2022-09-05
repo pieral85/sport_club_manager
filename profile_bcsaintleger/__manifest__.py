@@ -33,6 +33,7 @@ Following features are included in this module:
         # menus
         'views/menus.xml',
         # data
+        'data/mail_template_data.xml',
         'data/partner_data.xml',
         'data/website_data.xml',
     ],

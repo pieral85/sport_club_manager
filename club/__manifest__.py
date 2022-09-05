@@ -48,6 +48,7 @@ Following features are included in this module:
         # wizards
         'wizards/period_wizard_views.xml',
         # actions
+        'actions/mail_compose_message_actions.xml',
         'actions/membership_actions.xml',
         'actions/res_users_actions.xml',
         'actions/category_actions.xml',

@@ -8,7 +8,7 @@ from odoo.exceptions import ValidationError
 class PeriodCategory(models.Model):
     _name = 'period.category'
     _description = 'Period Category'
-    _order = 'period_id asc'
+    _order = 'period_id, default desc, id'
 
     period_id = fields.Many2one(
         comodel_name='period',

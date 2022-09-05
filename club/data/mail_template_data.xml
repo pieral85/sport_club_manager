@@ -72,4 +72,58 @@
         </td></tr>
         </table>
     </template>
+
+    <record id="email_template_new_season" model="mail.template">
+        <field name="name">New season</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">{{ user.company_id.email_formatted }}</field>
+        <field name="partner_to">{{ object.responsible_id.id if object.responsible_id.email else object.id }}</field>
+        <field name="subject">New season's beginning!</field>
+        <field name="lang">{{ object.lang }}</field>
+        <field name="kind">new_season</field>
+        <field name="body_html" type="html">
+<t t-call="club.email_default_layout">
+    <t t-set="_season" t-value="ctx.get('season_id')"/>
+    <t t-set="sender" t-value="user"/>
+    <t t-set="company" t-value="_o.company_id if _o else sender.company_id"/>
+    <t t-set="title_1" t-value="'Badminton'"/>
+    <t t-set="title_2" t-value="'Start of the new season%s' % ((': ' + _season.name) if _season else '')"/>
+    <t t-set="body_payload">
+        <div>
+            <p>
+                Hello <t t-out="object.name.split()[0] or 'member'">member</t>,
+            </p>
+            <p>
+                After several weeks without your favorite sport, it is time to go (back) on the courts!
+            </p>
+            <t t-if="_season and _season.period_category_ids">
+            <p>
+                <t t-set="default_category" t-value="_season.period_category_ids.filtered(lambda pc: pc.default).category_id"/>
+                This season, memberships are classified into the following categories:
+                <ul>
+                    <li t-foreach="_season.period_category_ids" t-as="period_category">
+                        <span t-out="period_category.category_id.name" style="font-weight: bolder;">Category X</span>
+                        <ul>
+                            <li><u>Price due:</u> <span t-out="format_amount(period_category.price_due, period_category.currency_id)">XXX €</span></li>
+                            <li t-if="period_category.category_id.description"><u>Description:</u> <span t-out="period_category.category_id.description">Description of the category</span></li>
+                        </ul>
+                    </li>
+                </ul>
+                Could you please indicate the category of your membership by replying to this email? 
+                <t t-if="default_category">
+                    (If not provided, category <i t-out="default_category.name">Category x</i> will be choosen by default.)
+                </t>
+            </p>
+            </t>
+            <p>
+                In order to get our database up-to-date, could you please communicate us your fullname, address, email and phone number? To do so, replying to this email is still the best solution.
+            </p>
+            <p>
+                Regards,
+            </p>
+        </div>
+    </t>
+</t>
+        </field>
+    </record>
 </odoo>

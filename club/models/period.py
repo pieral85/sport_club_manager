@@ -22,10 +22,7 @@ class Period(models.Model):
        ('name_uniq', 'unique(name)', 'The name of the period must be unique!'),
     ]
 
-    name = fields.Char(
-        string='Period',
-        required=True,
-    )
+    name = fields.Char('Period', required=True, translate=True)
     start_date = fields.Date(
         string='Start Date',
         default=fields.Date.today(),

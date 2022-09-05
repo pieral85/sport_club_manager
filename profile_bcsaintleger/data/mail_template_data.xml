@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="email_template_new_season_bcsaintleger" model="mail.template">
+        <field name="name">New season - Welcome (BC Saint-Léger)</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">{{ user.company_id.email_formatted }}</field>
+        <field name="partner_to">{{ object.responsible_id.id if object.responsible_id.email else object.id }}</field>
+        <field name="subject">Lancement de la nouvelle saison!</field>
+        <field name="lang">{{ object.lang }}</field>
+        <field name="kind">new_season</field>
+        <field name="body_html" type="html">
+<t t-call="club.email_default_layout">
+    <t t-set="_season" t-value="ctx.get('season_id')"/>
+    <t t-set="sender" t-value="user"/>
+    <t t-set="company" t-value="_o.company_id if _o else sender.company_id"/>
+    <t t-set="title_1" t-value="'Badminton'"/>
+    <t t-set="title_2" t-value="'Lancement de la nouvelle saison%s' % ((': ' + _season.name) if _season else '')"/>
+    <t t-set="body_payload">
+        <div>
+            <p>
+                Chèr(e) <t t-out="object.name.split()[0] or 'membre'">membre</t>,
+            </p>
+            <p>
+                Après plusieurs semaines ensoleillées passées loin des terrains, voici enfin l'heure pour la reprise de votre sport favori!
+            </p>
+            <p>
+                Vous trouvez ci-joint la lettre de lancement pour cette nouvelle saison contenant toutes les informations pratiques.
+            </p>
+            <p>
+                Afin de mettre à jour notre base de données et les inscriptions auprès de la ligue, merci également de nous communiquer vos coordonnées (nom, prénom, adresse, mail, GSM), soit en nous transmettant le <a href="profile_bcsaintleger/static/pdf/inscription_lfbb_fr.pdf?download=true" target="_blank">document de la ligue</a>, soit par simple retour de ce mail.
+            </p>
+            <t t-if="_season and _season.period_category_ids">
+            <p>
+                <t t-set="default_category" t-value="_season.period_category_ids.filtered(lambda pc: pc.default).category_id"/>
+                Les affiliations sont réparties d'après les catégories suivantes:
+                <ul>
+                    <li t-foreach="_season.period_category_ids" t-as="period_category">
+                        <span t-out="period_category.category_id.name" style="font-weight: bolder;">Catégorie X</span>
+                        <ul>
+                            <li><u>Montant dû:</u> <span t-out="format_amount(period_category.price_due, period_category.currency_id)">XXX €</span></li>
+                            <li t-if="period_category.category_id.description"><u>Description:</u> <span t-out="period_category.category_id.description">Description de la catégorie</span></li>
+                        </ul>
+                    </li>
+                </ul>
+                Pourriez-vous indiquer la catégorie de votre choix en répondant à ce mail? 
+                <t t-if="default_category">
+                    (Si omise, la catégorie <i t-out="default_category.name">Catégorie X</i> sera celle choisie par défaut.)
+                </t>
+            </p>
+            </t>
+            <p>
+                <u>En bref:</u>
+                <ul>
+                    <li>Reprise des entraînements pour les <span style="font-weight: bolder;">jeunes</span> (-18 ans) à partir du samedi <span style="font-weight: bolder;">03 septembre<span style="font-weight: normal;"> de 9h à 10h</span><span style="font-weight: 400;">.</span></span></li>
+                    <li>Reprise des 3 entraînements <span style="font-weight: bolder;">adultes</span> par semaine. Les premières dates sont:</li>
+                    <ul style="margin:0px 0 0px 0;box-sizing:border-box;">
+                        <li>lundi <span style="font-weight: normal;">05 septembre</span></li>
+                        <li>mardi 06 septembre<br/></li>
+                        <li>jeudi <span style="font-weight: bolder;">01 septembre</span><br/></li>
+                    </ul>
+                    <li>Les entrainements dirigés pour les adultes seront donnés les lundis de 20h00 à 21h15<br/></li>
+                    <li>Les interclubs à domicile se joueront les jeudis (en moyenne un jeudi sur quatre).</li>
+                </ul>
+            </p>
+            <p>
+                Dans l'attente de vous (re)voir nombreuses et nombreux sur les terrains!
+            </p>
+            <p>
+                Sportivement,
+            </p>
+        </div>
+    </t>
+</t>
+        </field>
+    </record>
+</odoo>

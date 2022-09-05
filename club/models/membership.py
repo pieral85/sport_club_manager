@@ -203,23 +203,20 @@ class Membership(models.Model):
                 'user_response': 'undefined',
             })
 
+    def _get_closest_lang(self):
+        return self.mapped('member_id')._get_closest_lang()
+
     def _send_email(self, template_xmlid, composer_title, **composer_ctx):
         template = self.env.ref(template_xmlid)
         composer_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-        langs = self.mapped('member_id.lang')
-        company_lang = self.env.company.partner_id.lang
-        # consider membership partner lang, closest(*) to user company lang
-        # (*) i.e. consider company lang is 'fr_FR': closest lang would be 'fr_FR' > 'fr_BE' > 'en_US'
-        langs.sort(key=lambda l: (l == company_lang) + (l[:2] == company_lang[:2]), reverse=True)
         ctx = dict(
             # need to propagate this context key to the composer record
-            open_records_view= self._context.get('see_records_view', False),
-            default_model='membership',
+            open_records_view=self._context.get('see_records_view', False),
+            active_model='membership',  # needed to be propagated to <mail.compose.message>._onchange_template_id method
             active_ids=self.ids,
             default_use_template=bool(template),
             default_template_id=template.id if template else False,
             default_composition_mode='mass_mail',
-            forced_lang=langs[0] if langs else 'en_US',
             force_email=True,
         )
         ctx.update(composer_ctx)
@@ -233,7 +230,7 @@ class Membership(models.Model):
             'target': 'new',
             'context': ctx,
         }
-        if len(langs) <= 1:
+        if len(self.mapped('member_id.lang')) <= 1:
             return action
         return {
             'type': 'ir.actions.client',
@@ -241,7 +238,7 @@ class Membership(models.Model):
             'params': {
                 'type': 'warning',
                 'title': _("Multiple languages detected!"),
-                'message': _("Only '%s' will be used for emails.", langs[0]),
+                'message': _("Only '%s' will be used for emails.", self._get_closest_lang()),
                 'sticky': False,
                 'next': action,
             }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_wizard_new_season_mail_action" model="ir.actions.act_window">
+        <field name="name">Send mail - New season</field>
+        <field name="res_model">mail.compose.message</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="context">{
+            'for_new_season_mail': True,
+            'default_reply_to_mode': 'new',
+            'default_composition_mode': 'mass_mail',
+            'open_records_view': True,
+        }</field>
+    </record>
+</odoo>

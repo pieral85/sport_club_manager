@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-# from datetime import date
-
-from odoo import models, fields, api, exceptions
+from odoo import fields, models
 
 
 class PeriodWizard(models.TransientModel):

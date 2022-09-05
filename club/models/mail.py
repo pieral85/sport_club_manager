@@ -3,15 +3,39 @@
 
 import uuid
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, tools, _
 from odoo.addons.mail.wizard.mail_compose_message import _reopen
 
 
 class MailComposer(models.TransientModel):
     _inherit = 'mail.compose.message'
 
+    @api.model
+    def _default_season_id(self):
+        if self._context.get('for_new_season_mail'):
+            return self.env['period'].search([('current', '=', True)], limit=1) or \
+                    self.env['period'].search([('upcoming', '=', True)], limit=1)
+        return False
+
     template_id = fields.Many2one('mail.template', domain="[('id', 'in', allowed_template_ids)]")
     allowed_template_ids = fields.One2many('mail.template', compute='_compute_allowed_template_ids')
+    season_id = fields.Many2one('period', string='Season', default=_default_season_id)
+
+    @api.onchange('season_id')
+    def _onchange_season_id(self):
+        if not self._context.get('for_new_season_mail'):
+            return
+        if self.season_id:
+            if self.season_id.alias_name:
+                email = '%s@%s' % (self.season_id.alias_name, self.season_id.alias_domain)
+                self.reply_to = tools.formataddr((_('New Season') or u"False", email or u"False"))
+            if not self.template_id:
+                # should fetch 'club.email_template_new_season' record if no other template has been created afterwards
+                tmpl = self.env['mail.template'].search([('kind', '=', 'new_season')], order='id desc', limit=1)
+                self.template_id = tmpl
+        else:
+            self.reply_to = ''
+            self.template_id = False
 
     @api.depends('model')
     def _compute_allowed_template_ids(self):
@@ -21,6 +45,8 @@ class MailComposer(models.TransientModel):
             kinds.append('membership_invitation')
         if self.env.context.get('only_confirmation_emails'):
             kinds.append('membership_confirmation')
+        if self.env.context.get('for_new_season_mail'):
+            kinds.append('new_season')
         base_domain = [('kind', 'in', kinds if kinds else ['standard'])]
 
         for rec in self:
@@ -31,40 +57,45 @@ class MailComposer(models.TransientModel):
                 rec.allowed_template_ids = False
 
     def _onchange_template_id(self, template_id, composition_mode, model, res_id):
-        # force default lang of subject/body mail composer
-        lang = self._context.get('forced_lang', 'en_US')
-        if lang:
-            self = self.with_context(lang=lang)
+        """ force default lang of subject/body mail composer """
+        # changing the lang of the context allows to use the correct lang for the mail template itself
+        closest_lang = self.env[self._context['active_model']].browse(self._context['active_ids'])._get_closest_lang()
+        self = self.with_context(lang=closest_lang)
         return super(MailComposer, self)._onchange_template_id(template_id, composition_mode, model, res_id)
 
     def _action_send_mail(self, auto_commit=False):
         if self.model == 'res.partner':
             self = self.with_context(mailing_document_based=True)
+        if self.env.context.get('for_new_season_mail'):
+            self = self.with_context(season_id=self.season_id)
         return super(MailComposer, self)._action_send_mail(auto_commit=auto_commit)
 
     def action_send_mail(self):
         self.ensure_one()
-        model = self.env.context.get('default_model')
+        model, ids = self._context['active_model'], self._context['active_ids']
+        records = self.env[model].browse(ids)
 
         if model == 'membership':
-            self.env[model].browse(self.env.context['active_ids']).reset_token()
+            records.reset_token()
 
+        if self.composition_mode == 'mass_mail':
+            # allows to translate variables in the mail template
+            self = self.with_context(lang=records._get_closest_lang())
         res = super(MailComposer, self).action_send_mail()
 
-        if model == 'membership' and self.env.context.get('active_ids'):
+        if model == 'membership':
             vals = {}
             if self.template_id.kind == 'membership_invitation':
                 vals['invitation_mail_sent'] = True
             if self.template_id.kind == 'membership_confirmation':
                 vals['confirmation_mail_sent'] = True
-            self.env['membership'].browse(self.env.context['active_ids']).write(vals)
+            records.write(vals)
 
-        if self.env.context.get('open_records_view'):
-            ids = self.env.context['active_ids']
+        if self.env.context.get('open_records_view') and 'active_domain' in self._context:
             action = {
-                'name': _('Memberships with Mail Sent'),
+                'name': _('Records with Mail Sent'),
                 'type': 'ir.actions.act_window',
-                'res_model': 'membership',
+                'res_model': model,
             }
             if len(ids) == 1:
                 action.update({
@@ -103,11 +134,13 @@ class MailTemplate(models.Model):
             ('standard', 'Standard'),
             ('membership_invitation', 'Membership Invitation'),
             ('membership_confirmation', 'Membership Confirmation'),
+            ('new_season', 'New Season'),
             ('other', 'Other'),
         ], default='standard', required=True, string="Kind",
         help="Allows to classify and filter emails, mainly in the email wizards."
         " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
         " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
         " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+        " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
         " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
         " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role.")

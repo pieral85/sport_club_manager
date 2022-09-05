@@ -12,11 +12,8 @@ class Category(models.Model):
        ('name_uniq', 'unique(name)', 'The name of the category must be unique!'),
     ]
 
-    name = fields.Char(
-        string='Category',
-        required=True,
-    )
-    description = fields.Char(string='Description')
+    name = fields.Char('Category', required=True, translate=True)
+    description = fields.Char('Description', translate=True)
     period_category_ids = fields.One2many(
         comodel_name='period.category',
         inverse_name='category_id',

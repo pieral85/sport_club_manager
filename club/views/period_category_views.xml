@@ -5,7 +5,7 @@
         <field name="name">period category list</field>
         <field name="model">period.category</field>
         <field name="arch" type="xml">
-            <tree default_order="period_id desc" expand="1">
+            <tree default_order="period_id desc, default desc, id" expand="1">
                 <field name="period_id"/>
                 <field name="category_id"/>
                 <field name="default"/>
