@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 10:07+0000\n"
+"POT-Creation-Date: 2022-09-05 14:03+0000\n"
 "PO-Revision-Date: 2018-07-03 01:13+0200\n"
 "Last-Translator: Pierre <pieral85@hotmail.com>\n"
 "Language-Team: French\n"
@@ -197,6 +197,97 @@ msgid "<span>still to pay</span><br/>"
 msgstr "<span>toujours à payer</span><br/>"
 
 #. module: club
+#: model:mail.template,body_html:club.email_template_new_season
+msgid ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"/>\n"
+"    <t t-set=\"sender\" t-value=\"user\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Badminton'\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"'Start of the new season%s' % ((': ' + _season.name) if _season else '')\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <p>\n"
+"                Hello <t t-out=\"object.name.split()[0] or 'member'\">member</t>,\n"
+"            </p>\n"
+"            <p>\n"
+"                After several weeks without your favorite sport, it is time to go (back) on the courts!\n"
+"            </p>\n"
+"            <t t-if=\"_season and _season.period_category_ids\">\n"
+"            <p>\n"
+"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"/>\n"
+"                This season, memberships are classified into the following categories:\n"
+"                <ul>\n"
+"                    <li t-foreach=\"_season.period_category_ids\" t-as=\"period_category\">\n"
+"                        <span t-out=\"period_category.category_id.name\" style=\"font-weight: bolder;\">Category X</span>\n"
+"                        <ul>\n"
+"                            <li><u>Price due:</u> <span t-out=\"format_amount(period_category.price_due, period_category.currency_id)\">XXX €</span></li>\n"
+"                            <li t-if=\"period_category.category_id.description\"><u>Description:</u> <span t-out=\"period_category.category_id.description\">Description of the category</span></li>\n"
+"                        </ul>\n"
+"                    </li>\n"
+"                </ul>\n"
+"                Could you please indicate the category of your membership by replying to this email? \n"
+"                <t t-if=\"default_category\">\n"
+"                    (If not provided, category <i t-out=\"default_category.name\">Category x</i> will be choosen by default.)\n"
+"                </t>\n"
+"            </p>\n"
+"            </t>\n"
+"            <p>\n"
+"                In order to get our database up-to-date, could you please communicate us your fullname, address, email and phone number? To do so, replying to this email is still the best solution.\n"
+"            </p>\n"
+"            <p>\n"
+"                Regards,\n"
+"            </p>\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+msgstr ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"/>\n"
+"    <t t-set=\"sender\" t-value=\"user\"/>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
+"    <t t-set=\"title_1\" t-value=\"'Badminton'\"/>\n"
+"    <t t-set=\"title_2\" t-value=\"'Début de la nouvelle saison%s' % ((': ' + _season.name) if _season else '')\"/>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <p>\n"
+"                Chèr(e) <t t-out=\"object.name.split()[0] or 'membre'\">membre</t>,\n"
+"            </p>\n"
+"            <p>\n"
+"                Après plusieurs semaines sans votre sport favori, il est temps de (re)venir sur les terrains!\n"
+"            </p>\n"
+"            <t t-if=\"_season and _season.period_category_ids\">\n"
+"            <p>\n"
+"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"/>\n"
+"                Cette saison, les affiliations sont réparties parmi les catégories suivantes:\n"
+"                <ul>\n"
+"                    <li t-foreach=\"_season.period_category_ids\" t-as=\"period_category\">\n"
+"                        <span t-out=\"period_category.category_id.name\" style=\"font-weight: bolder;\">Catégorie X</span>\n"
+"                        <ul>\n"
+"                            <li><u>Montant dû:</u> <span t-out=\"format_amount(period_category.price_due, period_category.currency_id)\">XXX €</span></li>\n"
+"                            <li t-if=\"period_category.category_id.description\"><u>Description:</u> <span t-out=\"period_category.category_id.description\">Description de la catégorie</span></li>\n"
+"                        </ul>\n"
+"                    </li>\n"
+"                </ul>\n"
+"                Pourriez-vous indiquer le choix de catégorie pour votre affiliation en l'indiquant dans la réponse à ce courriel? \n"
+"                <t t-if=\"default_category\">\n"
+"                    (Si omis, la catégorie <i t-out=\"default_category.name\">Catégorie X</i> sera choisie par défaut.)\n"
+"                </t>\n"
+"            </p>\n"
+"            </t>\n"
+"            <p>\n"
+"                Pour maintenir notre base de données à jour, pourriez-vous nous communiquer votre nom complet, adresse, courriel et numéro de téléphone? Pour ce faire, le plus simple est de répondre à ce courriel.\n"
+"            </p>\n"
+"            <p>\n"
+"                Bien à vous,\n"
+"            </p>\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+
+#. module: club
 #: model:ir.model.fields,help:club.field_period__alias_defaults
 msgid "A Python dictionary that will be evaluated to provide default values when creating new records for this alias."
 msgstr "Un dictionnaire Python qui sera évalué pour fournir les valeurs par défaut lors de la création d'enregistrements pour cet alias."
@@ -324,12 +415,14 @@ msgid ""
 "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
 " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
 " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+" * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
 " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
 " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
 msgstr ""
 "Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
 " * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
 " * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliatione: la confirmation.\n"
+" * 'Nouvelle saison': mails envoyés au début d'une nouvelle saison, à partir de la vue d'un contact.\n"
 " * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
 " * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
 
@@ -389,6 +482,11 @@ msgid "Attachment Count"
 msgstr "Compte des pièces jointes"
 
 #. module: club
+#: model:ir.model,name:club.model_base
+msgid "Base"
+msgstr "Base"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.email_default_layout
 msgid "Body"
 msgstr "Corps"
@@ -423,6 +521,31 @@ msgstr "Catégorie"
 #: model_terms:ir.ui.view,arch_db:club.category_search
 msgid "Category Name"
 msgstr "Nom de catégorie"
+
+#. module: club
+#: model:category,description:club.category_starter
+msgid "Category for adults who only want to train (official competition participation is not allowed)."
+msgstr "Catégorie pour les adultes qui veulent seulement s'entraîner (les compétitions officielles ne sont pas autorisées)."
+
+#. module: club
+#: model:category,description:club.category_competitor
+msgid "Category for adults who want to train and participate to official competitions."
+msgstr "Catégorie pour les adultes qui veulent s'entraîner et participer aux compétitions officielles."
+
+#. module: club
+#: model:category,description:club.category_child
+msgid "Category for children below 12 years old."
+msgstr "Catégorie pour les enfants en-dessous de 12 ans."
+
+#. module: club
+#: model:category,description:club.category_teenager
+msgid "Category for members between 12 and 18 years old."
+msgstr "Catégorie pour les enfants entre 12 et 18 ans."
+
+#. module: club
+#: model:category,name:club.category_child
+msgid "Child"
+msgstr "Enfant"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__res_partner__company_type__company
@@ -483,6 +606,11 @@ msgstr "Type de société"
 #: model_terms:ir.ui.view,arch_db:club.email_default_layout
 msgid "Company Website"
 msgstr "Site web de la société"
+
+#. module: club
+#: model:category,name:club.category_competitor
+msgid "Competitor"
+msgstr "Compétiteur"
 
 #. module: club
 #: code:addons/club/models/membership.py:0
@@ -1051,12 +1179,6 @@ msgid "Memberships of upcoming period."
 msgstr "Affiliations de la saison à venir."
 
 #. module: club
-#: code:addons/club/models/mail.py:0
-#, python-format
-msgid "Memberships with Mail Sent"
-msgstr "Affiliations avec courriel envoyé"
-
-#. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Memberships with a payment due."
 msgstr "Affiliations avec un paiement dû."
@@ -1140,6 +1262,22 @@ msgstr "Nom:"
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "New Name"
 msgstr "Nouveau nom"
+
+#. module: club
+#: code:addons/club/models/mail.py:0
+#, python-format
+msgid "New Season"
+msgstr "Nouvelle saison"
+
+#. module: club
+#: model:mail.template,name:club.email_template_new_season
+msgid "New season"
+msgstr "Nouvelle saison"
+
+#. module: club
+#: model:mail.template,subject:club.email_template_new_season
+msgid "New season's beginning!"
+msgstr "Début d'une nouvelle saison!"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__activity_date_deadline
@@ -1352,6 +1490,11 @@ msgid "Phone Number"
 msgstr "Numéro de téléphone"
 
 #. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__new_season
+msgid "New Season"
+msgstr "Nouvelle saison"
+
+#. module: club
 #: model:ir.model.fields,help:club.field_period__alias_contact
 msgid ""
 "Policy to post a message on the document using the mailgateway.\n"
@@ -1451,6 +1594,12 @@ msgid "Record Thread ID"
 msgstr "ID de l'enregistrement du fil"
 
 #. module: club
+#: code:addons/club/models/mail.py:0
+#, python-format
+msgid "Records with Mail Sent"
+msgstr "Enregistrements avec mail envoyé"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Regenerate"
 msgstr "Régénérer"
@@ -1546,11 +1695,37 @@ msgstr "Recherche des catégories par saison"
 
 #. module: club
 #: code:addons/club/controllers/portal.py:0
+#: model:ir.model.fields,field_description:club.field_mail_compose_message__season_id
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 #, python-format
 msgid "Season"
 msgstr "Saison"
+
+#. module: club
+#: model:period,name:club.period_past_3
+msgid "Season 2019-2020"
+msgstr "Saison 2019-2020"
+
+#. module: club
+#: model:period,name:club.period_past_2
+msgid "Season 2020-2021"
+msgstr "Saison 2020-2021"
+
+#. module: club
+#: model:period,name:club.period_past_1
+msgid "Season 2021-2022"
+msgstr "Saison 2021-2022"
+
+#. module: club
+#: model:period,name:club.period_current
+msgid "Season 2022-2023"
+msgstr "Saison 2022-2023"
+
+#. module: club
+#: model:period,name:club.period_upcoming
+msgid "Season 2023-2024"
+msgstr "Saison 2023-2024"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__secretary
@@ -1582,6 +1757,11 @@ msgstr "Envoi courriel d'invitation pour se connecter (utilisateurs ne s'étant 
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Send Invitation"
 msgstr "Envoyer invitation"
+
+#. module: club
+#: model:ir.actions.act_window,name:club.partner_wizard_new_season_mail_action
+msgid "Send mail - New season"
+msgstr "Mail - Nouvelle saison"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
@@ -1624,6 +1804,11 @@ msgstr "Démarrer le rôle de secrétaire"
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Treasurer Role"
 msgstr "Démarrer le rôle de trésorier"
+
+#. module: club
+#: model:category,name:club.category_starter
+msgid "Starter"
+msgstr "Débutant"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__state
@@ -1669,6 +1854,11 @@ msgstr "Arrêter le rôle de trésorier"
 #: model_terms:ir.ui.view,arch_db:club.email_default_layout
 msgid "Sub Title"
 msgstr "Sous-titre"
+
+#. module: club
+#: model:category,name:club.category_teenager
+msgid "Teenager"
+msgstr "Adolescent"
 
 #. module: club
 #: code:addons/club/models/period.py:0 code:addons/club/models/role.py:0
@@ -1926,6 +2116,22 @@ msgstr "Quand une demande est faite pour une saison donnée sans connaître la c
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "You are going to regenerate the default Email Alias. Are you sure? (The current one will be overwritten.)"
 msgstr "Vous êtes sur le point de régénérer l'alias de mail par défaut. Êtes-vous sûr? (L'alias actuel sera écrasé.)"
+
+#~ msgid ""
+#~ "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
+#~ " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
+#~ " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+#~ " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
+#~ " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
+#~ msgstr ""
+#~ "Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
+#~ " * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
+#~ " * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliatione: la confirmation.\n"
+#~ " * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
+#~ " * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
+
+#~ msgid "Memberships with Mail Sent"
+#~ msgstr "Affiliations avec courriel envoyé"
 
 #~ msgid ""
 #~ "\n"
