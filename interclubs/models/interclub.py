@@ -5,7 +5,7 @@ from odoo import api, fields, models, exceptions, tools, _
 
 CONTACT_DOMAIN = lambda self: [
     ('is_company', '=', False),
-    ('id', 'child_of', self.env.user.company_id.partner_id.id),
+    ('club_id', '=', self.env.user.company_id.partner_id.id),
     ('type', '=', 'contact')
 ]
 

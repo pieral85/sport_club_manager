@@ -1,0 +1,15 @@
+// ------- Kanban View Layout -------
+.o_kanban_view {
+    .o_kanban_record {
+        &.o_kanban_record_has_image_fill {
+            .o_kanban_image_fill_left, .o_kanban_image {
+                .o_kanban_image_inner_pic_left {
+                    @include o-position-absolute($left: 0, $bottom:0);
+                    max: { height: 25px; width: 80%;}
+                    background: white;
+                    box-shadow: -1px -1px 0 1px white;
+                }
+            }
+        }
+    }
+}

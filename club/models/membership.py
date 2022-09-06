@@ -178,9 +178,8 @@ class Membership(models.Model):
 
         if vals.get('state') == 'member':
             vals['token_validity'] = None
-            if not self.member_id.parent_id:
-                # when becoming a member, the related partner should belong to the company
-                self.member_id.parent_id = self.company_id.partner_id
+            # when becoming a member, the related partner should belong to the company
+            self.member_id.club_id = self.company_id.partner_id
 
         return super(Membership, self).write(vals)
 

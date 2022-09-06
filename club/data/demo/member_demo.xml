@@ -4,7 +4,7 @@
     <record id="partner_demo_member_1" model="res.partner">
         <field name="name">Ana Ivanovic</field>
         <field name="email">ana.ivanovic@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">Paris</field>
         <field name="zip">1234</field>
         <field name="country_id" ref="base.fr"/>
@@ -20,7 +20,7 @@
     <record id="partner_demo_member_2" model="res.partner">
         <field name="name">Michael Goodplayer</field>
         <field name="email">michael.goodplayer@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">NY</field>
         <field name="zip">4321</field>
         <field name="country_id" ref="base.us"/>
@@ -36,7 +36,7 @@
     <record id="partner_demo_member_3" model="res.partner">
         <field name="name">Derek Morgan</field>
         <field name="email">derek.morgan@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">Roma</field>
         <field name="zip">77</field>
         <field name="country_id" ref="base.it"/>
@@ -52,7 +52,7 @@
     <record id="partner_demo_member_4" model="res.partner">
         <field name="name">David Goodenough</field>
         <field name="email">david.goodenough@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">Namur</field>
         <field name="zip">5000</field>
         <field name="country_id" ref="base.be"/>
@@ -68,7 +68,7 @@
     <record id="partner_demo_young_member_1" model="res.partner">
         <field name="name">Young Girl</field>
         <field name="email">young.girl@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">Arlon</field>
         <field name="zip">6700</field>
         <field name="country_id" ref="base.be"/>
@@ -84,7 +84,7 @@
     <record id="partner_demo_young_member_2" model="res.partner">
         <field name="name">Young Boy</field>
         <field name="email">young.boy@test.com</field>
-        <field name="parent_id" ref="base.main_partner"/>
+        <field name="club_id" ref="base.main_partner"/>
         <field name="city">Brussels</field>
         <field name="zip">1000</field>
         <field name="country_id" ref="base.be"/>

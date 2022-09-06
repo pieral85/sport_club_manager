@@ -66,6 +66,9 @@ Following features are included in this module:
         'web.assets_frontend': [
             'club/static/src/less/membership.less',
         ],
+        'web.assets_backend': [
+            'club/static/src/scss/kanban_view.scss',
+        ],
     },
     'qweb': [
     ],
