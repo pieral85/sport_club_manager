@@ -53,7 +53,7 @@
                             </div>
 -->
 <group col="3" attrs="{'invisible': [('is_internal', '=', True)]}">
-    <span class="alert alert-warning">This user must be an internal user in order to assign him a role in the club.</span>
+    <span class="alert alert-warning" role="alert">This user must be an internal user in order to assign him a role in the club.</span>
 </group>
 <group col="3" attrs="{'invisible': [('is_internal', '=', False)]}">
 <group col="12" colspan="1">
