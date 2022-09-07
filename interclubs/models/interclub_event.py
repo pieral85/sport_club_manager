@@ -28,7 +28,7 @@ from datetime import datetime, timedelta
 from dateutil import parser
 from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
@@ -37,6 +37,7 @@ WRITABLE_STATES = dict(readonly=True, states={'draft': [('readonly', False)], 'o
 @api.model
 def _lang_get(self):
     return self.env['res.lang'].get_installed()
+
 
 class InterclubEvent(models.Model):
     _name = 'interclub.event'

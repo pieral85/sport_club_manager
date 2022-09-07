@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models, exceptions, tools, _
+from odoo import api, fields, models
 
 CONTACT_DOMAIN = lambda self: [
     ('is_company', '=', False),
@@ -12,6 +12,7 @@ CONTACT_DOMAIN = lambda self: [
 @api.model
 def _lang_get(self):
     return self.env['res.lang'].get_installed()
+
 
 class Interclub(models.Model):
     _name = 'interclub'
@@ -83,7 +84,7 @@ class Interclub(models.Model):
     def unlink(self):
         # even if "ondelete='cascade'" has been activated on field <interclub.event>.interclub_id,
         # we need to explicitly call the "ondelete" method on the event_ids,
-        # so that their calendar_events will  also be deleted
+        # so that their calendar_events will also be deleted
         self.event_ids.unlink()
         return super(Interclub, self).unlink()
 
