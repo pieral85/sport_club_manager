@@ -15,4 +15,5 @@ class ResPartner(models.Model):
         domain=[('is_company', '=', False)], tracking=True,
         help='Contact responsible of current contact. Usually, all communication will happen with the responsible. \
         This is usually useful for a minor child.')
+    dependent_ids = fields.One2many('res.partner', 'responsible_id', string='Dependents')
     membership_ids = fields.One2many('membership', 'member_id', string='Memberships')
