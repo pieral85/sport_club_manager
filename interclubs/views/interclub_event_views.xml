@@ -12,8 +12,8 @@
                 decoration-info="action_required=='need_close'"
                 decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
                 <field name="action_required" invisible="1"/>
-                <field name="interclub_id"/>
-                <field name="season_id"/>
+                <field name="interclub_id" invisible="context.get('from_interclub', False)"/>
+                <field name="season_id" invisible="context.get('from_interclub', False)"/>
                 <field name="start"/>
                 <field name="opponent_id"/>
                 <field name="at_home"/>

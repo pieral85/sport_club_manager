@@ -3,7 +3,15 @@
     <record id="action_interclub_event" model="ir.actions.act_window">
         <field name="name">All Interclub Events</field>
         <field name="res_model">interclub.event</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">tree,calendar,form</field>
+        <field name="context">{
+            'search_default_state_draft_search': 1,
+            'search_default_state_opened_search': 1,
+            'search_default_state_confirmed_search': 1,
+            'search_default_current_season_search': 1,
+            'search_default_interclub_groupby': 1,
+        }
+        </field>
     </record>
 
     <record id="action_interclub_event_my" model="ir.actions.act_window">
@@ -11,19 +19,26 @@
         <field name="res_model">interclub.event</field>
         <field name="view_mode">tree,calendar,form</field>
         <field name="context">{
-            'search_default_state_draft_search': 1, 'search_default_state_confirmed_search': 1,
+            'search_default_state_draft_search': 1,
             'search_default_state_opened_search': 1,
-            'search_default_current_season_search': 1, 'search_default_my_events_search': 1,
-            }</field>
+            'search_default_state_confirmed_search': 1,
+            'search_default_current_season_search': 1,
+            'search_default_my_events_search': 1,
+        }
+        </field>
     </record>
 
     <record id="action_interclub_event_active_interclub" model="ir.actions.act_window">
         <field name="name">Interclub Events - Active Interclub</field>
         <field name="res_model">interclub.event</field>
         <field name="view_mode">tree,calendar,form</field><!-- TODO Add custom kanban view (grouped by state)? -->
+        <field name="domain">[('interclub_id', '=', active_id)]</field>
         <field name="context">{
             'default_interclub_id': active_id,
-            'search_default_interclub_id': [active_id],
+            'search_default_state_draft_search': 1,
+            'search_default_state_opened_search': 1,
+            'search_default_state_confirmed_search': 1,
+            'from_interclub': True,
         }</field>
     </record>
 </odoo>
