@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-07 19:29+0000\n"
+"POT-Creation-Date: 2022-09-08 20:27+0000\n"
 "PO-Revision-Date: 2020-02-23 01:08+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -307,7 +307,7 @@ msgstr ""
 "    <t t-set=\"sender\" t-value=\"object.event_id.user_id\"/>\n"
 "    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
 "    <t t-set=\"title_1\" t-value=\"'Interclub'\"/>\n"
-"    <t t-set=\"_no_record_found_msg\" t-value=\"('Aucun interclub n'a été trouvé pour %s' % object.event_id.name) if not _o else ''\"/>\n"
+"    <t t-set=\"_no_record_found_msg\" t-value=\"('Aucun interclub n''a été trouvé pour %s' % object.event_id.name) if not _o else ''\"/>\n"
 "    <t t-set=\"title_2\" t-value=\"_o.name if _o else _no_record_found_msg\"/>\n"
 "    <t t-set=\"body_payload\">\n"
 "        <div>\n"
@@ -614,7 +614,7 @@ msgstr "Fermé"
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub__event_items_color
 msgid "Color of the interclub event items in the calendar view"
-msgstr "Couleur des items des rencontres d'interclub dans la vue Calendrier"
+msgstr "Couleur des items des rencontres dans la vue Calendrier"
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_calendar_event__item_color
@@ -789,12 +789,6 @@ msgstr "Durée"
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_kanban
 msgid "Edit"
 msgstr "Editer"
-
-#. module: interclubs
-#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
-#, python-format
-msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>and to subscribers of 'Interclub Event Communication'"
-msgstr "Le mail <i>%(template)s</i> a été envoyé aux contacts suivants:<ul>%(contacts)s</ul>et aux abonnés de 'Communication d'interclub'"
 
 #. module: interclubs
 #: model:ir.model,name:interclubs.model_mail_template
@@ -1018,12 +1012,12 @@ msgstr "Visionneuse d'interclub"
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__event_ids
 msgid "Interclub Events"
-msgstr "Rencontres d'interclub"
+msgstr "Rencontres"
 
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event_active_interclub
 msgid "Interclub Events - Active Interclub"
-msgstr "Rencontres d'interclub - Interclub actif"
+msgstr "Rencontres - Interclub actif"
 
 #. module: interclubs
 #: model:mail.template,subject:interclubs.email_template_interclub_event_viewer
@@ -1033,57 +1027,62 @@ msgstr "L'interclub {{ object.name_get()[0][1] + (' a été %s' % ctx['new_state
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for current season."
-msgstr "Rencontres d'interclub pour la saison actuelle."
+msgstr "Rencontres pour la saison actuelle."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for upcoming season."
-msgstr "Rencontres d'interclub pour la saison à venir."
+msgstr "Rencontres pour la saison à venir."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for which I am a player, referee or responsible."
-msgstr "Rencontres d'interclub pour lesquelles je suis joueur, arbitre ou responsable."
+msgstr "Rencontres pour lesquelles je suis joueur, arbitre ou responsable."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for which I am playing."
-msgstr "Rencontres d'interclub pour lesquelles je suis joueur."
+msgstr "Rencontres pour lesquelles je suis joueur."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for which I am the referee."
-msgstr "Rencontres d'interclub pour lesquelles je suis arbitre."
+msgstr "Rencontres pour lesquelles je suis arbitre."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for which I am the responsible."
-msgstr "Rencontres d'interclub pour lesquelles je suis responsable."
+msgstr "Rencontres pour lesquelles je suis responsable."
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which an action still needs to be done."
+msgstr "Rencontres pour lesquelles une action doit être faite."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events in a cancelled state."
-msgstr "Rencontres d'interclub dans un état annulé."
+msgstr "Rencontres dans un état annulé."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events in a confirmed state."
-msgstr "Rencontres d'interclub dans un état confirmé."
+msgstr "Rencontres dans un état confirmé."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events in a done state."
-msgstr "Rencontres d'interclub dans un état terminé."
+msgstr "Rencontres dans un état terminé."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events in a draft state."
-msgstr "Rencontres d'interclub dans un état brouillon."
+msgstr "Rencontres dans un état brouillon."
 
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events in an opened state."
-msgstr "Rencontres d'interclub dans un état ouvert."
+msgstr "Rencontres dans un état ouvert."
 
 #. module: interclubs
 #: model:res.groups,comment:interclubs.group_interclubs_interclub_manager
@@ -1332,6 +1331,11 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_close
+msgid "Need Closing"
+msgstr "En attente de fermeture"
+
+#. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_confirmation
 msgid "Need Confirmation"
 msgstr "Besoin de confirmation"
@@ -1350,11 +1354,6 @@ msgstr "En attente d'ouverture'"
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_opening_overdue
 msgid "Need Opening (overdue)"
 msgstr "En attente d'ouverture (passée)"
-
-#. module: interclubs
-#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_close
-msgid "Need to Close"
-msgstr "En attente de fermeture"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__activity_calendar_event_id
@@ -1382,9 +1381,13 @@ msgstr "Type d'activités à venir"
 
 #. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing
-#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
 msgid "Nothing"
-msgstr "Rien"
+msgstr "Aucune"
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
+msgid "Nothing (cancelled)"
+msgstr "Aucune (annulé)"
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_interclub_event__alarm_ids
@@ -1401,13 +1404,13 @@ msgstr "Nombre d'actions"
 #: model:ir.model.fields,help:interclubs.field_res_config_settings__event_confirmation_days
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 msgid "Number of days before the event from which it must be confirmed."
-msgstr "Nombre de jours avant que l'événement ne doive être confirmé.'"
+msgstr "Nombre de jours avant que l'événement ne doive être confirmé."
 
 #. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_res_config_settings__event_opening_days
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 msgid "Number of days before the event from which it must be opened."
-msgstr "Nombre de jours avant que l'événement ne doive être ouvert.'"
+msgstr "Nombre de jours avant que l'événement ne doive être ouvert."
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__message_has_error_counter
@@ -1630,7 +1633,7 @@ msgstr "Programmé par"
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Search Interclub Events"
-msgstr "Chercher des rencontres d'interclub"
+msgstr "Chercher des rencontres"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__season_id
@@ -1775,6 +1778,12 @@ msgid "The \"Event Opening Days\" must be positive. Please change it accordingly
 msgstr "Le nombre de \"Jours d'ouverture de l'événement\" doit être positif. Veuillez le changer en conséquence."
 
 #. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "The operator '%s' is not supported when searching field 'action_required'."
+msgstr "L'opérateur '%s' n'est pas supporté lors d'une recherche sur le champ 'action_required'."
+
+#. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_calendar_interclubs__interclub_checked
 msgid "This field is used to know if the interclub is checked in the filter of the calendar view for the interclub_id."
 msgstr "Ce champ est utilisé pour savoir si l'interclub est coché dans le filtre de la vue calendrirer l'\"interclub_id\""
@@ -1832,13 +1841,18 @@ msgstr "Saison à venir"
 #: model:ir.actions.server,name:interclubs.cron_interclub_event_states_update_ir_actions_server
 #: model:ir.cron,cron_name:interclubs.cron_interclub_event_states_update
 #: model:ir.cron,name:interclubs.cron_interclub_event_states_update
-msgid "Update Events State"
-msgstr "Mettre à jour l'état des événements"
+msgid "Update Interclub Events State"
+msgstr "Mettre à jour l'état des rencontres"
 
 #. module: interclubs
 #: model:res.groups,name:interclubs.group_interclubs_interclub_user
 msgid "User"
 msgstr "Utilisateur"
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Waiting Action"
+msgstr "Attente d'une action"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__website_message_ids
@@ -1879,6 +1893,12 @@ msgid "You cannot create an event without being attached to an interclub."
 msgstr "Vous ne pouvez pas créer un évnement sans être lié à un interclub."
 
 #. module: interclubs
+#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
+#, python-format
+msgid "and to subscribers of 'Interclub Event Communication'"
+msgstr "et aux abonnés de 'Communication d'interclub'"
+
+#. module: interclubs
 #: code:addons/interclubs/models/interclub_event.py:0
 #, python-format
 msgid "cancelled"
@@ -1900,6 +1920,9 @@ msgstr "événement(s)"
 #, python-format
 msgid "opened"
 msgstr "ouvert"
+
+#~ msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>and to subscribers of 'Interclub Event Communication'"
+#~ msgstr "Le mail <i>%(template)s</i> a été envoyé aux contacts suivants:<ul>%(contacts)s</ul>et aux abonnés de 'Communication d'interclub'"
 
 #~ msgid ""
 #~ "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"

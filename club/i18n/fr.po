@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 14:03+0000\n"
+"POT-Creation-Date: 2022-09-08 20:38+0000\n"
 "PO-Revision-Date: 2018-07-03 01:13+0200\n"
 "Last-Translator: Pierre <pieral85@hotmail.com>\n"
 "Language-Team: French\n"
@@ -163,8 +163,8 @@ msgstr ""
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
-msgid "<span class=\"alert alert-warning\">This user must be an internal user in order to assign him a role in the club.</span>"
-msgstr "<span class=\"alert alert-warning\">Cet utilisateur doit être un utilisateur interne pour lui assigner un rôle dans le club.</span>"
+msgid "<span class=\"alert alert-warning\" role=\"alert\">This user must be an internal user in order to assign him a role in the club.</span>"
+msgstr "<span class=\"alert alert-warning\" role=\"alert\">Cet utilisateur doit être un utilisateur interne pour lui assigner un rôle dans le club.</span>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
@@ -548,6 +548,8 @@ msgid "Child"
 msgstr "Enfant"
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__club_id
+#: model:ir.model.fields,field_description:club.field_res_users__club_id
 #: model:ir.model.fields.selection,name:club.selection__res_partner__company_type__company
 #: model:ir.ui.menu,name:club.menu_root
 #: model:ir.ui.menu,name:club.menu_sub_settings_club
@@ -655,6 +657,11 @@ msgid "Contact Person"
 msgstr "Personne de contact"
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Contact image"
+msgstr "Image du contact"
+
+#. module: club
 #: model:ir.model.fields,help:club.field_res_partner__responsible_id
 #: model:ir.model.fields,help:club.field_res_users__responsible_id
 msgid "Contact responsible of current contact. Usually, all communication will happen with the responsible.         This is usually useful for a minor child."
@@ -732,6 +739,13 @@ msgid "Default Values"
 msgstr "Valeurs par défaut"
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__dependent_ids
+#: model:ir.model.fields,field_description:club.field_res_users__dependent_ids
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Dependents"
+msgstr "Dépendants"
+
+#. module: club
 #: model:ir.model.fields,field_description:club.field_category__description
 msgid "Description"
 msgstr "Description"
@@ -765,6 +779,12 @@ msgstr "Montant dû"
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Duplicate Period"
 msgstr "Dupliquer la saison"
+
+#. module: club
+#: code:addons/club/models/mail.py:0
+#, python-format
+msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>"
+msgstr "Le mail <i>%(template)s</i> a été envoyé aux contacts suivants:<ul>%(contacts)s</ul>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
@@ -1222,6 +1242,11 @@ msgid "Misc"
 msgstr "Divers"
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Mobile:"
+msgstr "GSM:"
+
+#. module: club
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Multiple languages detected!"
@@ -1265,6 +1290,7 @@ msgstr "Nouveau nom"
 
 #. module: club
 #: code:addons/club/models/mail.py:0
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__new_season
 #, python-format
 msgid "New Season"
 msgstr "Nouvelle saison"
@@ -1490,9 +1516,16 @@ msgid "Phone Number"
 msgstr "Numéro de téléphone"
 
 #. module: club
-#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__new_season
-msgid "New Season"
-msgstr "Nouvelle saison"
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Phone:"
+msgstr "Tél:"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__player_ids
+#: model:ir.model.fields,field_description:club.field_res_users__player_ids
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Players"
+msgstr "Joueurs"
 
 #. module: club
 #: model:ir.model.fields,help:club.field_period__alias_contact
@@ -1660,6 +1693,11 @@ msgstr "Responsable"
 #: model:ir.model.fields,field_description:club.field_membership__activity_user_id
 msgid "Responsible User"
 msgstr "Utilisateur responsable"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "Responsible:"
+msgstr "Responsable:"
 
 #. module: club
 #: model:ir.model,name:club.model_role
@@ -2116,6 +2154,9 @@ msgstr "Quand une demande est faite pour une saison donnée sans connaître la c
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "You are going to regenerate the default Email Alias. Are you sure? (The current one will be overwritten.)"
 msgstr "Vous êtes sur le point de régénérer l'alias de mail par défaut. Êtes-vous sûr? (L'alias actuel sera écrasé.)"
+
+#~ msgid "<span class=\"alert alert-warning\">This user must be an internal user in order to assign him a role in the club.</span>"
+#~ msgstr "<span class=\"alert alert-warning\">Cet utilisateur doit être un utilisateur interne pour lui assigner un rôle dans le club.</span>"
 
 #~ msgid ""
 #~ "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"

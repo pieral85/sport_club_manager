@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-07 19:29+0000\n"
-"PO-Revision-Date: 2022-09-07 19:29+0000\n"
+"POT-Creation-Date: 2022-09-08 20:27+0000\n"
+"PO-Revision-Date: 2022-09-08 20:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -626,15 +626,6 @@ msgid "Edit"
 msgstr ""
 
 #. module: interclubs
-#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
-#, python-format
-msgid ""
-"Email <i>%(template)s</i> has been sent to the following "
-"contacts:<ul>%(contacts)s</ul>and to subscribers of 'Interclub Event "
-"Communication'"
-msgstr ""
-
-#. module: interclubs
 #: model:ir.model,name:interclubs.model_mail_template
 msgid "Email Templates"
 msgstr ""
@@ -901,6 +892,11 @@ msgstr ""
 #. module: interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "Interclub events for which I am the responsible."
+msgstr ""
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Interclub events for which an action still needs to be done."
 msgstr ""
 
 #. module: interclubs
@@ -1179,6 +1175,11 @@ msgid "Name"
 msgstr ""
 
 #. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_close
+msgid "Need Closing"
+msgstr ""
+
+#. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_confirmation
 msgid "Need Confirmation"
 msgstr ""
@@ -1196,11 +1197,6 @@ msgstr ""
 #. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_opening_overdue
 msgid "Need Opening (overdue)"
-msgstr ""
-
-#. module: interclubs
-#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__need_close
-msgid "Need to Close"
 msgstr ""
 
 #. module: interclubs
@@ -1229,8 +1225,12 @@ msgstr ""
 
 #. module: interclubs
 #: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing
-#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
 msgid "Nothing"
+msgstr ""
+
+#. module: interclubs
+#: model:ir.model.fields.selection,name:interclubs.selection__interclub_event__action_required__nothing_cancelled
+msgid "Nothing (cancelled)"
 msgstr ""
 
 #. module: interclubs
@@ -1631,6 +1631,13 @@ msgid "The \"Event Opening Days\" must be positive. Please change it accordingly
 msgstr ""
 
 #. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid ""
+"The operator '%s' is not supported when searching field 'action_required'."
+msgstr ""
+
+#. module: interclubs
 #: model:ir.model.fields,help:interclubs.field_calendar_interclubs__interclub_checked
 msgid ""
 "This field is used to know if the interclub is checked in the filter of the "
@@ -1690,12 +1697,17 @@ msgstr ""
 #: model:ir.actions.server,name:interclubs.cron_interclub_event_states_update_ir_actions_server
 #: model:ir.cron,cron_name:interclubs.cron_interclub_event_states_update
 #: model:ir.cron,name:interclubs.cron_interclub_event_states_update
-msgid "Update Events State"
+msgid "Update Interclub Events State"
 msgstr ""
 
 #. module: interclubs
 #: model:res.groups,name:interclubs.group_interclubs_interclub_user
 msgid "User"
+msgstr ""
+
+#. module: interclubs
+#: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
+msgid "Waiting Action"
 msgstr ""
 
 #. module: interclubs
@@ -1734,6 +1746,12 @@ msgstr ""
 #: code:addons/interclubs/models/interclub_event.py:0
 #, python-format
 msgid "You cannot create an event without being attached to an interclub."
+msgstr ""
+
+#. module: interclubs
+#: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
+#, python-format
+msgid "and to subscribers of 'Interclub Event Communication'"
 msgstr ""
 
 #. module: interclubs
