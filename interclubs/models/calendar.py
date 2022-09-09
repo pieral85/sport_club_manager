@@ -11,6 +11,13 @@ class Meeting(models.Model):
         help='Color of the item in the calendar view')
 
 
+class Attendee(models.Model):
+    _inherit = 'calendar.attendee'
+
+    def _get_closest_lang(self):
+        return self.mapped('partner_id')._get_closest_lang()
+
+
 class CalendarInterclubs(models.Model):
     _name = 'calendar.interclubs'
     _description = 'Calendar Interclubs'

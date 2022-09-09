@@ -137,6 +137,7 @@ class InterclubEventMailWizard(models.TransientModel):
 
         if self.send_to_players:
             ctx = {
+                'active_model': self.attendee_ids._name,
                 'active_ids': self.attendee_ids.ids,
             }
             self.with_context(**ctx).composer_id.action_send_mail()

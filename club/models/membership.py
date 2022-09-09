@@ -211,7 +211,7 @@ class Membership(models.Model):
         ctx = dict(
             # need to propagate this context key to the composer record
             open_records_view=self._context.get('see_records_view', False),
-            active_model='membership',  # needed to be propagated to <mail.compose.message>._onchange_template_id method
+            active_model=self._name,  # needed to be propagated to <mail.compose.message>._onchange_template_id method
             active_ids=self.ids,
             default_use_template=bool(template),
             default_template_id=template.id if template else False,
