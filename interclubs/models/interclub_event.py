@@ -46,6 +46,26 @@ class InterclubEvent(models.Model):
     _description = 'Interclub Event'
     _order = 'start asc, id asc'
 
+    @api.model
+    def _search_action_required(self, operator, operand):
+        if operator == '=like':
+            operand = operand.replace('%', '')
+            filter_fct = str.startswith
+        elif operator in 'like':
+            filter_fct = lambda value, operand: operand in value
+        elif operator in 'ilike':
+            filter_fct = lambda value, operand: operand.lower() in value.lower()
+        elif operator == '=':
+            filter_fct = lambda value, operand: operand == value
+        elif operator == '!=':
+            filter_fct = lambda value, operand: operand != value
+        else:
+            raise NotImplementedError(_("The operator '%s' is not supported when searching field 'action_required'.") \
+                % operator)
+        ic_events = self.env['interclub.event'].search([])
+        ids = [ic_event.id for ic_event in ic_events if filter_fct(ic_event.action_required, operand)]
+        return [('id', 'in', ids)]
+
     state = fields.Selection([
              ('draft', 'Draft'),
              ('opened', 'Opened'),
@@ -74,13 +94,13 @@ class InterclubEvent(models.Model):
 
     action_required = fields.Selection([
         ('nothing', 'Nothing'),
-        ('nothing_cancelled', 'Nothing'),
+        ('nothing_cancelled', 'Nothing (cancelled)'),
         ('need_opening', 'Need Opening'),
         ('need_opening_overdue', 'Need Opening (overdue)'),
         ('need_confirmation', 'Need Confirmation'),
         ('need_confirmation_overdue', 'Need Confirmation (overdue)'),
-        ('need_close', 'Need to Close'),
-    ], string='Action Required', compute='_compute_action_required')
+        ('need_close', 'Need Closing'),
+    ], string='Action Required', compute='_compute_action_required', search=_search_action_required)
 
     # Interclub related fields
     interclub_player_ids = fields.Many2many('res.partner', related='interclub_id.player_ids', readonly=True)

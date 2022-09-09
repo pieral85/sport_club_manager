@@ -2,7 +2,7 @@
 <odoo>
 <data>
     <record id="cron_interclub_event_states_update" model="ir.cron">
-        <field name="name">Update Events State</field>
+        <field name="name">Update Interclub Events State</field>
         <field name="model_id" ref="model_interclub_event"/>
         <field name="state">code</field>
         <field name="code">model.update_states(auto_mail=True)</field>

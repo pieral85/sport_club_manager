@@ -238,6 +238,8 @@
                 <filter name="my_events_referee_search" string="My Events (as referee)" domain="[('referee_id.user_ids', 'in', [uid])]" help="Interclub events for which I am the referee."/>
                 <filter name="my_events_responsible_search" string="My Events (as responsible)" domain="[('interclub_id.responsible_id.user_ids', 'in', [uid])]" help="Interclub events for which I am the responsible."/>
                 <separator/>
+                <filter name="events_waiting_action_search" string="Waiting Action" domain="[('action_required', '=like', 'need_%')]" help="Interclub events for which an action still needs to be done."/>
+                <separator/>
                 <filter name="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclub events for current season."/>
                 <filter name="upcoming_season_search" string="Upcoming Season"  domain="[('season_id.upcoming', '=', True)]" help="Interclub events for upcoming season."/>
                 <separator/>
