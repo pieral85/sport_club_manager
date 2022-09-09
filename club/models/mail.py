@@ -144,3 +144,14 @@ class MailTemplate(models.Model):
         " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
         " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
         " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role.")
+
+    def _get_sent_mail_message(self, contacts):
+        self.ensure_one()
+        def record_link(rec):
+            s = "<a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>"
+            return s.format(r_model=rec._name, r_id=rec.id, r_name=rec.name)
+
+        contacts_link = ''.join("<li>{}</li>".format(record_link(c)) for c in contacts)
+        mail_link = record_link(self)
+        return _("Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>",
+            template=mail_link, contacts=contacts_link)

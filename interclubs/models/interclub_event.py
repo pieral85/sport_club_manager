@@ -212,11 +212,20 @@ class InterclubEvent(models.Model):
         if auto_open:
             opening_days = int(self.env['ir.config_parameter'].sudo().get_param('event.opening.days', default=10))
             expected_opening_date = today + timedelta(days=opening_days)
-            self.env['interclub.event'].search([
+            ic_events = self.env['interclub.event'].search([
                 ('state', '=', 'draft'),
                 ('start', '<=', expected_opening_date),
                 ('start', '>', today),
-            ]).action_open()
+            ])
+            attendees = ic_events.attendee_ids
+            mail_template = self.env.ref('interclubs.email_template_interclub_event_opening')
+            attendees._send_mail_to_attendees(mail_template)
+            ic_events.action_open()
+
+            # Log in chatter mail(s) that have been sent and players that received them
+            for ic_event in ic_events:
+                msg = mail_template._get_sent_mail_message(ic_event.attendee_ids.partner_id)
+                ic_event.message_post(body=msg)
 
         auto_close = bool(self.env['ir.config_parameter'].sudo().get_param('event.auto.close', default=False))
         if auto_close:

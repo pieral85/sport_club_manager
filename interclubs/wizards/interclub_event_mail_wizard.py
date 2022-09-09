@@ -127,12 +127,22 @@ class InterclubEventMailWizard(models.TransientModel):
             self.interclub_event_id.action_cancel()
 
         msgs = []
+
+        def get_subtype_msg(composer):
+            sub_type = composer.subtype_id
+            if not sub_type or composer.composition_mode == 'mass_mail':
+                return ''
+            msg = _("and to subscribers of <a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>")
+            return msg.format(r_model=sub_type._name, r_id=sub_type.id, r_name=sub_type.name)
+
         if self.send_to_players:
             ctx = {
                 'active_ids': self.attendee_ids.ids,
             }
             self.with_context(**ctx).composer_id.action_send_mail()
-            msgs.append(self._get_sent_mail_message(self.attendee_ids.partner_id, self.template_id))
+            msg = self.template_id._get_sent_mail_message(self.attendee_ids.partner_id)
+            msg += get_subtype_msg(self.composer_id)
+            msgs.append(msg)
 
         if self.others_send_to_partners:
             other_ctx = {
@@ -147,21 +157,12 @@ class InterclubEventMailWizard(models.TransientModel):
             self.others_subject = subject
             self.others_body = body
             self.with_context(**other_ctx).others_composer_id.action_send_mail()
-            msgs.append(self._get_sent_mail_message(self.others_partner_ids, self.others_template_id))
+            msg = self.others_template_id._get_sent_mail_message(self.others_partner_ids)
+            msg += get_subtype_msg(self.others_composer_id)
+            msgs.append(msg)
 
         if msgs:
             ic_event = self.env['interclub.event'].browse(self.env.context['active_id'])
-            ic_event.message_post(body='</br>'.join(msgs))
+            ic_event.message_post(body='<br>'.join(msgs))
 
         return {'type': 'ir.actions.act_window_close'}
-
-    @api.model
-    def _get_sent_mail_message(self, contacts, mail_template):
-        def record_link(rec):
-            s = "<a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>"
-            return s.format(r_model=rec._name, r_id=rec.id, r_name=rec.name)
-
-        contacts_link = ''.join("<li>{}</li>".format(record_link(c)) for c in contacts)
-        mail_link = record_link(mail_template)
-        return _("Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>" \
-            "and to subscribers of 'Interclub Event Communication'", template=mail_link, contacts=contacts_link)
