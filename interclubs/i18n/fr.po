@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-08 20:27+0000\n"
+"POT-Creation-Date: 2022-09-09 14:08+0000\n"
 "PO-Revision-Date: 2020-02-23 01:08+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -463,8 +463,12 @@ msgid "All Day"
 msgstr "Toute la journée"
 
 #. module: interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events_all
+msgid "All Events"
+msgstr "Toutes les rencontres"
+
+#. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event
-#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events
 msgid "All Interclub Events"
 msgstr "Toutes les rencontres"
 
@@ -560,6 +564,11 @@ msgid "Byday"
 msgstr "Par jour"
 
 #. module: interclubs
+#: model:ir.model,name:interclubs.model_calendar_attendee
+msgid "Calendar Attendee Information"
+msgstr "Informations des participants au calendrier"
+
+#. module: interclubs
 #: model:ir.model,name:interclubs.model_calendar_event
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__event_id
 msgid "Calendar Event"
@@ -630,9 +639,8 @@ msgstr "Société"
 
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_competition_configuration
-#: model:ir.ui.menu,name:interclubs.menu_sub_competition_settings
-#: model:ir.ui.menu,name:interclubs.menu_top_competition
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_competition_settings
 msgid "Competition"
 msgstr "Compétition"
 
@@ -831,9 +839,10 @@ msgid "Event Time"
 msgstr "Heure de l'événement"
 
 #. module: interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_view_form
 msgid "Events"
-msgstr "Evénements"
+msgstr "Rencontres"
 
 #. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub__events_count
@@ -1096,7 +1105,7 @@ msgstr "Utilisateurs d'interclub pour le module Interclubs. Ils ont habituelleme
 
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_interclubs
-#: model:ir.ui.menu,name:interclubs.menu_sub_interclubs
+#: model:ir.ui.menu,name:interclubs.menu_top_interclubs
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
 msgid "Interclubs"
 msgstr "Interclubs"
@@ -1289,6 +1298,7 @@ msgid "My Activity Deadline"
 msgstr "Échéance de mon activité"
 
 #. module: interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events_my
 #: model_terms:ir.ui.view,arch_db:interclubs.interclub_event_search
 msgid "My Events"
 msgstr "Mes rencontres"
@@ -1315,7 +1325,6 @@ msgstr "Mes favorits"
 
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_interclub_event_my
-#: model:ir.ui.menu,name:interclubs.menu_sub_interclub_events_my
 msgid "My Interclub Events"
 msgstr "Mes rencontres"
 
@@ -1760,6 +1769,11 @@ msgid "Tags"
 msgstr "Étiquettes"
 
 #. module: interclubs
+#: model:ir.ui.menu,name:interclubs.menu_sub_teams
+msgid "Teams"
+msgstr "Équipes"
+
+#. module: interclubs
 #: code:addons/interclubs/models/res_config_settings.py:0
 #, python-format
 msgid "The \"Event Confirmation Days\" must be positive. Please change it accordingly."
@@ -1895,8 +1909,8 @@ msgstr "Vous ne pouvez pas créer un évnement sans être lié à un interclub."
 #. module: interclubs
 #: code:addons/interclubs/wizards/interclub_event_mail_wizard.py:0
 #, python-format
-msgid "and to subscribers of 'Interclub Event Communication'"
-msgstr "et aux abonnés de 'Communication d'interclub'"
+msgid "and to subscribers of <a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>"
+msgstr "et aux abonnés de <a href=# data-oe-model={r_model} data-oe-id={r_id}>{r_name}</a>"
 
 #. module: interclubs
 #: code:addons/interclubs/models/interclub_event.py:0
@@ -1920,6 +1934,9 @@ msgstr "événement(s)"
 #, python-format
 msgid "opened"
 msgstr "ouvert"
+
+#~ msgid "and to subscribers of 'Interclub Event Communication'"
+#~ msgstr "et aux abonnés de 'Communication d'interclub'"
 
 #~ msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>and to subscribers of 'Interclub Event Communication'"
 #~ msgstr "Le mail <i>%(template)s</i> a été envoyé aux contacts suivants:<ul>%(contacts)s</ul>et aux abonnés de 'Communication d'interclub'"
