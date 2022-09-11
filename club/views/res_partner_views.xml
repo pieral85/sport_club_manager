@@ -33,6 +33,12 @@
             <field name="function" position="before">
                 <field name="club_id" attrs="{'invisible': [('is_company', '=', True)]}"/>
             </field>
+            <field name="vat" position="before">
+                <field name="birthdate" attrs="{'invisible': [('is_company', '=', True)]}"/>
+            </field>
+            <field name="vat" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_company', '=', False)]}</attribute>
+            </field>
             <xpath expr="//page[@name='contact_addresses']" position="before">
                 <page string="Players" name="player_addresses" attrs="{'invisible': [('is_company', '=', False)]}" autofocus="autofocus">
                     <!-- FIXME default_lang does not work (may be != lang) -->
