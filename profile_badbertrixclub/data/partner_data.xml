@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Sport complex address -->
+    <record id="saintleger_sports_complex" model="res.partner">
+        <field name="name">Complexe Sportif</field>
+        <field name="type">other</field>
+        <field name="email">direction@centresportifbertrix.be</field>
+        <field name="parent_id" ref="base.main_partner"/>
+        <field name="street">Rue du Culot 44</field>
+        <field name="city">Bertrix</field>
+        <field name="zip">6880</field>
+        <field name="phone">0032 (0)61 41 25 11</field>
+        <field name="country_id" ref="base.be"/>
+        <field name="image_1920" type="base64" file="profile_badbertrixclub/static/img/sports_complex.jpg"/>
+    </record>
+</odoo>
