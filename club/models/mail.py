@@ -59,8 +59,10 @@ class MailComposer(models.TransientModel):
     def _onchange_template_id(self, template_id, composition_mode, model, res_id):
         """ force default lang of subject/body mail composer """
         # changing the lang of the context allows to use the correct lang for the mail template itself
-        closest_lang = self.env[self._context['active_model']].browse(self._context['active_ids'])._get_closest_lang()
-        self = self.with_context(lang=closest_lang)
+        if 'active_model' in self._context and 'active_ids' in self._context:
+            _model, _ids = self._context['active_model'], self._context['active_ids']
+            closest_lang = self.env[_model].browse(_ids)._get_closest_lang()
+            self = self.with_context(lang=closest_lang)
         return super(MailComposer, self)._onchange_template_id(template_id, composition_mode, model, res_id)
 
     def _action_send_mail(self, auto_commit=False):
@@ -72,6 +74,8 @@ class MailComposer(models.TransientModel):
 
     def action_send_mail(self):
         self.ensure_one()
+        if 'active_model' not in self._context or 'active_ids' not in self._context:
+            return super(MailComposer, self).action_send_mail()
         model, ids = self._context['active_model'], self._context['active_ids']
         records = self.env[model].browse(ids)
 
