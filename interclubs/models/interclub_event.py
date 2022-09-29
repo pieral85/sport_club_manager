@@ -320,7 +320,7 @@ class InterclubEvent(models.Model):
     def _inverse_location_id(self):
         ctx = {'show_address_only': True, 'address_inline': True}
         for ic_event in self:
-            ic_event.location = ic_event.location_id.with_context(**ctx).name_get()[0][1]
+            ic_event.location = ic_event.location_id.with_context(**ctx).name_get()[0][1] if ic_event.location_id else ''
 
     @api.onchange('start')
     def _onchange_start(self):
