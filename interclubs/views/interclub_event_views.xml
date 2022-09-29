@@ -71,7 +71,7 @@
                             name_get (it seems to be well triggered but at the end, field 'display_name' is shown) -->
                             <field name="partner_ids" widget="many2manyattendee"
                                 placeholder="Select players..."
-                                context="{'force_email':True, 'hide_company': 1}"
+                                context="{'force_email':True, 'hide_company': 1, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}"
                                 class="oe_inline"
                                 domain="[('id', 'in', interclub_player_ids)]"
                                 options="{'no_create': True, 'always_reload': True}"
@@ -154,7 +154,7 @@
                         <h2>
                             <field name="partner_ids" widget="many2manyattendee"
                                 placeholder="Select players..."
-                                context="{'force_email':True}"
+                                context="{'force_email': True, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}"
                                 class="oe_inline"
                                 domain="[('id', 'in', interclub_player_ids)]"
                                 options="{'no_create': True}"

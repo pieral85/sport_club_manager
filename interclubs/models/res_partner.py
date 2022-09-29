@@ -22,6 +22,20 @@ class ResPartner(models.Model):
             real_meeting_id = self.env[model].browse(meeting_id)[calendar_event_field].id
         return super(ResPartner, self).get_attendee_detail(real_meeting_id)
 
+    def get_attendee_detail(self, meeting_ids):
+        """ Return a list of dict of the given meetings with the attendees details
+            Used by:
+                - base_calendar.js : Many2ManyAttendee
+                - calendar_model.js (calendar.CalendarModel)
+        """
+        if 'meeting_ids_model' in self._context and 'calendar_event_field' in self._context:
+            model, field = self._context['meeting_ids_model'], self._context['calendar_event_field']
+            meetings = self.env[model].browse(meeting_ids)[field]
+            assert meetings._name == 'calendar.event', \
+                _("Model associated to 'many2manyattendee' widget should be 'calendar.event'")
+            meeting_ids = meetings.ids
+        return super(ResPartner, self).get_attendee_detail(meeting_ids=meeting_ids)
+
     def name_get(self):
         if not self._context.get('hide_company'):
             return super().name_get()
