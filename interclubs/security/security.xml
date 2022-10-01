@@ -23,5 +23,9 @@
         <field name="implied_ids" eval="[(4, ref('group_interclubs_interclub_user'))]"/>
     </record>
 
+    <!-- Add "Interclub / User" group to "Default User Template" -->
+    <record id="base.default_user" model="res.users">
+        <field name="groups_id" eval="[Command.link(ref('interclubs.group_interclubs_interclub_user'))]"/>
+    </record>
 </data>
 </odoo>

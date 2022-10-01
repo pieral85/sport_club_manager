@@ -31,12 +31,12 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_open'}"/>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_confirm'}"/>
-                    <button name="action_close" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_manager" confirm="Are you sure to close this event?"/>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Cancel" class="" states="opened,confirmed" groups="interclubs.group_interclubs_interclub_manager" context="{'role': 'to_cancel'}"/>
-                    <button name="action_cancel" type="object" string="Cancel" class="" states="draft" groups="interclubs.group_interclubs_interclub_manager" confirm="Are you sure to cancel this event?"/>
-                    <button name="action_draft" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_manager"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_open'}"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_confirm'}"/>
+                    <button name="action_close" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to close this event?"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Cancel" class="" states="opened,confirmed" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_cancel'}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="" states="draft" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to cancel this event?"/>
+                    <button name="action_draft" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_user"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+
+    <menuitem id="club.menu_root" groups="interclubs.group_interclubs_interclub_user"/>
+
     <!-- menu(s): Level  1 -->
     <menuitem id="menu_top_interclubs" name="Interclubs" parent="club.menu_root" sequence="15" groups="interclubs.group_interclubs_interclub_user"/>
 

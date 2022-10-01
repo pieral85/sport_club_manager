@@ -29,7 +29,7 @@ from dateutil import parser
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models, _
-from odoo.exceptions import UserError
+from odoo.exceptions import AccessError, UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
 WRITABLE_STATES = dict(readonly=True, states={'draft': [('readonly', False)], 'opened': [('readonly', False)]})
@@ -148,6 +148,8 @@ class InterclubEvent(models.Model):
         return ret
 
     def write(self, values):
+        if not self.env.user.has_group('interclubs.group_interclubs_interclub_user'):
+            raise AccessError(_("You don't have the access rights to modify an interclub event."))
         if 'partner_ids' in values:
             self = self.with_context(no_mail_to_attendees=True)
         return super(InterclubEvent, self).write(values)
@@ -160,6 +162,7 @@ class InterclubEvent(models.Model):
         return ret
 
     def prepare_interclub_event_wizard(self):
+        self.check_access_rule('write')
         ctx = self._context.copy()
         role = self.env.context.get('role')
 
@@ -191,19 +194,23 @@ class InterclubEvent(models.Model):
         }
 
     def action_open(self):
+        self.check_access_rule('write')
         self.filtered(lambda ev: ev.state == 'draft').write({'state': 'opened'})
 
     def action_confirm(self):
+        self.check_access_rule('write')
         self.filtered(lambda ev: ev.state == 'opened').write({'state': 'confirmed'})
-        # TODO Add a check: only record.intervlub_id.responsible_id or interclubs.group_interclubs_interclub_manager can do it (otherwise: error)
 
     def action_close(self):
+        self.check_access_rule('write')
         self.filtered(lambda ev: ev.state == 'confirmed').write({'state': 'done'})
 
     def action_cancel(self):
+        self.check_access_rule('write')
         self.filtered(lambda ev: ev.state in ('draft', 'opened', 'confirmed')).write({'state': 'cancelled'})
 
     def action_draft(self):
+        self.check_access_rule('write')
         self.filtered(lambda ev: ev.state == 'cancelled').write({'state': 'draft'})
 
     def update_states(self, auto_mail=False):

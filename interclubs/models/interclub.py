@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import AccessError
 
 CONTACT_DOMAIN = lambda self: [
     ('is_company', '=', False),
@@ -77,6 +78,8 @@ class Interclub(models.Model):
         help='Whether this Interclub should be displayed on your dashboard.')
 
     def write(self, vals):
+        if not self.env.user.has_group('interclubs.group_interclubs_interclub_user'):
+            raise AccessError(_("You don't have the access rights to modify an interclub team."))
         if 'event_items_color' in vals:
             self.event_ids.mapped('event_id').write({'item_color': vals['event_items_color']})
         return super(Interclub, self).write(vals)
