@@ -219,7 +219,7 @@ class InterclubEvent(models.Model):
             ])
             attendees = ic_events.attendee_ids
             mail_template = self.env.ref('interclubs.email_template_interclub_event_opening')
-            attendees._send_mail_to_attendees(mail_template)
+            attendees.with_context(forced_email_layout_xmlid=False)._send_mail_to_attendees(mail_template)
             ic_events.action_open()
 
             # Log in chatter mail(s) that have been sent and players that received them

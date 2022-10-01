@@ -10,6 +10,13 @@ class Meeting(models.Model):
     item_color = fields.Char('Item Color',
         help='Color of the item in the calendar view')
 
+    def message_notify(self, *, partner_ids=False, parent_id=False, model=False, res_id=False,
+                       author_id=None, email_from=None, body='', subject=False, **kwargs):
+        if 'forced_email_layout_xmlid' in self._context:
+            kwargs['email_layout_xmlid'] = self._context['forced_email_layout_xmlid']
+        super().message_notify(
+           partner_ids=partner_ids, parent_id=parent_id, model=model, res_id=res_id,
+           author_id=author_id, email_from=email_from, body=body, subject=subject, **kwargs)
 
 class Attendee(models.Model):
     _inherit = 'calendar.attendee'
