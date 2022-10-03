@@ -23,6 +23,14 @@ class Membership(models.Model):
     def _get_token(self):
         return uuid.uuid4().hex
 
+    def _default_period_id(self):
+        Period = self.env['period']
+        for field_name in ('current', 'upcoming'):
+            period = Period.search([(field_name, '=', True),], limit=1)
+            if period:
+                return period
+        return False
+
     period_category_id = fields.Many2one(
         comodel_name='period.category',
         ondelete='cascade',
@@ -148,7 +156,7 @@ class Membership(models.Model):
         ondelete='cascade',
         readonly=False,
         domain="[('period_category_ids.category_id', '=?', category_id)]",
-        # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
+        default=_default_period_id,
     )
 
     def name_get(self):
@@ -168,7 +176,7 @@ class Membership(models.Model):
 
     @api.model
     def create(self, vals):
-        self._modify_period_category_vals(vals)
+        self._modify_period_category_vals(vals, at_creation=True)
         res = super(Membership, self).create(vals)
         res._add_follower(vals)
         return res
@@ -361,7 +369,7 @@ class Membership(models.Model):
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
 
-    def _modify_period_category_vals(self, vals):
+    def _modify_period_category_vals(self, vals, at_creation=False):
         """ Modifies the dictionary `vals` regarding its values related to "period", "category" and "period category".
         DISCLAIMER: This method modifies the object (dictionary) passed as the argument `vals`!
         If you do not want the dictionary passed as argument to be altered, copy it before calling!
@@ -370,17 +378,26 @@ class Membership(models.Model):
 
         :return: None
         """
-        if not vals.get('period_category_id') and ('period_id' in vals or 'category_id' in vals):
-            period_category = self.env['period.category'].search([
-                ('period_id.id', '=', vals.get('period_id', self.period_id.id)),
-                ('category_id.id', '=', vals.get('category_id', self.category_id.id)),
-            ], limit=1)
+        if 'period_category_id' in vals or 'period_id' in vals or 'category_id' in vals:
+            if vals.get('period_category_id'):
+                period_category = self.env['period.category'].browse(vals['period_category_id'])
+            else:
+                period_category = self.env['period.category'].search([
+                    ('period_id.id', '=', vals.get('period_id', self.period_id.id)),
+                    ('category_id.id', '=', vals.get('category_id', self.category_id.id)),
+                ], limit=1)
             if not period_category:
                 raise ValidationError(_('Fields "Period" and "Category" cannot be set together with such values.'))
             vals['period_category_id'] = period_category.id
-        # avoids to modify the period_category_id record w/ period and category fields
-        vals.pop('period_id', None)
-        vals.pop('category_id', None)
+            # Need to add `period_id` key to avoid `_default_period_id` method to be called at record creation.
+            # No need to do it for `category_id` as no method has been set for `default` attribute.
+            vals['period_id'] = period_category.period_id.id
+
+        # Avoid to modify the period_category_id record w/ period and category fields. However, at record's creation,
+        # we should preserve `period_id` to avoid to call method linked to `default` attribute (`_default_period_id`).
+        if not at_creation:
+            vals.pop('period_id', None)
+            vals.pop('category_id', None)
 
     @api.onchange('period_id', 'category_id')
     def _onchange_period_or_category(self):

@@ -140,3 +140,15 @@ class PeriodCategory(models.Model):
                 'state': membership_state,
             })
         return new_period_category
+
+    def write(self, vals):
+        # avoid to trigger the write method if not necessary (i.e. when <membership>._modify_period_category_vals
+        # is called with either `period_id` or `category_id` key set in the values for the membership record to
+        # create/write)
+        if vals.get('period_id') == self.period_id.id:
+            vals.pop('period_id', None)
+        if vals.get('category_id') == self.category_id.id:
+            vals.pop('category_id', None)
+        if not vals:
+            return True
+        return super(PeriodCategory, self).write(vals)
