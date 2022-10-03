@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 14:08+0000\n"
-"PO-Revision-Date: 2022-09-09 14:08+0000\n"
+"POT-Creation-Date: 2022-10-02 20:01+0000\n"
+"PO-Revision-Date: 2022-10-02 20:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -475,6 +475,10 @@ msgstr ""
 #. module: interclubs
 #: model:ir.actions.act_window,name:interclubs.action_competition_configuration
 #: model_terms:ir.ui.view,arch_db:interclubs.res_config_settings_view_form_interclubs
+msgid "Competition"
+msgstr ""
+
+#. module: interclubs
 #: model:ir.ui.menu,name:interclubs.menu_sub_competition_settings
 msgid "Competition"
 msgstr ""
@@ -1131,6 +1135,13 @@ msgid "Mixed"
 msgstr ""
 
 #. module: interclubs
+#: code:addons/interclubs/models/res_partner.py:0
+#, python-format
+msgid ""
+"Model associated to 'many2manyattendee' widget should be 'calendar.event'"
+msgstr ""
+
+#. module: interclubs
 #: model:ir.model.fields,field_description:interclubs.field_interclub_event__mon
 msgid "Mon"
 msgstr ""
@@ -1760,6 +1771,18 @@ msgstr ""
 #: code:addons/interclubs/models/interclub_event.py:0
 #, python-format
 msgid "You cannot create an event without being attached to an interclub."
+msgstr ""
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub_event.py:0
+#, python-format
+msgid "You don't have the access rights to modify an interclub event."
+msgstr ""
+
+#. module: interclubs
+#: code:addons/interclubs/models/interclub.py:0
+#, python-format
+msgid "You don't have the access rights to modify an interclub team."
 msgstr ""
 
 #. module: interclubs
