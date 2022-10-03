@@ -23,6 +23,14 @@ class Membership(models.Model):
     def _get_token(self):
         return uuid.uuid4().hex
 
+    def _default_period_id(self):
+        Period = self.env['period']
+        for field_name in ('current', 'upcoming'):
+            period = Period.search([(field_name, '=', True),], limit=1)
+            if period:
+                return period
+        return False
+
     period_category_id = fields.Many2one(
         comodel_name='period.category',
         ondelete='cascade',
@@ -148,7 +156,7 @@ class Membership(models.Model):
         ondelete='cascade',
         readonly=False,
         domain="[('period_category_ids.category_id', '=?', category_id)]",
-        # FIXME commented because causing a bug when trying to crete new membership (try to affiliate Administrator user as competitior for season 2017-18!!!) default=lambda self: self.env['period'].search([('current','=',True),], limit=1)
+        default=_default_period_id,
     )
 
     def name_get(self):
@@ -378,9 +386,13 @@ class Membership(models.Model):
             if not period_category:
                 raise ValidationError(_('Fields "Period" and "Category" cannot be set together with such values.'))
             vals['period_category_id'] = period_category.id
-        # avoids to modify the period_category_id record w/ period and category fields
-        vals.pop('period_id', None)
-        vals.pop('category_id', None)
+            if 'period_id' in vals:
+                # ensure a `period_id` key is set, otherwise `_default_period_id` will be called (if key not existing)
+                # and would trigger the default period that may not be consistent w/ current `period_category_id`
+                vals['period_id'] = period_category.period_id.id
+            if 'category_id' in vals:
+                # ensure a `category_id` key is set, to be consistent with `if` statement above
+                vals['category_id'] = period_category.category_id.id
 
     @api.onchange('period_id', 'category_id')
     def _onchange_period_or_category(self):
