@@ -11,7 +11,7 @@
     <menuitem id="menu_sub_teams" name="Teams" parent="menu_top_interclubs" sequence="10" action="action_interclubs" groups="interclubs.group_interclubs_interclub_user"/>
     <menuitem id="menu_sub_interclub_events" name="Events" parent="menu_top_interclubs" sequence="20" groups="interclubs.group_interclubs_interclub_user"/>
 
-    <menuitem id="menu_sub_competition_settings" name="CompetitionT" parent="club.menu_top_settings" sequence="10" action="action_competition_configuration" groups="interclubs.group_interclubs_interclub_manager"/>
+    <menuitem id="menu_sub_competition_settings" name="Competition" parent="club.menu_top_settings" sequence="10" action="action_competition_configuration" groups="interclubs.group_interclubs_interclub_manager"/>
 
     <!-- menu action(s): Level 3 -->
     <menuitem id="menu_sub_interclub_events_all" name="All Events" parent="menu_sub_interclub_events" sequence="20" action="action_interclub_event" groups="interclubs.group_interclubs_interclub_user"/>
