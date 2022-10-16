@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-03 23:41+0000\n"
-"PO-Revision-Date: 2022-10-03 23:41+0000\n"
+"POT-Creation-Date: 2022-10-16 21:07+0000\n"
+"PO-Revision-Date: 2022-10-16 21:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid ""
 "<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
 "    <p>\n"
-"        Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
+"        Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
 "    </p>\n"
 "    <p>\n"
 "        An affiliation request has been done for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
@@ -70,10 +70,36 @@ msgid "<font style=\"\" class=\"text-o-color-2\">Committee Info</font>"
 msgstr ""
 
 #. module: club
+#: model:mail.template,body_html:club.email_template_membership_payment_due
+msgid ""
+"<p>\n"
+"    Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
+"</p>\n"
+"<p t-if=\"not object.paid\">\n"
+"    In order to finalize your affiliation for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>,\n"
+"    please do not forget to pay <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
+"    <t t-if=\"user.company_id.account_no\">\n"
+"        on the account <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
+"    </t>\n"
+"    in the next days.\n"
+"</p>\n"
+"<p t-else=\"\">\n"
+"    Thank you for having paid the entire amount (<strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\">120 €</strong>) \n"
+"    for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
+"</p>\n"
+"<p>If you have any question, do not hesitate to reply to this email.</p>\n"
+"<p>Best regards,</p>\n"
+"<p>\n"
+"    <t t-out=\"user.name or ''\">Mitchell Admin</t>, for the <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
+"</p>\n"
+"        "
+msgstr ""
+
+#. module: club
 #: model:mail.template,body_html:club.email_template_membership_affiliation_confirmation
 msgid ""
 "<p>\n"
-"    Dear <t t-out=\"object.member_id.name or 'member'\">member</t>,\n"
+"    Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
 "</p>\n"
 "<p>\n"
 "We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>!\n"
@@ -284,6 +310,13 @@ msgid "Address"
 msgstr ""
 
 #. module: club
+#: model:mail.template,subject:club.email_template_membership_payment_due
+msgid ""
+"Affiliation for period {{ object.period_category_id.period_id.name }} - "
+"Payment due"
+msgstr ""
+
+#. module: club
 #: model:mail.template,subject:club.email_template_membership_affiliation_invitation
 msgid "Affiliation request for {{ object.period_id.name or 'new season' }}"
 msgstr ""
@@ -329,6 +362,7 @@ msgid ""
 "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
 " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
 " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+" * 'Membership - Payment due': emails for memberships with an amount due remaining.\n"
 " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
 " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
 " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
@@ -561,6 +595,12 @@ msgid "Compose Email - Membership Invitation"
 msgstr ""
 
 #. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Compose Email - Membership with payment due"
+msgstr ""
+
+#. module: club
 #: model:ir.model,name:club.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -713,13 +753,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid ""
-"Do you want to send an email to the user to let him sign up to the "
-"application?"
-msgstr ""
-
-#. module: club
 #: model:ir.model.fields,field_description:club.field_period_category__price_due
 msgid "Due Price"
 msgstr ""
@@ -782,6 +815,11 @@ msgid "Expected price to pay for the member."
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields.selection,name:club.selection__res_partner__gender__female
+msgid "Female"
+msgstr ""
+
+#. module: club
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Fields \"Period\" and \"Category\" cannot be set together with such values."
@@ -824,6 +862,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "From"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_res_partner__gender
+#: model:ir.model.fields,field_description:club.field_res_users__gender
+msgid "Gender"
 msgstr ""
 
 #. module: club
@@ -1041,6 +1085,11 @@ msgid "Make a request"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields.selection,name:club.selection__res_partner__gender__male
+msgid "Male"
+msgstr ""
+
+#. module: club
 #: model:res.groups,name:club.group_club_committee_manager
 msgid "Manager"
 msgstr ""
@@ -1088,6 +1137,12 @@ msgstr ""
 #: model:ir.model,name:club.model_membership
 #: model:website.menu,name:club.menu_membership
 msgid "Membership"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_payment_due
+#: model:mail.template,name:club.email_template_membership_payment_due
+msgid "Membership - Payment due"
 msgstr ""
 
 #. module: club
@@ -1500,9 +1555,19 @@ msgid ""
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields.selection,name:club.selection__membership__state__requested
+msgid "PreValidated"
+msgstr ""
+
+#. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__president
 #: model:res.groups,name:club.group_club_president
 msgid "President"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Prevalidate"
 msgstr ""
 
 #. module: club
@@ -1568,11 +1633,6 @@ msgstr ""
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Prices should be positive."
-msgstr ""
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid "ReSend Confirmation Email"
 msgstr ""
 
 #. module: club
@@ -1741,11 +1801,6 @@ msgid "Send Confirmation Email"
 msgstr ""
 
 #. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid "Send Connection Invitation Email"
-msgstr ""
-
-#. module: club
 #: model:ir.actions.server,name:club.action_send_email_connection_invitation
 msgid ""
 "Send Connection Invitation Email (for users who have never been connected)"
@@ -1763,6 +1818,18 @@ msgstr ""
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Send payment due email"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"Sends an email to the player to let him know that a payment is due for his "
+"membership."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Sends an email to the user to invite him to validate his membership."
 msgstr ""
 
@@ -1771,13 +1838,6 @@ msgstr ""
 msgid ""
 "Sends an email to the user to let him know that his membership has been "
 "validated."
-msgstr ""
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid ""
-"Sends an email to the user to let him sign up to the application. Once the "
-"invitation accepted, he will be prompted to enter a new password."
 msgstr ""
 
 #. module: club
@@ -1966,11 +2026,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "To"
-msgstr ""
-
-#. module: club
-#: model:ir.model.fields.selection,name:club.selection__membership__state__requested
-msgid "To Be Validated"
 msgstr ""
 
 #. module: club
