@@ -93,9 +93,9 @@ class Membership(models.Model):
     )
     state = fields.Selection(
         [
-         ('unknown', 'Unknown'),
          ('old_member', 'Old Member'),
-         ('requested', 'To Be Validated'),
+         ('unknown', 'Unknown'),
+         ('requested', 'Prevalidated'),
          ('member', 'Member'),
          ('rejected', 'Rejected'),
         ],
@@ -295,7 +295,7 @@ class Membership(models.Model):
             'state': 'requested',
         })
         for membership in self:
-            membership.message_post(body="%s has accepted the invitation. His status has been changed to Requested." % (membership.member_id.name))
+            membership.message_post(body=_("%s has accepted the invitation. His status has been changed to prevalidated.") % (membership.member_id.name))
         return res
 
     def do_decline(self):
@@ -305,7 +305,7 @@ class Membership(models.Model):
             'state': 'rejected',
         })
         for membership in self:
-            membership.message_post(body="%s has declined the invitation. His status has been changed to Rejected." % (membership.member_id.name))
+            membership.message_post(body=_("%s has declined the invitation. His status has been changed to Rejected.") % (membership.member_id.name))
         return res
 
     def message_update(self, msg_dict, update_vals=None):
@@ -505,3 +505,17 @@ class Membership(models.Model):
 
     def _expand_state(self, states, domain, order):
         return [key for key, val in type(self).state.selection]
+
+    @api.model
+    def _read_group_fill_results(self, domain, groupby, remaining_groupbys,
+                                 aggregated_fields, count_field,
+                                 read_group_result, read_group_order=None):
+        res = super()._read_group_fill_results(domain, groupby, remaining_groupbys, aggregated_fields, count_field,
+            read_group_result, read_group_order)
+
+        if self._name != 'membership':
+            # did not check this `if` statement: it could be not necessary
+            return res
+        for d in res:
+            d['__fold'] = True if d.get('state') in ('old_member', 'rejected') else False
+        return res
