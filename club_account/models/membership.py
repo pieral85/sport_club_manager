@@ -145,15 +145,10 @@ class Membership(models.Model):
             invoice.action_post()
         if invoice.state == 'posted' and invoice.payment_state in ('not_paid', 'partial') and \
            invoice.move_type in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'):
-            return invoice.action_register_payment()
+            action = invoice.action_register_payment()
+            action['context']['dont_redirect_to_payments'] = True
+            return action
         elif invoice.state == 'posted' and invoice.payment_state == 'paid':
-            return {
-                'name': _('Invoice'),
-                'type': 'ir.actions.act_window',
-                'res_model': 'account.move',
-                'view_mode': 'form',
-                'context': {'create': False},
-                'res_id': invoice.id,
-            }
+            return True
         raise ValidationError(_("The invoice '%s' has been posted but it seems you cannot register a payment.\nPlease contact your administrator.") % \
             invoice.name_get()[0][1])
