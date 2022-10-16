@@ -152,6 +152,10 @@ class InterclubEvent(models.Model):
             raise AccessError(_("You don't have the access rights to modify an interclub event."))
         if 'partner_ids' in values:
             self = self.with_context(no_mail_to_attendees=True)
+
+        state = values.get('state', self.state)
+        if state in ('draft', 'done', 'cancelled'):
+            self = self.with_context(is_calendar_event_new=True)
         return super(InterclubEvent, self).write(values)
 
     def unlink(self):
