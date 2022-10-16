@@ -9,6 +9,7 @@ class ResPartner(models.Model):
 
     company_type = fields.Selection(string='Company Type',
         selection=[('person', 'Individual'), ('company', 'Club')])
+    gender = fields.Selection(string='Gender', selection=[('male', 'Male'), ('female', 'Female')])
     birthdate = fields.Date('Birthdate')
     club_id = fields.Many2one('res.partner', string='Club', domain=[('is_company', '=', True)], tracking=True)
     player_ids = fields.One2many('res.partner', 'club_id', string='Players')

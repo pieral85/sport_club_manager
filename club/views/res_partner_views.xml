@@ -18,6 +18,8 @@
             <field name="email" position="after">
                 <field name="responsible_id" optional="show"/>
                 <field name="club_id" optional="show"/>
+                <field name="gender" optional="hide"/>
+                <field name="birthdate" optional="hide"/>
             </field>
         </field>
     </record>
@@ -42,7 +44,8 @@
                 <field name="club_id" attrs="{'invisible': [('is_company', '=', True)]}"/>
             </field>
             <field name="vat" position="before">
-                <field name="birthdate" attrs="{'invisible': [('is_company', '=', True)]}"/>
+                <field name="gender" widget="radio" options="{'horizontal': true}" attrs="{'invisible': ['|', ('is_company', '=', True), ('type', '!=', 'contact')]}"/>
+                <field name="birthdate" attrs="{'invisible': ['|', ('is_company', '=', True), ('type', '!=', 'contact')]}"/>
             </field>
             <field name="vat" position="attributes">
                 <attribute name="attrs">{'invisible': [('is_company', '=', False)]}</attribute>
