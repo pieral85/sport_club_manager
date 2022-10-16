@@ -33,15 +33,17 @@
                 <field name="currency_id" invisible="1"/>
                 <header>
                     <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
-                    <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': [('state', '=', 'member')]}"/>
+                    <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member'))]}"/>
+                    <button name="validate_membership_affiliation" type="object" string="Validate" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member')), '|', ('state', '!=', 'requested'), ('paid', '=', True)]}"/>
+                    <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'requested'), ('paid', '=', False)]}"/>
                     <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
 
                     <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ['requested', 'member', 'rejected'])]}" context="{'see_records_view': False}" help="Sends an email to the user to invite him to validate his membership."/>
-
                     <button name="send_email_confirmation" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
-                    <button name="send_email_confirmation" type="object" string="ReSend Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', False)]}" class="" help="Sends an email to the user to let him know that his membership has been validated."/>
-
+                    <button name="send_email_payment_due" type="object" string="Send payment due email" attrs="{'invisible': ['|', ('state', 'not in', ('requested', 'member')), ('paid', '=', True)]}" class="btn-primary" help="Sends an email to the player to let him know that a payment is due for his membership."/>
+                    <!-- Commented out as for now, players are not necessery linked to a user
                     <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('user_state', '!=', 'new')]}" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
+                    -->
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                 </header>
                 <sheet>

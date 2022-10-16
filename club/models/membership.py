@@ -273,9 +273,20 @@ class Membership(models.Model):
             only_confirmation_emails=True,
         )
 
+    def send_email_payment_due(self):
+        return self._send_email(
+            template_xmlid='club.email_template_membership_payment_due',
+            composer_title=_('Compose Email - Membership with payment due'),
+            only_payment_due_emails=True,
+        )
+
     def validate_membership_payment(self):
         for record in self:
             record.price_paid = record.price_due
+
+    def prevalidate_membership_affiliation(self):
+        for record in self:
+            record.state = 'requested'
 
     def validate_membership_affiliation(self):
         for record in self:

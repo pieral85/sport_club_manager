@@ -45,6 +45,8 @@ class MailComposer(models.TransientModel):
             kinds.append('membership_invitation')
         if self.env.context.get('only_confirmation_emails'):
             kinds.append('membership_confirmation')
+        if self.env.context.get('only_payment_due_emails'):
+            kinds.append('membership_payment_due')
         if self.env.context.get('for_new_season_mail'):
             kinds.append('new_season')
         base_domain = [('kind', 'in', kinds if kinds else ['standard'])]
@@ -138,6 +140,7 @@ class MailTemplate(models.Model):
             ('standard', 'Standard'),
             ('membership_invitation', 'Membership Invitation'),
             ('membership_confirmation', 'Membership Confirmation'),
+            ('membership_payment_due', 'Membership - Payment due'),
             ('new_season', 'New Season'),
             ('other', 'Other'),
         ], default='standard', required=True, string="Kind",
@@ -145,6 +148,7 @@ class MailTemplate(models.Model):
         " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
         " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
         " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
+        " * 'Membership - Payment due': emails for memberships with an amount due remaining.\n"
         " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
         " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
         " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role.")
