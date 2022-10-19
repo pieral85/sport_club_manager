@@ -49,10 +49,20 @@
         <field name="view_id" ref="membership_view_graph_members"/>
     </record>
 
+    <record id="action_view_members" model="ir.actions.server">
+        <field name="name">View Members</field>
+        <field name="model_id" ref="club.model_membership"/>
+        <field name="binding_model_id" ref="club.model_membership"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = records.action_view_members()
+        </field>
+    </record>
+
     <record id="action_send_email_connection_invitation" model="ir.actions.server">
         <field name="name">Send Connection Invitation Email (for users who have never been connected)</field>
         <field name="model_id" ref="club.model_membership"/>
-        <!-- <field name="binding_model_id" ref="club.model_membership"/> -->
         <field name="state">code</field>
         <field name="code">
 records.mapped('member_user_id').filtered(lambda u: u.state == 'new').with_context({'create_user': 1}).action_reset_password()

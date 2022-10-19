@@ -380,6 +380,26 @@ class Membership(models.Model):
             vals.setdefault('price_paid', 0)
             return super(Membership, self).message_new(msg, custom_values=vals)
 
+    def action_view_members(self):
+        action = {
+            'name': _('Members'),
+            'res_model': 'res.partner',
+            'type': 'ir.actions.act_window',
+        }
+
+        if len(self) == 1:
+            action.update({
+                'view_mode': 'form',
+                'res_id': self.member_id.id,
+            })
+        else:
+            action.update({
+                'view_mode': 'tree,form',
+                'domain': [('id', 'in', self.member_id.ids)],
+            })
+
+        return action
+
     def _modify_period_category_vals(self, vals, at_creation=False):
         """ Modifies the dictionary `vals` regarding its values related to "period", "category" and "period category".
         DISCLAIMER: This method modifies the object (dictionary) passed as the argument `vals`!
