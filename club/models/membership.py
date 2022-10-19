@@ -41,6 +41,8 @@ class Membership(models.Model):
     member_id = fields.Many2one('res.partner', string='Member',
         ondelete='restrict', required=True, domain=[('is_company', '=', False)])
     member_parent_id = fields.Many2one('res.partner', related='member_id.parent_id')
+    member_tag_ids = fields.Many2many('res.partner.category', string='Member Tags', related='member_id.category_id',
+        readonly=False)
     member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id',
         domain=[('is_company', '=', False)])
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',

@@ -15,6 +15,7 @@
                 <field name="price_paid" sum="Total"/>
                 <field name="price_remaining" sum="Total"/>
                 <field name="price_paid_percentage" widget="progressbar"/>
+                <field name="member_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="currency_id" invisible="1"/>
             </tree>
         </field>
@@ -47,12 +48,15 @@
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                 </header>
                 <sheet>
+                    <h1 class="oe_title">
+                        <field name="member_id"/>
+                    </h1>
+                    <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Member Tags..."/>
                     <group>
                         <group>
-                            <field name="member_id"/>
-                            <field name="contact_person_id"/>
                             <field name="period_id" class="o_task_user_field" required="1"/>
                             <field name="category_id"/>
+                            <field name="contact_person_id"/>
                         </group>
                         <group>
                             <field name="price_paid"/>
@@ -161,25 +165,30 @@
                                         </strong>
                                     </div>
                                 </div>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories">
+                                    <span class="oe_kanban_list_many2many">
+                                        <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </span>
+                                </div>
                                 <ul>
                                     <li>
-                                        <span t-if="record.category_id.raw_value" class="o_kanban_record_subtitle">
-                                            <i><field name="category_id"/></i>
-                                        </span>
-                                        <span t-if="record.period_id.raw_value" class="o_kanban_record_subtitle">
-                                            <i><field name="period_id"/></i>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>Price Paid: </span>
+                                        <span>Paid </span>
                                         <span t-attf-class="o_text_bold">
                                             <field name="price_paid" widget="monetary"/>
                                         </span>
-                                    </li>
-                                    <li>
-                                        <span>Price Due: </span>
+                                        <span> on </span>
                                         <span t-attf-class="o_text_bold">
                                             <field name="price_due" widget="monetary"/>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="o_kanban_record_bottom">
+                                            <span t-if="record.category_id.raw_value" class="o_kanban_record_subtitle o_text_bold oe_kanban_bottom_left">
+                                                <field name="category_id"/>
+                                            </span>
+                                            <span t-if="record.period_id.raw_value" class="o_kanban_record_subtitle o_text_bold oe_kanban_bottom_right">
+                                                <field name="period_id"/>
+                                            </span>
                                         </span>
                                     </li>
                                 </ul>
@@ -199,6 +208,7 @@
             <search string="Periods">
                 <field name="member_id" string="Member"/>
                 <field name="period_id" string="Period" filter_domain="[('period_id', 'ilike', self)]"/>
+                <field name="member_tag_ids" string="Tag" filter_domain="[('member_tag_ids', 'child_of', self)]"/>
                 <filter string="Current Period" name="current_period_search" domain="[('period_id.current', '=', True)]" help="Memberships of current period."/>
                 <filter string="Upcoming Period" name="upcoming_period_search" domain="[('period_id.upcoming', '=', True)]" help="Memberships of upcoming period."/>
                 <separator/>

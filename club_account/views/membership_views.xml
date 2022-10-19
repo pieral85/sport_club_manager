@@ -6,7 +6,7 @@
         <field name="model">membership</field>
         <field name="inherit_id" ref="club.membership_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/group" position="before">
+            <xpath expr="//sheet/h1" position="before">
                 <field name="invoice_other_membership_ids" invisible="1"/>
                 <field name="payment_state" invisible="1"/>
                 <field name="move_type" invisible="1"/>
