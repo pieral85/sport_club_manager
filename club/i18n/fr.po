@@ -1544,11 +1544,6 @@ msgid "Payment due:"
 msgstr "Montant dû:"
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership__price_paid_percentage
-msgid "Percentage Paid"
-msgstr "Pourcentage payé"
-
-#. module: club
 #: model:ir.model,name:club.model_period
 #: model:ir.model.fields,field_description:club.field_membership__period_id
 #: model:ir.model.fields,field_description:club.field_period__name

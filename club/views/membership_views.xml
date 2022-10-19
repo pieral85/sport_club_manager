@@ -14,7 +14,6 @@
                 <field name="price_due" sum="Total"/>
                 <field name="price_paid" sum="Total"/>
                 <field name="price_remaining" sum="Total"/>
-                <field name="price_paid_percentage" widget="progressbar"/>
                 <field name="member_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="currency_id" invisible="1"/>
             </tree>
@@ -144,7 +143,6 @@
             <kanban default_group_by="state">
                 <field name="color"/>
                 <field name="member_parent_id"/>
-                <field name="price_paid_percentage"/>
                 <field name="currency_id" invisible="1"/>
                 <templates>
                     <t t-name="kanban-box">

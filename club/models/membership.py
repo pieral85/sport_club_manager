@@ -74,11 +74,6 @@ class Membership(models.Model):
         tracking=True,
         store=True,
     )  # --> move_id.amount_total?
-    price_paid_percentage = fields.Float(
-        string='Percentage Paid',
-        compute='_compute_payment',
-        store=True,
-    )
 
 # record.price_remaining = record.price_due - record.price_paid
 
@@ -476,23 +471,21 @@ class Membership(models.Model):
     def _compute_payment(self):
         for record in self:
             if record.price_due <= record.price_paid or record.price_due == 0:
-                record.price_paid_percentage = 100
                 record.price_remaining = 0
                 record.paid = True
             else:
-                record.price_paid_percentage = 100.0 * record.price_paid / record.price_due
                 record.price_remaining = record.price_due - record.price_paid
                 record.paid = False
 
-    @api.depends('price_paid_percentage', 'state')
+    @api.depends('paid', 'state')
     def _compute_color(self):
         """ Computes color value based on the price paid (used in the Kanban view.)
 
         :return: None
         """
         for record in self:
-            if record.state == 'member':
-                record.color = 10 if record.price_paid_percentage == 100 else 9
+            if record.state in ('requested', 'member'):
+                record.color = 10 if record.paid else 9
             else:
                 record.color = 12
 
