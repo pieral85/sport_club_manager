@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-16 21:07+0000\n"
+"POT-Creation-Date: 2022-10-20 21:28+0000\n"
 "PO-Revision-Date: 2018-07-03 01:13+0200\n"
 "Last-Translator: Pierre <pieral85@hotmail.com>\n"
 "Language-Team: French\n"
@@ -15,6 +15,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "%s has accepted the invitation. His status has been changed to prevalidated."
+msgstr "%s a accepté l'invitation. Son statut est maintenant 'prévalidé'."
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "%s has declined the invitation. His status has been changed to Rejected."
+msgstr "%s a décliné l'invitation. Son statut est maintenant 'rejeté'."
 
 #. module: club
 #: model:ir.actions.server,name:club.action_send_email_membership_confirmation
@@ -134,7 +146,7 @@ msgstr ""
 "    Merci d'avoir effectué le paiement pour un montant de (<strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\">120 €</strong>) \n"
 "    pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
 "</p>\n"
-"<p>Si vous avez des questions, n'hésitez à les poser en répondant à ce mail.</p>\n"
+"<p>Si vous avez des questions, n'hésitez pas à les poser en répondant à ce mail.</p>\n"
 "<p>Bien à vous,</p>\n"
 "<p>\n"
 "    <t t-out=\"user.name or ''\">Mitchell Admin</t>, pour le <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
@@ -195,7 +207,7 @@ msgstr ""
 "</t>\n"
 "</p>\n"
 "<p>\n"
-"Si vous avez des questions, n'hésitez à les poser en répondant à ce mail.\n"
+"Si vous avez des questions, n'hésitez pas à les poser en répondant à ce mail.\n"
 "</p>\n"
 "<p>\n"
 "Nous espérons que vous passerez une agréable saison!\n"
@@ -234,13 +246,13 @@ msgstr "<span class=\"pull-left\">Vous vous êtes déjà inscrit à toutes les s
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
-msgid "<span>Price Due: </span>"
-msgstr "<span>Montant dû: </span>"
+msgid "<span> on </span>"
+msgstr "<span> / </span>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
-msgid "<span>Price Paid: </span>"
-msgstr "<span>Montant payé: </span>"
+msgid "<span>Paid </span>"
+msgstr "<span>Payé </span>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
@@ -581,6 +593,7 @@ msgstr "Catégories"
 #: model:ir.model.fields,field_description:club.field_membership__category_id
 #: model:ir.model.fields,field_description:club.field_period_category__category_id
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 #: model_terms:ir.ui.view,arch_db:club.period_category_search
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "Category"
@@ -1196,11 +1209,22 @@ msgid "Member Status"
 msgstr "Statut du membre"
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_tag_ids
+msgid "Member Tags"
+msgstr "Étiquettes du membre"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Member Tags..."
+msgstr "Étiquettes du membre..."
+
+#. module: club
 #: model:ir.model.fields,field_description:club.field_membership__member_user_id
 msgid "Member User"
 msgstr "Utilisateur membre"
 
 #. module: club
+#: code:addons/club/models/membership.py:0
 #: model:ir.actions.act_window,name:club.action_member
 #: model:ir.model.fields,field_description:club.field_category__member_ids
 #: model:ir.model.fields,field_description:club.field_period__member_ids
@@ -1208,6 +1232,7 @@ msgstr "Utilisateur membre"
 #: model_terms:ir.ui.view,arch_db:club.category_view_form
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
+#, python-format
 msgid "Members"
 msgstr "Membres"
 
@@ -1305,13 +1330,13 @@ msgstr "Affiliations avec un paiement dû."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
-msgid "Memberships with a rejected status."
-msgstr "Affiliations avec un statut rejeté."
+msgid "Memberships with a prevalidated status."
+msgstr "Affiliations avec un statut soumis."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
-msgid "Memberships with a requested status."
-msgstr "Affiliations avec un statut soumis."
+msgid "Memberships with a rejected status."
+msgstr "Affiliations avec un statut rejeté."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
@@ -1636,11 +1661,6 @@ msgstr ""
 "- abonnés : seulement les abonnés au canaux de suivi\n"
 
 #. module: club
-#: model:ir.model.fields.selection,name:club.selection__membership__state__requested
-msgid "PreValidated"
-msgstr "Prévalidé"
-
-#. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__president
 #: model:res.groups,name:club.group_club_president
 msgid "President"
@@ -1650,6 +1670,12 @@ msgstr "Président"
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Prevalidate"
 msgstr "Prévalider"
+
+#. module: club
+#: model:ir.model.fields.selection,name:club.selection__membership__state__requested
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+msgid "Prevalidated"
+msgstr "Prévalidé"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_period__previous_period
@@ -1772,11 +1798,6 @@ msgstr "Demander une affiliation pour cette saison"
 #: model_terms:ir.ui.view,arch_db:club.website_membership_request
 msgid "Request this membership"
 msgstr "Demander cette affiliation"
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_search
-msgid "Requested"
-msgstr "Demandé"
 
 #. module: club
 #: model:ir.ui.menu,name:club.menu_top_resources
@@ -1992,6 +2013,11 @@ msgstr "Arrêter le rôle de trésorier"
 #: model_terms:ir.ui.view,arch_db:club.email_default_layout
 msgid "Sub Title"
 msgstr "Sous-titre"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+msgid "Tag"
+msgstr "Étiquette"
 
 #. module: club
 #: model:category,name:club.category_teenager
@@ -2222,6 +2248,11 @@ msgstr "Les utilisateurs avec l'attribut 'trésorier' activé pour le module \"C
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Validate"
 msgstr "Valider"
+
+#. module: club
+#: model:ir.actions.server,name:club.action_view_members
+msgid "View Members"
+msgstr "Voir membres"
 
 #. module: club
 #: model:ir.model,name:club.model_website_menu
