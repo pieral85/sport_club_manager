@@ -4,7 +4,7 @@
     <record id="saintleger_sports_complex" model="res.partner">
         <field name="name">Complexe Sportif</field>
         <field name="type">other</field>
-        <field name="email">sports.complex@test.com</field>
+        <field name="email">centresportif@saint-leger.be</field>
         <field name="parent_id" ref="base.main_partner"/>
         <field name="street">Rue du Stade, 1</field>
         <field name="city">Saint-Léger</field>
