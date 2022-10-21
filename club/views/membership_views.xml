@@ -221,6 +221,13 @@
                 <separator/>
                 <filter string="Active Period(s)" name="active_period_search" domain="[('period_id.active', '=', True)]" help="Memberships of active period(s)."/>
                 <filter string="Archived Period(s)" name="inactive_period_search" domain="[('period_id.active', '=', False)]" help="Memberships of archived period(s)."/>
+                <group string="Group By">
+                    <filter name="state_groupby" context="{'group_by' : 'state'}"/>
+                    <filter name="period_id_groupby" context="{'group_by' : 'period_id'}"/>
+                    <filter name="category_id_groupby" context="{'group_by' : 'category_id'}"/>
+                    <filter name="member_id_groupby" context="{'group_by' : 'member_id'}"/>
+                    <filter name="paid_groupby" context="{'group_by' : 'paid'}"/>
+                </group>
             </search>
         </field>
     </record>

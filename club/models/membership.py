@@ -140,7 +140,7 @@ class Membership(models.Model):
         comodel_name='category',
         related='period_category_id.category_id',
         required=True,
-        store=False,
+        store=True,
         readonly=False,
         domain="[('period_category_ids.period_id', '=?', period_id)]",
     )
@@ -418,8 +418,8 @@ class Membership(models.Model):
                 raise ValidationError(_('Fields "Period" and "Category" cannot be set together with such values.'))
             vals['period_category_id'] = period_category.id
             # Need to add `period_id` key to avoid `_default_period_id` method to be called at record creation.
-            # No need to do it for `category_id` as no method has been set for `default` attribute.
             vals['period_id'] = period_category.period_id.id
+            vals['category_id'] = period_category.category_id.id
 
         # Avoid to modify the period_category_id record w/ period and category fields. However, at record's creation,
         # we should preserve `period_id` to avoid to call method linked to `default` attribute (`_default_period_id`).
