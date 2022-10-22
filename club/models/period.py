@@ -89,6 +89,8 @@ class Period(models.Model):
         currency_field='currency_id',
         compute='_compute_prices',
     )
+    year = fields.Integer('Year', compute='_compute_year', search='_search_year',
+        help="Year (for search only)")
 
     # TODO This is a test function ==> delete me if not needed
     # @api.model_cr
@@ -131,6 +133,19 @@ class Period(models.Model):
                 'current': period.id == current_period_id,
                 'upcoming': period.id == upcoming_period_id,
             })
+
+    def _compute_year(self):
+        raise NotImplementedError(_("Field 'Year' cannot be computed. Its only purpose is to be searched."))
+
+    @api.model
+    def _search_year(self, operator, operand):
+        if operator in ('like', 'ilike'):
+            min_date = '{}-01-01'.format(operand)
+            max_date = '{}-12-31'.format(operand)
+            return ['start_date', '<=', max_date], ['end_date', '>=', min_date]
+        else:
+            raise NotImplementedError(_("The operator '%s' is not supported when searching field 'Year'.") \
+                % operator)
 
     def prepare_duplication_wizard(self, default=None):
         ctx = self._context.copy()
@@ -184,19 +199,6 @@ class Period(models.Model):
 
     def regenerate_alias_name(self):
         self.alias_name = self._get_alias_name()
-
-    @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
-        # TODO It would be great if this search method would be invoked from the membership views
-        for i, domain in enumerate(args):
-            if domain[0] == 'name' and domain[2].isdigit():
-                args.insert(i, '|')
-                year = domain[2]
-                min_date = '{}-01-01'.format(year)
-                max_date = '{}-12-31'.format(year)
-                args += ['&', ['start_date', '<=', max_date], ['end_date', '>=', min_date]]
-                break
-        return super(Period, self).search(args, offset, limit, order, count=count)
 
     @api.model
     def create(self, vals):
