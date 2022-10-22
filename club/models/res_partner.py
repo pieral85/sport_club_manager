@@ -27,21 +27,10 @@ class ResPartner(models.Model):
 
     def action_view_memberships(self):
         self.ensure_one()
-        action = {
+        memberships = self.membership_ids
+        action = memberships._get_dynamic_action()
+        action.update({
             'name': _('Memberships'),
-            'res_model': 'membership',
-            'type': 'ir.actions.act_window',
             'context': {'default_member_id': self.id},
-        }
-        membership_ids = self.membership_ids.ids
-        if len(membership_ids) == 1:
-            action.update({
-                'view_mode': 'form',
-                'res_id': membership_ids[0],
-            })
-        else:
-            action.update({
-                'view_mode': 'tree,form',
-                'domain': [('id', 'in', membership_ids)],
-            })
+        })
         return action

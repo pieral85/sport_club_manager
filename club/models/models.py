@@ -20,3 +20,20 @@ class Base(models.AbstractModel):
         langs = self.mapped('lang')
         langs.sort(key=lambda l: (l == company_lang) + (l[:2] == company_lang[:2]), reverse=True)
         return langs[0] if langs else company_lang
+
+    def _get_dynamic_action(self):
+        action = {
+            'res_model': self._name,
+            'type': 'ir.actions.act_window',
+        }
+        if len(self) == 1:
+            action.update({
+                'view_mode': 'form',
+                'res_id': self.ids[0],
+            })
+        else:
+            action.update({
+                'view_mode': 'tree,form',
+                'domain': [('id', 'in', self.ids)],
+            })
+        return action

@@ -97,22 +97,12 @@ class MailComposer(models.TransientModel):
                 vals['confirmation_mail_sent'] = True
             records.write(vals)
 
-        if self.env.context.get('open_records_view') and 'active_domain' in self._context:
-            action = {
+        # note: 'active_domain' is usually in the context when coming from the action of a list view
+        if self.env.context.get('open_records_view') or 'active_domain' in self._context:
+            action = records._get_dynamic_action()
+            action.update({
                 'name': _('Records with Mail Sent'),
-                'type': 'ir.actions.act_window',
-                'res_model': model,
-            }
-            if len(ids) == 1:
-                action.update({
-                    'view_mode': 'form',
-                    'res_id': ids[0],
-                })
-            else:
-                action.update({
-                    'view_mode': 'tree,form',
-                    'domain': [('id', 'in', ids)],
-                })
+            })
             return action
         return res
 

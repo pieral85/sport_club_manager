@@ -378,23 +378,11 @@ class Membership(models.Model):
             return super(Membership, self).message_new(msg, custom_values=vals)
 
     def action_view_members(self):
-        action = {
+        records = self.member_id
+        action = records._get_dynamic_action()
+        action.update({
             'name': _('Members'),
-            'res_model': 'res.partner',
-            'type': 'ir.actions.act_window',
-        }
-
-        if len(self) == 1:
-            action.update({
-                'view_mode': 'form',
-                'res_id': self.member_id.id,
-            })
-        else:
-            action.update({
-                'view_mode': 'tree,form',
-                'domain': [('id', 'in', self.member_id.ids)],
-            })
-
+        })
         return action
 
     def _modify_period_category_vals(self, vals, at_creation=False):
