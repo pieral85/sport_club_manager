@@ -20,6 +20,7 @@ Following features are included in this module:
     'version': '0.2',
     'depends': [
         'base',
+        'calendar',
         'website',
         'auth_signup',
         'mail',

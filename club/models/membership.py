@@ -7,6 +7,8 @@ from datetime import datetime, timedelta
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
 
+CONTACT_DOMAIN = lambda self: [('is_company', '=', False), ('type', '=', 'contact')]
+
 
 class Membership(models.Model):
     _name = 'membership'
@@ -39,15 +41,16 @@ class Membership(models.Model):
         tracking=True,
     )
     member_id = fields.Many2one('res.partner', string='Member',
-        ondelete='restrict', required=True, domain=[('is_company', '=', False)])
+        ondelete='restrict', required=True, domain=CONTACT_DOMAIN)
     member_parent_id = fields.Many2one('res.partner', related='member_id.parent_id')
     member_tag_ids = fields.Many2many('res.partner.category', string='Member Tags', related='member_id.category_id',
         readonly=False)
-    member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id',
-        domain=[('is_company', '=', False)])
+    member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id')
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         compute='_compute_contact_person_id', inverse='_inverse_contact_person_id', store=True,
+        domain=CONTACT_DOMAIN, tracking=True,
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
+    email = fields.Char('Email', compute='_compute_email')
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
     user_state = fields.Selection(
@@ -452,8 +455,27 @@ class Membership(models.Model):
     def _compute_contact_person_id(self):
         for record in self:
             record.contact_person_id = record.member_id.responsible_id
+
     def _inverse_contact_person_id(self):
-        pass
+        for record in self:
+            if record.contact_person_id and record.member_id and not record.member_id.responsible_id:
+                record.member_id.responsible_id = record.contact_person_id
+
+    @api.onchange('contact_person_id')
+    def _onchange_contact_person_id(self):
+        if self.contact_person_id and not self.member_id.responsible_id:
+            return {
+                'warning': {
+                    'title': _("Message"),
+                    'message': _("The contact person will also be set as responsible of the player!"),
+                    'type': 'notification',
+                },
+            }
+
+    @api.depends('member_id.email')
+    def _compute_email(self):
+        for record in self:
+            record.email = record.contact_person_id.email or record.member_id.email
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):
