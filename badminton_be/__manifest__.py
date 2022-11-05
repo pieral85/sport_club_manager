@@ -16,6 +16,8 @@ TODO
     'depends': ['badminton'],#, 'board', 'website', 'website_sale'],
     # always loaded
     'data': [
+        # views
+        'views/res_partner_views.xml',
     ],
     'qweb': [
         # 'static/src/xml/*.xml',
