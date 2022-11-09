@@ -36,6 +36,7 @@
                         </h1>
                     </group>
                     <group>
+                        <field name="need_responsible"/>
                         <field name="description"/>
                     </group>
                     <notebook>

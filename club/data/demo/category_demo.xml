@@ -11,10 +11,12 @@
     </record>
     <record id="category_child" model="category">
         <field name="name">Child</field>
+        <field name="need_responsible" eval="True"/>
         <field name="description">Category for children below 12 years old.</field>
     </record>
     <record id="category_teenager" model="category">
         <field name="name">Teenager</field>
+        <field name="need_responsible" eval="True"/>
         <field name="description">Category for members between 12 and 18 years old.</field>
     </record>
     </data>

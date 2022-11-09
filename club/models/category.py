@@ -29,6 +29,8 @@ class Category(models.Model):
         store=False,
     )
     active = fields.Boolean('Active', default=True)
+    need_responsible = fields.Boolean('Need Responsible',
+        help="Memberships within this category will need a responsible.")
     member_ids = fields.Many2many('res.partner', string='Members',
         compute='_compute_membership_ids')
     membership_ids = fields.Many2many(

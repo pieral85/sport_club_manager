@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="members_data_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <table class="table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>To Pay</th>
+                                <th colspan="4">Address</th>
+                                <th>M/F</th>
+                                <th>Birthdate</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Img</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="missing_style" t-value="'background-color: LightGray;'"/>
+                            <tr t-foreach="docs" t-as="membership" style="vertical-align: middle">
+                                <t t-set="member" t-value="membership.member_id"/>
+                                <td class="align-middle">
+                                    <strong><span t-field="member.display_name"/></strong>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not membership.paid else ''">
+                                    <span t-field="membership.price_remaining"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if (not member.street and not member.street2) else ''">
+                                    <span t-field="member.street"/> <span t-field="member.street2"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.zip else ''">
+                                    <span t-field="member.zip"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.city else ''">
+                                    <span t-field="member.city"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.country_id else ''">
+                                    <span t-field="member.country_id.code"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.gender else ''">
+                                    <span t-esc="member.gender[0] if member.gender else ''"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.birthdate else ''">
+                                    <span t-field="member.birthdate"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not member.mobile else ''">
+                                    <span t-esc="member.mobile.replace(' ','') if member.mobile else ''"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not membership.email else ''">
+                                    <span t-field="membership.email"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if membership.category_id.need_responsible and not membership.contact_person_id else ''">
+                                    <span t-field="membership.contact_person_id.display_name"/>
+                                </td>
+                                <td class="align-middle" t-att-style="missing_style if not bool(member.image_1920) else ''">
+                                    <span t-esc="'v' if bool(member.image_1920) else 'x'"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

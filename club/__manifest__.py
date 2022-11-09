@@ -62,6 +62,9 @@ Following features are included in this module:
         'data/res_users_data.xml',
         'data/mail_template_data.xml',
         'data/membership_data.xml',
+        # reports
+        'report/membership_templates.xml',
+        'report/membership_reports.xml',
     ],
     'assets': {
         'web.assets_frontend': [
