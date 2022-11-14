@@ -73,6 +73,7 @@ class ResPartner(models.Model):
             if urlparse(LFBB_ROOT_URL).netloc != url_parsed.netloc:
                 continue
             paths = url_parsed.path.split('/')
+            ext_uuid = None
 
             if record.is_company:
                 if url_parsed.path == '/organization/group.aspx':
@@ -84,4 +85,8 @@ class ResPartner(models.Model):
                     ext_uuid = parse_qs(url_parsed.query).get('mid', [''])[0]
                 elif 'player-profile' in paths:
                     ext_uuid = paths[paths.index('player-profile') + 1]
+
+            if not ext_uuid:
+                raise ValidationError(_("It is not possible to get the UUID for URL section '%s'.",
+                    url_parsed.path))
             record.lfbb_uuid = ext_uuid
