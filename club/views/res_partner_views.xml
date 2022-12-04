@@ -193,6 +193,9 @@
             <xpath expr="//filter[@name='salesperson']" position="before">
                 <filter name="club_id_search" context="{'group_by' : 'club_id'}" />
             </xpath>
+            <field name="category_id" position="after">
+                <field name="category_id" string="Not in Tags" filter_domain="['!', ('category_id', 'child_of', self)]"/>
+            </field>
         </field>
     </record>
 </data>
