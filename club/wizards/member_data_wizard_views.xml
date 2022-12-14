@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="member_data_wizard_form_view" model="ir.ui.view">
+        <field name="name">member.data.wizard.form</field>
+        <field name="model">member.data.wizard</field>
+        <field name="arch" type="xml">
+            <form string="member_data Duplication">
+                <group>
+                    <group>
+                        <field name="hide_data"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Memberships">
+                        <field name="membership_ids">
+                            <tree editable="bottom">
+                                <field name="member_id"/>
+                                <field name="period_id" optional="show"/>
+                                <field name="category_id" optional="show"/>
+                                <field name="state" optional="show"/>
+                                <field name="paid" optional="show"/>
+                                <field name="member_tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="generate_report" type="object"
+                            string="Generate Report" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_member_data_wizard" model="ir.actions.act_window">
+        <field name="name">Print Members Data</field>
+        <field name="res_model">member.data.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="club.model_membership"/>
+        <field name="context">{
+            'default_membership_ids': active_ids,
+        }</field>
+    </record>
+</odoo>

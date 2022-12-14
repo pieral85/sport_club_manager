@@ -48,6 +48,7 @@ Following features are included in this module:
         'views/templates/website_templates.xml',
         # wizards
         'wizards/period_wizard_views.xml',
+        'wizards/member_data_wizard_views.xml',
         # actions
         'actions/mail_compose_message_actions.xml',
         'actions/membership_actions.xml',

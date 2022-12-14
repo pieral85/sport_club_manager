@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <template id="members_data_report_template">
         <t t-call="web.html_container">
             <t t-call="web.internal_layout">
+                <t t-set="memberships" t-value="env['membership'].browse(context['active_ids'])"/>
+                <t t-if="form['hide_data']">
+                    <t t-set="opt_key" t-value="'chars_to_show'"/>
+                </t>
+                <t t-else="">
+                    <t t-set="opt_key" t-value="'_'"/>
+                </t>
                 <div class="page">
                     <table class="table-striped text-center">
                         <thead>
@@ -21,7 +27,7 @@
                         </thead>
                         <tbody>
                             <t t-set="missing_style" t-value="'background-color: LightGray;'"/>
-                            <tr t-foreach="docs" t-as="membership" style="vertical-align: middle">
+                            <tr t-foreach="memberships" t-as="membership" style="vertical-align: middle">
                                 <t t-set="member" t-value="membership.member_id"/>
                                 <td class="align-middle">
                                     <strong><span t-field="member.display_name"/></strong>
@@ -30,31 +36,31 @@
                                     <span t-field="membership.price_remaining"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if (not member.street and not member.street2) else ''">
-                                    <span t-field="member.street"/> <span t-field="member.street2"/>
+                                    <span t-field="member.street" t-options="{opt_key: 1, 'pivot_char': ' '}"/> <span t-field="member.street2" t-options="{opt_key: 1, 'pivot_char': ' '}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.zip else ''">
-                                    <span t-field="member.zip"/>
+                                    <span t-field="member.zip" t-options="{opt_key: 1}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.city else ''">
-                                    <span t-field="member.city"/>
+                                    <span t-field="member.city" t-options="{opt_key: 1}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.country_id else ''">
                                     <span t-field="member.country_id.code"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.gender else ''">
-                                    <span t-esc="member.gender[0] if member.gender else ''"/>
+                                    <span t-field="member.gender" t-options="{'widget': 'text', 'chars_to_show': 1, 'replacement_char': ''}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.birthdate else ''">
-                                    <span t-field="member.birthdate"/>
+                                    <span t-field="member.birthdate" t-options="{opt_key: 0, 'pivot_char': '/'}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not member.mobile else ''">
-                                    <span t-esc="member.mobile.replace(' ','') if member.mobile else ''"/>
+                                    <span t-field="member.mobile" t-options="{opt_key: 3}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not membership.email else ''">
-                                    <span t-field="membership.email"/>
+                                    <span t-field="membership.email" t-options="{opt_key: 1, 'pivot_char': '@'}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if membership.category_id.need_responsible and not membership.contact_person_id else ''">
-                                    <span t-field="membership.contact_person_id.display_name"/>
+                                    <span t-field="membership.contact_person_id.display_name" t-options="{opt_key: 1, 'pivot_char': ' '}"/>
                                 </td>
                                 <td class="align-middle" t-att-style="missing_style if not bool(member.image_1920) else ''">
                                     <span t-esc="'v' if bool(member.image_1920) else 'x'"/>
