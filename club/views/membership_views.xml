@@ -9,13 +9,14 @@
             <tree>
                 <field name="member_id"/>
                 <field name="email" optional="hide"/>
-                <field name="period_id" required="1"/>
-                <field name="category_id"/>
-                <field name="state"/>
-                <field name="price_due" sum="Total"/>
-                <field name="price_paid" sum="Total"/>
-                <field name="price_remaining" sum="Total"/>
+                <field name="period_id" required="1" optional="show"/>
+                <field name="category_id" optional="show"/>
+                <field name="state" optional="show"/>
+                <field name="price_due" sum="Total" optional="hide"/>
+                <field name="price_paid" sum="Total" optional="hide"/>
+                <field name="price_remaining" sum="Total" optional="show"/>
                 <field name="member_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="active" optional="hide"/>
                 <field name="currency_id" invisible="1"/>
             </tree>
         </field>
@@ -37,7 +38,7 @@
                     <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member'))]}"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member')), '|', ('state', '!=', 'requested'), ('paid', '=', True)]}"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'requested'), ('paid', '=', False)]}"/>
-                    <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}"/>
+                    <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter."/>
 
                     <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ['requested', 'member', 'rejected'])]}" context="{'see_records_view': False}" help="Sends an email to the user to invite him to validate his membership."/>
                     <button name="send_email_confirmation" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
@@ -46,8 +47,10 @@
                     <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('user_state', '!=', 'new')]}" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
                     -->
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
+                    <field name="active" invisible="1"/>
                 </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <h1 class="oe_title">
                         <field name="member_id"/>
                     </h1>
@@ -221,6 +224,9 @@
                 <filter string="Prevalidated" name="state_requested_search" domain="[('state', '=', 'requested')]" help="Memberships with a prevalidated status."/>
                 <filter string="Members" name="state_member_search" domain="[('state', '=', 'member')]" help="Members only."/>
                 <filter string="Rejected" name="state_rejected_search" domain="[('state', '=', 'rejected')]" help="Memberships with a rejected status."/>
+                <separator/>
+                <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active memberships."/>
+                <filter name="inactive_search" string="Archived" domain="[('active','=', False)]" help="Only inactive memberships."/>
                 <separator/>
                 <filter string="Active Period(s)" name="active_period_search" domain="[('period_id.active', '=', True)]" help="Memberships of active period(s)."/>
                 <filter string="Archived Period(s)" name="inactive_period_search" domain="[('period_id.active', '=', False)]" help="Memberships of archived period(s)."/>

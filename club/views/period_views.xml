@@ -117,7 +117,7 @@
                 <field name="start_date" string="Including Date" filter_domain="[('start_date','&lt;=',self), ('end_date','&gt;=',self)]"/>
                 <field name="year" string="Year" filter_domain="[('year', 'ilike', self)]"/>
                 <separator/>
-                <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active period."/>
+                <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active periods."/>
                 <filter name="inactive_search" string="Archived" domain="[('active','=',False)]" help="Only inactive periods."/>
             </search>
         </field>

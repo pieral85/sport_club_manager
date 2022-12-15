@@ -104,6 +104,7 @@ class Membership(models.Model):
         tracking=True,
         group_expand='_expand_state',
     )
+    active = fields.Boolean('Active', default=True)
     token = fields.Char('Invitation Token', readonly=True, copy=False)
     token_validity = fields.Datetime('Token Validity', readonly=True)  # , groups='base.group_user')
     token_is_valid = fields.Boolean('Token Is Valid', compute='_compute_token_is_valid', readonly=True)
@@ -188,6 +189,8 @@ class Membership(models.Model):
             vals['token_validity'] = None
             # when becoming a member, the related partner should belong to the company
             self.member_id.club_id = self.company_id.partner_id
+        elif vals.get('state') == 'rejected':
+            vals['active'] = False
 
         return super(Membership, self).write(vals)
 
