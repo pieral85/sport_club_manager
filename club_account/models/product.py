@@ -34,10 +34,6 @@ class ProductTemplate(models.Model):
                 if prod_tmpl.attribute_line_ids.filtered(lambda ptal: ptal.attribute_id != membership_attr):
                     raise ValidationError(_("For 'membership' products, " \
                         "the only valid attribute is '{}'.").format(membership_attr.name))
-            else:
-                if prod_tmpl.attribute_line_ids.filtered(lambda ptal: ptal.attribute_id == membership_attr):
-                    raise ValidationError(_("You cannot use attribute '{}' for this product.")
-                        .format(membership_attr.name))
 
 
 class ProductProduct(models.Model):
