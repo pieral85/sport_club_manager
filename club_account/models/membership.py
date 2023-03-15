@@ -56,9 +56,13 @@ class Membership(models.Model):
         for rec in self:
             if not rec.invoice_line_id:
                 continue
-            if rec.invoice_other_membership_ids:
-                raise ValidationError(_("You cannot change the due price because other memberships are linked to the same invoice.\nPlease set the status back to 'Unknown' in order to be able to change the price."))
-            raise ValidationError(_("You cannot change the due price because an invoice is already attached to this membership.\nPlease change the price on the invoice line instead."))
+            elif rec.invoice_other_membership_ids:
+                raise ValidationError(_("You cannot change the due price because other memberships are linked to " \
+                    "the same invoice.\nPlease set the status back to 'Unknown' in order to be able to change the " \
+                    "price."))
+            elif rec.invoice_id.filtered(lambda inv: inv.state != 'draft'):
+                raise ValidationError(_("You cannot change the due price because an active invoice is already " \
+                    "attached to this membership.\nPlease change the price on the invoice line instead."))
 
     @api.depends('invoice_id')
     def _compute_invoice_other_membership_ids(self):
