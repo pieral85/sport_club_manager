@@ -223,7 +223,7 @@
                 <filter string="Old Members" name="state_old_member_search" domain="[('state', '=', 'old_member')]" help="Members for the previous season."/>
                 <filter string="Prevalidated" name="state_requested_search" domain="[('state', '=', 'requested')]" help="Memberships with a prevalidated status."/>
                 <filter string="Members" name="state_member_search" domain="[('state', '=', 'member')]" help="Members only."/>
-                <filter string="Rejected" name="state_rejected_search" domain="[('state', '=', 'rejected')]" help="Memberships with a rejected status."/>
+                <filter string="Rejected" name="state_rejected_search" domain="[('state', '=', 'rejected'), '|', ('active', '=', True), ('active', '=', False)]" help="Memberships with a rejected status."/>
                 <separator/>
                 <filter name="active_search" string="Active" domain="[('active','=', True)]" help="Only active memberships."/>
                 <filter name="inactive_search" string="Archived" domain="[('active','=', False)]" help="Only inactive memberships."/>
