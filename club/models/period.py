@@ -148,16 +148,14 @@ class Period(models.Model):
                 % operator)
 
     def prepare_duplication_wizard(self, default=None):
+        self.ensure_one()
         ctx = self._context.copy()
         ctx['default_period_id'] = self.id
-        most_recent_period = self.env['period'].search(['|', ('active', '=', False), ('active', '=', True),], order='start_date desc', limit=1)
-        start_date = Period._add_years(most_recent_period.start_date, 1)
-        end_date = Period._add_years(most_recent_period.end_date, 1)
+        start_date = Period._add_years(self.start_date, 1)
+        end_date = Period._add_years(self.end_date, 1)
         ctx['default_start_date'] = start_date
         ctx['default_end_date'] = end_date
-        ctx['default_name'] = 'Season %s' % start_date.year
-        if start_date.year != end_date.year:
-            ctx['default_name'] += ' - %s' % end_date.year
+        ctx['default_name'] = self._get_new_name(start_date, end_date)
         return {
             'name': 'Duplicate a period',
             'type': 'ir.actions.act_window',
@@ -246,9 +244,36 @@ class Period(models.Model):
                 order='start_date desc',
             )
 
+    def _get_new_name(self, new_start_date, new_end_date):
+        """ Basically replaces year occurences of the period name with the years coming from `new_start_date`
+            and `new_end_date` dates.
+
+        i.e. Let's pretend period name is "Super season 2023-24" and new_start_date and new_end_date are respectively
+             datetime.date(2024, 9, 1) and datetime.date(2025, 6, 30).
+             The string returned will be "Super season 2024-25".
+             Note: To identify start/end date years ('2023' and '24'), the method assumes period `start_date`
+                   and `end_date` are "consistant" (datetime.date(2023, x, x) and datetime.date(2024, x, x)).
+
+        :return: new period name based on current one.
+        :rtype: str
+        """
+        self.ensure_one()
+
+        def replace_date_year(name, old_date, new_date):
+            old_year_str, new_year_str = str(old_date.year), str(new_date.year)
+            if old_year_str in name:
+                return name.replace(old_year_str, new_year_str)
+            if old_year_str[-2:] in name:
+                return name.replace(old_year_str[-2:], new_year_str[-2:])
+            return name
+        new_name = replace_date_year(self.name, self.end_date, new_end_date)
+        if self.start_date.year != self.end_date.year:
+            new_name = replace_date_year(new_name, self.start_date, new_start_date)
+        return new_name
+
     @staticmethod
-    def _add_years(dte, years):
-        """Return a date that's `years` years after the date (or datetime)
+    def _add_years(dte, years_offset):
+        """Return a date that's `years_offset` years after the date (or datetime)
         object `dte` (of type fields.Date). Return the same calendar date (month and day) in the
         destination year, if it exists, otherwise use the following day
         (thus changing February 29 to March 1).
@@ -257,9 +282,9 @@ class Period(models.Model):
         """
         d = fields.Date.from_string(dte)
         try:
-            return d.replace(year = d.year + years)
+            return d.replace(year = d.year + years_offset)
         except ValueError:
-            return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
+            return d + (date(d.year + years_offset, 1, 1) - date(d.year, 1, 1))
 
     def _get_alias_name(self, name=''):
         if not name:
