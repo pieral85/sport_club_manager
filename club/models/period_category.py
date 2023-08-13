@@ -127,17 +127,12 @@ class PeriodCategory(models.Model):
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_due', self.price_due)
         new_period_category = super(PeriodCategory, self).copy(default)
-        for membership_id in self.membership_ids:
-            if membership_id.state == 'member':
-                membership_state = 'old_member'
-            elif membership_id.state == 'rejected':
-                continue
-            else:
-                membership_state = 'unknown'
+        for membership_id in self.with_context(active_test=False).membership_ids:
             membership_id.copy({
                 'period_category_id': new_period_category.id,
                 'period_id': default.get('period_id'),
-                'state': membership_state,
+                'state': 'old_member' if membership_id.state == 'member' else 'unknown',
+                'active': True,
             })
         return new_period_category
 
