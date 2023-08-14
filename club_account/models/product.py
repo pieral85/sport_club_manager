@@ -26,14 +26,13 @@ class ProductTemplate(models.Model):
         :return: None
         """
         membership_attr = self.env.ref('club_account.product_attribute_membership_category')
-        for prod_tmpl in self:
-            if prod_tmpl.membership_ok:
-                if self.search_count([('membership_ok', '=', True), ('name', '=', prod_tmpl.name)]) > 1:
-                    raise ValidationError(_("For 'membership' products, " \
-                        "the name must be unique! Please change it accordingly."))
-                if prod_tmpl.attribute_line_ids.filtered(lambda ptal: ptal.attribute_id != membership_attr):
-                    raise ValidationError(_("For 'membership' products, " \
-                        "the only valid attribute is '{}'.").format(membership_attr.name))
+        for prod_tmpl in self.filtered('membership_ok'):
+            if self.search_count([('membership_ok', '=', True), ('name', '=', prod_tmpl.name)]) > 1:
+                raise ValidationError(_("For 'membership' products, " \
+                    "name '{}' must be unique! Please change it accordingly.").format(prod_tmpl.name))
+            if prod_tmpl.attribute_line_ids.filtered(lambda ptal: ptal.attribute_id != membership_attr):
+                raise ValidationError(_("For 'membership' products, " \
+                    "the only valid attribute is '{}'.").format(membership_attr.name))
 
 
 class ProductProduct(models.Model):
