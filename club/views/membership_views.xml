@@ -6,7 +6,7 @@
         <field name="name">membership list</field>
         <field name="model">membership</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree multi_edit="1">
                 <field name="member_id"/>
                 <field name="email" optional="hide"/>
                 <field name="period_id" required="1" optional="show"/>
