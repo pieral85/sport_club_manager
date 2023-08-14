@@ -75,17 +75,17 @@ class Period(models.Model):
         compute='_compute_membership_ids',
     )
     total_price_paid = fields.Monetary(
-        string='Total Members Price Paid',
+        string='Total Paid Price',
         currency_field='currency_id',
         compute='_compute_prices',
     )
     total_price_due = fields.Monetary(
-        string='Total Members Due Price',
+        string='Total Due Price',
         currency_field='currency_id',
         compute='_compute_prices',
     )
     total_remaining_price_due = fields.Monetary(
-        string='Total Remaining Members Due Price',
+        string='Total Remaining Due Price',
         currency_field='currency_id',
         compute='_compute_prices',
     )

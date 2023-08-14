@@ -696,7 +696,7 @@ msgstr ""
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
-msgid "Create New Period Based on Current"
+msgid "Smart Duplicate"
 msgstr ""
 
 #. module: club
@@ -2124,21 +2124,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:club.field_category__total_price_due
 #: model:ir.model.fields,field_description:club.field_period__total_price_due
 #: model:ir.model.fields,field_description:club.field_period_category__total_price_due
-msgid "Total Members Due Price"
+msgid "Total Due Price"
 msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__total_price_paid
 #: model:ir.model.fields,field_description:club.field_period__total_price_paid
 #: model:ir.model.fields,field_description:club.field_period_category__total_price_paid
-msgid "Total Members Price Paid"
+msgid "Total Paid Price"
 msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__total_remaining_price_due
 #: model:ir.model.fields,field_description:club.field_period__total_remaining_price_due
 #: model:ir.model.fields,field_description:club.field_period_category__total_remaining_price_due
-msgid "Total Remaining Members Due Price"
+msgid "Total Remaining Due Price"
 msgstr ""
 
 #. module: club

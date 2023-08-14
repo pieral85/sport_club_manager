@@ -776,8 +776,8 @@ msgstr "Pays"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
-msgid "Create New Period Based on Current"
-msgstr "Créer une nouvelle saison basée sur l'actuelle"
+msgid "Smart Duplicate"
+msgstr "Assistant de duplication"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__create_uid
@@ -2173,22 +2173,22 @@ msgstr "Total"
 #: model:ir.model.fields,field_description:club.field_category__total_price_due
 #: model:ir.model.fields,field_description:club.field_period__total_price_due
 #: model:ir.model.fields,field_description:club.field_period_category__total_price_due
-msgid "Total Members Due Price"
-msgstr "Montant total dû pour les membres"
+msgid "Total Due Price"
+msgstr "Montant total dû"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__total_price_paid
 #: model:ir.model.fields,field_description:club.field_period__total_price_paid
 #: model:ir.model.fields,field_description:club.field_period_category__total_price_paid
-msgid "Total Members Price Paid"
-msgstr "Montant total payé pour les membres"
+msgid "Total Paid Price"
+msgstr "Montant total payé"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__total_remaining_price_due
 #: model:ir.model.fields,field_description:club.field_period__total_remaining_price_due
 #: model:ir.model.fields,field_description:club.field_period_category__total_remaining_price_due
-msgid "Total Remaining Members Due Price"
-msgstr "Montant total restant dû pour les membres"
+msgid "Total Remaining Due Price"
+msgstr "Montant total restant dû"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__treasurer

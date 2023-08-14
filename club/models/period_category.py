@@ -48,17 +48,17 @@ class PeriodCategory(models.Model):
         compute='_count_members',
     )
     total_price_paid = fields.Monetary(
-        string='Total Members Price Paid',
+        string='Total Paid Price',
         currency_field='currency_id',
         compute='_total_price_paid',
     )
     total_price_due = fields.Monetary(
-        string='Total Members Due Price',
+        string='Total Due Price',
         currency_field='currency_id',
         compute='_total_price_due',
     )
     total_remaining_price_due = fields.Monetary(
-        string='Total Remaining Members Due Price',
+        string='Total Remaining Due Price',
         currency_field='currency_id',
         compute='_total_remaining_price_due',
     )

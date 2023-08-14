@@ -32,7 +32,7 @@
                     <field name="current" invisible="1"/>
                     <field name="active" invisible="1"/>
                     <field name="category_ids" invisible="1"/>
-                    <button name="prepare_duplication_wizard" type="object" string="Create New Period Based on Current" class="btn-secondary"/>
+                    <button name="prepare_duplication_wizard" type="object" string="Smart Duplicate" class="btn-secondary"/>
                     <!-- TODO
                     <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
                      -->
