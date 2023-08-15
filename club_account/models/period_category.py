@@ -21,8 +21,6 @@ class PeriodCategory(models.Model):
 
         return: product.product record
         """
-        if self.product_id:
-            return self.product_id
         if period is None:
             period = self.period_id
         prod_tmpl = period.product_tmpl_id
@@ -67,6 +65,9 @@ class PeriodCategory(models.Model):
                 category=self.env['category'].browse(values['category_id'])
             )
             values['product_id'] = prod_prod.id
+            # remove all value keys inherited from `product_id`. Instead, trust newly attached product field values
+            product_product_keys = {k for k in values if k in prod_prod}
+            [values.pop(k) for k in product_product_keys]
         return super(PeriodCategory, self).create(values)
 
     def write(self, vals):

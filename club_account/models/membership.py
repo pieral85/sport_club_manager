@@ -9,7 +9,7 @@ class Membership(models.Model):
     _inherit = 'membership'
 
     invoice_line_id = fields.Many2one('account.move.line', string='Invoice Line', ondelete='set null',
-        inverse='_inverse_invoice_line_id')
+        inverse='_inverse_invoice_line_id', copy=False)
     invoice_id = fields.Many2one('account.move', related='invoice_line_id.move_id', string='Invoice',
         context={'short_membership_name': True})
     payment_state = fields.Selection(related='invoice_line_id.move_id.payment_state')
