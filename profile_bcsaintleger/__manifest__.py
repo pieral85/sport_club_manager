@@ -12,7 +12,7 @@ Following features are included in this module:
     """,
     'author': "pieral85@hotmail.com",
     'category': 'Club Sport Badminton',
-    'version': '0.1',
+    'version': '0.2',
     'depends': [
         # Custom dependencies:
         # 'badminton_be',
@@ -21,10 +21,13 @@ Following features are included in this module:
         # Standard dependencies:
         'contacts',
         'l10n_be',  # Belgium accounting (depends on `account`)
+        'mass_mailing',
         'theme_treehouse',
         'website_event',
     ],
     'data': [
+        # security
+        'security/security.xml',
         # views - website templates
         'views/templates/website_footer.xml',
         'views/templates/website_homepage.xml',

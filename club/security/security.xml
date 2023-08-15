@@ -8,6 +8,11 @@
         <field name="description">Helps you to manage club groups.</field>
         <field name="sequence">10</field>
     </record>
+    <record id="module_category_committee_role" model="ir.module.category">
+        <field name="name">Committee Role</field>
+        <field name="description">Groups roles specific to a club: president, secretary and treasurer</field>
+        <field name="sequence">1</field>
+    </record>
 
     <!-- Groups -->
     <record id="group_club_committee_user" model="res.groups">
@@ -29,16 +34,19 @@
         <field name="name">President</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
         <field name="comment">Users with attribute 'president' set to True for the module Club.</field>
+        <field name="category_id" ref="module_category_committee_role"/>
     </record>
     <record id="group_club_secretary" model="res.groups">
         <field name="name">Secretary</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
         <field name="comment">Users with attribute 'secretary' set to True for the module Club.</field>
+        <field name="category_id" ref="module_category_committee_role"/>
     </record>
     <record id="group_club_treasurer" model="res.groups">
         <field name="name">Treasurer</field>
         <field name="implied_ids" eval="[(4, ref('group_club_committee_user'))]"/>
         <field name="comment">Users with attribute 'treasurer' set to True for the module Club.</field>
+        <field name="category_id" ref="module_category_committee_role"/>
     </record>
 
     <!-- Set the "Internal User" group as the only group for the user "Default User Template" -->

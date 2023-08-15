@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Groups -->
+    <record id="club.group_club_committee_manager" model="res.groups">
+        <field name="implied_ids" eval="[
+            (4, ref('mass_mailing.group_mass_mailing_user')),
+        ]"/>
+    </record>
+    <record id="club.group_club_secretary" model="res.groups">
+        <field name="implied_ids" eval="[
+            (4, ref('mass_mailing.group_mass_mailing_user')),
+        ]"/>
+    </record>
+</odoo>

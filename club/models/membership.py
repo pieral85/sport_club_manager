@@ -20,6 +20,7 @@ class Membership(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Membership'
     _order = 'period_id asc, member_id asc'
+    _mailing_enabled = True
 
     @api.model
     def _get_token(self):
@@ -50,7 +51,7 @@ class Membership(models.Model):
         compute='_compute_contact_person_id', inverse='_inverse_contact_person_id', store=True,
         domain=CONTACT_DOMAIN, tracking=True,
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
-    email = fields.Char('Email', compute='_compute_email')
+    email = fields.Char('Email', compute='_compute_email', store=True, readonly=False, tracking=True)
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
     user_state = fields.Selection(
@@ -475,7 +476,7 @@ class Membership(models.Model):
                 },
             }
 
-    @api.depends('member_id.email')
+    @api.depends('contact_person_id.email', 'member_id.email')
     def _compute_email(self):
         for record in self:
             record.email = record.contact_person_id.email or record.member_id.email
