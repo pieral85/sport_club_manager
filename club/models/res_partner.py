@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from datetime import date
+
 from odoo import api, fields, models, _
 
 CONTACT_DOMAIN = lambda self: [('is_company', '=', False), ('type', '=', 'contact')]
@@ -14,6 +16,7 @@ class ResPartner(models.Model):
         selection=[('person', 'Individual'), ('company', 'Club')])
     gender = fields.Selection(string='Gender', selection=[('male', 'Male'), ('female', 'Female')])
     birthdate = fields.Date('Birthdate')
+    age = fields.Integer('Age', compute='_compute_age', help="Age (as of today)")
     club_id = fields.Many2one('res.partner', string='Club', domain=[('is_company', '=', True)], tracking=True)
     player_ids = fields.One2many('res.partner', 'club_id', string='Players')
     responsible_id = fields.Many2one('res.partner', string='Responsible',
@@ -109,6 +112,16 @@ class ResPartner(models.Model):
     def _compute_memberships(self):
         for record in self:
             record.membership_count = len(record.membership_ids)
+
+    @api.depends('birthdate')
+    def _compute_age(self):
+        today = date.today()
+        for partner in self:
+            if partner.birthdate:
+                offset = int((today.month, today.day) < (partner.birthdate.month, partner.birthdate.day))
+                partner.age = today.year - partner.birthdate.year - offset
+            else:
+                partner.age = 0
 
     def action_view_memberships(self):
         self.ensure_one()

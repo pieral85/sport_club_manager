@@ -46,12 +46,14 @@ class Membership(models.Model):
     member_parent_id = fields.Many2one('res.partner', related='member_id.parent_id')
     member_tag_ids = fields.Many2many('res.partner.category', string='Member Tags', related='member_id.category_id',
         readonly=False)
+    member_birthdate = fields.Date(related='member_id.birthdate')
     member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id')
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         compute='_compute_contact_person_id', inverse='_inverse_contact_person_id', store=True,
         domain=CONTACT_DOMAIN, tracking=True,
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     email = fields.Char('Email', compute='_compute_email', store=True, readonly=False, tracking=True)
+    age = fields.Integer('Age', compute='_compute_age', help="Age (as of first day of period)")
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
     user_state = fields.Selection(
@@ -480,6 +482,17 @@ class Membership(models.Model):
     def _compute_email(self):
         for record in self:
             record.email = record.contact_person_id.email or record.member_id.email
+
+    @api.depends('member_id.birthdate', 'period_id.start_date')
+    def _compute_age(self):
+        for membership in self:
+            period_start_date = membership.period_id.start_date
+            birthdate = membership.member_id.birthdate
+            if birthdate and period_start_date:
+                offset = int((period_start_date.month, period_start_date.day) < (birthdate.month, birthdate.day))
+                membership.age = period_start_date.year - birthdate.year - offset
+            else:
+                membership.age = 0
 
     @api.depends('price_paid', 'price_due')
     def _compute_payment(self):
