@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
     <!-- Add membership in the website menu -->
+    <!--
     <record id="menu_membership" model="website.menu">
         <field name="name">Membership</field>
         <field name="website_id" ref="website.default_website"/>
@@ -21,8 +22,10 @@
         <field name="parent_id" ref="menu_membership"/>
         <field name="sequence" type="int">20</field>
     </record>
+-->
 
     <!-- Add club information in the website menu -->
+<!--
     <record id="menu_club_info" model="website.menu">
         <field name="name">About us</field>
         <field name="website_id" ref="website.default_website"/>
@@ -30,6 +33,7 @@
         <field name="url">aboutus</field>
         <field name="sequence" type="int">30</field>
     </record>
+    -->
 
     <!--Email template for Membership Affiliation Confirmation-->
     <record id="email_template_membership_affiliation_confirmation" model="mail.template">
