@@ -40,11 +40,6 @@ Following features are included in this module:
         'data/partner_data.xml',
         'data/website_data.xml',
     ],
-    'assets': {
-        'web.assets_frontend': [
-            'profile_bcsaintleger/static/scss/website.scss',
-        ],
-    },
     'qweb': [
     ],
     'installable': True,
