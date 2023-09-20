@@ -13,4 +13,18 @@
             'open_records_view': True,
         }</field>
     </record>
+
+    <record id="action_membership_mass_mail" model="ir.actions.act_window">
+        <field name="name">Send email</field>
+        <field name="res_model">mail.compose.message</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context" eval="{
+            'default_composition_mode': 'mass_mail',
+            'default_email_to': '{{ object.email or '' }}',
+            'default_reply_to_mode': 'update',
+        }"/>
+        <field name="binding_model_id" ref="club.model_membership"/>
+        <field name="binding_view_types">list</field>
+    </record>
 </odoo>
