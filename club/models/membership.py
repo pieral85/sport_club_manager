@@ -7,8 +7,6 @@ from datetime import datetime, timedelta
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
 
-CONTACT_DOMAIN = lambda self: [('is_company', '=', False), ('type', '=', 'contact')]
-
 
 class Membership(models.Model):
     _name = 'membership'
@@ -41,18 +39,29 @@ class Membership(models.Model):
         string='Period Category',
         tracking=True,
     )
-    member_id = fields.Many2one('res.partner', string='Member',
-        ondelete='restrict', required=True, domain=CONTACT_DOMAIN)
+    member_id = fields.Many2one('res.partner', string='Member', ondelete='restrict', required=True,
+        domain="[('is_company', '=', False), ('type', '=', 'contact')]")
     member_parent_id = fields.Many2one('res.partner', related='member_id.parent_id')
     member_tag_ids = fields.Many2many('res.partner.category', string='Member Tags', related='member_id.category_id',
         readonly=False)
-    member_birthdate = fields.Date(related='member_id.birthdate')
+    member_street = fields.Char(related='member_id.street', readonly=False)
+    member_city = fields.Char(related='member_id.city', readonly=False)
+    member_zip = fields.Char(related='member_id.zip', readonly=False)
+    member_country_id = fields.Many2one('res.country', related='member_id.country_id', readonly=False)
+    member_gender = fields.Selection(related='member_id.gender', readonly=False)
+    member_phone = fields.Char(related='member_id.phone', readonly=False)
+    member_mobile = fields.Char(related='member_id.mobile', readonly=False)
+    member_email = fields.Char(related='member_id.email', readonly=False)
+    member_birthdate = fields.Date(related='member_id.birthdate', readonly=False)
+    member_image_128 = fields.Image(related='member_id.image_128')
+
     member_user_id = fields.Many2one('res.users', compute='_compute_member_user_id')
     contact_person_id = fields.Many2one('res.partner', string='Contact Person',
         compute='_compute_contact_person_id', inverse='_inverse_contact_person_id', store=True,
-        domain=CONTACT_DOMAIN, tracking=True,
+        domain="[('is_company', '=', False), ('type', '=', 'contact'), ('id', '!=', member_id)]", tracking=True,
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
-    email = fields.Char('Email', compute='_compute_email', store=True, readonly=False, tracking=True)
+    email = fields.Char('Reference Email', compute='_compute_email', inverse='_inverse_email', store=True,
+        readonly=False, tracking=True)
     age = fields.Integer('Age', compute='_compute_age', help="Age (as of first day of period)")
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
@@ -482,6 +491,11 @@ class Membership(models.Model):
     def _compute_email(self):
         for record in self:
             record.email = record.contact_person_id.email or record.member_id.email
+
+    def _inverse_email(self):
+        for record in self:
+            if record.member_id and not record.member_id.email:
+                record.member_id.email = record.email
 
     @api.depends('member_id.birthdate', 'period_id.start_date')
     def _compute_age(self):

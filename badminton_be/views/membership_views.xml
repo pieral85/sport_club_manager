@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="membership_view_form_badminton_be" model="ir.ui.view">
+        <field name="name">membership.form.badminton.be</field>
+        <field name="model">membership</field>
+        <field name="inherit_id" ref="club.membership_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='member_info']" position="after">
+                <page name="lfbb" string="LFBB" attrs="{'invisible': [('member_id', '=', False)]}">
+                    <group string="Membership">
+                        <field name="member_lfbb_membership_number" string="Number"/>
+                        <field name="member_lfbb_uuid" string="UUID" class="oe_edit_only"/>
+                        <field name="member_lfbb_internal_url" string="Internal URL" widget="url" class="oe_read_only"/>
+                        <field name="member_lfbb_external_url" string="External URL" widget="url" class="oe_read_only"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

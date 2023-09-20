@@ -49,23 +49,25 @@
                     -->
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                     <field name="active" invisible="1"/>
-                    <field name="member_birthdate" invisible="1"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <h1 class="oe_title">
                         <field name="member_id"/>
+                        <small>
+                            <span class="ml16">(</span>
+                            <field name="age" nolabel="1" class="oe_inline"/>
+                            <span class="ml8">years)</span>
+                        </small>
+                        <field name="member_image_128" widget="image" class="oe_avatar"/>
                     </h1>
-                    <h3 attrs="{'invisible': ['|', ('period_id', '=', False), ('member_birthdate', '=', False)]}">
-                        <field name="age"/> years
-                    </h3>
                     <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Member Tags..."/>
                     <group>
                         <group>
                             <field name="period_id" class="o_task_user_field" required="1"/>
                             <field name="category_id"/>
                             <field name="contact_person_id"/>
-                            <field name="email"/>
+                            <field name="email" widget="email"/>
                         </group>
                         <group>
                             <field name="price_paid"/>
@@ -73,8 +75,30 @@
                         </group>
                     </group>
                     <!-- Move "groups" attribute to "details" page once a 2nd will be added -->
-                    <notebook groups="base.group_no_one">
-                        <page name="details" string="Details">
+                    <notebook>
+                        <page name="member_info" string="Member Infos" attrs="{'invisible': [('member_id', '=', False)]}">
+                            <group>
+                                <group>
+                                    <span class="o_form_label o_td_label" name="address_name">
+                                        <b>Address</b>
+                                    </span>
+                                    <div class="o_address_format">
+                                        <field name="member_street" placeholder="Street..." class="o_address_street"/>
+                                        <field name="member_city" placeholder="City" class="o_address_city"/>
+                                        <field name="member_zip" placeholder="ZIP" class="o_address_zip"/>
+                                        <field name="member_country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                    </div>
+                                    <field name="member_gender" widget="radio" options="{'horizontal': true}"/>
+                                    <field name="member_birthdate"/>
+                                </group>
+                                <group>
+                                    <field name="member_phone" widget="phone" options="{'enable_sms': false}"/>
+                                    <field name="member_mobile" widget="phone" options="{'enable_sms': false}"/>
+                                    <field name="member_email" widget="email" context="{'gravatar_image': True}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="details" string="Details" groups="base.group_no_one">
                             <group>
                                 <group>
                                     <field name="token"/>

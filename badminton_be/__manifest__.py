@@ -17,6 +17,7 @@ TODO
     # always loaded
     'data': [
         # views
+        'views/membership_views.xml',
         'views/res_partner_views.xml',
     ],
     'qweb': [
