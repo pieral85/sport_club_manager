@@ -99,7 +99,9 @@ class Membership(models.Model):
 
             # 2nd: try to get move line w/ identical period category and price
             partner = rec.contact_person_id or rec.member_id
-            invoices = Move.search([('state', '=', 'draft'), ('partner_id', '=', partner.id)])
+            invoices = Move.search([
+                ('state', '=', 'draft'), ('partner_id', '=', partner.id), ('move_type', '=', 'out_invoice')
+            ])
             inv_lines = invoices.mapped('line_ids').filtered(
                 lambda invl: invl.product_id == rec.period_category_id.product_id and invl.price_unit == rec.price_due)
             if inv_lines:
