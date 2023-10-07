@@ -9,7 +9,7 @@ from odoo.tests.common import Form
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
-    membership_ids = fields.One2many('membership', 'invoice_line_id', 'Memberships', readonly=True,
+    membership_ids = fields.One2many('membership', 'invoice_line_id', 'Memberships',
         inverse='_inverse_membership_ids')
 
     @api.constrains('membership_ids', 'quantity')
