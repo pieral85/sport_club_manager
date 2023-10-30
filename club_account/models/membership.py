@@ -46,6 +46,8 @@ class Membership(models.Model):
                 if rec.price_due != rec.invoice_line_id.price_unit:
                     raise ValidationError(_("Membership due price does is not equal to invoice unit price."))
                 rec.price_paid = rec.price_due
+            else:
+                rec.price_paid = 0.0
 
     @api.depends('invoice_line_id.price_unit')
     def _compute_price_due(self):
