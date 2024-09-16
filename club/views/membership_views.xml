@@ -64,7 +64,7 @@
                     <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Member Tags..."/>
                     <group>
                         <group>
-                            <field name="period_id" class="o_task_user_field" required="1"/>
+                            <field name="period_id" class="o_task_user_field" required="1" domain="['|', ('current', '=', True), ('upcoming', '=', True)]"/>
                             <field name="category_id"/>
                             <field name="contact_person_id"/>
                             <field name="email" widget="email"/>
@@ -104,11 +104,13 @@
                                     <field name="token"/>
                                     <field name="token_validity"/>
                                     <field name="token_is_valid"/>
+                                    <field name="previous_membership_id"/>
                                 </group>
                                 <group>
                                     <field name="company_id"/>
                                     <field name="invitation_mail_sent"/>
                                     <field name="confirmation_mail_sent"/>
+                                    <field name="duplicated_at_next_period"/>
                                 </group>
                             </group>
                         </page>

@@ -135,6 +135,11 @@ class Membership(models.Model):
         default=False,
         copy=False,
     )
+    duplicated_at_next_period = fields.Boolean("Duplicated at next period", default=True,
+        compute="_compute_duplicated_at_next_period", store=True, readonly=False, tracking=True,
+        help="If False, the current membership won't be copied when performing a smart duplication of the related " \
+        "period.\nAfter 2 consecutive memberhips being rejected, the 3rd one won't be created during a smart period " \
+        "duplication.")
     user_response = fields.Selection(
         [
          ('undefined', 'Undefined'),
@@ -146,6 +151,7 @@ class Membership(models.Model):
         default='undefined',
         copy=False,
         help="Membership status for user's response.")
+    previous_membership_id = fields.Many2one('membership', compute='_compute_previous_membership_id')
     # partner_id = fields.Many2one(
     #     comodel_name='res.partner',
     #     related='user_id.partner_id',
@@ -535,6 +541,26 @@ class Membership(models.Model):
         for record in self:
             # TODO 30 should be in club parameters
             record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
+
+    @api.depends('state')
+    def _compute_duplicated_at_next_period(self):
+        for membership in self:
+            old_val = membership.duplicated_at_next_period
+            if membership.state == 'rejected' and membership.previous_membership_id.state == 'rejected':
+                membership.duplicated_at_next_period = False
+                if membership.duplicated_at_next_period != old_val:
+                    membership.message_post(body=_("Membership won't be duplicated at next period duplication as " \
+                        "previous membership is also archived."))
+            elif membership.state == 'member':
+                membership.duplicated_at_next_period = True
+                if membership.duplicated_at_next_period != old_val:
+                    membership.message_post(body=_("Membership will be duplicated again at next period duplication."))
+
+    def _compute_previous_membership_id(self):
+        # This compute may cause performance issues. A SQL query should be written instead
+        for membership in self:
+            membership.previous_membership_id = membership.member_id.with_context(active_test=False).membership_ids\
+                .filtered(lambda m: m.period_id == membership.period_id.previous_period)
 
     # @api.depends('period_category_id')
     # def _compute_price_due(self):

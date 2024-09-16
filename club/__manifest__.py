@@ -17,7 +17,7 @@ Following features are included in this module:
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Club Membership',
-    'version': '0.2',
+    'version': '0.3',
     'depends': [
         'base',
         'calendar',

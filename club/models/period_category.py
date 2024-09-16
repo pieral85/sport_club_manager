@@ -127,7 +127,7 @@ class PeriodCategory(models.Model):
         default.setdefault('currency_id', self.currency_id.id)
         default.setdefault('price_due', self.price_due)
         new_period_category = super(PeriodCategory, self).copy(default)
-        for membership_id in self.with_context(active_test=False).membership_ids:
+        for membership_id in self.with_context(active_test=False).membership_ids.filtered('duplicated_at_next_period'):
             membership_id.copy({
                 'period_category_id': new_period_category.id,
                 'period_id': default.get('period_id'),

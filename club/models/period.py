@@ -15,7 +15,7 @@ class Period(models.Model):
     _name = 'period'
     _inherit = ['mail.thread', 'mail.alias.mixin']
     _description = 'Period'
-    _order = 'start_date asc'
+    _order = 'current DESC, upcoming DESC, start_date DESC'
     _sql_constraints = [
        ('dates_check', 'CHECK(start_date < end_date)',
         'The end date should be higher than the start date. Please change it accordingly.'),
@@ -118,7 +118,7 @@ class Period(models.Model):
         """
         if self.env.context.get('stop_propagation'):
             return None
-        Period = self.env['period'].with_context(active_test=False)
+        Period = self.env['period']
         today = fields.Date.today()
         current_period_id = Period.search([('start_date', '<=', today), ('end_date', '>=', today)],
             order='start_date asc', limit=1).id
@@ -129,7 +129,6 @@ class Period(models.Model):
 
         for period in Period.search([]):
             period.write({
-                'active': period.id == current_period_id or period.id in upcoming_period_ids,
                 'current': period.id == current_period_id,
                 'upcoming': period.id == upcoming_period_id,
             })
