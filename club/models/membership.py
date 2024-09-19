@@ -582,9 +582,12 @@ class Membership(models.Model):
         """
         Membership = self.env['membership']
         for membership in self:
-            if Membership.search_count([('member_id.id', '=', membership.member_id.id),
-                                        ('period_id.id', '=', membership.period_id.id),]) > 1:
-                raise ValidationError(_("The user '%s' has already a membership for this period (%s). Please change accordingly.") % (membership.member_id.name, membership.period_id.name))
+            if Membership.with_context(active_test=False).search_count([
+                ('member_id.id', '=', membership.member_id.id),
+                ('period_id.id', '=', membership.period_id.id)
+            ]) > 1:
+                raise ValidationError(_("Player '%s' has already a membership (maybe archived) for period '%s'. " \
+                    "Please use it instead.") % (membership.member_id.name, membership.period_id.name))
 
     @api.constrains('price_paid', 'price_due')
     def _check_price(self):
