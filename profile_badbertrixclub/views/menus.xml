@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="club.menu_root" name="Badminton" web_icon="profile_badbertrixclub,static/description/icon.png"/>
-</odoo>
