@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-05 14:02+0000\n"
-"PO-Revision-Date: 2022-09-05 14:02+0000\n"
+"POT-Creation-Date: 2024-10-19 20:43+0000\n"
+"PO-Revision-Date: 2024-10-19 20:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -239,7 +239,7 @@ msgid "<span class=\"s_progress_bar_text\">60% Development</span>"
 msgstr ""
 
 #. module: profile_bcsaintleger
-#: model:mail.template,body_html:profile_bcsaintleger.email_template_new_season
+#: model:mail.template,body_html:profile_bcsaintleger.email_template_new_season_bcsaintleger
 msgid ""
 "<t t-call=\"club.email_default_layout\">\n"
 "    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"/>\n"
@@ -402,6 +402,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "Cotisation <i>récréant</i><br/>"
+msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
+#: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
+msgid "DRAG BUILDING BLOCKS HERE"
 msgstr ""
 
 #. module: profile_bcsaintleger
@@ -606,7 +613,7 @@ msgid ""
 msgstr ""
 
 #. module: profile_bcsaintleger
-#: model:mail.template,subject:profile_bcsaintleger.email_template_new_season
+#: model:mail.template,subject:profile_bcsaintleger.email_template_new_season_bcsaintleger
 msgid "Lancement de la nouvelle saison!"
 msgstr ""
 
@@ -694,7 +701,7 @@ msgid "N'hésitez pas et rejoignez-nous&amp;nbsp;sur un terrain!"
 msgstr ""
 
 #. module: profile_bcsaintleger
-#: model:mail.template,name:profile_bcsaintleger.email_template_new_season
+#: model:mail.template,name:profile_bcsaintleger.email_template_new_season_bcsaintleger
 msgid "New season - Welcome (BC Saint-Léger)"
 msgstr ""
 

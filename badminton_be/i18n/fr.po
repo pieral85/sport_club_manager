@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-05 00:33+0000\n"
+"POT-Creation-Date: 2024-10-19 19:41+0000\n"
 "PO-Revision-Date: 2022-04-04 11:12+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -22,45 +22,59 @@ msgid "Contact"
 msgstr "Contact"
 
 #. module: badminton_be
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "External URL"
 msgstr "URL externe"
 
 #. module: badminton_be
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "Internal URL"
 msgstr "URL interne"
 
 #. module: badminton_be
+#: code:addons/badminton_be/models/res_partner.py:0
+#, python-format
+msgid "It is not possible to get the UUID for URL section '%s'."
+msgstr "Il n'est pas possible d'obtenir le UUID pour la section '%s' de l'URL."
+
+#. module: badminton_be
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "LFBB"
 msgstr "LFBB"
 
 #. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_membership__member_lfbb_external_url
 #: model:ir.model.fields,field_description:badminton_be.field_res_partner__lfbb_external_url
 #: model:ir.model.fields,field_description:badminton_be.field_res_users__lfbb_external_url
 msgid "LFBB External URL"
 msgstr "URL externe (LFBB)"
 
 #. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_membership__member_lfbb_internal_url
 #: model:ir.model.fields,field_description:badminton_be.field_res_partner__lfbb_internal_url
 #: model:ir.model.fields,field_description:badminton_be.field_res_users__lfbb_internal_url
 msgid "LFBB Internal URL"
 msgstr "URL interne (LFBB)"
 
 #. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_membership__member_lfbb_membership_number
 #: model:ir.model.fields,field_description:badminton_be.field_res_partner__lfbb_membership_number
 #: model:ir.model.fields,field_description:badminton_be.field_res_users__lfbb_membership_number
 msgid "LFBB Membership Number"
 msgstr "Numéro d'affiliation LFBB"
 
 #. module: badminton_be
+#: model:ir.model.fields,field_description:badminton_be.field_membership__member_lfbb_uuid
 #: model:ir.model.fields,field_description:badminton_be.field_res_partner__lfbb_uuid
 #: model:ir.model.fields,field_description:badminton_be.field_res_users__lfbb_uuid
 msgid "LFBB UUID"
 msgstr "UUID LFBB"
 
 #. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_membership__member_lfbb_uuid
 #: model:ir.model.fields,help:badminton_be.field_res_partner__lfbb_uuid
 #: model:ir.model.fields,help:badminton_be.field_res_users__lfbb_uuid
 msgid ""
@@ -72,8 +86,8 @@ msgstr ""
 "ex. #1: https://lfbb.tournamentsoftware.com/association/group/<UUID>\n"
 "ex. #2: https://lfbb.tournamentsoftware.com/organization/group.aspx?id=...&gid=<UUID>"
 
-
 #. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_membership__member_lfbb_membership_number
 #: model:ir.model.fields,help:badminton_be.field_res_partner__lfbb_membership_number
 #: model:ir.model.fields,help:badminton_be.field_res_users__lfbb_membership_number
 msgid ""
@@ -84,22 +98,27 @@ msgstr ""
 "Devrait être du genre 300xxxxx."
 
 #. module: badminton_be
+#: model:ir.model,name:badminton_be.model_membership
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "Membership"
 msgstr "Affiliation"
 
 #. module: badminton_be
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "Number"
 msgstr "Numéro"
 
 #. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_membership__member_lfbb_external_url
 #: model:ir.model.fields,help:badminton_be.field_res_partner__lfbb_external_url
 #: model:ir.model.fields,help:badminton_be.field_res_users__lfbb_external_url
 msgid "Player/club external link (do not require any authentication)."
 msgstr "Lien externe du joueur/club (pas d'authentification requise)."
 
 #. module: badminton_be
+#: model:ir.model.fields,help:badminton_be.field_membership__member_lfbb_internal_url
 #: model:ir.model.fields,help:badminton_be.field_res_partner__lfbb_internal_url
 #: model:ir.model.fields,help:badminton_be.field_res_users__lfbb_internal_url
 msgid "Player/club internal link (require an authentication with club admin account)."
@@ -128,69 +147,7 @@ msgid "The LFBB membership number must be unique! Please change it accordingly o
 msgstr "Le numéro d'affiliation LFBB doit être unique! Veuillez le modifier en conséquence ou le laisser vide."
 
 #. module: badminton_be
+#: model_terms:ir.ui.view,arch_db:badminton_be.membership_view_form_badminton_be
 #: model_terms:ir.ui.view,arch_db:badminton_be.view_partner_form_badminton_be
 msgid "UUID"
 msgstr "UUID"
-
-#~ msgid "B1"
-#~ msgstr "B1"
-
-#~ msgid "B2"
-#~ msgstr "B2"
-
-#~ msgid "C1"
-#~ msgstr "C1"
-
-#~ msgid "C2"
-#~ msgstr "C2"
-
-#~ msgid "Created by"
-#~ msgstr "Créé par"
-
-#~ msgid "Created on"
-#~ msgstr "Créé le"
-
-#~ msgid "Current Ranking"
-#~ msgstr "Classement actuel"
-
-#~ msgid "Display Name"
-#~ msgstr "Nom affiché"
-
-#~ msgid "End Date"
-#~ msgstr "Date de fin"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Dernière Modification le"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Dernière mise à jour par"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Dernière mise à jour le"
-
-#~ msgid "Member"
-#~ msgstr "Membre"
-
-#~ msgid "Ranking"
-#~ msgstr "Classement"
-
-#~ msgid "Ranking (as of today) of the player."
-#~ msgstr "Classement actuel du joueur"
-
-#~ msgid "Ranking of the player."
-#~ msgstr "Classement du joueur"
-
-#~ msgid "Rankings History"
-#~ msgstr "Historique des classements"
-
-#~ msgid "Start Date"
-#~ msgstr "Date de début"
-
-#~ msgid "Users"
-#~ msgstr "Utilisateurs"
-
-#~ msgid "ranking"
-#~ msgstr "classement"

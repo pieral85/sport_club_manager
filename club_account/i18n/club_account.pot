@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-01 18:02+0000\n"
-"PO-Revision-Date: 2022-11-01 18:02+0000\n"
+"POT-Creation-Date: 2024-10-20 18:14+0000\n"
+"PO-Revision-Date: 2024-10-20 18:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr ""
 #: code:addons/club_account/models/product.py:0
 #, python-format
 msgid ""
-"For 'membership' products, the name must be unique! Please change it "
+"For 'membership' products, name '{}' must be unique! Please change it "
 "accordingly."
 msgstr ""
 
@@ -1060,7 +1060,7 @@ msgstr ""
 #: code:addons/club_account/models/membership.py:0
 #, python-format
 msgid ""
-"You cannot change the due price because an invoice is already attached to this membership.\n"
+"You cannot change the due price because an active invoice is already attached to this membership.\n"
 "Please change the price on the invoice line instead."
 msgstr ""
 
@@ -1090,10 +1090,4 @@ msgstr ""
 msgid ""
 "You cannot remove membership(s) because the invoice '%s' has been posted. "
 "Please reset it to draft first."
-msgstr ""
-
-#. module: club_account
-#: code:addons/club_account/models/product.py:0
-#, python-format
-msgid "You cannot use attribute '{}' for this product."
 msgstr ""

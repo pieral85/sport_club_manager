@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-30 18:07+0000\n"
-"PO-Revision-Date: 2022-10-30 18:07+0000\n"
+"POT-Creation-Date: 2024-10-20 18:28+0000\n"
+"PO-Revision-Date: 2024-10-20 18:28+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr ""
 #, python-format
 msgid ""
 "%s has declined the invitation. His status has been changed to Rejected."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
+msgid "&amp;nbsp;years"
 msgstr ""
 
 #. module: club
@@ -170,7 +175,7 @@ msgid ""
 "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
 "title=\"By saving this change, the responsible/dependents address will also "
 "be updated.\" attrs=\"{'invisible': [('responsible_id', '=', False), "
-"('dependent_ids', '=', False)]}\"/>"
+"('dependent_ids', '=', [])]}\"/>"
 msgstr ""
 
 #. module: club
@@ -179,7 +184,7 @@ msgid ""
 "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
 "title=\"By saving this change, the responsible/dependents email will also be"
 " updated.\" attrs=\"{'invisible': [('responsible_id', '=', False), "
-"('dependent_ids', '=', False)]}\"/>"
+"('dependent_ids', '=', [])]}\"/>"
 msgstr ""
 
 #. module: club
@@ -188,7 +193,7 @@ msgid ""
 "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
 "title=\"By saving this change, the responsible/dependents mobile will also "
 "be updated.\" attrs=\"{'invisible': [('responsible_id', '=', False), "
-"('dependent_ids', '=', False)]}\"/>"
+"('dependent_ids', '=', [])]}\"/>"
 msgstr ""
 
 #. module: club
@@ -197,7 +202,26 @@ msgid ""
 "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
 "title=\"By saving this change, the responsible/dependents phone will also be"
 " updated.\" attrs=\"{'invisible': [('responsible_id', '=', False), "
-"('dependent_ids', '=', False)]}\"/>"
+"('dependent_ids', '=', [])]}\"/>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "<span class=\"ml16\">(</span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "<span class=\"ml8\">years)</span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"<span class=\"o_form_label o_td_label\" name=\"address_name\">\n"
+"                                        <b>Address</b>\n"
+"                                    </span>"
 msgstr ""
 
 #. module: club
@@ -210,6 +234,11 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
 msgid "<span> on </span>"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
+msgid "<span>&amp;nbsp;years)</span>"
 msgstr ""
 
 #. module: club
@@ -283,11 +312,6 @@ msgid ""
 msgstr ""
 
 #. module: club
-#: model:website.menu,name:club.menu_club_info
-msgid "About us"
-msgstr ""
-
-#. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 msgid "Accept Emails From"
 msgstr ""
@@ -311,7 +335,9 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__active
+#: model:ir.model.fields,field_description:club.field_membership__active
 #: model_terms:ir.ui.view,arch_db:club.category_search
+#: model_terms:ir.ui.view,arch_db:club.membership_search
 #: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Active"
 msgstr ""
@@ -355,6 +381,7 @@ msgid "Add"
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Address"
 msgstr ""
@@ -374,6 +401,24 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Affiliations"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__age
+#: model:ir.model.fields,field_description:club.field_res_partner__age
+#: model:ir.model.fields,field_description:club.field_res_users__age
+msgid "Age"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__age
+msgid "Age (as of first day of period)"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_res_partner__age
+#: model:ir.model.fields,help:club.field_res_users__age
+msgid "Age (as of today)"
 msgstr ""
 
 #. module: club
@@ -426,6 +471,8 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.category_search
 #: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 #: model_terms:ir.ui.view,arch_db:club.period_search
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
@@ -491,8 +538,10 @@ msgid "Base"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_birthdate
 #: model:ir.model.fields,field_description:club.field_res_partner__birthdate
 #: model:ir.model.fields,field_description:club.field_res_users__birthdate
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 msgid "Birthdate"
 msgstr ""
 
@@ -502,6 +551,14 @@ msgid "Body"
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid ""
+"By rejecting this membership, it will be also archived (and thus hidden). If"
+" you want to see it again, just set the 'Archived' filter."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.member_data_wizard_form_view
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
 msgid "Cancel"
 msgstr ""
@@ -534,8 +591,39 @@ msgid "Category Name"
 msgstr ""
 
 #. module: club
+#: model:category,description:club.category_starter
+msgid ""
+"Category for adults who only want to train (official competition "
+"participation is not allowed)."
+msgstr ""
+
+#. module: club
+#: model:category,description:club.category_competitor
+msgid ""
+"Category for adults who want to train and participate to official "
+"competitions."
+msgstr ""
+
+#. module: club
+#: model:category,description:club.category_child
+msgid "Category for children below 12 years old."
+msgstr ""
+
+#. module: club
+#: model:category,description:club.category_teenager
+msgid "Category for members between 12 and 18 years old."
+msgstr ""
+
+#. module: club
+#: model:category,name:club.category_child
+msgid "Child"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_city
 #: model:ir.model.fields,field_description:club.field_res_partner__city
 #: model:ir.model.fields,field_description:club.field_res_users__city
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "City"
 msgstr ""
 
@@ -562,6 +650,11 @@ msgstr ""
 #: model:ir.module.category,name:club.module_category_committee
 #: model_terms:ir.ui.view,arch_db:club.website_info_club
 msgid "Committee"
+msgstr ""
+
+#. module: club
+#: model:ir.module.category,name:club.module_category_committee_role
+msgid "Committee Role"
 msgstr ""
 
 #. module: club
@@ -606,6 +699,11 @@ msgid "Company Website"
 msgstr ""
 
 #. module: club
+#: model:category,name:club.category_competitor
+msgid "Competitor"
+msgstr ""
+
+#. module: club
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Compose Email - Membership Affiliation Confirmation"
@@ -646,7 +744,15 @@ msgid ""
 msgstr ""
 
 #. module: club
+#: code:addons/club/controllers/controllers.py:0
+#, python-format
+msgid ""
+"Congratulations, your membership has already been approved by the committee."
+msgstr ""
+
+#. module: club
 #: model:ir.model,name:club.model_res_partner
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 msgid "Contact"
 msgstr ""
 
@@ -689,18 +795,16 @@ msgid "Count Memberships"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_country_id
 #: model:ir.model.fields,field_description:club.field_res_partner__country_id
 #: model:ir.model.fields,field_description:club.field_res_users__country_id
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Country"
 msgstr ""
 
 #. module: club
-#: model_terms:ir.ui.view,arch_db:club.period_view_form
-msgid "Smart Duplicate"
-msgstr ""
-
-#. module: club
 #: model:ir.model.fields,field_description:club.field_category__create_uid
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__create_uid
 #: model:ir.model.fields,field_description:club.field_membership__create_uid
 #: model:ir.model.fields,field_description:club.field_period__create_uid
 #: model:ir.model.fields,field_description:club.field_period_category__create_uid
@@ -711,6 +815,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__create_date
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__create_date
 #: model:ir.model.fields,field_description:club.field_membership__create_date
 #: model:ir.model.fields,field_description:club.field_period__create_date
 #: model:ir.model.fields,field_description:club.field_period_category__create_date
@@ -779,6 +884,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__display_name
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__display_name
 #: model:ir.model.fields,field_description:club.field_membership__display_name
 #: model:ir.model.fields,field_description:club.field_period__display_name
 #: model:ir.model.fields,field_description:club.field_period_category__display_name
@@ -798,9 +904,15 @@ msgid "Duplicate Period"
 msgstr ""
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership__email
+#: model:ir.model.fields,field_description:club.field_membership__duplicated_at_next_period
+msgid "Duplicated at next period"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_email
 #: model:ir.model.fields,field_description:club.field_res_partner__email
 #: model:ir.model.fields,field_description:club.field_res_users__email
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 msgid "Email"
 msgstr ""
 
@@ -864,8 +976,7 @@ msgstr ""
 #. module: club
 #: code:addons/club/models/period.py:0
 #, python-format
-msgid ""
-"Field 'Year' cannot be computed. Its only purpose is to be searched."
+msgid "Field 'Year' cannot be computed. Its only purpose is to be searched."
 msgstr ""
 
 #. module: club
@@ -914,9 +1025,15 @@ msgid "From"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_gender
 #: model:ir.model.fields,field_description:club.field_res_partner__gender
 #: model:ir.model.fields,field_description:club.field_res_users__gender
 msgid "Gender"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.member_data_wizard_form_view
+msgid "Generate Report"
 msgstr ""
 
 #. module: club
@@ -931,6 +1048,11 @@ msgid "Groups"
 msgstr ""
 
 #. module: club
+#: model:ir.module.category,description:club.module_category_committee_role
+msgid "Groups roles specific to a club: president, secretary and treasurer"
+msgstr ""
+
+#. module: club
 #: model:ir.model.fields,field_description:club.field_membership__has_message
 #: model:ir.model.fields,field_description:club.field_period__has_message
 msgid "Has Message"
@@ -942,7 +1064,13 @@ msgid "Helps you to manage club groups."
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__hide_data
+msgid "Hide Data"
+msgstr ""
+
+#. module: club
 #: model:ir.model.fields,field_description:club.field_category__id
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__id
 #: model:ir.model.fields,field_description:club.field_membership__id
 #: model:ir.model.fields,field_description:club.field_period__id
 #: model:ir.model.fields,field_description:club.field_period_category__id
@@ -966,6 +1094,13 @@ msgstr ""
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__activity_exception_icon
 msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,help:club.field_membership__duplicated_at_next_period
+msgid ""
+"If False, the current membership won't be copied when performing a smart duplication of the related period.\n"
+"After 2 consecutive memberhips being rejected, the 3rd one won't be created during a smart period duplication."
 msgstr ""
 
 #. module: club
@@ -1009,6 +1144,16 @@ msgid ""
 "If you are using an email address as mail server, enter the local part of the email.\n"
 "        i.e. If you use 'my_club@gmail.com' as mail server, 'my_club' should be the mail local part.\n"
 "        "
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
+msgid "Img"
 msgstr ""
 
 #. module: club
@@ -1079,6 +1224,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category____last_update
+#: model:ir.model.fields,field_description:club.field_member_data_wizard____last_update
 #: model:ir.model.fields,field_description:club.field_membership____last_update
 #: model:ir.model.fields,field_description:club.field_period____last_update
 #: model:ir.model.fields,field_description:club.field_period_category____last_update
@@ -1089,6 +1235,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__write_uid
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__write_uid
 #: model:ir.model.fields,field_description:club.field_membership__write_uid
 #: model:ir.model.fields,field_description:club.field_period__write_uid
 #: model:ir.model.fields,field_description:club.field_period_category__write_uid
@@ -1099,6 +1246,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__write_date
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__write_date
 #: model:ir.model.fields,field_description:club.field_membership__write_date
 #: model:ir.model.fields,field_description:club.field_period__write_date
 #: model:ir.model.fields,field_description:club.field_period_category__write_date
@@ -1111,6 +1259,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:club.action_location
 #: model:ir.ui.menu,name:club.menu_sub_locations
 msgid "Locations"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
+msgid "M/F"
 msgstr ""
 
 #. module: club
@@ -1135,11 +1288,6 @@ msgid "Main Title"
 msgstr ""
 
 #. module: club
-#: model:website.menu,name:club.menu_membership_request
-msgid "Make a request"
-msgstr ""
-
-#. module: club
 #: model:ir.model.fields.selection,name:club.selection__res_partner__gender__male
 msgid "Male"
 msgstr ""
@@ -1155,6 +1303,16 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Member"
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_member_data_wizard
+msgid "Member Data Wizard"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Member Infos"
 msgstr ""
 
 #. module: club
@@ -1191,6 +1349,11 @@ msgid "Members"
 msgstr ""
 
 #. module: club
+#: model:ir.actions.report,name:club.action_report_member_data
+msgid "Members Data"
+msgstr ""
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Members for the previous season."
 msgstr ""
@@ -1202,7 +1365,6 @@ msgstr ""
 
 #. module: club
 #: model:ir.model,name:club.model_membership
-#: model:website.menu,name:club.menu_membership
 msgid "Membership"
 msgstr ""
 
@@ -1238,9 +1400,24 @@ msgid "Membership status for user's response."
 msgstr ""
 
 #. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Membership will be duplicated again at next period duplication."
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid ""
+"Membership won't be duplicated at next period duplication as previous "
+"membership is also archived."
+msgstr ""
+
+#. module: club
 #: code:addons/club/models/res_partner.py:0
 #: model:ir.actions.act_window,name:club.action_membership
 #: model:ir.model.fields,field_description:club.field_category__membership_ids
+#: model:ir.model.fields,field_description:club.field_member_data_wizard__membership_ids
 #: model:ir.model.fields,field_description:club.field_period__membership_ids
 #: model:ir.model.fields,field_description:club.field_period_category__membership_ids
 #: model:ir.model.fields,field_description:club.field_res_partner__membership_ids
@@ -1248,6 +1425,7 @@ msgstr ""
 #: model:ir.ui.menu,name:club.menu_sub_memberships
 #: model:ir.ui.menu,name:club.menu_top_memberships
 #: model_terms:ir.ui.view,arch_db:club.category_view_form
+#: model_terms:ir.ui.view,arch_db:club.member_data_wizard_form_view
 #: model_terms:ir.ui.view,arch_db:club.period_category_view_form
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
 #: model_terms:ir.ui.view,arch_db:club.portal_my_home_membership
@@ -1298,6 +1476,11 @@ msgid "Memberships with an unknown status."
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,help:club.field_category__need_responsible
+msgid "Memberships within this category will need a responsible."
+msgstr ""
+
+#. module: club
 #: code:addons/club/models/membership.py:0
 #: code:addons/club/models/membership.py:0
 #: code:addons/club/models/res_partner.py:0
@@ -1324,8 +1507,10 @@ msgid "Misc"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_mobile
 #: model:ir.model.fields,field_description:club.field_res_partner__mobile
 #: model:ir.model.fields,field_description:club.field_res_users__mobile
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 msgid "Mobile"
 msgstr ""
 
@@ -1351,12 +1536,8 @@ msgid "My Settings"
 msgstr ""
 
 #. module: club
-#: model:website.menu,name:club.menu_membership_historical
-msgid "My historical"
-msgstr ""
-
-#. module: club
 #: model:ir.model.fields,field_description:club.field_period_wizard__name
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 #: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Name"
 msgstr ""
@@ -1370,6 +1551,11 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "Name:"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_category__need_responsible
+msgid "Need Responsible"
 msgstr ""
 
 #. module: club
@@ -1412,6 +1598,12 @@ msgstr ""
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__activity_type_id
 msgid "Next Activity Type"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+#: model_terms:ir.ui.view,arch_db:club.view_res_partner_filter_club
+msgid "Not in Tags"
 msgstr ""
 
 #. module: club
@@ -1466,13 +1658,23 @@ msgid "Only active categories."
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+msgid "Only active memberships."
+msgstr ""
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_search
-msgid "Only active period."
+msgid "Only active periods."
 msgstr ""
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.category_search
 msgid "Only inactive categories."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_search
+msgid "Only inactive memberships."
 msgstr ""
 
 #. module: club
@@ -1596,6 +1798,7 @@ msgid "Periods"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_phone
 #: model:ir.model.fields,field_description:club.field_res_partner__phone
 #: model:ir.model.fields,field_description:club.field_res_users__phone
 msgid "Phone"
@@ -1609,6 +1812,14 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
 msgid "Phone:"
+msgstr ""
+
+#. module: club
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid ""
+"Player '%s' has already a membership (maybe archived) for period '%s'. "
+"Please use it instead."
 msgstr ""
 
 #. module: club
@@ -1642,6 +1853,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:club.selection__membership__state__requested
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Prevalidated"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__previous_membership_id
+msgid "Previous Membership"
 msgstr ""
 
 #. module: club
@@ -1710,6 +1926,16 @@ msgid "Prices should be positive."
 msgstr ""
 
 #. module: club
+#: model:ir.actions.act_window,name:club.action_member_data_wizard
+msgid "Print Members Data"
+msgstr ""
+
+#. module: club
+#: model:ir.model,name:club.model_ir_qweb_field
+msgid "Qweb Field"
+msgstr ""
+
+#. module: club
 #: model:ir.actions.server,name:club.action_update_active_periods
 msgid "Recalculate Active Period(s)"
 msgstr ""
@@ -1723,6 +1949,11 @@ msgstr ""
 #: code:addons/club/models/mail.py:0
 #, python-format
 msgid "Records with Mail Sent"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__email
+msgid "Reference Email"
 msgstr ""
 
 #. module: club
@@ -1835,6 +2066,31 @@ msgid "Season"
 msgstr ""
 
 #. module: club
+#: model:period,name:club.period_past_3
+msgid "Season 2021-2022"
+msgstr ""
+
+#. module: club
+#: model:period,name:club.period_past_2
+msgid "Season 2022-2023"
+msgstr ""
+
+#. module: club
+#: model:period,name:club.period_past_1
+msgid "Season 2023-2024"
+msgstr ""
+
+#. module: club
+#: model:period,name:club.period_current
+msgid "Season 2024-2025"
+msgstr ""
+
+#. module: club
+#: model:period,name:club.period_upcoming
+msgid "Season 2025-2026"
+msgstr ""
+
+#. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__secretary
 #: model:res.groups,name:club.group_club_secretary
 msgid "Secretary"
@@ -1859,6 +2115,11 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Send Invitation"
+msgstr ""
+
+#. module: club
+#: model:ir.actions.act_window,name:club.action_membership_mass_mail
+msgid "Send email"
 msgstr ""
 
 #. module: club
@@ -1891,6 +2152,11 @@ msgid ""
 msgstr ""
 
 #. module: club
+#: model_terms:ir.ui.view,arch_db:club.period_view_form
+msgid "Smart Duplicate"
+msgstr ""
+
+#. module: club
 #: model:ir.model.fields.selection,name:club.selection__mail_template__kind__standard
 msgid "Standard"
 msgstr ""
@@ -1915,6 +2181,11 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Start Treasurer Role"
+msgstr ""
+
+#. module: club
+#: model:category,name:club.category_starter
+msgid "Starter"
 msgstr ""
 
 #. module: club
@@ -1956,9 +2227,15 @@ msgid "Stop Treasurer Role"
 msgstr ""
 
 #. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_street
 #: model:ir.model.fields,field_description:club.field_res_partner__street
 #: model:ir.model.fields,field_description:club.field_res_users__street
 msgid "Street"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "Street..."
 msgstr ""
 
 #. module: club
@@ -1975,6 +2252,11 @@ msgstr ""
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Tag"
+msgstr ""
+
+#. module: club
+#: model:category,name:club.category_teenager
+msgid "Teenager"
 msgstr ""
 
 #. module: club
@@ -2075,14 +2357,6 @@ msgid ""
 msgstr ""
 
 #. module: club
-#: code:addons/club/models/membership.py:0
-#, python-format
-msgid ""
-"The user '%s' has already a membership for this period (%s). Please change "
-"accordingly."
-msgstr ""
-
-#. module: club
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 msgid "There are no memberships."
 msgstr ""
@@ -2097,6 +2371,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
 #: model_terms:ir.ui.view,arch_db:club.website_period
 msgid "To"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.members_data_report_template
+msgid "To Pay"
 msgstr ""
 
 #. module: club
@@ -2281,7 +2560,46 @@ msgid ""
 msgstr ""
 
 #. module: club
+#: code:addons/club/controllers/controllers.py:0
+#, python-format
+msgid "You cannot perform this action because the token has expired."
+msgstr ""
+
+#. module: club
+#: code:addons/club/controllers/controllers.py:0
+#, python-format
+msgid ""
+"You have accepted the invitation. Your membership must now be approved by "
+"the committee."
+msgstr ""
+
+#. module: club
+#: code:addons/club/controllers/controllers.py:0
+#, python-format
+msgid "You have declined the invitation."
+msgstr ""
+
+#. module: club
+#: code:addons/club/controllers/controllers.py:0
+#, python-format
+msgid ""
+"Your membership request is going to be examined by the committee."
+"                     Please ensure to pay the amount due first."
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "ZIP"
+msgstr ""
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__member_zip
 #: model:ir.model.fields,field_description:club.field_res_partner__zip
 #: model:ir.model.fields,field_description:club.field_res_users__zip
 msgid "Zip"
+msgstr ""
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.member_data_wizard_form_view
+msgid "member_data Duplication"
 msgstr ""
