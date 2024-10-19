@@ -116,7 +116,7 @@ class Membership(models.Model):
         tracking=True,
         group_expand='_expand_state',
     )
-    active = fields.Boolean('Active', default=True)
+    active = fields.Boolean('Active', default=True, tracking=True)
     token = fields.Char('Invitation Token', readonly=True, copy=False)
     token_validity = fields.Datetime('Token Validity', readonly=True)  # , groups='base.group_user')
     token_is_valid = fields.Boolean('Token Is Valid', compute='_compute_token_is_valid', readonly=True)
@@ -322,9 +322,11 @@ class Membership(models.Model):
 
     def do_accept(self):
         """ Marks membership invitation as Accepted. """
+        self = self.filtered(lambda m: m.state != 'requested')
         res = self.write({
             'user_response': 'accepted',
             'state': 'requested',
+            'active': True,
         })
         for membership in self:
             membership.message_post(body=_("%s has accepted the invitation. His status has been changed to prevalidated.") % (membership.member_id.name))
@@ -332,6 +334,7 @@ class Membership(models.Model):
 
     def do_decline(self):
         """ Marks membership invitation as Declined. """
+        self = self.filtered(lambda m: m.state != 'rejected')
         res = self.write({
             'user_response': 'declined',
             'state': 'rejected',
