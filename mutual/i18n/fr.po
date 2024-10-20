@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mutual
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-20 14:02+0000\n"
+"PO-Revision-Date: 2024-10-20 14:02+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: lang_iso_code\n"
+
+#. module: mutual
+#: model:ir.model,name:mutual.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: mutual
+#: model:ir.model.fields,field_description:mutual.field_res_partner__current_membership_id
+#: model:ir.model.fields,field_description:mutual.field_res_users__current_membership_id
+msgid "Current Membership"
+msgstr "Affiliation courante"
+
+#. module: mutual
+#: model:ir.model.fields,field_description:mutual.field_res_partner__current_membership_payment_date
+#: model:ir.model.fields,field_description:mutual.field_res_partner__current_membership_payment_date_str
+#: model:ir.model.fields,field_description:mutual.field_res_users__current_membership_payment_date
+#: model:ir.model.fields,field_description:mutual.field_res_users__current_membership_payment_date_str
+msgid "Current Membership Payment Date"
+msgstr "Date de paiement de l'affiliation courante"
+
+#. module: mutual
+#: model:ir.model,name:mutual.model_membership
+msgid "Membership"
+msgstr "Affiliation"
+
+#. module: mutual
+#: model:ir.model.fields,field_description:mutual.field_membership__payment_date
+msgid "Payment Date"
+msgstr "Date de paiement"
+
+#. module: mutual
+#: model:ir.model.fields,field_description:mutual.field_membership__payment_date_str
+msgid "Payment Date (string representation)"
+msgstr "Date de paiement (représentation sous forme de chaîne de catactères)"

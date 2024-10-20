@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- form view(s) -->
+    <record id="membership_view_form_mutual" model="ir.ui.view">
+        <field name="name">membership form mutual</field>
+        <field name="model">membership</field>
+        <field name="inherit_id" ref="club_account.membership_view_form_club_account"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_id']" position="after">
+                <field name="payment_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
