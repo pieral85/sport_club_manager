@@ -148,7 +148,8 @@ class InterclubEvent(models.Model):
         return ret
 
     def write(self, values):
-        if not self.env.user.has_group('interclubs.group_interclubs_interclub_user'):
+        if not self.env.user.has_group('interclubs.group_interclubs_interclub_user') and not \
+           self.env.is_admin():
             raise AccessError(_("You don't have the access rights to modify an interclub event."))
         if 'partner_ids' in values:
             self = self.with_context(no_mail_to_attendees=True)
