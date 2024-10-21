@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="club.menu_root" name="Badminton" web_icon="profile_bcsaintleger,static/description/icon.png"/>
+    <menuitem id="menu_registration_tag_form" action="profile_bcsaintleger.action_registration_tag_form"
+        name="Registration Tags" sequence="5" parent="event.menu_event_configuration"/>
 </odoo>

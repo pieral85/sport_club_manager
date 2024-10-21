@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 20:43+0000\n"
+"POT-Creation-Date: 2024-10-21 21:15+0000\n"
 "PO-Revision-Date: 2020-10-11 21:40+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -311,6 +311,11 @@ msgid "Accueil"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
 msgid "Actualités"
 msgstr ""
@@ -325,6 +330,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
 msgid "Affiliations"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.registration_tag_view_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.actions.act_window,help:profile_bcsaintleger.action_registration_tag_form
+msgid "Assign tags to your registrations to organize, filter and track them."
+msgstr ""
+"Attribuez des étiquettes à vos participants pour les organiser, les filtrer et "
+"les suivre."
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -355,6 +372,16 @@ msgstr ""
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "Cette fonctionnalité est en cours de réalisation et sera bientôt disponible!<br/>"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__child_ids
+msgid "Child Tags"
+msgstr "Étiquettes filles"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__color
+msgid "Color"
+msgstr "Couleur"
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -398,11 +425,31 @@ msgid "Cotisation <i>récréant</i><br/>"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model_terms:ir.actions.act_window,help:profile_bcsaintleger.action_registration_tag_form
+msgid "Create a Registration Tag"
+msgstr "Créer une étiquette de participant"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.homepage_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
 msgid "DRAG BUILDING BLOCKS HERE"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
@@ -483,6 +530,16 @@ msgid "Entraînements<br/>"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model:ir.model,name:profile_bcsaintleger.model_event_registration
+msgid "Event Registration"
+msgstr "Inscription à l'événement"
+
+#. module: profile_bcsaintleger
+#: model:ir.model,name:profile_bcsaintleger.model_event_registration_tag
+msgid "Event Registration Tag"
+msgstr "Étiquette de participant"
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
 msgid "F.A.Q."
@@ -528,6 +585,11 @@ msgstr ""
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
 msgid "Horaires"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__id
+msgid "ID"
+msgstr "ID"
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -603,6 +665,22 @@ msgstr ""
 #: model:mail.template,subject:profile_bcsaintleger.email_template_new_season_bcsaintleger
 msgid "Lancement de la nouvelle saison!"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -707,6 +785,16 @@ msgid "Paiement"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__parent_path
+msgid "Parent Path"
+msgstr "Chemin parent"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__parent_id
+msgid "Parent Tag"
+msgstr "Etiquette parente"
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.template_footer_headline_bcsaintleger
 msgid "Partager"
 msgstr ""
@@ -792,6 +880,23 @@ msgid "Quelles sont les dernières nouvelles du club?<br/>"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.view_registration_tag_form
+msgid "Registration Tag"
+msgstr "Étiquette de participant"
+
+#. module: profile_bcsaintleger
+#: model:ir.actions.act_window,name:profile_bcsaintleger.action_registration_tag_form
+#: model:ir.ui.menu,name:profile_bcsaintleger.menu_registration_tag_form
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.view_registration_tag_list
+msgid "Registration Tags"
+msgstr "Étiquettes de participant"
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__registration_ids
+msgid "Registrations"
+msgstr "Participants"
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "Récréant<br/>"
@@ -809,6 +914,11 @@ msgstr ""
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "Scroll down to next section"
 msgstr "Descendre jusqu'à la section suivante"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.registration_tag_view_search
+msgid "Search Registration Tag"
+msgstr "Rechercher dans les étiquette de participant"
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -834,10 +944,30 @@ msgid "Sur quel numéro de compte faut-il effectuer les virements?"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration_tag__name
+msgid "Tag Name"
+msgstr "Nom de l'étiquette" 
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,field_description:profile_bcsaintleger.field_event_registration__tag_ids
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.event_registration_view_form_bcsaintleger
+msgid "Tags..."
+msgstr "Étiquettes..."
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_practical_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
 msgid "Terrains"
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model:ir.model.fields,help:profile_bcsaintleger.field_event_registration_tag__active
+msgid "The active field allows you to hide the tag without removing it."
+msgstr "Le champ actif vous permet de cacher une étiquette sans la supprimer."
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -930,6 +1060,12 @@ msgid "Yonex AS-20: 20 €"
 msgstr ""
 
 #. module: profile_bcsaintleger
+#: code:addons/profile_bcsaintleger/models/event_registration.py:0
+#, python-format
+msgid "You can not create recursive tags."
+msgstr "Vous ne pouvez pas créer des étiquettes récursives."
+
+#. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "adulte<br/>"
@@ -968,6 +1104,11 @@ msgstr ""
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_practical_information
 msgid "ci-dessus)."
 msgstr ""
+
+#. module: profile_bcsaintleger
+#: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.view_registration_tag_form
+msgid "e.g. \"To Check\""
+msgstr "ex: \"À vérifier\""
 
 #. module: profile_bcsaintleger
 #: model_terms:ir.ui.view,arch_db:profile_bcsaintleger.website_membership_information
@@ -1040,6 +1181,3 @@ msgstr ""
 #: model_terms:website.page,arch_db:profile_bcsaintleger.page_membership_info
 msgid "À partir du troisième membre, une réduction de 10€ sera accordée.<br/>Par exemple, un adulte compétiteur et ses deux enfants récréants paieront 100€ + 2x70€ - 10€"
 msgstr ""
-
-#~ msgid "Short Description for List View"
-#~ msgstr "Description courte pour la vue liste"

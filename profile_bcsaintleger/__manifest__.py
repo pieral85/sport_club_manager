@@ -27,13 +27,16 @@ Following features are included in this module:
     ],
     'data': [
         # security
+        'security/ir.model.access.csv',
         'security/security.xml',
         # views - website templates
         'views/templates/website_footer.xml',
         'views/templates/website_homepage.xml',
         'views/templates/website_membership_information.xml',
         'views/templates/website_practical_information.xml',
-        # menus
+        # menus / views
+        'views/event_registration_views.xml',
+        'views/registration_tag_views.xml',
         'views/menus.xml',
         # data
         'data/mail_template_data.xml',
