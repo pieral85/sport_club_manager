@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import uuid
-from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
@@ -62,6 +62,8 @@ class Membership(models.Model):
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     email = fields.Char('Reference Email', compute='_compute_email', inverse='_inverse_email', store=True,
         readonly=False, tracking=True)
+    email_is_ok = fields.Boolean('Email Warning', compute='_compute_email_is_ok',
+        help='Check if membership email and contact person (or member) email are the same.')
     age = fields.Integer('Age', compute='_compute_age', help="Age (as of first day of period)")
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
@@ -120,21 +122,13 @@ class Membership(models.Model):
     token = fields.Char('Invitation Token', readonly=True, copy=False)
     token_validity = fields.Datetime('Token Validity', readonly=True)  # , groups='base.group_user')
     token_is_valid = fields.Boolean('Token Is Valid', compute='_compute_token_is_valid', readonly=True)
-    invitation_mail_sent = fields.Boolean(
-        string='Invitation Mail Sent',
-        default=False,
-        copy=False,
-    )
+    invitation_mail_sent = fields.Boolean('Invitation Mail Sent', default=False, copy=False, tracking=True)
     color = fields.Integer(
         string='Color Index',
         compute='_compute_color',
         help='Color to be displayed in the kanban view.',
     )
-    confirmation_mail_sent = fields.Boolean(
-        string='Confirmation Mail Sent',
-        default=False,
-        copy=False,
-    )
+    confirmation_mail_sent = fields.Boolean('Confirmation Mail Sent', default=False, copy=False, tracking=True)
     duplicated_at_next_period = fields.Boolean("Duplicated at next period", default=True,
         compute="_compute_duplicated_at_next_period", store=True, readonly=False, tracking=True,
         help="If False, the current membership won't be copied when performing a smart duplication of the related " \
@@ -223,11 +217,12 @@ class Membership(models.Model):
         new_membership = super(Membership, self).copy(default)
         return new_membership
 
-    def reset_token(self):
+    def _set_token(self):
+        now_plus1month = fields.Datetime.now() + relativedelta(months=1)
         for membership in self:
             membership.write({
                 'token': self._get_token(),
-                'token_validity': datetime.now(),
+                'token_validity': max(fields.Datetime.to_datetime(membership.period_id.end_date), now_plus1month),
                 'user_response': 'undefined',
             })
 
@@ -237,9 +232,14 @@ class Membership(models.Model):
     def _send_email(self, template_xmlid, composer_title, **composer_ctx):
         template = self.env.ref(template_xmlid)
         composer_form = self.env.ref('mail.email_compose_message_wizard_form', False)
+
+        # Only open record(s) view if asked explicitly and not coming from the form view of the record
+        # note: 'active_domain' is usually in the context when coming from the action of a list view
+        open_view = self._context.get('see_records_view', False) and 'active_domain' in self._context
+
         ctx = dict(
             # need to propagate this context key to the composer record
-            open_records_view=self._context.get('see_records_view', False),
+            open_records_view=open_view,
             active_model=self._name,  # needed to be propagated to <mail.compose.message>._onchange_template_id method
             active_ids=self.ids,
             default_use_template=bool(template),
@@ -272,33 +272,29 @@ class Membership(models.Model):
             }
         }
 
+    def send_email(self):
+        return self._send_email(
+            template_xmlid='club.email_template_membership_validation',
+            composer_title=_('Send Email'),
+        )
+
     def send_email_invitation(self):
-        memberships = self.filtered(lambda m: m.state in ('unknown', 'old_member'))
+        memberships = self.filtered(lambda m: m.state not in ('member', 'rejected'))
         if not memberships:
             raise UserError(_("The membership(s) must have state 'Unknown' or 'Old Member' in order " \
                 "to send an invitation email."))
         return memberships._send_email(
-            template_xmlid='club.email_template_membership_affiliation_invitation',
-            composer_title=_('Compose Email - Membership Invitation'),
-            only_invitation_emails=True,
+            template_xmlid='club.email_template_membership_validation',
+            composer_title=_('Send Email - Membership Invitation'),
         )
 
     def send_email_confirmation(self):
         memberships = self.filtered(lambda m: m.state == 'member')
         if not memberships:
-            raise UserError(_("The membership(s) must have state 'Member' in order " \
-                "to send a confirmation email."))
+            raise UserError(_("The membership(s) must have state 'Member' in order to send a confirmation email."))
         return memberships._send_email(
-            template_xmlid='club.email_template_membership_affiliation_confirmation',
-            composer_title=_('Compose Email - Membership Affiliation Confirmation'),
-            only_confirmation_emails=True,
-        )
-
-    def send_email_payment_due(self):
-        return self._send_email(
-            template_xmlid='club.email_template_membership_payment_due',
-            composer_title=_('Compose Email - Membership with payment due'),
-            only_payment_due_emails=True,
+            template_xmlid='club.email_template_membership_validation',
+            composer_title=_('Send Email - Membership Confirmation'),
         )
 
     def validate_membership_payment(self):
@@ -506,6 +502,10 @@ class Membership(models.Model):
             if record.member_id and not record.member_id.email:
                 record.member_id.email = record.email
 
+    def _compute_email_is_ok(self):
+        for record in self:
+            record.email_is_ok = record.email and record.email == (record.contact_person_id or record.member_id).email
+
     @api.depends('member_id.birthdate', 'period_id.start_date')
     def _compute_age(self):
         for membership in self:
@@ -542,8 +542,7 @@ class Membership(models.Model):
     @api.depends('token_validity')
     def _compute_token_is_valid(self):
         for record in self:
-            # TODO 30 should be in club parameters
-            record.token_is_valid = record.token_validity and datetime.now() <= fields.Datetime.from_string(record.token_validity) + timedelta(days=30)
+            record.token_is_valid = record.token_validity and fields.Datetime.now() <= record.token_validity
 
     @api.depends('state')
     def _compute_duplicated_at_next_period(self):
@@ -618,3 +617,23 @@ class Membership(models.Model):
         for d in res:
             d['__fold'] = True if d.get('state') in ('old_member', 'rejected') else False
         return res
+
+    def _pre_mail_sent_action(self, mail_template):
+        # Action to perform before an email from a membership is sent
+        for membership in self:
+            if mail_template.kind == 'membership_validation' and membership.state not in ('member', 'rejected') or \
+               self._context.get('is_invitation'):
+                membership._set_token()
+
+    def _post_mail_sent_action(self, mail_template):
+        # Action to perform after an email from a membership is sent
+        for membership in self:
+            # if coming from the "Send Email" action of membership(s) view or from the "Send Invitation" button
+            if mail_template.kind == 'membership_validation' and membership.state not in ('member', 'rejected') or \
+               self._context.get('is_invitation'):
+                membership.invitation_mail_sent = True
+            # if coming from the "Send Email" action of membership(s) view or from the "Send Confirmation" button
+            if mail_template.kind == 'membership_validation' and membership.state == 'member' or \
+               self._context.get('is_confirmation'):
+                membership.confirmation_mail_sent = True
+        super()._post_mail_sent_action(mail_template=mail_template)

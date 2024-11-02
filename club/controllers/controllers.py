@@ -80,8 +80,8 @@ class Club(AuthSignupHome):
                 membership.do_decline()
                 messages['success'] = _('You have declined the invitation.')
             elif action == 'view' and membership.state == 'requested':
-                messages['info'] = _('Your membership request is going to be examined by the committee. \
-                    Please ensure to pay the amount due first.')
+                messages['info'] = _('Your membership request is going to be examined by the committee. ' \
+                    'Please ensure to pay the amount due first.')
 
         response_content = request.env['ir.ui.view']._render_template(
             'club.membership_affiliation_page_anonymous', {

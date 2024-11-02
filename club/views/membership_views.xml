@@ -41,14 +41,14 @@
                     <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'requested'), ('paid', '=', False)]}"/>
                     <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter."/>
 
-                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ['requested', 'member', 'rejected'])]}" context="{'see_records_view': False}" help="Sends an email to the user to invite him to validate his membership."/>
-                    <button name="send_email_confirmation" type="object" string="Send Confirmation Email" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
-                    <button name="send_email_payment_due" type="object" string="Send payment due email" attrs="{'invisible': ['|', ('state', 'not in', ('requested', 'member')), ('paid', '=', True)]}" class="btn-primary" help="Sends an email to the player to let him know that a payment is due for his membership."/>
+                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ('member', 'rejected'))]}" context="{'see_records_view': False, 'is_invitation': True}" help="Sends an email to the user to invite him to validate his membership."/>
+                    <button name="send_email_confirmation" type="object" string="Send Confirmation" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" context="{'see_records_view': False, 'is_confirmation': True}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
                     <!-- Commented out as for now, players are not necessery linked to a user
                     <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('user_state', '!=', 'new')]}" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
                     -->
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                     <field name="active" invisible="1"/>
+                    <field name="email_is_ok" invisible="1"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -67,7 +67,11 @@
                             <field name="period_id" class="o_task_user_field" required="1" domain="['|', ('current', '=', True), ('upcoming', '=', True)]"/>
                             <field name="category_id"/>
                             <field name="contact_person_id"/>
-                            <field name="email" widget="email"/>
+                            <label for="email" class="oe_inline"/>
+                            <div class="o_row o_row_readonly">
+                                <field name="email" widget="email"/>
+                                <span class="fa fa-exclamation-triangle text-warning" title="Is empty or does not match contact person or member email." attrs="{'invisible': [('email_is_ok', '=', True)]}"/>
+                            </div>
                         </group>
                         <group>
                             <field name="price_paid"/>

@@ -7,6 +7,13 @@ from odoo import api, fields, models, tools, _
 from odoo.addons.mail.wizard.mail_compose_message import _reopen
 
 
+class MailThread(models.AbstractModel):
+    _inherit = 'mail.thread'
+
+    def _post_mail_sent_action(self, mail_template=None):
+        return
+
+
 class MailComposer(models.TransientModel):
     _inherit = 'mail.compose.message'
 
@@ -17,8 +24,6 @@ class MailComposer(models.TransientModel):
                     self.env['period'].search([('upcoming', '=', True)], limit=1)
         return False
 
-    template_id = fields.Many2one('mail.template', domain="[('id', 'in', allowed_template_ids)]")
-    allowed_template_ids = fields.One2many('mail.template', compute='_compute_allowed_template_ids')
     season_id = fields.Many2one('period', string='Season', default=_default_season_id)
 
     @api.onchange('season_id')
@@ -36,27 +41,6 @@ class MailComposer(models.TransientModel):
         else:
             self.reply_to = ''
             self.template_id = False
-
-    @api.depends('model')
-    def _compute_allowed_template_ids(self):
-        MailTemplate = self.env['mail.template']
-        kinds = []
-        if self.env.context.get('only_invitation_emails'):
-            kinds.append('membership_invitation')
-        if self.env.context.get('only_confirmation_emails'):
-            kinds.append('membership_confirmation')
-        if self.env.context.get('only_payment_due_emails'):
-            kinds.append('membership_payment_due')
-        if self.env.context.get('for_new_season_mail'):
-            kinds.append('new_season')
-        base_domain = [('kind', 'in', kinds if kinds else ['standard'])]
-
-        for rec in self:
-            allowed_templates = MailTemplate.search_read([('model', '=', rec.model)] + base_domain, ['id'])
-            if allowed_templates:
-                rec.allowed_template_ids = [mtpl['id'] for mtpl in allowed_templates]
-            else:
-                rec.allowed_template_ids = False
 
     def _onchange_template_id(self, template_id, composition_mode, model, res_id):
         """ force default lang of subject/body mail composer """
@@ -80,25 +64,15 @@ class MailComposer(models.TransientModel):
             return super(MailComposer, self).action_send_mail()
         model, ids = self._context['active_model'], self._context['active_ids']
         records = self.env[model].browse(ids)
-
-        if model == 'membership':
-            records.reset_token()
-
+        records._pre_mail_sent_action(self.template_id)
         if self.composition_mode == 'mass_mail':
             # allows to translate variables in the mail template
             self = self.with_context(lang=records._get_closest_lang())
+
         res = super(MailComposer, self).action_send_mail()
 
-        if model == 'membership':
-            vals = {}
-            if self.template_id.kind == 'membership_invitation':
-                vals['invitation_mail_sent'] = True
-            if self.template_id.kind == 'membership_confirmation':
-                vals['confirmation_mail_sent'] = True
-            records.write(vals)
-
-        # note: 'active_domain' is usually in the context when coming from the action of a list view
-        if self.env.context.get('open_records_view') or 'active_domain' in self._context:
+        records._post_mail_sent_action(self.template_id)
+        if self.env.context.get('open_records_view'):
             action = records._get_dynamic_action()
             action.update({
                 'name': _('Records with Mail Sent'),
@@ -128,17 +102,14 @@ class MailTemplate(models.Model):
 
     kind = fields.Selection([
             ('standard', 'Standard'),
-            ('membership_invitation', 'Membership Invitation'),
-            ('membership_confirmation', 'Membership Confirmation'),
-            ('membership_payment_due', 'Membership - Payment due'),
+            ('membership_validation', 'Membership Validation'),
+            # ('membership_confirmation', 'Membership Confirmation'),
             ('new_season', 'New Season'),
             ('other', 'Other'),
         ], default='standard', required=True, string="Kind",
         help="Allows to classify and filter emails, mainly in the email wizards."
         " * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
-        " * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
-        " * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
-        " * 'Membership - Payment due': emails for memberships with an amount due remaining.\n"
+        " * 'Membership Validation': emails related to memberships for their invitation, confirmation or payment due.\n"
         " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
         " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
         " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role.")

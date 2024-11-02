@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
+<odoo noupdate="0">
     <!-- Add membership in the website menu -->
     <!--
     <record id="menu_membership" model="website.menu">
@@ -35,118 +35,102 @@
     </record>
     -->
 
-    <!--Email template for Membership Affiliation Confirmation-->
-    <record id="email_template_membership_affiliation_confirmation" model="mail.template">
-        <field name="name">Membership Affiliation Confirmation</field>
-        <field name="model_id" ref="model_membership"/>
-        <field name="email_from">{{ user.company_id.email_formatted }}</field>
-        <field name="subject">Confirmation of your affiliation for period {{ object.period_category_id.period_id.name }}</field>
-        <field name="partner_to">{{ object.contact_person_id.id if object.contact_person_id.email else object.member_id.id }}</field>
-        <field name="auto_delete" eval="False"/>
-        <field name="kind">membership_confirmation</field>
-        <field name="lang">{{ object.member_id.lang }}</field>
-        <field name="body_html" type="html">
-<p>
-    Dear <t t-out="object.member_id.name.split()[0] or 'member'">member</t>,
-</p>
-<p>
-We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>!
-</p>
-<p>
-<t t-if="object.price_remaining">
-    Please note that you will have to pay <strong t-out="format_amount(object.price_remaining, object.currency_id) or ''">120 €</strong> 
-    <t t-if="user.company_id.account_no">
-        on the account <strong t-out="user.company_id.account_no">BE12 3456 7890 1234</strong>
-    </t>
-    .
-</t>
-<t t-else="">
-    Please note that for this season, no price is due anymore.
-</t>
-</p>
-<p>
-If you have any question, do not hesitate to reply to this email.
-</p>
-<p>
-We hope you will enjoy this new season with us!
-</p>
-<p>
-Best regards,
-</p>
-<p>
-<t t-out="user.name or ''">Mitchell Admin</t>, for the <t t-out="user.company_id.name or ''">YourCompany</t> committee members
-</p>
-        </field>
-    </record>
-
     <!-- Email template for Membership Invitation -->
-    <record id="email_template_membership_affiliation_invitation" model="mail.template">
-        <field name="name">Membership Affiliation Invitation</field>
+    <record id="email_template_membership_validation" model="mail.template">
+        <field name="name">Membership Validation</field>
         <field name="model_id" ref="model_membership"/>
         <field name="email_from">{{ user.company_id.email_formatted }}</field>
-        <field name="subject">Affiliation request for {{ object.period_id.name or 'new season' }}</field>
-        <field name="partner_to">{{ object.contact_person_id.id if object.contact_person_id.email else object.member_id.id }}</field>
+        <field name="subject">Membership Validation - Season {{ object.period_id.name or 'actuelle' }}{{ (' (%s)' % object.member_id.name) if object.contact_person_id else '' }}</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="partner_to"></field>
         <field name="auto_delete" eval="False"/>
-        <field name="kind">membership_invitation</field>
+        <field name="kind">membership_validation</field>
         <field name="lang">{{ object.member_id.lang }}</field>
         <field name="body_html" type="html">
-<div summary="o_mail_template" style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
-    <p>
-        Dear <t t-out="object.member_id.name.split()[0] or 'member'">member</t>,
-    </p>
-    <p>
-        An affiliation request has been done for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>.
-        <br/>
-        Could you please let us know your answer by clicking on the button of your choice?
-    </p>
-    <p>
-        <a t-attf-href="/club/my/membership/accept?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
-        <a t-attf-href="/club/my/membership/decline?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
-        <a t-attf-href="/club/my/membership/view?token={{ object.token }}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
-    </p>
-    <p>
-        Best regards,
-    </p>
-    <p>
-        The <t t-out="user.company_id.name or ''">YourCompany</t> committee members
-    </p>
-    <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="{{ user.company_id.name }}"/>
-
-</div>
-        </field>
-    </record>
-
-    <!-- Email template for Membership with payment due remaining -->
-    <record id="email_template_membership_payment_due" model="mail.template">
-        <field name="name">Membership - Payment due</field>
-        <field name="model_id" ref="model_membership"/>
-        <field name="email_from">{{ user.company_id.email_formatted }}</field>
-        <field name="subject">Affiliation for period {{ object.period_category_id.period_id.name }} - Payment due</field>
-        <field name="partner_to">{{ object.contact_person_id.id if object.contact_person_id.email else object.member_id.id }}</field>
-        <field name="auto_delete" eval="True"/>
-        <field name="kind">membership_payment_due</field>
-        <field name="lang">{{ object.member_id.lang }}</field>
-        <field name="body_html" type="html">
-<p>
-    Dear <t t-out="object.member_id.name.split()[0] or 'member'">member</t>,
-</p>
-<p t-if="not object.paid">
-    In order to finalize your affiliation for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>,
-    please do not forget to pay <strong t-out="format_amount(object.price_remaining, object.currency_id) or ''">120 €</strong> 
-    <t t-if="user.company_id.account_no">
-        on the account <strong t-out="user.company_id.account_no">BE12 3456 7890 1234</strong>
+<t t-call="club.email_default_layout">
+    <t t-set="title_1" t-value="'Saison %s' % object.period_id.name"/>
+    <t t-if="object.state in ('unknown', 'old_member')">
+        <t t-set="title_2" t-value="'Membership request'"/>
     </t>
-    in the next days.
-</p>
-<p t-else="">
-    Thank you for having paid the entire amount (<strong t-out="format_amount(object.price_paid, object.currency_id) or ''">120 €</strong>) 
-    for the season <u><i t-out="object.period_category_id.period_id.name or ''">xxxx</i></u>.
-</p>
-<p>If you have any question, do not hesitate to reply to this email.</p>
-<p>Best regards,</p>
-<p>
-    <t t-out="user.name or ''">Mitchell Admin</t>, for the <t t-out="user.company_id.name or ''">YourCompany</t> committee members
-</p>
+    <t t-elif="object.state == 'requested'">
+        <t t-set="title_2" t-value="'Membership request'"/>
+    </t>
+    <t t-else="">
+        <t t-set="title_2" t-value="'Membership status'"/>
+    </t>
+    <t t-set="body_payload">
+        <div>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                Dear <t t-out="object.member_id.name.split()[0] or 'membre'" contenteditable="false" data-oe-t-inline="true">member</t>,
+            </p>
+            <t t-if="object.state in ('old_member', 'unknown')" data-oe-t-group="0" data-oe-t-selectable="true" data-oe-t-group-active="true">
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                    A membership request <u><i t-out="object.category_id.name or ''" contenteditable="false">recreant</i></u> 
+                    has been done for season <u><i t-out="object.period_id.name or ''" contenteditable="false">2042-2043</i></u> 
+                    and is waiting an action from your side.<br/>
+                    In order to finalize it, could you please give your answer by clicking on one of the following buttons?
+                </p>
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;text-align:center;">
+                    <a t-attf-href="/club/my/membership/accept?token={{ object.token }}" style="border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Becoming a member</a>
+                    <a t-attf-href="/club/my/membership/decline?token={{ object.token }}" style="border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Rejecting request</a>
+                    <a t-attf-href="/club/my/membership/view?token={{ object.token }}" style="border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; color: #875A7B; border: 1px solid #875A7B; border-radius:3px">See membership</a>
+                </p>
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                    If you don't want to become a member this season, please let us know if you want to receive at least our letter at the beginning of next season.
+                </p>
+            </t>
+            <t t-else="" data-oe-t-selectable="true" data-oe-t-group="0">
+            <!-- <t t-elif="object.state in ('requested', 'member', 'rejected')" data-oe-t-selectable="true" data-oe-t-group="0"> -->
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                    Your membership <u><i t-out="object.category_id.name or ''" contenteditable="false">recreant</i></u> 
+                    for the season <u><i t-out="object.period_id.name or ''" contenteditable="false">2042-2043</i></u> 
+                    <t t-if="object.state == 'requested'" data-oe-t-group="1" data-oe-t-selectable="true" data-oe-t-group-active="true" data-oe-t-inline="true">
+                        is being validated.
+                    </t>
+                    <t t-elif="object.state == 'member'" data-oe-t-selectable="true" data-oe-t-group="1" data-oe-t-inline="true">
+                        has been confirmed and finalized.
+                    </t>
+                    <t t-else="" data-oe-t-selectable="true" data-oe-t-group="1" data-oe-t-inline="true">
+                        has been cancelled.
+                    </t>
+                </p>
+            </t>
+
+            <t t-if="object.state != 'rejected'" data-oe-t-group="2" data-oe-t-group-active="true">
+                <t t-if="not object.paid" data-oe-t-group="3" data-oe-t-selectable="true" data-oe-t-group-active="true">
+                    <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                        <t t-if="object.state in ('old_member', 'unknown')" data-oe-t-group="4" data-oe-t-selectable="true" data-oe-t-group-active="true" data-oe-t-inline="true">
+                            If you want to become a member, could you please pay the amount of 
+                        </t>
+                        <t t-else="" data-oe-t-selectable="true" data-oe-t-group="4" data-oe-t-inline="true">
+                            Regarding your membership fee, it seems we still did not receive your payment.<br/>
+                            In order to finalize your membership, could you please pay the amount of 
+                        </t>
+                        <span t-out="format_amount(object.price_remaining, object.currency_id) or ''" style="font-weight: bold;" contenteditable="false">120 €</span> 
+                        <t t-if="user.company_id.account_no" data-oe-t-group="5" data-oe-t-group-active="true" data-oe-t-inline="true">
+                            on the account <span t-out="user.company_id.account_no" style="font-weight: bold;" contenteditable="false">BE12 3456 7890 1234</span>
+                        </t>
+                        ?
+                    </p>
+                </t>
+                <t t-else="" data-oe-t-selectable="true" data-oe-t-group="3">
+                    <p style="margin:0px 0 12px 0;box-sizing:border-box;">
+                        Regarding your membership fee, we did well receive your paymeent for an amount of <strong t-out="format_amount(object.price_paid, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false">120 €</strong>. Everything is then in order!
+                    </p>
+                </t>
+            </t>
+
+            <t t-if="object.state == 'member' and object.paid" data-oe-t-group="6" data-oe-t-selectable="true" data-oe-t-group-active="true">
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">We wish you a pleasant season!</p>
+            </t>
+            <t t-else="" data-oe-t-selectable="true" data-oe-t-group="6">
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">Please do not hesitate to contact us if you have any questions.</p>
+            </t>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">Kind regards,</p>
+
+        </div>
+    </t>
+</t>
         </field>
     </record>
 
@@ -202,20 +186,18 @@ Best regards,
                                     <th>Member Status</th>
                                     <td><span t-field="membership.state"/></td>
                                 </tr>
-                                <tr>
+                                <tr t-if="membership.state in ('requested', 'member')">
                                     <th>Amount Due</th>
                                     <td>
                                         <span t-field="membership.price_due"  t-options='{"widget": "monetary"}'/>
-                                        <t t-if="membership.state in ('requested', 'member')">
-                                            <span t-if="membership.paid" class="badge badge-success ml-2">Everything is paid!</span>
-                                            <span t-else="" class="badge badge-danger ml-2">
-                                                <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
-                                                <span>still to pay</span><br/>
-                                                <span t-if="membership.company_id.account_no"> (account: 
-                                                    <t t-esc="membership.company_id.account_no"/>)
-                                                </span>
+                                        <span t-if="membership.paid" class="badge badge-success ml-2">Everything is paid!</span>
+                                        <span t-else="" class="badge badge-danger ml-2">
+                                            <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                            <span>still to pay</span><br/>
+                                            <span t-if="membership.company_id.account_no"> (account: 
+                                                <t t-esc="membership.company_id.account_no"/>)
                                             </span>
-                                        </t>
+                                        </span>
                                     </td>
                                 </tr>
                             </table>

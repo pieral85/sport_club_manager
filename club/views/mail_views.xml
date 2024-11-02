@@ -18,9 +18,6 @@
         <field name="model">mail.compose.message</field>
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='active_domain']" position="after">
-                <field name="allowed_template_ids" invisible="1"/>
-            </xpath>
             <xpath expr="//field[@name='email_from']" position="before">
                 <field name="season_id" invisible="not context.get('for_new_season_mail', False)" options="{'no_create': True}"/>
             </xpath>

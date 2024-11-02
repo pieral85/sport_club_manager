@@ -33,9 +33,6 @@
                     <field name="active" invisible="1"/>
                     <field name="category_ids" invisible="1"/>
                     <button name="prepare_duplication_wizard" type="object" string="Smart Duplicate" class="btn-secondary"/>
-                    <!-- TODO
-                    <button name="send_email_invitations" type="object" string="Send Invitation Email" class="btn-primary"/>
-                     -->
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
