@@ -62,7 +62,7 @@ class Membership(models.Model):
         help='Contact with which all communication will happen. This is usually useful when member is a minor child.')
     email = fields.Char('Reference Email', compute='_compute_email', inverse='_inverse_email', store=True,
         readonly=False, tracking=True)
-    email_is_ok = fields.Boolean('Email Warning', compute='_compute_email_is_ok',
+    email_is_ok = fields.Boolean('Email is OK', compute='_compute_email_is_ok',
         help='Check if membership email and contact person (or member) email are the same.')
     age = fields.Integer('Age', compute='_compute_age', help="Age (as of first day of period)")
     company_id = fields.Many2one('res.company', string='Company', required=True,

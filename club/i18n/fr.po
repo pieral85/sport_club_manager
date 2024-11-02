@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 18:28+0000\n"
+"POT-Creation-Date: 2024-11-03 00:48+0000\n"
 "PO-Revision-Date: 2018-07-03 01:13+0200\n"
 "Last-Translator: Pierre <pieral85@hotmail.com>\n"
 "Language-Team: French\n"
@@ -17,12 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "%s has accepted the invitation. His status has been changed to prevalidated."
 msgstr "%s a accepté l'invitation. Son statut est maintenant 'prévalidé'."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "%s has declined the invitation. His status has been changed to Rejected."
@@ -32,16 +34,6 @@ msgstr "%s a décliné l'invitation. Son statut est maintenant 'rejeté'."
 #: model_terms:ir.ui.view,arch_db:club.membership_view_kanban
 msgid "&amp;nbsp;years"
 msgstr "&amp;nbsp;ans"
-
-#. module: club
-#: model:ir.actions.server,name:club.action_send_email_membership_confirmation
-msgid "(Re)Send Membership Confirmation Email"
-msgstr "(R)envoyer le mail de confirmation"
-
-#. module: club
-#: model:ir.actions.server,name:club.action_send_email_membership_invitation
-msgid "(Re)Send Membership Invitation Email"
-msgstr "(R)envoyer le mail d'invitation"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
@@ -54,176 +46,9 @@ msgid "<br/>Signature"
 msgstr "<br/>Signature"
 
 #. module: club
-#: model:mail.template,body_html:club.email_template_membership_affiliation_invitation
-msgid ""
-"<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
-"    <p>\n"
-"        Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
-"    </p>\n"
-"    <p>\n"
-"        An affiliation request has been done for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
-"        <br/>\n"
-"        Could you please let us know your answer by clicking on the button of your choice?\n"
-"    </p>\n"
-"    <p>\n"
-"        <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accept</a>\n"
-"        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Decline</a>\n"
-"        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">View</a>\n"
-"    </p>\n"
-"    <p>\n"
-"        Best regards,\n"
-"    </p>\n"
-"    <p>\n"
-"        The <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
-"    </p>\n"
-"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
-"\n"
-"</div>\n"
-"        "
-msgstr ""
-"<div summary=\"o_mail_template\" style=\"padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777\">\n"
-"    <p>\n"
-"        Chèr(e) <t t-out=\"object.member_id.name.split()[0] or 'membre'\">membre</t>,\n"
-"    </p>\n"
-"    <p>\n"
-"        Une demande d'affiliation a été faite pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
-"        <br/>\n"
-"        Pourriez-vous nous communiquer votre réponse en cliquant sur le bouton de votre choix?\n"
-"    </p>\n"
-"    <p>\n"
-"        <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Accepter</a>\n"
-"        <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Refuser</a>\n"
-"        <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Voir</a>\n"
-"    </p>\n"
-"    <p>\n"
-"        Bien à vous,\n"
-"    </p>\n"
-"    <p>\n"
-"        Les membres du comité du <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
-"    </p>\n"
-"    <img src=\"/logo.png\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"{{ user.company_id.name }}\"/>\n"
-"\n"
-"</div>\n"
-"        "
-
-#. module: club
 #: model_terms:ir.ui.view,arch_db:club.website_info_club
 msgid "<font style=\"\" class=\"text-o-color-2\">Committee Info</font>"
 msgstr "<font style=\"\" class=\"text-o-color-2\">Infos Comité</font>"
-
-#. module: club
-#: model:mail.template,body_html:club.email_template_membership_payment_due
-msgid ""
-"<p>\n"
-"    Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
-"</p>\n"
-"<p t-if=\"not object.paid\">\n"
-"    In order to finalize your affiliation for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>,\n"
-"    please do not forget to pay <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
-"    <t t-if=\"user.company_id.account_no\">\n"
-"        on the account <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
-"    </t>\n"
-"    in the next days.\n"
-"</p>\n"
-"<p t-else=\"\">\n"
-"    Thank you for having paid the entire amount (<strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\">120 €</strong>) \n"
-"    for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
-"</p>\n"
-"<p>If you have any question, do not hesitate to reply to this email.</p>\n"
-"<p>Best regards,</p>\n"
-"<p>\n"
-"    <t t-out=\"user.name or ''\">Mitchell Admin</t>, for the <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
-"</p>\n"
-"        "
-msgstr ""
-"<p>\n"
-"    Chèr(e) <t t-out=\"object.member_id.name.split()[0] or 'membre'\">membre</t>,\n"
-"</p>\n"
-"<p t-if=\"not object.paid\">\n"
-"    Dans le but de finaliser votre affiliation pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>,\n"
-"    merci de bien vouloir effectuer le paiement d'un montant de <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
-"    <t t-if=\"user.company_id.account_no\">\n"
-"        sur le compte <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
-"    </t>\n"
-"    dans les prochains jours.\n"
-"</p>\n"
-"<p t-else=\"\">\n"
-"    Merci d'avoir effectué le paiement pour un montant de (<strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\">120 €</strong>) \n"
-"    pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>.\n"
-"</p>\n"
-"<p>Si vous avez des questions, n'hésitez pas à les poser en répondant à ce mail.</p>\n"
-"<p>Bien à vous,</p>\n"
-"<p>\n"
-"    <t t-out=\"user.name or ''\">Mitchell Admin</t>, pour le <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
-"</p>\n"
-"        "
-
-#. module: club
-#: model:mail.template,body_html:club.email_template_membership_affiliation_confirmation
-msgid ""
-"<p>\n"
-"    Dear <t t-out=\"object.member_id.name.split()[0] or 'member'\">member</t>,\n"
-"</p>\n"
-"<p>\n"
-"We are pleased to let you know that you have been successfully affiliated for the season <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>!\n"
-"</p>\n"
-"<p>\n"
-"<t t-if=\"object.price_remaining\">\n"
-"    Please note that you will have to pay <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
-"    <t t-if=\"user.company_id.account_no\">\n"
-"        on the account <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
-"    </t>\n"
-"    .\n"
-"</t>\n"
-"<t t-else=\"\">\n"
-"    Please note that for this season, no price is due anymore.\n"
-"</t>\n"
-"</p>\n"
-"<p>\n"
-"If you have any question, do not hesitate to reply to this email.\n"
-"</p>\n"
-"<p>\n"
-"We hope you will enjoy this new season with us!\n"
-"</p>\n"
-"<p>\n"
-"Best regards,\n"
-"</p>\n"
-"<p>\n"
-"<t t-out=\"user.name or ''\">Mitchell Admin</t>, for the <t t-out=\"user.company_id.name or ''\">YourCompany</t> committee members\n"
-"</p>\n"
-"        "
-msgstr ""
-"<p>\n"
-"    Chèr(e) <t t-out=\"object.member_id.name.split()[0] or 'membre'\">membre</t>,\n"
-"</p>\n"
-"<p>\n"
-"Nous sommes heureux de vous annoncer que votre affiliation a été confirmée pour la saison <u><i t-out=\"object.period_category_id.period_id.name or ''\">xxxx</i></u>!\n"
-"</p>\n"
-"<p>\n"
-"<t t-if=\"object.price_remaining\">\n"
-"    Merci d'effectuer un virement de <strong t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\">120 €</strong> \n"
-"    <t t-if=\"user.company_id.account_no\">\n"
-"        sur le compte <strong t-out=\"user.company_id.account_no\">BE12 3456 7890 1234</strong>\n"
-"    </t>\n"
-"    .\n"
-"</t>\n"
-"<t t-else=\"\">\n"
-"    Pour information, aucun paiement n'est dû.\n"
-"</t>\n"
-"</p>\n"
-"<p>\n"
-"Si vous avez des questions, n'hésitez pas à les poser en répondant à ce mail.\n"
-"</p>\n"
-"<p>\n"
-"Nous espérons que vous passerez une agréable saison!\n"
-"</p>\n"
-"<p>\n"
-"Bien à vous,\n"
-"</p>\n"
-"<p>\n"
-"<t t-out=\"user.name or ''\">Mitchell Admin</t>, pour le <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
-"</p>\n"
-"        "
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
@@ -263,6 +88,11 @@ msgstr "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" tit
 #: model_terms:ir.ui.view,arch_db:club.view_partner_form_club
 msgid "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" title=\"By saving this change, the responsible/dependents phone will also be updated.\" attrs=\"{'invisible': [('responsible_id', '=', False), ('dependent_ids', '=', [])]}\"/>"
 msgstr "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" title=\"En enregistrant ce changement, le téléphone des responsables/personnes à charge sera également mis à jour.\" attrs=\"{'invisible': [('responsible_id', '=', False), ('dependent_ids', '=', [])]}\"/>"
+
+#. module: club
+#: model_terms:ir.ui.view,arch_db:club.membership_view_form
+msgid "<span class=\"fa fa-exclamation-triangle text-warning\" title=\"Is empty or does not match contact person or member email.\" attrs=\"{'invisible': [('email_is_ok', '=', True)]}\"/>"
+msgstr "<span class=\"fa fa-exclamation-triangle text-warning\" title=\"Est vide ou ne correspond pas au courriel du membre ou de la personne de contact.\" attrs=\"{'invisible': [('email_is_ok', '=', True)]}\"/>"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
@@ -320,11 +150,11 @@ msgstr "<span>toujours à payer</span><br/>"
 #: model:mail.template,body_html:club.email_template_new_season
 msgid ""
 "<t t-call=\"club.email_default_layout\">\n"
-"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"/>\n"
-"    <t t-set=\"sender\" t-value=\"user\"/>\n"
-"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
-"    <t t-set=\"title_1\" t-value=\"'Badminton'\"/>\n"
-"    <t t-set=\"title_2\" t-value=\"'Start of the new season%s' % ((': ' + _season.name) if _season else '')\"/>\n"
+"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"></t>\n"
+"    <t t-set=\"sender\" t-value=\"user\"></t>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"></t>\n"
+"    <t t-set=\"title_1\" t-value=\"'Badminton'\"></t>\n"
+"    <t t-set=\"title_2\" t-value=\"'Start of the new season%s' % ((': ' + _season.name) if _season else '')\"></t>\n"
 "    <t t-set=\"body_payload\">\n"
 "        <div>\n"
 "            <p>\n"
@@ -335,7 +165,7 @@ msgid ""
 "            </p>\n"
 "            <t t-if=\"_season and _season.period_category_ids\">\n"
 "            <p>\n"
-"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"/>\n"
+"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"></t>\n"
 "                This season, memberships are classified into the following categories:\n"
 "                <ul>\n"
 "                    <li t-foreach=\"_season.period_category_ids\" t-as=\"period_category\">\n"
@@ -364,28 +194,28 @@ msgid ""
 "        "
 msgstr ""
 "<t t-call=\"club.email_default_layout\">\n"
-"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"/>\n"
-"    <t t-set=\"sender\" t-value=\"user\"/>\n"
-"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"/>\n"
-"    <t t-set=\"title_1\" t-value=\"'Badminton'\"/>\n"
-"    <t t-set=\"title_2\" t-value=\"'Début de la nouvelle saison%s' % ((': ' + _season.name) if _season else '')\"/>\n"
+"    <t t-set=\"_season\" t-value=\"ctx.get('season_id')\"></t>\n"
+"    <t t-set=\"sender\" t-value=\"user\"></t>\n"
+"    <t t-set=\"company\" t-value=\"_o.company_id if _o else sender.company_id\"></t>\n"
+"    <t t-set=\"title_1\" t-value=\"'Badminton'\"></t>\n"
+"    <t t-set=\"title_2\" t-value=\"'Start of the new season%s' % ((': ' + _season.name) if _season else '')\"></t>\n"
 "    <t t-set=\"body_payload\">\n"
 "        <div>\n"
 "            <p>\n"
-"                Chèr(e) <t t-out=\"object.name.split()[0] or 'membre'\">membre</t>,\n"
+"                Chèr(e) <t t-out=\"object.name.split()[0] or 'member'\">membre</t>,\n"
 "            </p>\n"
 "            <p>\n"
 "                Après plusieurs semaines sans votre sport favori, il est temps de (re)venir sur les terrains!\n"
 "            </p>\n"
 "            <t t-if=\"_season and _season.period_category_ids\">\n"
 "            <p>\n"
-"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"/>\n"
+"                <t t-set=\"default_category\" t-value=\"_season.period_category_ids.filtered(lambda pc: pc.default).category_id\"></t>\n"
 "                Cette saison, les affiliations sont réparties parmi les catégories suivantes:\n"
 "                <ul>\n"
 "                    <li t-foreach=\"_season.period_category_ids\" t-as=\"period_category\">\n"
 "                        <span t-out=\"period_category.category_id.name\" style=\"font-weight: bolder;\">Catégorie X</span>\n"
 "                        <ul>\n"
-"                            <li><u>Montant dû:</u> <span t-out=\"format_amount(period_category.price_due, period_category.currency_id)\">XXX €</span></li>\n"
+"                            <li><u>Price due:</u> <span t-out=\"format_amount(period_category.price_due, period_category.currency_id)\">XXX €</span></li>\n"
 "                            <li t-if=\"period_category.category_id.description\"><u>Description:</u> <span t-out=\"period_category.category_id.description\">Description de la catégorie</span></li>\n"
 "                        </ul>\n"
 "                    </li>\n"
@@ -402,6 +232,181 @@ msgstr ""
 "            <p>\n"
 "                Bien à vous,\n"
 "            </p>\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+
+#. module: club
+#: model:mail.template,body_html:club.email_template_membership_validation
+msgid ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"title_1\" t-value=\"'Saison %s' % object.period_id.name\"></t>\n"
+"    <t t-if=\"object.state in ('unknown', 'old_member')\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Membership request'\"></t>\n"
+"    </t>\n"
+"    <t t-elif=\"object.state == 'requested'\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Membership request'\"></t>\n"
+"    </t>\n"
+"    <t t-else=\"\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Membership status'\"></t>\n"
+"    </t>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                Dear <t t-out=\"object.member_id.name.split()[0] or 'membre'\" contenteditable=\"false\" data-oe-t-inline=\"true\">member</t>,\n"
+"            </p>\n"
+"            <t t-if=\"object.state in ('old_member', 'unknown')\" data-oe-t-group=\"0\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    A membership request <u><i t-out=\"object.category_id.name or ''\" contenteditable=\"false\">recreant</i></u> \n"
+"                    has been done for season <u><i t-out=\"object.period_id.name or ''\" contenteditable=\"false\">2042-2043</i></u> \n"
+"                    and is waiting an action from your side.<br>\n"
+"                    In order to finalize it, could you please give your answer by clicking on one of the following buttons?\n"
+"                </p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;text-align:center;\">\n"
+"                    <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Becoming a member</a>\n"
+"                    <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Rejecting request</a>\n"
+"                    <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">See membership</a>\n"
+"                </p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    If you don't want to become a member this season, please let us know if you want to receive at least our letter at the beginning of next season.\n"
+"                </p>\n"
+"            </t>\n"
+"            <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"0\">\n"
+"            <!-- <t t-elif=\"object.state in ('requested', 'member', 'rejected')\" data-oe-t-selectable=\"true\" data-oe-t-group=\"0\"> -->\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    Your membership <u><i t-out=\"object.category_id.name or ''\" contenteditable=\"false\">recreant</i></u> \n"
+"                    for the season <u><i t-out=\"object.period_id.name or ''\" contenteditable=\"false\">2042-2043</i></u> \n"
+"                    <t t-if=\"object.state == 'requested'\" data-oe-t-group=\"1\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                        is being validated.\n"
+"                    </t>\n"
+"                    <t t-elif=\"object.state == 'member'\" data-oe-t-selectable=\"true\" data-oe-t-group=\"1\" data-oe-t-inline=\"true\">\n"
+"                        has been confirmed and finalized.\n"
+"                    </t>\n"
+"                    <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"1\" data-oe-t-inline=\"true\">\n"
+"                        has been cancelled.\n"
+"                    </t>\n"
+"                </p>\n"
+"            </t>\n"
+"\n"
+"            <t t-if=\"object.state != 'rejected'\" data-oe-t-group=\"2\" data-oe-t-group-active=\"true\">\n"
+"                <t t-if=\"not object.paid\" data-oe-t-group=\"3\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                        <t t-if=\"object.state in ('old_member', 'unknown')\" data-oe-t-group=\"4\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                            If you want to become a member, could you please pay the amount of \n"
+"                        </t>\n"
+"                        <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"4\" data-oe-t-inline=\"true\">\n"
+"                            Regarding your membership fee, it seems we still did not receive your payment.<br>\n"
+"                            In order to finalize your membership, could you please pay the amount of \n"
+"                        </t>\n"
+"                        <span t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\" style=\"font-weight: bold;\" contenteditable=\"false\">120 €</span> \n"
+"                        <t t-if=\"user.company_id.account_no\" data-oe-t-group=\"5\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                            on the account <span t-out=\"user.company_id.account_no\" style=\"font-weight: bold;\" contenteditable=\"false\">BE12 3456 7890 1234</span>\n"
+"                        </t>\n"
+"                        ?\n"
+"                    </p>\n"
+"                </t>\n"
+"                <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"3\">\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                        Regarding your membership fee, we did well receive your paymeent for an amount of <strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\" style=\"box-sizing:border-box;font-weight:500;\" contenteditable=\"false\">120 €</strong>. Everything is then in order!\n"
+"                    </p>\n"
+"                </t>\n"
+"            </t>\n"
+"\n"
+"            <t t-if=\"object.state == 'member' and object.paid\" data-oe-t-group=\"6\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">We wish you a pleasant season!</p>\n"
+"            </t>\n"
+"            <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"6\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Please do not hesitate to contact us if you have any questions.</p>\n"
+"            </t>\n"
+"            <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Kind regards,</p>\n"
+"\n"
+"        </div>\n"
+"    </t>\n"
+"</t>\n"
+"        "
+msgstr ""
+"<t t-call=\"club.email_default_layout\">\n"
+"    <t t-set=\"title_1\" t-value=\"'Saison %s' % object.period_id.name\"></t>\n"
+"    <t t-if=\"object.state in ('unknown', 'old_member')\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Demande d\\'affiliation'\"></t>\n"
+"    </t>\n"
+"    <t t-elif=\"object.state == 'requested'\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Demande d\\'affiliation'\"></t>\n"
+"    </t>\n"
+"    <t t-else=\"\">\n"
+"        <t t-set=\"title_2\" t-value=\"'Statut d\\'affiliation'\"></t>\n"
+"    </t>\n"
+"    <t t-set=\"body_payload\">\n"
+"        <div>\n"
+"            <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                Chèr(e) <t t-out=\"object.member_id.name.split()[0] or 'membre'\" contenteditable=\"false\" data-oe-t-inline=\"true\">membre</t>,\n"
+"            </p>\n"
+"            <t t-if=\"object.state in ('old_member', 'unknown')\" data-oe-t-group=\"0\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    Une demande d'affiliation <u><i t-out=\"object.category_id.name or ''\" contenteditable=\"false\">récréant</i></u> \n"
+"                    a été faite pour la saison <u><i t-out=\"object.period_id.name or ''\" contenteditable=\"false\">2042-2043</i></u> \n"
+"                    et est en attente d'une action de votre part.<br>\n"
+"                    Dans le but de la finaliser, pourriez-vous nous donner votre réponse en cliquant sur le bouton approprié?\n"
+"                </p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;text-align:center;\">\n"
+"                    <a t-attf-href=\"/club/my/membership/accept?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Je m'affilie</a>\n"
+"                    <a t-attf-href=\"/club/my/membership/decline?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Je ne m'affilie pas</a>\n"
+"                    <a t-attf-href=\"/club/my/membership/view?token={{ object.token }}\" style=\"border-style:solid;box-sizing:border-box;border-left-color:#875a7b;border-bottom-color:#875a7b;border-right-color:#875a7b;border-top-color:#875a7b;border-left-width:1px;border-bottom-width:1px;border-right-width:1px;border-top-width:1px;text-wrap:nowrap;white-space-collapse:collapse;padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; color: #875A7B; border: 1px solid #875A7B; border-radius:3px\">Voir l'affiliation</a>\n"
+"                </p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    Dans le cas où vous ne souhaitez pas vous (ré)affilier cette saison, merci de nous signaler si vous voulez tout de même recevoir notre lettre de rentrée en début de saison prochaine.\n"
+"                </p>\n"
+"            </t>\n"
+"            <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"0\">\n"
+"            <!-- <t t-elif=\"object.state in ('requested', 'member', 'rejected')\" data-oe-t-selectable=\"true\" data-oe-t-group=\"0\"> -->\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                    Votre affiliation <u><i t-out=\"object.category_id.name or ''\" contenteditable=\"false\">récréant</i></u> \n"
+"                    pour la saison <u><i t-out=\"object.period_id.name or ''\" contenteditable=\"false\">2042-2043</i></u> \n"
+"                    <t t-if=\"object.state == 'requested'\" data-oe-t-group=\"1\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                        est en cours de validation.\n"
+"                    </t>\n"
+"                    <t t-elif=\"object.state == 'member'\" data-oe-t-selectable=\"true\" data-oe-t-group=\"1\" data-oe-t-inline=\"true\">\n"
+"                        a été confirmée et finalisée.\n"
+"                    </t>\n"
+"                    <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"1\" data-oe-t-inline=\"true\">\n"
+"                        a été annulée.\n"
+"                    </t>\n"
+"                </p>\n"
+"            </t>\n"
+"\n"
+"            <t t-if=\"object.state != 'rejected'\" data-oe-t-group=\"2\" data-oe-t-group-active=\"true\">\n"
+"                <t t-if=\"not object.paid\" data-oe-t-group=\"3\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                        <t t-if=\"object.state in ('old_member', 'unknown')\" data-oe-t-group=\"4\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                            Si en revanche vous souhaitez vous (ré)affilier, pourriez-vous alors effectuer un paiement d'un montant de \n"
+"                        </t>\n"
+"                        <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"4\" data-oe-t-inline=\"true\">\n"
+"                            Concernant votre cotisation, et sauf erreur de notre part, nous n'avons pas reçu votre virement.<br>\n"
+"                            Afin de finaliser votre affiliation, pourriez-vous alors effectuer un paiement d'un montant de \n"
+"                        </t>\n"
+"                        <span t-out=\"format_amount(object.price_remaining, object.currency_id) or ''\" style=\"font-weight: bold;\" contenteditable=\"false\">120 €</span> \n"
+"                        <t t-if=\"user.company_id.account_no\" data-oe-t-group=\"5\" data-oe-t-group-active=\"true\" data-oe-t-inline=\"true\">\n"
+"                            sur le compte <span t-out=\"user.company_id.account_no\" style=\"font-weight: bold;\" contenteditable=\"false\">BE12 3456 7890 1234</span>\n"
+"                        </t>\n"
+"                        ?\n"
+"                    </p>\n"
+"                </t>\n"
+"                <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"3\">\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">\n"
+"                        Concernant votre cotisation, nous avons bien reçu le paiement d'un montant de <strong t-out=\"format_amount(object.price_paid, object.currency_id) or ''\" style=\"box-sizing:border-box;font-weight:500;\" contenteditable=\"false\">120 €</strong>. Vous êtes donc en ordre de paiement.\n"
+"                    </p>\n"
+"                </t>\n"
+"            </t>\n"
+"\n"
+"            <t t-if=\"object.state == 'member' and object.paid\" data-oe-t-group=\"6\" data-oe-t-selectable=\"true\" data-oe-t-group-active=\"true\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Nous vous souhaitons une agréable saison!</p>\n"
+"            </t>\n"
+"            <t t-else=\"\" data-oe-t-selectable=\"true\" data-oe-t-group=\"6\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">N'hésitez pas à nous contacter si vous avez des questions.</p>\n"
+"            </t>\n"
+"            <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Bien à vous,</p>\n"
+"\n"
 "        </div>\n"
 "    </t>\n"
 "</t>\n"
@@ -488,16 +493,6 @@ msgid "Address"
 msgstr "Adresse"
 
 #. module: club
-#: model:mail.template,subject:club.email_template_membership_payment_due
-msgid "Affiliation for period {{ object.period_category_id.period_id.name }} - Payment due"
-msgstr "Affiliation pour la saison {{ object.period_category_id.period_id.name }} - Paiement dû"
-
-#. module: club
-#: model:mail.template,subject:club.email_template_membership_affiliation_invitation
-msgid "Affiliation request for {{ object.period_id.name or 'new season' }}"
-msgstr "Demande d'afiliation pour {{ object.period_id.name or 'nouvelle saison' }}"
-
-#. module: club
 #: model_terms:ir.ui.view,arch_db:club.view_users_simple_form_club
 msgid "Affiliations"
 msgstr "Affiliations"
@@ -546,25 +541,16 @@ msgid "Aliased Model"
 msgstr "Modèle concerné"
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_mail_compose_message__allowed_template_ids
-msgid "Allowed Template"
-msgstr "Template autorisé"
-
-#. module: club
 #: model:ir.model.fields,help:club.field_mail_template__kind
 msgid ""
 "Allows to classify and filter emails, mainly in the email wizards. * 'Standard': standard emails (from Odoo Community/Enterprise). Do not have any specific role.\n"
-" * 'Membership Invitation': emails related to the first validation stage of the membership (to know if the player will become a member or not).\n"
-" * 'Membership Confirmation': emails related to the latest validation stage of the membership: the confirmation.\n"
-" * 'Membership - Payment due': emails for memberships with an amount due remaining.\n"
+" * 'Membership Validation': emails related to memberships for their invitation, confirmation or payment due.\n"
 " * 'New Season': emails sent at the beginning of a new season, from a contact view.\n"
 " * 'Interclub': emails related to the interclubs (application 'Interclubs' needs to be installed).\n"
 " * 'Other': emails that do not belong to any of the previous value: not standard and not specific to any role."
 msgstr ""
 "Permet de classer et filtrer les mails, principalement pour les assistants de mails. * 'Standard': mails standards (de Odoo Community/Enterprise). N'a pas de rôle particulier.\n"
-" * 'Invitation d'affiliation': mails liés au 1er stade de validation d'une affiliation (savoir si le joueur sera membre ou non).\n"
-" * 'Confirmation d'affiliation: mails liés au dernier stade de validation d'une affiliatione: la confirmation.\n"
-" * 'Affiliation - Paiement dû': mails pour les affiliations ayant un montant dû restant.\n"
+" * 'Validation d'affiliation': mails liés aux affiliations: concernant l'invitation, la confirmation ou le paiement dû.\n"
 " * 'Nouvelle saison': mails envoyés au début d'une nouvelle saison, à partir de la vue d'un contact.\n"
 " * 'Interclub': mails liés aux interclubs (l'application 'Interclubs' doit être installée).\n"
 " * 'Autre': mails qui n'appartiennent pas à une des précédentes valeurs: non standard et non spécifique à un rôle."
@@ -703,6 +689,11 @@ msgid "Category for members between 12 and 18 years old."
 msgstr "Catégorie pour les enfants ayant entre 12 et 18 ans."
 
 #. module: club
+#: model:ir.model.fields,help:club.field_membership__email_is_ok
+msgid "Check if membership email and contact person (or member) email are the same."
+msgstr "Vérifie si le courriel de l'affiliation et celui de la personne de contact (ou du membre) sont identiques."
+
+#. module: club
 #: model:category,name:club.category_child
 msgid "Child"
 msgstr "Enfant"
@@ -788,24 +779,6 @@ msgid "Competitor"
 msgstr "Compétiteur"
 
 #. module: club
-#: code:addons/club/models/membership.py:0
-#, python-format
-msgid "Compose Email - Membership Affiliation Confirmation"
-msgstr "Rédiger un email - Confirmation d'affiliation"
-
-#. module: club
-#: code:addons/club/models/membership.py:0
-#, python-format
-msgid "Compose Email - Membership Invitation"
-msgstr "Rédiger un email - Invitation d'affiliation"
-
-#. module: club
-#: code:addons/club/models/membership.py:0
-#, python-format
-msgid "Compose Email - Membership with payment due"
-msgstr "Rédiger un email - Affiliation avec paiement dû"
-
-#. module: club
 #: model:ir.model,name:club.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de config"
@@ -821,11 +794,7 @@ msgid "Confirmation Mail Sent"
 msgstr "Confirmation d'email envoyé"
 
 #. module: club
-#: model:mail.template,subject:club.email_template_membership_affiliation_confirmation
-msgid "Confirmation of your affiliation for period {{ object.period_category_id.period_id.name }}"
-msgstr "Confirmation de votre affiliation pour la saison {{ object.period_category_id.period_id.name }}"
-
-#. module: club
+#. odoo-python
 #: code:addons/club/controllers/controllers.py:0
 #, python-format
 msgid "Congratulations, your membership has already been approved by the committee."
@@ -915,6 +884,7 @@ msgid "Current Period"
 msgstr "Saison actuelle"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/res_partner.py:0
 #, python-format
 msgid "Current data will be changed based on new responsible!"
@@ -993,6 +963,7 @@ msgid "Email"
 msgstr "Courriel"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/mail.py:0
 #, python-format
 msgid "Email <i>%(template)s</i> has been sent to the following contacts:<ul>%(contacts)s</ul>"
@@ -1009,9 +980,19 @@ msgid "Email Templates"
 msgstr "Modèles de courriels"
 
 #. module: club
+#: model:ir.model,name:club.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion par e-mail"
+
+#. module: club
 #: model:ir.model,name:club.model_mail_compose_message
 msgid "Email composition wizard"
 msgstr "Assistant de composition d'emails"
+
+#. module: club
+#: model:ir.model.fields,field_description:club.field_membership__email_is_ok
+msgid "Email is OK"
+msgstr "Courriel est OK"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
@@ -1026,6 +1007,7 @@ msgid "End Date"
 msgstr "Date de fin"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/res_users.py:0
 #, python-format
 msgid "Error while trying to %s role '%s': maybe no current role has been found!"
@@ -1047,12 +1029,14 @@ msgid "Female"
 msgstr "Féminin"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period.py:0
 #, python-format
 msgid "Field 'Year' cannot be computed. Its only purpose is to be searched."
 msgstr "Le champ 'Année' ne peut pas être calculé. Son seul but est d'être utilisé comme recherche."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Fields \"Period\" and \"Category\" cannot be set together with such values."
@@ -1076,12 +1060,14 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Icône Font Awesome e.g. fa-tasks"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period_category.py:0
 #, python-format
 msgid "For the period '%s', the category '%s' must be unique. Please change it accordingly."
 msgstr "Pour la saison '%s', la catégorie '%s' doit être unique. Veuillez modifier en conséquence."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period_category.py:0
 #, python-format
 msgid "For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly."
@@ -1174,9 +1160,7 @@ msgstr ""
 
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__message_needaction
-#: model:ir.model.fields,help:club.field_membership__message_unread
 #: model:ir.model.fields,help:club.field_period__message_needaction
-#: model:ir.model.fields,help:club.field_period__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si coché, de nouveaux messages demandent votre attention."
 
@@ -1385,7 +1369,7 @@ msgstr "Assistant de données de membres"
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Member Infos"
-msgstr "Infos des membres"
+msgstr "Infos membre"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
@@ -1408,6 +1392,7 @@ msgid "Member User"
 msgstr "Utilisateur membre"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #: model:ir.actions.act_window,name:club.action_member
 #: model:ir.model.fields,field_description:club.field_category__member_ids
@@ -1441,30 +1426,15 @@ msgid "Membership"
 msgstr "Affiliation"
 
 #. module: club
-#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_payment_due
-#: model:mail.template,name:club.email_template_membership_payment_due
-msgid "Membership - Payment due"
-msgstr "Affiliation - Paiement dû"
+#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_validation
+#: model:mail.template,name:club.email_template_membership_validation
+msgid "Membership Validation"
+msgstr "Validation d'affiliation"
 
 #. module: club
-#: model:mail.template,name:club.email_template_membership_affiliation_confirmation
-msgid "Membership Affiliation Confirmation"
-msgstr "Confirmation d'affiliation"
-
-#. module: club
-#: model:mail.template,name:club.email_template_membership_affiliation_invitation
-msgid "Membership Affiliation Invitation"
-msgstr "Invitation d'affiliation"
-
-#. module: club
-#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_confirmation
-msgid "Membership Confirmation"
-msgstr "Confirmation d'affiliation"
-
-#. module: club
-#: model:ir.model.fields.selection,name:club.selection__mail_template__kind__membership_invitation
-msgid "Membership Invitation"
-msgstr "Invitation d'affiliation"
+#: model:mail.template,subject:club.email_template_membership_validation
+msgid "Membership Validation - Season {{ object.period_id.name or 'actuelle' }}{{ (' (%s)' % object.member_id.name) if object.contact_person_id else '' }}"
+msgstr "Validation d'affiliation - Saison {{ object.period_id.name or 'actuelle' }}{{ (' (%s)' % object.member_id.name) if object.contact_person_id else '' }}"
 
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__user_response
@@ -1472,18 +1442,21 @@ msgid "Membership status for user's response."
 msgstr "Statut de l'affiliation pour la réponse du membre."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Membership will be duplicated again at next period duplication."
 msgstr "L'affiliation sera dupliquée à la prochaine duplication de saison."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Membership won't be duplicated at next period duplication as previous membership is also archived."
-msgstr ""
+msgstr "L'affiliation ne sera pas dupliquée à la prochaine saison, car la précédent affiliation est également archivée."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/res_partner.py:0
 #: model:ir.actions.act_window,name:club.action_membership
 #: model:ir.model.fields,field_description:club.field_category__membership_ids
@@ -1548,9 +1521,10 @@ msgstr "Affiliations avec un statut inconnu."
 #. module: club
 #: model:ir.model.fields,help:club.field_category__need_responsible
 msgid "Memberships within this category will need a responsible."
-msgstr ""
+msgstr "Les affiliations dans cette catégorie auront besoin d'un responsable."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #: code:addons/club/models/res_partner.py:0
 #, python-format
@@ -1588,6 +1562,7 @@ msgid "Mobile:"
 msgstr "GSM:"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Multiple languages detected!"
@@ -1624,7 +1599,7 @@ msgstr "Nom:"
 #. module: club
 #: model:ir.model.fields,field_description:club.field_category__need_responsible
 msgid "Need Responsible"
-msgstr ""
+msgstr "Besoin d'un responsable"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_wizard_form_view
@@ -1632,6 +1607,7 @@ msgid "New Name"
 msgstr "Nouveau nom"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/mail.py:0
 #: model:ir.model.fields.selection,name:club.selection__mail_template__kind__new_season
 #, python-format
@@ -1672,7 +1648,7 @@ msgstr "Type d'activités à venir"
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 #: model_terms:ir.ui.view,arch_db:club.view_res_partner_filter_club
 msgid "Not in Tags"
-msgstr ""
+msgstr "Pas dans les étiquettes"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__message_needaction_counter
@@ -1689,20 +1665,14 @@ msgstr "Nombre d'erreurs"
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__message_needaction_counter
 #: model:ir.model.fields,help:club.field_period__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Nombre de messages exigeant une action"
+msgid "Number of messages requiring action"
+msgstr "NOmbre de messages demandant une action"
 
 #. module: club
 #: model:ir.model.fields,help:club.field_membership__message_has_error_counter
 #: model:ir.model.fields,help:club.field_period__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Nombre de messages avec des erreurs d'envoi"
-
-#. module: club
-#: model:ir.model.fields,help:club.field_membership__message_unread_counter
-#: model:ir.model.fields,help:club.field_period__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Nombre de messages non lus"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__membership__state__old_member
@@ -1715,6 +1685,7 @@ msgid "Old Members"
 msgstr "Anciens membres"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Only '%s' will be used for emails."
@@ -1728,12 +1699,12 @@ msgstr "Catégories actives seulement."
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Only active memberships."
-msgstr ""
+msgstr "Seulement les affiliations actives."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_search
 msgid "Only active periods."
-msgstr ""
+msgstr "Seulement les saisons actives."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.category_search
@@ -1743,7 +1714,7 @@ msgstr "Catégories inactives seulement."
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Only inactive memberships."
-msgstr ""
+msgstr "Seulement les affiliations inactives."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_search
@@ -1796,6 +1767,7 @@ msgid "Payment Receipt"
 msgstr "Paiement reçu"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/portal.py:0
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 #, python-format
@@ -1877,10 +1849,11 @@ msgid "Phone:"
 msgstr "Tél:"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Player '%s' has already a membership (maybe archived) for period '%s'. Please use it instead."
-msgstr ""
+msgstr "Le joueur '%s' a déjà une affiliation (peut-être archivée) pour la saison '%s'. Veuillez utiliser celle-là à la place."
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_res_partner__player_ids
@@ -1922,7 +1895,7 @@ msgstr "Prévalidé"
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__previous_membership_id
 msgid "Previous Membership"
-msgstr ""
+msgstr "Affiliation précédente"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_period__previous_period
@@ -1936,6 +1909,7 @@ msgid "Price Due"
 msgstr "Montant dû"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Price Due has changed"
@@ -1984,6 +1958,7 @@ msgid "Prices per User"
 msgstr "Montants par utilisateur"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "Prices should be positive."
@@ -1992,12 +1967,12 @@ msgstr "Les montants doivent être positifs."
 #. module: club
 #: model:ir.actions.act_window,name:club.action_member_data_wizard
 msgid "Print Members Data"
-msgstr ""
+msgstr "Afficher les données des membres"
 
 #. module: club
 #: model:ir.model,name:club.model_ir_qweb_field
 msgid "Qweb Field"
-msgstr ""
+msgstr "Champ Qweb"
 
 #. module: club
 #: model:ir.actions.server,name:club.action_update_active_periods
@@ -2010,6 +1985,7 @@ msgid "Record Thread ID"
 msgstr "ID de l'enregistrement du fil"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/mail.py:0
 #, python-format
 msgid "Records with Mail Sent"
@@ -2018,7 +1994,7 @@ msgstr "Enregistrements avec mail envoyé"
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__email
 msgid "Reference Email"
-msgstr ""
+msgstr "Courriel de référence"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.period_view_form
@@ -2042,6 +2018,7 @@ msgid "Related Company"
 msgstr "Société liée"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/res_partner.py:0
 #, python-format
 msgid "Related data of %s will also be modified!"
@@ -2121,6 +2098,7 @@ msgid "Search Period Categories"
 msgstr "Recherche des catégories par saison"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/portal.py:0
 #: model:ir.model.fields,field_description:club.field_mail_compose_message__season_id
 #: model_terms:ir.ui.view,arch_db:club.membership_affiliation_page_anonymous
@@ -2132,27 +2110,27 @@ msgstr "Saison"
 #. module: club
 #: model:period,name:club.period_past_3
 msgid "Season 2021-2022"
-msgstr ""
+msgstr "Saison 2021-2022"
 
 #. module: club
 #: model:period,name:club.period_past_2
 msgid "Season 2022-2023"
-msgstr ""
+msgstr "Saison 2022-2023"
 
 #. module: club
 #: model:period,name:club.period_past_1
 msgid "Season 2023-2024"
-msgstr ""
+msgstr "Saison 2023-2024"
 
 #. module: club
 #: model:period,name:club.period_current
 msgid "Season 2024-2025"
-msgstr ""
+msgstr "Saison 2024-2025"
 
 #. module: club
 #: model:period,name:club.period_upcoming
 msgid "Season 2025-2026"
-msgstr ""
+msgstr "Saison 2025-2026"
 
 #. module: club
 #: model:ir.model.fields.selection,name:club.selection__role__name__secretary
@@ -2167,8 +2145,8 @@ msgstr "Sélectionner la saison et la catégorie (en cours de développement)"
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid "Send Confirmation Email"
-msgstr "Envoyer l'email de confirmation"
+msgid "Send Confirmation"
+msgstr "Envoyer confirmation"
 
 #. module: club
 #: model:ir.actions.server,name:club.action_send_email_connection_invitation
@@ -2176,29 +2154,36 @@ msgid "Send Connection Invitation Email (for users who have never been connected
 msgstr "Envoi courriel d'invitation pour se connecter (utilisateurs ne s'étant jamais connecté)"
 
 #. module: club
+#. odoo-python
+#: code:addons/club/models/membership.py:0
+#: model:ir.actions.server,name:club.action_send_email
+#, python-format
+msgid "Send Email"
+msgstr "Envoyer courriel"
+
+#. module: club
+#. odoo-python
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Send Email - Membership Confirmation"
+msgstr "Envoyer courriel - Confirmation d'affiliation"
+
+#. module: club
+#. odoo-python
+#: code:addons/club/models/membership.py:0
+#, python-format
+msgid "Send Email - Membership Invitation"
+msgstr "Envoyer courriel - Invitation d'affiliation"
+
+#. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Send Invitation"
 msgstr "Envoyer invitation"
 
 #. module: club
-#: model:ir.actions.act_window,name:club.action_membership_mass_mail
-msgid "Send email"
-msgstr ""
-
-#. module: club
 #: model:ir.actions.act_window,name:club.partner_wizard_new_season_mail_action
 msgid "Send mail - New season"
 msgstr "Mail - Nouvelle saison"
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid "Send payment due email"
-msgstr "Mail pour Paiement dû"
-
-#. module: club
-#: model_terms:ir.ui.view,arch_db:club.membership_view_form
-msgid "Sends an email to the player to let him know that a payment is due for his membership."
-msgstr "Envoie un mail au joueur pour l'informer qu'un paiement est dû pour son affiliation."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
@@ -2245,7 +2230,7 @@ msgstr "Démarrer le rôle de trésorier"
 #. module: club
 #: model:category,name:club.category_starter
 msgid "Starter"
-msgstr ""
+msgstr "Débutant"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__state
@@ -2255,6 +2240,7 @@ msgid "State"
 msgstr "Etat"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/portal.py:0
 #: model_terms:ir.ui.view,arch_db:club.portal_my_memberships
 #, python-format
@@ -2299,7 +2285,7 @@ msgstr "Rue"
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "Street..."
-msgstr ""
+msgstr "Rue..."
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_res_partner__street2
@@ -2320,15 +2306,17 @@ msgstr "Étiquette"
 #. module: club
 #: model:category,name:club.category_teenager
 msgid "Teenager"
-msgstr ""
+msgstr "Adolescent"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "The contact person will also be set as responsible of the player!"
 msgstr "La personne de contact sera aussi le responsable du joueur!"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period.py:0 code:addons/club/models/role.py:0
 #: model:ir.model.constraint,message:club.constraint_period_dates_check
 #: model:ir.model.constraint,message:club.constraint_role_dates_check
@@ -2337,12 +2325,14 @@ msgid "The end date should be higher than the start date. Please change it accor
 msgstr "La date de fin devrait être supérieur à la date de début. Veuillez modifier en conséquence."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "The membership(s) must have state 'Member' in order to send a confirmation email."
 msgstr "Le(s) membre(s) doi(ven)t avoir le statut 'Membre' pour pouvoir envoyer un mail de confirmation."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/membership.py:0
 #, python-format
 msgid "The membership(s) must have state 'Unknown' or 'Old Member' in order to send an invitation email."
@@ -2359,6 +2349,7 @@ msgid "The name of the category must be unique!"
 msgstr "Le nom de ma catégorie doit être unique!"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/category.py:0
 #, python-format
 msgid "The name of the category must be unique! Please change it accordingly."
@@ -2375,12 +2366,14 @@ msgid "The name of the period must be unique!"
 msgstr "Le nom de la saison doit être unique!"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period.py:0
 #, python-format
 msgid "The name of the period must be unique! Please change it accordingly."
 msgstr "Le nom de la saison doit être unique! Veuillez le changer en conséquence."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/period.py:0
 #, python-format
 msgid "The operator '%s' is not supported when searching field 'Year'."
@@ -2397,6 +2390,7 @@ msgid "The partner should be unique!"
 msgstr "Le partenaire doit être unique!"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/role.py:0
 #, python-format
 msgid "The role '%s' you are trying to assign to user '%s' has already been defined within this period. Please change it accordingly."
@@ -2408,6 +2402,7 @@ msgid "There are no memberships."
 msgstr "Il n'y a pas d'affiliation."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/models/res_users.py:0
 #, python-format
 msgid "This email already exists. Please enter another one."
@@ -2422,7 +2417,7 @@ msgstr "À"
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.members_data_report_template
 msgid "To Pay"
-msgstr ""
+msgstr "À payer"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__token_is_valid
@@ -2493,29 +2488,13 @@ msgid "Unknown Status"
 msgstr "Statut inconnu"
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_membership__message_unread
-#: model:ir.model.fields,field_description:club.field_period__message_unread
-msgid "Unread Messages"
-msgstr "Messages non lus"
-
-#. module: club
-#: model:ir.model.fields,field_description:club.field_membership__message_unread_counter
-#: model:ir.model.fields,field_description:club.field_period__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Compteur de messages non lus"
-
-#. module: club
 #: model:ir.model.fields,field_description:club.field_period__upcoming
 #: model_terms:ir.ui.view,arch_db:club.membership_search
 msgid "Upcoming Period"
 msgstr "Saison à venir"
 
 #. module: club
-#: model:ir.model.fields,field_description:club.field_mail_compose_message__template_id
-msgid "Use template"
-msgstr "Utiliser un modèle"
-
-#. module: club
+#: model:ir.model,name:club.model_res_users
 #: model:ir.model.fields,field_description:club.field_role__user_id
 #: model:res.groups,name:club.group_club_committee_user
 msgid "User"
@@ -2533,7 +2512,6 @@ msgstr "Statut de l'utilisateur"
 
 #. module: club
 #: model:ir.actions.act_window,name:club.action_user
-#: model:ir.model,name:club.model_res_users
 #: model:ir.ui.menu,name:club.menu_sub_users
 msgid "Users"
 msgstr "Utilisateurs"
@@ -2602,33 +2580,37 @@ msgid "You are going to regenerate the default Email Alias. Are you sure? (The c
 msgstr "Vous êtes sur le point de régénérer l'alias de mail par défaut. Êtes-vous sûr? (L'alias actuel sera écrasé.)"
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/controllers.py:0
 #, python-format
 msgid "You cannot perform this action because the token has expired."
-msgstr ""
+msgstr "Vous ne pouvez pas effectuer cette action car le token a expiré."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/controllers.py:0
 #, python-format
 msgid "You have accepted the invitation. Your membership must now be approved by the committee."
-msgstr ""
+msgstr "Vous avez accepté l'invitation. Votre affiliation doit être mainenant approuvée par le comité."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/controllers.py:0
 #, python-format
 msgid "You have declined the invitation."
-msgstr ""
+msgstr "Vous avez décliné l'invitation."
 
 #. module: club
+#. odoo-python
 #: code:addons/club/controllers/controllers.py:0
 #, python-format
-msgid "Your membership request is going to be examined by the committee.                     Please ensure to pay the amount due first."
-msgstr ""
+msgid "Your membership request is going to be examined by the committee. Please ensure to pay the amount due first."
+msgstr "Votre demande d'affiliation va être examinée par le comité. Merci d'effectuer le paiement en premier lieu."
 
 #. module: club
 #: model_terms:ir.ui.view,arch_db:club.membership_view_form
 msgid "ZIP"
-msgstr ""
+msgstr "Code postal"
 
 #. module: club
 #: model:ir.model.fields,field_description:club.field_membership__member_zip
