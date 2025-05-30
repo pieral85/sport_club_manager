@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="event_registration_view_tree_bcsaintleger" model="ir.ui.view">
-        <field name="name">event.registration.view.tree.bcsaintleger</field>
+    <record id="event_registration_view_list_bcsaintleger" model="ir.ui.view">
+        <field name="name">event.registration.view.list.bcsaintleger</field>
         <field name="model">event.registration</field>
         <field name="inherit_id" ref="event.view_event_registration_tree"/>
         <field name="arch" type="xml">

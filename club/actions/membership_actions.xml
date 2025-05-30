@@ -3,7 +3,7 @@
     <record id="action_membership" model="ir.actions.act_window">
         <field name="name">Memberships</field>
         <field name="res_model">membership</field>
-        <field name="view_mode">kanban,tree,form,graph</field>
+        <field name="view_mode">kanban,list,form,graph</field>
         <field name="context">{
             'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
             'search_default_current_period_search': 1,
@@ -18,7 +18,7 @@
                 'view_id': ref('membership_view_kanban'),
                 }),
             (0, 0, {
-                'view_mode': 'tree',
+                'view_mode': 'list',
                 'view_id': ref('membership_view_list'),
                 }),
             (0, 0, {

@@ -4,11 +4,11 @@
     <record id="action_user" model="ir.actions.act_window">
         <field name="name">Users</field>
         <field name="res_model">res.users</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="view_ids" eval="[
             (5, 0, 0),
             (0, 0, {
-                'view_mode': 'tree',
+                'view_mode': 'list',
                 }),
             (0, 0, {
                 'view_mode': 'form',

@@ -14,13 +14,13 @@
                     <span attrs="{'invisible': [('membership_count','&lt;=', 1)]}">Memberships</span>
                 </button>
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="attributes">
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='account_id']" position="attributes">
                 <attribute name="optional">hide</attribute>
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='tax_ids']" position="attributes">
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='tax_ids']" position="attributes">
                 <attribute name="optional">hide</attribute>
             </xpath>
-            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="after">
+            <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='account_id']" position="after">
                 <field name="membership_ids" widget="many2many_tags"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/form//field[@name='account_id']" position="after">

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- tree view(s) -->
+    <!-- list view(s) -->
     <record id="period_category_view_list" model="ir.ui.view">
         <field name="name">period category list</field>
         <field name="model">period.category</field>
         <field name="arch" type="xml">
-            <tree default_order="period_id desc, default desc, id" expand="1">
+            <list default_order="period_id desc, default desc, id" expand="1">
                 <field name="period_id"/>
                 <field name="category_id"/>
                 <field name="default"/>
@@ -15,7 +15,7 @@
                 <field name="total_price_paid" sum="Total"/>
                 <field name="total_remaining_price_due" sum="Total"/>
                 <field name="currency_id" invisible="1"/>
-            </tree>
+            </list>
         </field>
     </record>
 

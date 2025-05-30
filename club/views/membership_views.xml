@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <!-- tree view(s) -->
+    <!-- list view(s) -->
     <record id="membership_view_list" model="ir.ui.view">
         <field name="name">membership list</field>
         <field name="model">membership</field>
         <field name="arch" type="xml">
-            <tree multi_edit="1">
+            <list multi_edit="1">
                 <field name="member_id"/>
                 <field name="email" optional="hide"/>
                 <field name="period_id" required="1" optional="show"/>
@@ -19,7 +19,7 @@
                 <field name="member_tag_ids" optional="show" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="active" optional="hide"/>
                 <field name="currency_id" invisible="1"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -37,8 +37,8 @@
                 <field name="invitation_mail_sent" invisible="1"/>
                 <field name="confirmation_mail_sent" invisible="1"/>
                 <header>
-                    <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" attrs="{'invisible': [('paid', '=', True)]}"/>
-                    <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member'))]}"/>
+                    <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" invisible="paid"/>
+                    <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" invisible="state not in ('unknown', 'old_member')"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member')), '|', ('state', '!=', 'requested'), ('paid', '=', True)]}"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'requested'), ('paid', '=', False)]}"/>
                     <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter."/>

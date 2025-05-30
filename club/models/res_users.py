@@ -6,7 +6,7 @@ from re import match
 # from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError, Warning
+from odoo.exceptions import UserError, ValidationError
 
 
 class ResUsers(models.Model):
@@ -42,7 +42,7 @@ class ResUsers(models.Model):
         role_name, action = self._context['role_name'], self._context['action']
         current_role = self.role_ids.filtered(lambda r: r.current and r.name == role_name)
         if (action == 'stop' and not current_role) or (action == 'start' and current_role):
-            raise Warning(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
+            raise UserError(_("Error while trying to %s role '%s': maybe no current role has been found!") % (action, role_name))
 
         if action == 'start':
             self.role_ids.create({

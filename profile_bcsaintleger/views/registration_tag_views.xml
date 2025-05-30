@@ -22,10 +22,10 @@
         <field name="model">event.registration.tag</field>
         <field eval="6" name="priority"/>
         <field name="arch" type="xml">
-            <tree string="Registration Tags">
+            <list string="Registration Tags">
                 <field name="display_name"/>
                 <field name="color" widget="color_picker"/>
-            </tree>
+            </list>
         </field>
     </record>
 

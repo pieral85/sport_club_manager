@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <!-- tree view(s) -->
+    <!-- list view(s) -->
     <record id="interclub_event_view_list" model="ir.ui.view">
         <field name="name">interclub event list</field>
         <field name="model">interclub.event</field>
         <field name="arch" type="xml">
-            <tree decoration-muted="action_required=='nothing_cancelled'"
+            <list decoration-muted="action_required=='nothing_cancelled'"
                 decoration-warning="action_required in ('need_confirmation', 'need_opening')"
                 decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
                 decoration-info="action_required=='need_close'"
@@ -20,7 +20,7 @@
                 <field name="partner_ids" widget="many2many_tags"/>
                 <field name="state"/>
                 <field name="action_required"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -100,7 +100,7 @@
                         <page name="page_invitations" string="Players">
                             <button name="action_sendmail" type="object" string="Send mail" icon="fa-envelope" class="oe_link"/>
                             <field name="attendee_ids" widget="one2many">
-                                <tree string="Invitation details" editable="top" create="false" delete="false"
+                                <list string="Invitation details" editable="top" create="false" delete="false"
                                         decoration-success="state=='accepted'"
                                         decoration-bf="state=='accepted'"
                                         decoration-muted="state=='declined'">
@@ -110,7 +110,7 @@
                                     <button name="do_tentative" states="needsAction,declined,accepted" string="Uncertain" type="object" icon="fa-asterisk"/>
                                     <button name="do_accept" string="Accept" states="needsAction,tentative,declined" type="object" icon="fa-check text-success"/>
                                     <button name="do_decline" string="Decline" states="needsAction,tentative,accepted" type="object" icon="fa-times-circle text-danger"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Options">

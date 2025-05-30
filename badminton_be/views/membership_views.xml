@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="club.membership_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='member_info']" position="after">
-                <page name="lfbb" string="LFBB" attrs="{'invisible': [('member_id', '=', False)]}">
+                <page name="lfbb" string="LFBB" invisible="not member_id">
                     <group string="Membership">
                         <field name="member_lfbb_membership_number" string="Number"/>
                         <field name="member_lfbb_uuid" string="UUID" class="oe_edit_only"/>

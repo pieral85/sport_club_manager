@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <record id="view_partner_tree_club" model="ir.ui.view">
-        <field name="name">res.partner.tree.club</field>
+    <record id="view_partner_list_club" model="ir.ui.view">
+        <field name="name">res.partner.list.club</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
@@ -82,8 +82,8 @@
             <xpath expr="//page[@name='contact_addresses']" position="before">
                 <page string="Players" name="player_addresses" attrs="{'invisible': [('is_company', '=', False)]}" autofocus="autofocus">
                     <!-- FIXME default_lang does not work (may be != lang) -->
-                    <field name="player_ids" mode="tree,kanban" context="{'default_club_id': active_id, 'default_type': 'contact', 'default_lang': lang}">
-                        <tree string="Players" delete="false">
+                    <field name="player_ids" mode="list,kanban" context="{'default_club_id': active_id, 'default_type': 'contact', 'default_lang': lang}">
+                        <list string="Players" delete="false">
                             <field name="display_name"/>
                             <field name="responsible_id" optional="show"/>
                             <field name="parent_id" optional="hide"/>
@@ -94,7 +94,7 @@
                             <field name="street2" optional="hide"/>
                             <field name="zip" optional="hide"/>
                             <field name="city" optional="hide"/>
-                        </tree>
+                        </list>
                         <kanban class="o_kanban_mobile" delete="false">
                             <field name="id"/>
                             <field name="color"/>

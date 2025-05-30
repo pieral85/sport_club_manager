@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-    <!-- tree view(s) -->
+    <!-- list view(s) -->
     <record id="interclub_view_list" model="ir.ui.view">
         <field name="name">interclub list</field>
         <field name="model">interclub</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="kind"/>
                 <field name="season_id"/>
                 <field name="responsible_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -40,7 +40,7 @@
                     <notebook>
                         <page string="Events">
                             <field name="event_ids" context="{'default_partner_ids': player_ids}">
-                                <tree editable="bottom"
+                                <list editable="bottom"
                                     decoration-muted="action_required=='nothing_cancelled'"
                                     decoration-warning="action_required in ('need_confirmation', 'need_opening')"
                                     decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
@@ -57,7 +57,7 @@
                                     <field name="referee_id" domain="[('id', 'in', parent.referee_ids)]"
                                         options="{'no_create': True}" optional="hide"/>
                                     <field name="company_id" optional="hide"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Options">
