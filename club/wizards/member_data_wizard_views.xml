@@ -25,8 +25,7 @@
                     </page>
                 </notebook>
                 <footer>
-                    <button name="generate_report" type="object"
-                            string="Generate Report" class="oe_highlight"/>
+                    <button name="generate_report" type="object" string="Generate Report" class="oe_highlight"/>
                     <button special="cancel" string="Cancel"/>
                 </footer>
             </form>

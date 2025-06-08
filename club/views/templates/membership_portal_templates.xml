@@ -50,19 +50,19 @@
                             <span t-elif="membership.state == 'rejected'" class="badge badge-danger" t-field="membership.state"/>
                             <span t-else="" class="badge badge-warning" t-field="membership.state"/>
                         </td>
-                        <td style="vertical-align: middle;"><span t-field="membership.price_due" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
-                        <td style="vertical-align: middle;"><span t-field="membership.price_paid" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></td>
+                        <td style="vertical-align: middle;"><span t-field="membership.price_due" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: membership.currency_id}"/></td>
+                        <td style="vertical-align: middle;"><span t-field="membership.price_paid" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: membership.currency_id}"/></td>
                         <td style="vertical-align: middle;">
                             <t t-if="membership.state == 'member'">
                                 <t t-if="membership.paid"><span class="badge badge-success">Payment OK</span></t>
-                                <t t-else=""><span class="badge badge-danger">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/></span></t>
+                                <t t-else=""><span class="badge badge-danger">Payment due: <span t-field="membership.price_remaining" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: membership.currency_id}"/></span></t>
                             </t>
                             <t t-elif="membership.state == 'requested'">
                                 <t t-if="membership.paid">
                                     <span class="badge badge-success">Payment OK</span>
                                 </t>
                                 <t t-else="">
-                                    <span class="badge badge-warning">Payment due: <span t-field="membership.price_remaining" t-options='{"widget": "monetary", "display_currency": membership.currency_id}'/>
+                                    <span class="badge badge-warning">Payment due: <span t-field="membership.price_remaining" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: membership.currency_id}"/>
                                     </span>
                                 </t>
                             </t>

@@ -7,11 +7,10 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet/div[@name='button_box']" position="inside">
-                <button name="action_view_memberships" type="object" class="oe_stat_button" icon="fa-id-card"
-                        attrs="{'invisible': [('membership_count','=', 0)]}">
+                <button name="action_view_memberships" type="object" class="oe_stat_button" icon="fa-id-card" invisible="membership_count == 0">
                     <field name="membership_count"/>
-                    <span attrs="{'invisible': [('membership_count','&gt;', 1)]}">Membership</span>
-                    <span attrs="{'invisible': [('membership_count','&lt;=', 1)]}">Memberships</span>
+                    <span invisible="membership_count &gt; 1">Membership</span>
+                    <span invisible="membership_count &lt;= 1">Memberships</span>
                 </button>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/list/field[@name='account_id']" position="attributes">

@@ -17,8 +17,7 @@
                     </group>
                 </group>
                 <footer>
-                    <button name="duplicate" type="object"
-                            string="Duplicate Period" class="oe_highlight"/>
+                    <button name="duplicate" type="object" string="Duplicate Period" class="oe_highlight"/>
                     <button special="cancel" string="Cancel"/>
                 </footer>
             </form>

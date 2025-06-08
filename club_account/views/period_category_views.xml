@@ -9,7 +9,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Misc" groups="base.group_no_one">
                     <group>
-                        <field name="product_id" attrs="{'invisible': [('id', '=', False)]}" required="0" groups="account.group_account_invoice"/>
+                        <field name="product_id" required="0" groups="account.group_account_invoice" invisible="not id"/>
                     </group>
                 </page>
             </xpath>

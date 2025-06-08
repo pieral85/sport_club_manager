@@ -40,22 +40,15 @@
                     <notebook>
                         <page string="Events">
                             <field name="event_ids" context="{'default_partner_ids': player_ids}">
-                                <list editable="bottom"
-                                    decoration-muted="action_required=='nothing_cancelled'"
-                                    decoration-warning="action_required in ('need_confirmation', 'need_opening')"
-                                    decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
-                                    decoration-info="action_required=='need_close'"
-                                    decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
+                                <list editable="bottom" decoration-muted="action_required=='nothing_cancelled'" decoration-warning="action_required in ('need_confirmation', 'need_opening')" decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')" decoration-info="action_required=='need_close'" decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
                                     <field name="opponent_id"/>
                                     <field name="at_home"/>
                                     <field name="start"/>
                                     <field name="stop" invisible="1"/>
-                                    <field name="partner_ids" widget="many2many_tags"
-                                        domain="[('id', 'in', parent.player_ids)]" options="{'no_create': True}"/>
+                                    <field name="partner_ids" widget="many2many_tags" domain="[('id', 'in', parent.player_ids)]" options="{'no_create': True}"/>
                                     <field name="state"/>
                                     <field name="action_required"/>
-                                    <field name="referee_id" domain="[('id', 'in', parent.referee_ids)]"
-                                        options="{'no_create': True}" optional="hide"/>
+                                    <field name="referee_id" domain="[('id', 'in', parent.referee_ids)]" options="{'no_create': True}" optional="hide"/>
                                     <field name="company_id" optional="hide"/>
                                 </list>
                             </field>
@@ -119,7 +112,7 @@
                                     </div>
                                 </div>
                                 <a class="o_kanban_manage_toggle_button o_left" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a><!-- TODO Add groups for manager -->
-                                <span class="o_right"><field name="is_favorite" widget="boolean_favorite" nolabel="1" force_save="1" /></span>
+                                <span class="o_right"><field name="is_favorite" widget="boolean_favorite" nolabel="1" force_save="1"/></span>
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="o_project_kanban_boxes oe_kanban_bottom_left">
@@ -148,12 +141,12 @@
             <search string="Periods">
                 <field name="season_id" string="Season" filter_domain="[('season_id', 'ilike', self)]"/>
                 <field name="kind" string="Kind" filter_domain="[('kind', 'ilike', self)]"/>
-                <filter name ="my_interclubs_search" string="My Interclubs" domain="['|', '|', ('player_ids.user_ids', 'in', [uid]), ('referee_ids.user_ids', 'in', [uid]), ('responsible_id.user_ids', 'in', [uid])]" help="Interclubs for which I am a player, referee or responsible."/>
+                <filter name="my_interclubs_search" string="My Interclubs" domain="['|', '|', ('player_ids.user_ids', 'in', [uid]), ('referee_ids.user_ids', 'in', [uid]), ('responsible_id.user_ids', 'in', [uid])]" help="Interclubs for which I am a player, referee or responsible."/>
                 <separator/>
                 <filter name="my_favorites_search" string="My Favorites" domain="[('favorite_user_ids', 'in', uid)]"/>
                 <separator/>
-                <filter name ="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclubs of current season."/>
-                <filter name ="upcoming_season_search" string="Upcoming Season" domain="[('season_id.upcoming', '=', True)]" help="Interclubs of upcoming period."/>
+                <filter name="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclubs of current season."/>
+                <filter name="upcoming_season_search" string="Upcoming Season" domain="[('season_id.upcoming', '=', True)]" help="Interclubs of upcoming period."/>
             </search>
         </field>
     </record>

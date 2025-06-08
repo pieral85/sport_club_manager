@@ -6,11 +6,7 @@
         <field name="name">interclub event list</field>
         <field name="model">interclub.event</field>
         <field name="arch" type="xml">
-            <list decoration-muted="action_required=='nothing_cancelled'"
-                decoration-warning="action_required in ('need_confirmation', 'need_opening')"
-                decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')"
-                decoration-info="action_required=='need_close'"
-                decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
+            <list decoration-muted="action_required=='nothing_cancelled'" decoration-warning="action_required in ('need_confirmation', 'need_opening')" decoration-danger="action_required in ('need_confirmation_overdue', 'need_opening_overdue')" decoration-info="action_required=='need_close'" decoration-bf="action_required in ('need_close', 'need_confirmation', 'need_confirmation_overdue', 'need_opening', 'need_opening_overdue')">
                 <field name="action_required" invisible="1"/>
                 <field name="interclub_id" invisible="context.get('from_interclub', False)"/>
                 <field name="season_id" invisible="context.get('from_interclub', False)"/>
@@ -40,19 +36,19 @@
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
-                    <div class="alert alert-danger" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_opening_overdue')]}">
+                    <div class="alert alert-danger" role="alert" invisible="action_required != 'need_opening_overdue'">
                         <div><b>One action is overdue!</b><br/>Please do not forget to <b>open</b> this interclub event (or cancel it).</div>
                     </div>
-                    <div class="alert alert-warning" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_opening')]}">
+                    <div class="alert alert-warning" role="alert" invisible="action_required != 'need_opening'">
                         <div>One action is pending:<br/>Please do not forget to <b>open</b> this interclub event (or cancel it).</div>
                     </div>
-                    <div class="alert alert-danger" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_confirmation_overdue')]}">
+                    <div class="alert alert-danger" role="alert" invisible="action_required != 'need_confirmation_overdue'">
                         <div><b>One action is overdue!</b><br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it).</div>
                     </div>
-                    <div class="alert alert-warning" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_confirmation')]}">
+                    <div class="alert alert-warning" role="alert" invisible="action_required != 'need_confirmation'">
                         <div>One action is pending:<br/>Please do not forget to <b>confirm</b> this interclub event (or cancel it).</div>
                     </div>
-                    <div class="alert alert-info" role="alert" attrs="{'invisible': [('action_required', '!=', 'need_close')]}">
+                    <div class="alert alert-info" role="alert" invisible="action_required != 'need_close'">
                         <div>One action is pending:<br/>Please do not forget to <b>close</b> this interclub event.</div>
                     </div>
                     <field name="action_required" invisible="1"/>
@@ -69,18 +65,12 @@
                         <h2>
                             <!-- TODO Investigate why 'hide_company' + 'always_reload' do not impact the recompute of
                             name_get (it seems to be well triggered but at the end, field 'display_name' is shown) -->
-                            <field name="partner_ids" widget="many2manyattendee"
-                                placeholder="Select players..."
-                                context="{'force_email':True, 'hide_company': 1, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}"
-                                class="oe_inline"
-                                domain="[('id', 'in', interclub_player_ids)]"
-                                options="{'no_create': True, 'always_reload': True}"
-                                attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
+                            <field name="partner_ids" widget="many2manyattendee" placeholder="Select players..." context="{'force_email':True, 'hide_company': 1, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}" class="oe_inline" domain="[('id', 'in', interclub_player_ids)]" options="{'no_create': True, 'always_reload': True}" readonly="state not in ('draft', 'opened')"/>
                         </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="start" attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
+                            <field name="start" readonly="state not in ('draft', 'opened')"/>
                             <field name="season_id"/>
                             <field name="stop" invisible="1"/>
                             <field name="opponent_id"/>
@@ -90,20 +80,14 @@
                             <field name="allowed_location_ids" invisible="1"/>
                             <field name="location_id" string="Location" options="{'no_create': True}"/>
                             <field name="location" string="Address"/>
-                            <field name="referee_id"
-                                domain="[('id', 'in', interclub_referee_ids)]"
-                                options="{'no_create': True, 'always_reload': True}"
-                                context="{'hide_company': 1}"/>
+                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True, 'always_reload': True}" context="{'hide_company': 1}"/>
                         </group>
                     </group>
                     <notebook>
                         <page name="page_invitations" string="Players">
                             <button name="action_sendmail" type="object" string="Send mail" icon="fa-envelope" class="oe_link"/>
                             <field name="attendee_ids" widget="one2many">
-                                <list string="Invitation details" editable="top" create="false" delete="false"
-                                        decoration-success="state=='accepted'"
-                                        decoration-bf="state=='accepted'"
-                                        decoration-muted="state=='declined'">
+                                <list string="Invitation details" editable="top" create="false" delete="false" decoration-success="state=='accepted'" decoration-bf="state=='accepted'" decoration-muted="state=='declined'">
                                     <field name="common_name" string="Name"/>
                                     <field name="state"/>
                                     <field name="email" widget="email"/>
@@ -115,7 +99,7 @@
                         </page>
                         <page string="Options">
                             <group>
-                                <field name="event_id" attrs="{'invisible': [('id', '=', False)]}" required="0"/>
+                                <field name="event_id" required="0" invisible="not id"/>
                                 <field name="lang"/>
                                 <field name="company_id"/>
                                 <field name="item_color" widget="color" options="{'readonly_mode': 'color'}"/>
@@ -152,26 +136,18 @@
                         </h1>
                         <label for="partner_ids" string="Players" class="oe_edit_only"/>
                         <h2>
-                            <field name="partner_ids" widget="many2manyattendee"
-                                placeholder="Select players..."
-                                context="{'force_email': True, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}"
-                                class="oe_inline"
-                                domain="[('id', 'in', interclub_player_ids)]"
-                                options="{'no_create': True}"
-                                attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
+                            <field name="partner_ids" widget="many2manyattendee" placeholder="Select players..." context="{'force_email': True, 'meeting_ids_model': 'interclub.event', 'calendar_event_field': 'event_id'}" class="oe_inline" domain="[('id', 'in', interclub_player_ids)]" options="{'no_create': True}" readonly="state not in ('draft', 'opened')"/>
                         </h2>
                     </div>
                     <group>
                         <group>
-                            <field name="start" attrs="{'readonly':[('state', 'not in', ('draft', 'opened'))]}"/>
+                            <field name="start" readonly="state not in ('draft', 'opened')"/>
                             <field name="stop" invisible="1"/>
                             <field name="opponent_id"/>
                         </group>
                         <group>
                             <field name="at_home"/>
-                            <field name="referee_id"
-                                domain="[('id', 'in', interclub_referee_ids)]"
-                                options="{'no_create': True}"/>
+                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True}"/>
                         </group>
                     </group>
                 </sheet>
@@ -209,7 +185,7 @@
             </xpath>
             <xpath expr="//field[@name='description']" position="replace">
                 <field name="at_home" invisible="1"/>
-                <field name="referee_id" attrs="{'invisible': [('at_home', '=', False)]}"/>
+                <field name="referee_id" invisible="not at_home"/>
                 <field name="responsible_id" string="Responsible" context="{'hide_company': 1}"/>
                 <field name="season_id"/>
             </xpath>
@@ -241,7 +217,7 @@
                 <filter name="events_waiting_action_search" string="Waiting Action" domain="[('action_required', '=like', 'need_%')]" help="Interclub events for which an action still needs to be done."/>
                 <separator/>
                 <filter name="current_season_search" string="Current Season" domain="[('season_id.current', '=', True)]" help="Interclub events for current season."/>
-                <filter name="upcoming_season_search" string="Upcoming Season"  domain="[('season_id.upcoming', '=', True)]" help="Interclub events for upcoming season."/>
+                <filter name="upcoming_season_search" string="Upcoming Season" domain="[('season_id.upcoming', '=', True)]" help="Interclub events for upcoming season."/>
                 <separator/>
                 <filter string="Draft" name="state_draft_search" domain="[('state', '=', 'draft')]" help="Interclub events in a draft state."/>
                 <filter string="Opened" name="state_opened_search" domain="[('state', '=', 'opened')]" help="Interclub events in an opened state."/>

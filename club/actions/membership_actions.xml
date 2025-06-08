@@ -11,25 +11,7 @@
         }
         </field>
         <!-- List of the views linked to this action window -->
-        <field name="view_ids" eval="[
-            (5, 0, 0),
-            (0, 0, {
-                'view_mode': 'kanban',
-                'view_id': ref('membership_view_kanban'),
-                }),
-            (0, 0, {
-                'view_mode': 'list',
-                'view_id': ref('membership_view_list'),
-                }),
-            (0, 0, {
-                'view_mode': 'graph',
-                'view_id': ref('membership_view_graph_members'),
-                }),
-            (0, 0, {
-                'view_mode': 'pivot',
-                'view_id': ref('membership_view_pivot'),
-                }),
-            ]"/>
+        <field name="view_ids" eval="[             (5, 0, 0),             (0, 0, {                 'view_mode': 'kanban',                 'view_id': ref('membership_view_kanban'),                 }),             (0, 0, {                 'view_mode': 'list',                 'view_id': ref('membership_view_list'),                 }),             (0, 0, {                 'view_mode': 'graph',                 'view_id': ref('membership_view_graph_members'),                 }),             (0, 0, {                 'view_mode': 'pivot',                 'view_id': ref('membership_view_pivot'),                 }),             ]"/>
     </record>
 
     <record id="action_report_prices_per_period" model="ir.actions.act_window">

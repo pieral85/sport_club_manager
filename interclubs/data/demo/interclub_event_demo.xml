@@ -3,14 +3,9 @@
 <data noupdate="1">
     <!-- Note: in 'calendar.event' demo data, field 'name' has an empty value that will be overridden after creation of the 'interclub.event' demo record -->
     <record id="calendar_interclub_event_demo_1_1_1" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_3'),
-            ref('club.partner_demo_member_4'),
-            ref('club.partner_demo_young_member_2'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_3'),             ref('club.partner_demo_member_4'),             ref('club.partner_demo_young_member_2'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -27,14 +22,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_1_2" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('base.res_partner_address_7'),
-            ref('base.res_partner_address_34'),
-            ref('club.partner_demo_member_4'),
-            ref('club.partner_demo_young_member_2'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('base.res_partner_address_7'),             ref('base.res_partner_address_34'),             ref('club.partner_demo_member_4'),             ref('club.partner_demo_young_member_2'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=1, days=3)).strftime('%Y-%m-%d 17:30:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=1, days=3)).strftime('%Y-%m-%d 21:30:00')"/>
     </record>
@@ -50,14 +40,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_1_3" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_3'),
-            ref('base.res_partner_address_7'),
-            ref('base.res_partner_address_34'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_3'),             ref('base.res_partner_address_7'),             ref('base.res_partner_address_34'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -74,13 +59,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_1_4" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_4'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_4'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-1, days=3)).strftime('%Y-%m-%d 17:30:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-1, days=3)).strftime('%Y-%m-%d 21:30:00')"/>
     </record>
@@ -96,13 +77,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_1_5" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_3'),
-            ref('club.partner_demo_young_member_2'),
-            ref('base.res_partner_address_34'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_3'),             ref('club.partner_demo_young_member_2'),             ref('base.res_partner_address_34'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -120,14 +97,9 @@
 
 
     <record id="calendar_interclub_event_demo_1_2_1" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_1'),
-            ref('club.partner_demo_young_member_1'),
-            ref('club.partner_demo_member_2'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_1'),             ref('club.partner_demo_young_member_1'),             ref('club.partner_demo_member_2'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 19:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d 22:00:00')"/>
     </record>
@@ -144,13 +116,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_2_2" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_1'),
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_4'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_1'),             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_4'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=1, days=2)).strftime('%Y-%m-%d 17:30:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=1, days=2)).strftime('%Y-%m-%d 21:30:00')"/>
     </record>
@@ -166,14 +134,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_2_3" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_young_member_1'),
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_4'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_young_member_1'),             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_4'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2, days=3)).strftime('%Y-%m-%d 19:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2, days=3)).strftime('%Y-%m-%d 22:00:00')"/>
     </record>
@@ -190,13 +153,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_2_4" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_1'),
-            ref('club.partner_demo_member_4'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_1'),             ref('club.partner_demo_member_4'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-1, days=5)).strftime('%Y-%m-%d 19:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-1, days=5)).strftime('%Y-%m-%d 22:30:00')"/>
     </record>
@@ -212,13 +171,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_2_5" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_young_member_1'),
-            ref('club.partner_demo_member_2'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_young_member_1'),             ref('club.partner_demo_member_2'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2, days=3)).strftime('%Y-%m-%d 19:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2, days=3)).strftime('%Y-%m-%d 22:00:00')"/>
     </record>
@@ -236,13 +191,9 @@
 
 
      <record id="calendar_interclub_event_demo_1_3_1" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_1'),
-            ref('base.res_partner_address_14'),
-            ref('base.res_partner_address_33'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_1'),             ref('base.res_partner_address_14'),             ref('base.res_partner_address_33'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -259,13 +210,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_3_3" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('base.res_partner_address_33'),
-            ref('base.res_partner_address_13'),
-            ref('base.res_partner_address_32'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('base.res_partner_address_33'),             ref('base.res_partner_address_13'),             ref('base.res_partner_address_32'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2)).strftime('%Y-%m-%d 15:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=2)).strftime('%Y-%m-%d 18:00:00')"/>
     </record>
@@ -281,13 +228,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_1_3_5" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_1'),
-            ref('base.res_partner_address_33'),
-            ref('base.res_partner_address_32'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_1'),             ref('base.res_partner_address_33'),             ref('base.res_partner_address_32'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(DateTime.now() + relativedelta(weeks=-2)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -305,13 +248,9 @@
 
 
     <record id="calendar_interclub_event_demo_2_1_1" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_4'),
-            ref('base.partner_admin'),
-            ref('base.res_partner_address_7'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_4'),             ref('base.partner_admin'),             ref('base.res_partner_address_7'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(days=1)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(days=1)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -327,14 +266,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_2_1_3" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_4'),
-            ref('base.partner_admin'),
-            ref('base.res_partner_address_7'),
-            ref('base.res_partner_address_34'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_4'),             ref('base.partner_admin'),             ref('base.res_partner_address_7'),             ref('base.res_partner_address_34'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(weeks=2)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(weeks=2)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -351,12 +285,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_2_1_5" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_4'),
-            ref('base.res_partner_address_34'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_4'),             ref('base.res_partner_address_34'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(weeks=-2)).strftime('%Y-%m-%d 18:00:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_4').season_id.start_date + relativedelta(weeks=-2)).strftime('%Y-%m-%d 21:00:00')"/>
     </record>
@@ -373,14 +304,9 @@
 
 
     <record id="calendar_interclub_event_demo_3_1_1" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_3'),
-            ref('base.res_partner_address_7'),
-            ref('base.res_partner_address_24'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_3'),             ref('base.res_partner_address_7'),             ref('base.res_partner_address_24'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(days=5)).strftime('%Y-%m-%d 18:30:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(days=5)).strftime('%Y-%m-%d 21:30:00')"/>
     </record>
@@ -396,13 +322,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_3_1_3" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_3'),
-            ref('base.res_partner_address_7'),
-            ref('base.res_partner_address_24'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_3'),             ref('base.res_partner_address_7'),             ref('base.res_partner_address_24'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(weeks=3, days=3)).strftime('%Y-%m-%d 19:30:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(weeks=3, days=3)).strftime('%Y-%m-%d 22:30:00')"/>
     </record>
@@ -419,13 +341,9 @@
     </record>
 
     <record id="calendar_interclub_event_demo_3_1_5" model="calendar.event">
-        <field name="partner_ids" eval="[(6, 0, [
-            ref('club.partner_demo_member_2'),
-            ref('club.partner_demo_member_3'),
-            ref('base.res_partner_address_24'),
-        ])]"/>
+        <field name="partner_ids" eval="[(6, 0, [             ref('club.partner_demo_member_2'),             ref('club.partner_demo_member_3'),             ref('base.res_partner_address_24'),         ])]"/>
         <field name="user_id" ref="base.user_admin"/>
-        <field name="name"></field>
+        <field name="name"/>
         <field name="start" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(weeks=-3, days=3)).strftime('%Y-%m-%d 19:30:00')"/>
         <field name="stop" model="interclub.event" eval="(obj().env.ref('interclubs.interclub_demo_5').season_id.start_date + relativedelta(weeks=-3, days=3)).strftime('%Y-%m-%d 22:30:00')"/>
     </record>

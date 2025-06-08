@@ -39,21 +39,21 @@
                 <header>
                     <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" invisible="paid"/>
                     <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" invisible="state not in ('unknown', 'old_member')"/>
-                    <button name="validate_membership_affiliation" type="object" string="Validate" attrs="{'invisible': [('state', 'not in', ('unknown', 'old_member')), '|', ('state', '!=', 'requested'), ('paid', '=', True)]}"/>
-                    <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" attrs="{'invisible': ['|', ('state', '!=', 'requested'), ('paid', '=', False)]}"/>
-                    <button name="reject_membership_affiliation" type="object" string="Reject" attrs="{'invisible': [('state', '=', 'rejected')]}" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter."/>
+                    <button name="validate_membership_affiliation" type="object" string="Validate" invisible="((state != 'requested' or paid) and state not in ('unknown', 'old_member'))"/>
+                    <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" invisible="(state != 'requested' or not paid)"/>
+                    <button name="reject_membership_affiliation" type="object" string="Reject" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter." invisible="state == 'rejected'"/>
 
-                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" attrs="{'invisible': ['|',('invitation_mail_sent', '=', True), ('state', 'in', ('member', 'rejected'))]}" context="{'see_records_view': False, 'is_invitation': True}" help="Sends an email to the user to invite him to validate his membership."/>
-                    <button name="send_email_confirmation" type="object" string="Send Confirmation" attrs="{'invisible': ['|', ('state', '!=', 'member'), ('confirmation_mail_sent', '=', True)]}" context="{'see_records_view': False, 'is_confirmation': True}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated."/>
+                    <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" context="{'see_records_view': False, 'is_invitation': True}" help="Sends an email to the user to invite him to validate his membership." invisible="(invitation_mail_sent or state in ('member', 'rejected'))"/>
+                    <button name="send_email_confirmation" type="object" string="Send Confirmation" context="{'see_records_view': False, 'is_confirmation': True}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated." invisible="(state != 'member' or confirmation_mail_sent)"/>
                     <!-- Commented out as for now, players are not necessery linked to a user
-                    <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('user_state', '!=', 'new')]}" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
+                    <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" invisible="user_state != 'new'" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
                     -->
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
                     <field name="active" invisible="1"/>
                     <field name="email_is_ok" invisible="1"/>
                 </header>
                 <sheet>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
                     <h1 class="oe_title">
                         <field name="member_id"/>
                         <small>
@@ -72,7 +72,7 @@
                             <label for="email" class="oe_inline"/>
                             <div class="o_row o_row_readonly">
                                 <field name="email" widget="email"/>
-                                <span class="fa fa-exclamation-triangle text-warning" title="Is empty or does not match contact person or member email." attrs="{'invisible': [('email_is_ok', '=', True)]}"/>
+                                <span class="fa fa-exclamation-triangle text-warning" title="Is empty or does not match contact person or member email." invisible="email_is_ok"/>
                             </div>
                         </group>
                         <group>
@@ -82,7 +82,7 @@
                     </group>
                     <!-- Move "groups" attribute to "details" page once a 2nd will be added -->
                     <notebook>
-                        <page name="member_info" string="Member Infos" attrs="{'invisible': [('member_id', '=', False)]}">
+                        <page name="member_info" string="Member Infos" invisible="not member_id">
                             <group>
                                 <group>
                                     <span class="o_form_label o_td_label" name="address_name">
@@ -92,7 +92,7 @@
                                         <field name="member_street" placeholder="Street..." class="o_address_street"/>
                                         <field name="member_city" placeholder="City" class="o_address_city"/>
                                         <field name="member_zip" placeholder="ZIP" class="o_address_zip"/>
-                                        <field name="member_country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                        <field name="member_country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
                                     </div>
                                     <field name="member_gender" widget="radio" options="{'horizontal': true}"/>
                                     <field name="member_birthdate"/>
@@ -188,9 +188,7 @@
                 <field name="currency_id" invisible="1"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} o_kanban_record_has_image_fill o_res_partner_kanban oe_kanban_global_click
-                            oe_semantic_html_override oe_kanban_card {{record.group_fancy==1
-                            ? 'oe_kanban_card_fancy' : ''}}">
+                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} o_kanban_record_has_image_fill o_res_partner_kanban oe_kanban_global_click                             oe_semantic_html_override oe_kanban_card {{record.group_fancy==1                             ? 'oe_kanban_card_fancy' : ''}}">
                             <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_128', record.member_id.raw_value)}')">
                                 <img class="o_kanban_image_inner_pic" t-if="record.member_parent_id.raw_value" t-att-alt="record.member_parent_id.value" t-att-src="kanban_image('res.partner', 'image_128', record.member_parent_id.raw_value)"/>
                             </div>
@@ -205,7 +203,7 @@
                                             <field name="member_id"/>
                                         </strong>
                                     </div>
-                                    <div attrs="{'invisible': ['|', ('period_id', '=', False), ('member_birthdate', '=', False)]}" class="oe_kanban_bottom_right">
+                                    <div class="oe_kanban_bottom_right" invisible="(not period_id or not member_birthdate)">
                                         <field name="age"/>&amp;nbsp;years
                                     </div>
                                 </div>

@@ -73,7 +73,7 @@
                                                 <h3><p t-field="member.name"/></h3>
                                                 <p t-field="member.email"/>
                                                 <!-- TODO Implement a html field and add it here -->
-                                                <p class="text-muted"></p>
+                                                <p class="text-muted"/>
                                             </div>
                                         </div>
                                     </div>

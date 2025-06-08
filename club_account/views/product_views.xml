@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
             <field name="lst_price" position="after">
-                <span attrs="{'invisible': [('period_category_id', '=', False)]}">
+                <span invisible="not period_category_id">
                     (computed from <field name="period_category_id" nolabel="1"/>)
                 </span>
             </field>

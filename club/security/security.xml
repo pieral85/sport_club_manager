@@ -25,9 +25,7 @@
         <field name="name">Manager</field>
         <field name="comment">Committee managers for the module Club. On top of the committee users, managers can usually create/modify/delete records.</field>
         <field name="category_id" ref="module_category_committee"/>
-        <field name="implied_ids" eval="[
-            (4, ref('group_club_committee_user')),
-        ]"/>
+        <field name="implied_ids" eval="[             (4, ref('group_club_committee_user')),         ]"/>
     </record>
     <record id="group_club_president" model="res.groups">
         <field name="name">President</field>
@@ -50,9 +48,7 @@
 
     <!-- Set the "Internal User" group as the only group for the user "Default User Template" -->
     <function name="_update_record" model="res.users">
-        <value eval="{'model': 'res.users',
-                      'browse_id': [ref('base.default_user')],
-                      'write_values': {'groups_id': [(6, 0, [ref('base.group_user')])]}}"/>
+        <value eval="{'model': 'res.users',                       'browse_id': [ref('base.default_user')],                       'write_values': {'groups_id': [(6, 0, [ref('base.group_user')])]}}"/>
     </function>
 </data>
 </odoo>

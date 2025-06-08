@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//group[@name='emails']" position="after">
                 <group>
-                    <field name="product_tmpl_id" attrs="{'invisible': [('id', '=', False)]}" required="0" groups="account.group_account_invoice"/>
+                    <field name="product_tmpl_id" required="0" groups="account.group_account_invoice" invisible="not id"/>
                 </group>
             </xpath>
         </field>

@@ -10,10 +10,9 @@
                 <field name="interclub_event_id" invisible="1"/>
                 <group invisible="not context.get('show_mail_to_players', False)">
                     <group class="oe_title"><field name="send_to_players"/></group>
-                    <group attrs="{'invisible': [('send_to_players', '=', False)]}" colspan="4">
+                    <group colspan="4" invisible="not send_to_players">
                         <field name="composer_id" invisible="1"/>
-                        <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..."
-                            options="{'no_create': True}" colspan="4"/>
+                        <field name="attendee_ids" widget="many2many_tags" placeholder="Add contacts to notify..." options="{'no_create': True}" colspan="4"/>
                         <field name="template_id"/>
                         <field name="subject" string="Subject"/>
                         <field name="body" string="Body"/>
@@ -24,7 +23,7 @@
                         <field name="others_send_to_partners" string="Send Mail" invisible="context.get('show_mail_to_players', True)"/>
                         <field name="others_send_to_partners" invisible="not context.get('show_mail_to_players', True)"/>
                     </group>
-                    <group attrs="{'invisible': [('others_send_to_partners', '=', False)]}" colspan="4">
+                    <group colspan="4" invisible="not others_send_to_partners">
                         <field name="others_composer_id" invisible="1"/>
                         <group col="12" colspan="4">
                             <group colspan="8">

@@ -30,7 +30,7 @@
                                         <a class="o_website_form_send btn btn-primary btn-lg">
                                             Request this membership
                                         </a>
-                                        <span id="o_website_form_result"></span>
+                                        <span id="o_website_form_result"/>
                                     </div>
                                 </div>
                             </form>
