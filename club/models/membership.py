@@ -212,7 +212,8 @@ class Membership(models.Model):
         default.setdefault('period_category_id', self.period_category_id.id)
         default.setdefault('member_id', self.member_id.id)
         default.setdefault('currency_id', self.currency_id.id)
-        default.setdefault('price_due', self.price_due)
+        new_price = self.period_category_id.price_due if self._context.get('reset_price_due') else self.price_due
+        default.setdefault('price_due', new_price)
         default.setdefault('state', self.state)
         new_membership = super(Membership, self).copy(default)
         return new_membership

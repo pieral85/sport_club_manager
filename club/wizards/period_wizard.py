@@ -35,7 +35,7 @@ class PeriodWizard(models.TransientModel):
             'start_date': self.start_date,
             'end_date': self.end_date,
         }
-        new_period_id = self.period_id.copy(vals)
+        new_period_id = self.period_id.with_context(reset_price_due=True).copy(vals)
         return {
             "type": "ir.actions.act_window",
             "res_model": "period",
