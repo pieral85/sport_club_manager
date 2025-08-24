@@ -17,7 +17,7 @@ Following features are included in this module:
         # Custom dependencies:
         # 'badminton_be',
         'club_account',
-        'interclubs',
+        # 'interclubs',
         # Standard dependencies:
         'contacts',
         'l10n_be',  # Belgium accounting (depends on `account`)

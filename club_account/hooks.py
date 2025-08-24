@@ -7,8 +7,7 @@ from odoo.tools import sql
 
 _logger = logging.getLogger(__name__)
 
-def post_init_hook(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+def post_init_hook(env):
     Period = env['period'].with_context(active_test=False)
     ProdTmpl = env['product.template']
 
@@ -54,10 +53,8 @@ def post_init_hook(cr, registry):
             _logger.info(f" {prod_prod} created")
         p_cat.product_id = prod_prod
 
-def uninstall_hook(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
-
-    sql.drop_not_null(cr, env['category']._table, 'product_attribute_value_id')
+def uninstall_hook(env):
+    sql.drop_not_null(env.cr, env['category']._table, 'product_attribute_value_id')
     categories = env['category'].search([])  # TODO include inactive ones? (with_context(active_test=False))
     # as categories won't be deleted at uninstall and because there is a `ondelete='restrict'`
     # between `category` and `product.attribute.value`, remove the link between both will allow to delete

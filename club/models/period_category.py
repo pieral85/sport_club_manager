@@ -108,11 +108,10 @@ class PeriodCategory(models.Model):
             if len(pc.period_id.period_category_ids.filtered(lambda _pc: _pc.default)) > 1:
                 raise ValidationError(_("For the period '%s', you cannot have multiple period categories with the attribute 'default' set to true. Please change it accordingly.") % (pc.period_id.name))
 
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append((record.id , '%s (%s)' % (record.period_id.name, record.category_id.name)))
-        return result
+    @api.depends('period_id.name', 'category_id.name')
+    def _compute_display_name(self):
+        for period_cat in self:
+            period_cat.display_name = f'{period_cat.period_id.name} ({period_cat.category_id.name})'
 
     def copy(self, default=None):
         """ Does a 'smart' duplication of self, including its membership_ids.

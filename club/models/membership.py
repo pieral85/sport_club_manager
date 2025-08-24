@@ -67,11 +67,6 @@ class Membership(models.Model):
     age = fields.Integer('Age', compute='_compute_age', help="Age (as of first day of period)")
     company_id = fields.Many2one('res.company', string='Company', required=True,
         default=lambda self: self.env.company)
-    user_state = fields.Selection(
-        string='User Status',
-        related='member_user_id.state',
-        readonly=True,
-    )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         string='Currency',
@@ -100,24 +95,14 @@ class Membership(models.Model):
         compute='_compute_payment',
         store=True,
     )  # --> move_id.amount_residual? ou amount_residual_signed?
-    paid = fields.Boolean(
-        string='Paid',
-        compute='_compute_payment',
-        store=True,
-    )
-    state = fields.Selection(
-        [
-         ('old_member', 'Old Member'),
-         ('unknown', 'Unknown'),
-         ('requested', 'Prevalidated'),
-         ('member', 'Member'),
-         ('rejected', 'Rejected'),
-        ],
-        required=True,
-        default='unknown',
-        tracking=True,
-        group_expand='_expand_state',
-    )
+    paid = fields.Boolean('Paid', compute='_compute_payment', store=True)
+    state = fields.Selection(string='State', required=True, default='unknown', tracking=True, selection=[
+        ('old_member', 'Old Member'),
+        ('unknown', 'Unknown'),
+        ('requested', 'Prevalidated'),
+        ('member', 'Member'),
+        ('rejected', 'Rejected'),
+    ], group_expand='_expand_state')
     active = fields.Boolean('Active', default=True, tracking=True)
     token = fields.Char('Invitation Token', readonly=True, copy=False)
     token_validity = fields.Datetime('Token Validity', readonly=True)  # , groups='base.group_user')
@@ -172,27 +157,19 @@ class Membership(models.Model):
         default=_default_period_id,
     )
 
-    def name_get(self):
-        """ name_get() -> [(id, name), ...]
+    @api.depends('period_id.name', 'member_id.name')
+    def _compute_display_name(self):
+        for membership in self:
+            membership.display_name = f'{membership.period_id.name} ({membership.member_id.name})'
 
-        Returns a textual representation for the records in ``self``.
-        By default this is the value of the ``display_name`` field.
-
-        :return: list of pairs ``(id, text_repr)`` for each records
-        :rtype: list(tuple)
-        """
-        res = []
-        for record in self:
-            name = '%s (%s)' % (record.period_id.name, record.member_id.name)
-            res.append((record.id, name))
-        return res
-
-    @api.model
-    def create(self, vals):
-        self._modify_period_category_vals(vals, at_creation=True)
-        res = super(Membership, self).create(vals)
-        res._add_follower(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        # TODO UPG Test how vals_list is changed:
+        for vals in vals_list:
+            self._modify_period_category_vals(vals, at_creation=True)
+        memberships = super().create(vals_list)
+        memberships._add_follower()
+        return memberships
 
     def write(self, vals):
         self._modify_period_category_vals(vals)
@@ -312,6 +289,10 @@ class Membership(models.Model):
     def reject_membership_affiliation(self):
         for record in self:
             record.state = 'rejected'
+
+    def reset_membership_affiliation(self):
+        for record in self:
+            record.state = 'old_member' if record.previous_membership_id.state == 'member' else 'unknown'
 
     def action_reset_password(self):
         return self.mapped('member_user_id').action_reset_password()
@@ -458,18 +439,18 @@ class Membership(models.Model):
             if record.token and record.env['membership'].search_count([('token', '=', record.token),]) > 1:
                 record.token = self._get_token()
 
-    def _add_follower(self, vals):
-        ids = self.contact_person_id.ids or self.member_id.ids
+    def _add_follower(self):
         # Let's wait what we decide to do...
         # ids.extend(self.env['res.users'].search([('secretary', '=', True),]).mapped('partner_id').ids)
-        self.message_subscribe(partner_ids=ids)
+        for membership in self:
+            follower = membership.contact_person_id or membership.member_id
+            membership.message_subscribe(partner_ids=follower.ids)
 
     @api.depends('member_id')
     def _compute_member_user_id(self):
         ResUsers = self.env['res.users']
         for record in self:
-            record.member_user_id = ResUsers.search([('partner_id', '=', record.member_id.id)],
-                limit=1)
+            record.member_user_id = ResUsers.search([('partner_id', '=', record.member_id.id)], limit=1)
 
     @api.depends('member_id')
     def _compute_contact_person_id(self):

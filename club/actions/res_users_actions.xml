@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+    <!-- TODO UPG Do not create custom act window; merge into default one instead -->
     <record id="action_user" model="ir.actions.act_window">
         <field name="name">Users</field>
         <field name="res_model">res.users</field>

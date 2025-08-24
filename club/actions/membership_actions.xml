@@ -3,6 +3,7 @@
     <record id="action_membership" model="ir.actions.act_window">
         <field name="name">Memberships</field>
         <field name="res_model">membership</field>
+        <field name="path">memberships</field>
         <field name="view_mode">kanban,list,form,graph</field>
         <field name="context">{
             'search_default_active_period_search': 0, 'search_default_inactive_period_search': 0,
@@ -17,6 +18,7 @@
     <record id="action_report_prices_per_period" model="ir.actions.act_window">
         <field name="name">Prices per Period (validated members only)</field>
         <field name="res_model">membership</field>
+        <field name="path">period-prices</field>
         <field name="domain">[('state', '=', 'member')]</field>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="membership_view_graph_periods"/>
@@ -25,6 +27,7 @@
     <record id="action_report_prices_per_member" model="ir.actions.act_window">
         <field name="name">Prices per Member (validated only)</field>
         <field name="res_model">membership</field>
+        <field name="path">member-prices</field>
         <field name="domain">[('state', '=', 'member')]</field>
         <field name="view_mode">graph</field>
         <field name="view_id" ref="membership_view_graph_members"/>

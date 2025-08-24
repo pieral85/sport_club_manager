@@ -27,12 +27,12 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" states="draft" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_open'}"/>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Confirm" class="btn-primary" states="opened" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_confirm'}"/>
-                    <button name="action_close" type="object" string="Close" class="btn-primary" states="confirmed" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to close this event?"/>
-                    <button name="prepare_interclub_event_wizard" type="object" string="Cancel" class="" states="opened,confirmed" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_cancel'}"/>
-                    <button name="action_cancel" type="object" string="Cancel" class="" states="draft" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to cancel this event?"/>
-                    <button name="action_draft" type="object" string="Set in Draft" class="" states="cancelled" groups="interclubs.group_interclubs_interclub_user"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Open" class="btn-primary" invisible="state != 'draft'" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_open'}"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Confirm" class="btn-primary" invisible="state != 'opened'" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_confirm'}"/>
+                    <button name="action_close" type="object" string="Close" class="btn-primary" invisible="state != 'confirmed'" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to close this event?"/>
+                    <button name="prepare_interclub_event_wizard" type="object" string="Cancel" class="" invisible="state not in ('opened', 'confirmed')" groups="interclubs.group_interclubs_interclub_user" context="{'role': 'to_cancel'}"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="" invisible="state != 'draft'" groups="interclubs.group_interclubs_interclub_user" confirm="Are you sure to cancel this event?"/>
+                    <button name="action_draft" type="object" string="Set in Draft" class="" invisible="state != 'cancelled'" groups="interclubs.group_interclubs_interclub_user"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -59,7 +59,7 @@
                             <label for="interclub_id"/>
                         </div>
                         <h1>
-                            <field name="interclub_id"/>
+                            <field name="interclub_id" readonly="state not in ('draft', 'opened')"/>
                         </h1>
                         <label for="partner_ids" string="Players" class="oe_edit_only"/>
                         <h2>
@@ -73,27 +73,27 @@
                             <field name="start" readonly="state not in ('draft', 'opened')"/>
                             <field name="season_id"/>
                             <field name="stop" invisible="1"/>
-                            <field name="opponent_id"/>
+                            <field name="opponent_id" readonly="state not in ('draft', 'opened')"/>
                         </group>
                         <group>
-                            <field name="at_home"/>
+                            <field name="at_home" readonly="state not in ('draft', 'opened')"/>
                             <field name="allowed_location_ids" invisible="1"/>
                             <field name="location_id" string="Location" options="{'no_create': True}"/>
                             <field name="location" string="Address"/>
-                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True, 'always_reload': True}" context="{'hide_company': 1}"/>
+                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True, 'always_reload': True}" context="{'hide_company': 1}" readonly="state not in ('draft', 'opened')"/>
                         </group>
                     </group>
                     <notebook>
                         <page name="page_invitations" string="Players">
                             <button name="action_sendmail" type="object" string="Send mail" icon="fa-envelope" class="oe_link"/>
                             <field name="attendee_ids" widget="one2many">
-                                <list string="Invitation details" editable="top" create="false" delete="false" decoration-success="state=='accepted'" decoration-bf="state=='accepted'" decoration-muted="state=='declined'">
+                                <list string="Invitation details" editable="top" create="false" delete="false" decoration-success="state == 'accepted'" decoration-bf="state == 'accepted'" decoration-muted="state == 'declined'">
                                     <field name="common_name" string="Name"/>
                                     <field name="state"/>
                                     <field name="email" widget="email"/>
-                                    <button name="do_tentative" states="needsAction,declined,accepted" string="Uncertain" type="object" icon="fa-asterisk"/>
-                                    <button name="do_accept" string="Accept" states="needsAction,tentative,declined" type="object" icon="fa-check text-success"/>
-                                    <button name="do_decline" string="Decline" states="needsAction,tentative,accepted" type="object" icon="fa-times-circle text-danger"/>
+                                    <button name="do_tentative" invisible="state not in ('needsAction', 'declined', 'accepted')" string="Uncertain" type="object" icon="fa-asterisk"/>
+                                    <button name="do_accept" string="Accept" invisible="state not in ('needsAction', 'tentative', 'declined')" type="object" icon="fa-check text-success"/>
+                                    <button name="do_decline" string="Decline" invisible="state not in ('needsAction', 'tentative', 'accepted')" type="object" icon="fa-times-circle text-danger"/>
                                 </list>
                             </field>
                         </page>
@@ -132,7 +132,7 @@
                             <label for="interclub_id"/>
                         </div>
                         <h1>
-                            <field name="interclub_id"/>
+                            <field name="interclub_id" readonly="state not in ('draft', 'opened')"/>
                         </h1>
                         <label for="partner_ids" string="Players" class="oe_edit_only"/>
                         <h2>
@@ -143,11 +143,11 @@
                         <group>
                             <field name="start" readonly="state not in ('draft', 'opened')"/>
                             <field name="stop" invisible="1"/>
-                            <field name="opponent_id"/>
+                            <field name="opponent_id" readonly="state not in ('draft', 'opened')"/>
                         </group>
                         <group>
-                            <field name="at_home"/>
-                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True}"/>
+                            <field name="at_home" readonly="state not in ('draft', 'opened')"/>
+                            <field name="referee_id" domain="[('id', 'in', interclub_referee_ids)]" options="{'no_create': True}" readonly="state not in ('draft', 'opened')"/>
                         </group>
                     </group>
                 </sheet>
@@ -175,17 +175,17 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
         <field name="arch" type="xml">
             <xpath expr="//calendar" position="attributes">
-                <attribute name="quick_add">False</attribute>
+                <!-- <attribute name="quick_add">False</attribute>TODO UPG  Invalid attribute quick_add for element calendar -->
                 <attribute name="event_open_popup">False</attribute>
                 <attribute name="form_view_id">%(interclubs.interclub_event_view_form_quick_create)s</attribute>
             </xpath>
             <xpath expr="//field[@name='partner_ids']" position="before">
                 <field name="interclub_id" filters="1" write_model="calendar.interclubs" write_field="interclub_id" filter_field="interclub_checked"/>
-                <field name="opponent_id"/>
+                <field name="opponent_id" readonly="state not in ('draft', 'opened')"/>
             </xpath>
             <xpath expr="//field[@name='description']" position="replace">
-                <field name="at_home" invisible="1"/>
-                <field name="referee_id" invisible="not at_home"/>
+                <field name="at_home" invisible="1" readonly="state not in ('draft', 'opened')"/>
+                <field name="referee_id" invisible="not at_home" readonly="state not in ('draft', 'opened')"/>
                 <field name="responsible_id" string="Responsible" context="{'hide_company': 1}"/>
                 <field name="season_id"/>
             </xpath>

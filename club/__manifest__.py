@@ -55,7 +55,6 @@ Following features are included in this module:
         'actions/res_users_actions.xml',
         'actions/category_actions.xml',
         'actions/period_category_actions.xml',
-        'actions/res_partner_actions.xml',
         'actions/period_actions.xml',
         # menus
         'views/menus.xml',

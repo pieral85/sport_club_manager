@@ -18,10 +18,14 @@ class Membership(models.Model):
     price_due = fields.Monetary(compute='_compute_price_due', inverse='_inverse_price_due', readonly=False)
     invoice_other_membership_ids = fields.Many2many('membership', compute='_compute_invoice_other_membership_ids')
 
-    def name_get(self):
-        if self._context.get('short_membership_name'):
-            return [(rec.id, rec.member_id.name) for rec in self]
-        return super(Membership, self).name_get()
+    @api.depends('member_id.name')
+    @api.depends_context('short_membership_name')
+    def _compute_display_name(self):
+        if not self._context.get('short_membership_name'):
+            return super()._compute_display_name()
+        for membership in self:
+            # TODO UPG Test me
+            membership.display_name = membership.member_id.name
 
     @api.model
     def create(self, vals):

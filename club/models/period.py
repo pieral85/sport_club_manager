@@ -197,12 +197,13 @@ class Period(models.Model):
     def regenerate_alias_name(self):
         self.alias_name = self._get_alias_name()
 
-    @api.model
-    def create(self, vals):
-        vals.update(self._get_alias_name_dict(vals, force_get=True))
-        res = super(Period, self).create(vals)
-        res._update_periods()
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals.update(self._get_alias_name_dict(vals, force_get=True))
+        periods = super().create(vals_list)
+        periods._update_periods()
+        return periods
 
     def write(self, vals):
         vals.update(self._get_alias_name_dict(vals))

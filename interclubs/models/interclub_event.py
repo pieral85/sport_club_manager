@@ -32,8 +32,6 @@ from odoo import api, fields, models, _
 from odoo.exceptions import AccessError, UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT
 
-WRITABLE_STATES = dict(readonly=True, states={'draft': [('readonly', False)], 'opened': [('readonly', False)]})
-
 @api.model
 def _lang_get(self):
     return self.env['res.lang'].get_installed()
@@ -79,15 +77,15 @@ class InterclubEvent(models.Model):
              " * The 'Done' status should be set only after the event occured.\n"
              " * The 'Cancelled' status is used when the event won't happen and therefore, must be cancelled.")
     interclub_id = fields.Many2one('interclub', string='Interclub',
-        required=True, ondelete='cascade', **WRITABLE_STATES)
+        required=True, ondelete='cascade')
     item_color = fields.Char(compute='_compute_item_color', store=False,
         help='Color of the item in the calendar view')
-    at_home = fields.Boolean('At Home', **WRITABLE_STATES)
-    referee_id = fields.Many2one('res.partner', string='Referee', **WRITABLE_STATES)
+    at_home = fields.Boolean('At Home')
+    referee_id = fields.Many2one('res.partner', string='Referee')
     event_id = fields.Many2one('calendar.event', string='Calendar Event',
         required=True, ondelete='restrict', readonly=True)
     opponent_id = fields.Many2one('res.partner', string='Opponent', required=True,
-        domain=lambda self: [('is_company', '=', True), ('id', '!=', self.env.user.company_id.partner_id.id)], **WRITABLE_STATES)
+        domain=lambda self: [('is_company', '=', True), ('id', '!=', self.env.user.company_id.partner_id.id)])
     allowed_location_ids = fields.One2many('res.partner', compute='_compute_allowed_location_ids')
     location_id = fields.Many2one('res.partner', string='Location (Contact)',
         domain="[('id', 'in', allowed_location_ids)]", inverse='_inverse_location_id')
@@ -112,8 +110,6 @@ class InterclubEvent(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
     # Calendar Event related fields
-    # As writing '**WRITABLE_STATES' on a related field is not working, the equivalent domain must be written
-    # in view(s) where this field appears
     partner_ids = fields.Many2many('res.partner', related='event_id.partner_ids', readonly=False,
         domain=lambda self: [('is_company', '=', False),
                              ('id', 'child_of', self.env.user.company_id.partner_id.id),
@@ -122,12 +118,10 @@ class InterclubEvent(models.Model):
     def open_record(self):
         return self.get_formview_action()
 
-    @api.depends('opponent_id', 'interclub_id')
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append((record.id , '{}: {}'.format(record.interclub_id.name, record.opponent_id.name)))
-        return result
+    @api.depends('opponent_id.name', 'interclub_id.name')
+    def _compute_display_name(self):
+        for ic_event in self:
+            ic_event.display_name = f'{ic_event.interclub_id.name}: {ic_event.opponent_id.name}'
 
     @api.model
     def create(self, values):

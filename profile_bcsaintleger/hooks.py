@@ -5,9 +5,7 @@ import base64
 from odoo import api, tools, SUPERUSER_ID
 from odoo.modules.module import get_resource_path
 
-def post_init_hook(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
-
+def post_init_hook(env):
     def get_binary(file_name, module='profile_bcsaintleger', path='static/img'):
         file_path = get_resource_path(module, path, file_name)
         with tools.file_open(file_path, 'rb') as f:

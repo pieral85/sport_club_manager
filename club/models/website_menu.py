@@ -7,6 +7,7 @@ from odoo import api, models
 class WebsiteMenu(models.Model):
     _inherit = 'website.menu'
 
+    @api.model
     def _get_website_and_parent(self, website_id, parent_id):
         """ Get data more consistant regarding 'website_id' and 'parent_id' fields.
 
@@ -49,13 +50,15 @@ class WebsiteMenu(models.Model):
             new_vals['website_id'] = Menu.browse(parent_id).website_id.id
         return new_vals
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
+        # TODO UPG Test this method
         updated_vals = self._get_website_and_parent(vals.get('website_id'), vals.get('parent_id'))
-        vals.update(updated_vals)
-        return super(WebsiteMenu, self).create(vals)
+        for vals in vals_list:
+            vals.update(updated_vals)
+        return super().create(vals_list)
 
     def write(self, vals):
         updated_vals = self._get_website_and_parent(vals.get('website_id'), vals.get('parent_id'))
         vals.update(updated_vals)
-        return super(WebsiteMenu, self).write(vals)
+        return super().write(vals)

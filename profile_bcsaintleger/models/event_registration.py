@@ -26,6 +26,16 @@ class EventRegistrationTag(models.Model):
         if not self._check_recursion():
             raise ValidationError(_('You can not create recursive tags.'))
 
+    @api.depends('name')
+    @api.depends_context('hide_company')
+    def _compute_display_name(self):
+        import ipdb; ipdb.set_trace()
+        if not self._context.get('hide_company'):
+            return super()._compute_display_name()
+        for interclub in self:
+            # TODO UPG Test me
+            interclub.display_name = interclub.name
+
     def name_get(self):
         """ Return the tags display name, including their direct
             parent by default.

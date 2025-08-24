@@ -32,55 +32,53 @@
                 <field name="price_remaining" invisible="1"/>
                 <field name="period_category_id" invisible="1"/>
                 <field name="paid" invisible="1"/>
-                <field name="user_state" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="invitation_mail_sent" invisible="1"/>
                 <field name="confirmation_mail_sent" invisible="1"/>
+                <field name="active" invisible="1"/>
+                <field name="email_is_ok" invisible="1"/>
                 <header>
                     <button name="validate_membership_payment" type="object" string="Payment Receipt" class="btn-primary" invisible="paid"/>
                     <button name="prevalidate_membership_affiliation" type="object" string="Prevalidate" class="btn-primary" invisible="state not in ('unknown', 'old_member')"/>
-                    <button name="validate_membership_affiliation" type="object" string="Validate" invisible="((state != 'requested' or paid) and state not in ('unknown', 'old_member'))"/>
                     <button name="validate_membership_affiliation" type="object" string="Validate" class="btn-primary" invisible="(state != 'requested' or not paid)"/>
-                    <button name="reject_membership_affiliation" type="object" string="Reject" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter." invisible="state == 'rejected'"/>
-
                     <button name="send_email_invitation" type="object" string="Send Invitation" class="btn-primary" context="{'see_records_view': False, 'is_invitation': True}" help="Sends an email to the user to invite him to validate his membership." invisible="(invitation_mail_sent or state in ('member', 'rejected'))"/>
+                    <button name="validate_membership_affiliation" type="object" string="Validate" invisible="((state != 'requested' or paid) and state not in ('unknown', 'old_member'))"/>
                     <button name="send_email_confirmation" type="object" string="Send Confirmation" context="{'see_records_view': False, 'is_confirmation': True}" class="btn-primary" help="Sends an email to the user to let him know that his membership has been validated." invisible="(state != 'member' or confirmation_mail_sent)"/>
-                    <!-- Commented out as for now, players are not necessery linked to a user
-                    <button string="Send Connection Invitation Email" class="btn-primary" type="object" name="action_reset_password" context="{'create_user': 1}" invisible="user_state != 'new'" confirm="Do you want to send an email to the user to let him sign up to the application?" help="Sends an email to the user to let him sign up to the application. Once the invitation accepted, he will be prompted to enter a new password."/>
-                    -->
+                    <button name="reject_membership_affiliation" type="object" string="Reject" confirm="By rejecting this membership, it will be also archived (and thus hidden). If you want to see it again, just set the 'Archived' filter." invisible="state == 'rejected'"/>
+                    <button name="reset_membership_affiliation" type="object" string="Set Draft" invisible="state in ('old_member', 'unknown')" confirm="Are you sure to reset this membership?"/>
                     <field name="state" widget="statusbar" statusbar_visible="unknown,old_member,requested,member"/>
-                    <field name="active" invisible="1"/>
-                    <field name="email_is_ok" invisible="1"/>
                 </header>
                 <sheet>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
-                    <h1 class="oe_title">
-                        <field name="member_id"/>
-                        <small>
-                            <span class="ml16">(</span>
-                            <field name="age" nolabel="1" class="oe_inline"/>
-                            <span class="ml8">years)</span>
-                        </small>
-                        <field name="member_image_128" widget="image" class="oe_avatar"/>
-                    </h1>
-                    <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Member Tags..."/>
-                    <group>
+                    <div>
+                        <h1 class="oe_title">
+                            <field name="member_id"/>
+                            <small invisible="age &lt;= 0">
+                                <span class="ml16">(</span>
+                                <field name="age" nolabel="1" class="oe_inline"/>
+                                <span class="ml8">years)</span>
+                            </small>
+                            <field name="member_image_128" widget="image" class="oe_avatar"/>
+                        </h1>
+                        <field name="member_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Member Tags..."/>
                         <group>
-                            <field name="period_id" class="o_task_user_field" required="1" domain="['|', ('current', '=', True), ('upcoming', '=', True)]"/>
-                            <field name="category_id"/>
-                            <field name="contact_person_id"/>
-                            <label for="email" class="oe_inline"/>
-                            <div class="o_row o_row_readonly">
-                                <field name="email" widget="email"/>
-                                <span class="fa fa-exclamation-triangle text-warning" title="Is empty or does not match contact person or member email." invisible="email_is_ok"/>
-                            </div>
+                            <group>
+                                <field name="period_id" class="o_task_user_field" required="1" domain="['|', ('current', '=', True), ('upcoming', '=', True)]"/>
+                                <field name="category_id"/>
+                                <field name="contact_person_id"/>
+                                <label for="email" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <field name="email" widget="email"/>
+                                    <span class="fa fa-exclamation-triangle text-warning" title="Is empty or does not match contact person or member email." invisible="email_is_ok"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="price_paid"/>
+                                <field name="price_due"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="price_paid"/>
-                            <field name="price_due"/>
-                        </group>
-                    </group>
-                    <!-- Move "groups" attribute to "details" page once a 2nd will be added -->
+                        <!-- Move "groups" attribute to "details" page once a 2nd will be added -->
+                    </div>
                     <notebook>
                         <page name="member_info" string="Member Infos" invisible="not member_id">
                             <group>
@@ -122,11 +120,12 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
+                <chatter/>
+                <!-- <div class="oe_chatter">
                     <field name="message_follower_ids" groups="base.group_user"/>
                     <field name="activity_ids"/>
                     <field name="message_ids"/>
-                </div>
+                </div> -->
             </form>
         </field>
     </record>

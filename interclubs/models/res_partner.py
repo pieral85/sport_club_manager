@@ -36,10 +36,12 @@ class ResPartner(models.Model):
             meeting_ids = meetings.ids
         return super(ResPartner, self).get_attendee_detail(meeting_ids=meeting_ids)
 
-    def name_get(self):
+    @api.depends('name')
+    @api.depends_context('hide_company')
+    def _compute_display_name(self):
         if not self._context.get('hide_company'):
-            return super().name_get()
-        res = []
-        for partner in self:
-            res.append((partner.id, partner.name))
-        return res
+            return super()._compute_display_name()
+        for interclub in self:
+            # TODO UPG Test me
+            interclub.display_name = interclub.name
+
